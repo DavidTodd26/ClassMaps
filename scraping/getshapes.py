@@ -4,7 +4,7 @@ import re
 import math
 import sys
 
-dormids = json.load(open('dormids.json'))
+buildids = json.load(open('buildids.json'))
 
 def xyToLatLong(p):
   x, y = p
@@ -37,21 +37,22 @@ def toGeoJsonEntry(d):
             }
         }
 
-for id in dormids:
-    d = dormids[id]
-    target_url = 'http://m.princeton.edu/map/campus?feed=91eda3cbe8&group=princeton&featureindex=' + d['id']
+for id in buildids:
+    d = buildids[id]
+    target_url = 'http://m.princeton.edu/map/campus?feed=91eda3cbe8&group=princeton&featureindex=' + id
     try:
         r = requests.get(target_url)
         coord_string = re.search('esri\.geometry\.Polygon\(\{"rings":(\[.*\]\]\])', r.text).group(1)
         coords = json.loads(coord_string)
         d['coords'] = map(lambda x: map(xyToLatLong, x), coords)
     except Exception as e:
-        print "Error loading coordinates:", d['name'], d['id'], target_url
+        print "Error loading coordinates:", d['name'], id, target_url
 
-features = map(toGeoJsonEntry, dormids.values())
+features = map(toGeoJsonEntry, buildids.values())
 geo_json = {
     'type': 'FeatureCollection',
     'features': features
 }
 
-print json.dumps(geo_json)
+with open('shapes.json', 'w') as fp:
+    json.dump(geo_json, fp)
