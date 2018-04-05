@@ -1,0 +1,29 @@
+#map {
+    height: 650px;
+}
+.leaflet-popup-content {
+/* change size of margin */
+	margin: 14px 14px;
+/* make the line height smaller */
+	line-height: 1.4;
+	}
+
+/* change color when the cursor hovers over the popup close button */
+  .leaflet-container a.leaflet-popup-close-button:hover {
+  	color: #9d132a;
+  	}
+
+/* change color of an unvisited link and the zoom symbols */
+    a:link {
+        color: #9d132a;
+    }
+
+/* change color of a visited link */
+    a:visited {
+        color: #84b819;
+    }
+
+/* change color when the cursor hovers over a link */
+    a:hover {
+        color: #e11b3c;
+    }
