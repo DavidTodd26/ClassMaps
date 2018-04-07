@@ -1,0 +1,174 @@
+{% extends 'posts/layout.html' %}
+
+{% block content %}
+
+<h3 class="center-align red lightenen-5">{{post.title}}</h3>
+<div class="card">
+    <div class="card-content">
+        {{post.body}}
+    </div>
+</div>
+
+<form method="GET" action="{% url 'posts:search' %}">
+    <input name = "q" value="{{request.GET.q}}" placeholder="search..">
+    <button class="btn btn-success" type="submit">
+        Search
+    </button>
+</form>
+
+<html>  
+<head>
+  <title>ClassMaps</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+   integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+   crossorigin=""></script>
+  <style>
+    #mapid { width: 1000px; height: 600px; }
+  </style>
+</head>
+<body>
+
+  <div id="mapid"></div>
+
+  <script>  
+    var a = "{{post.title}}";
+    var b = "{{post.body}}";
+    var c = b.indexOf(",");
+    var loc1 = b.substring(0, c);
+    var loc2 = b.substring(c+1, b.length);
+
+  // initialize the map
+  var mymap = L.map('mapid').setView([loc1, loc2], 16);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    id: 'mapbox.streets'
+  }).addTo(mymap);
+  L.marker([loc1, loc2]).addTo(mymap)
+    .bindPopup(a).openPopup();
+  L.circle([loc1, loc2], 5, {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5
+  }).addTo(mymap).bindPopup("I am a circle.");
+  L.polygon([
+    [40.34715, -74.655],
+    [40.34667, -74.6546],
+    [40.34636, -74.65537],
+    [40.3468, -74.6557]
+  ]).addTo(mymap).bindPopup("I am a polygon.");
+  L.polygon([
+[40.349366,-74.650526],
+[40.349334,-74.650642],
+[40.349501,-74.650736],
+[40.349388,-74.651143],
+[40.349564,-74.651221],
+[40.349687,-74.650663]
+]).addTo(mymap).bindPopup("Andlinger Center for Energy and Environment"); 
+  L.polygon([
+[40.348657,-74.654009],
+[40.348646,-74.654044],
+[40.348644,-74.654043],
+[40.348596,-74.654204],
+[40.348641,-74.654240],
+[40.348645,-74.654231],
+[40.348651,-74.654236],
+[40.348644,-74.654252],
+[40.348672,-74.654272],
+[40.348734,-74.654147],
+[40.348797,-74.654198],
+[40.348806,-74.654181],
+[40.348838,-74.654194],
+[40.348866,-74.654093],
+[40.348691,-74.654002],
+[40.348685,-74.654022]
+]).addTo(mymap).bindPopup("Bendheim Hall"); 
+  L.polygon([
+[40.348835,-74.649508],
+[40.348788,-74.649486],
+[40.348772,-74.649543],
+[40.348858,-74.649584],
+[40.348840,-74.649649],
+[40.348902,-74.649679],
+[40.348929,-74.649584],
+[40.348960,-74.649598],
+[40.348982,-74.649519],
+[40.349002,-74.649528],
+[40.349026,-74.649442],
+[40.348986,-74.649423],
+[40.349009,-74.649340],
+[40.348951,-74.649313],
+[40.348927,-74.649401],
+[40.348908,-74.649393],
+[40.348900,-74.649423],
+[40.348863,-74.649406]
+]).addTo(mymap).bindPopup("Bobst Hall"); 
+  L.polygon([
+[40.349357,-74.650394],
+[40.349394,-74.650408],
+[40.349396,-74.650435],
+[40.349400,-74.650456],
+[40.349406,-74.650477],
+[40.349412,-74.650492],
+[40.349434,-74.650518],
+[40.349446,-74.650528],
+[40.349459,-74.650535],
+[40.349475,-74.650538],
+[40.349493,-74.650538],
+[40.349518,-74.650531],
+[40.349531,-74.650523],
+[40.349552,-74.650501],
+[40.349562,-74.650484],
+[40.349579,-74.650492],
+[40.349577,-74.650503],
+[40.349622,-74.650524],
+[40.349639,-74.650458],
+[40.349628,-74.650453],
+[40.349651,-74.650368],
+[40.349644,-74.650365],
+[40.349674,-74.650253],
+[40.349694,-74.650262],
+[40.349706,-74.650214],
+[40.349647,-74.650187],
+[40.349653,-74.650159],
+[40.349642,-74.650154],
+[40.349646,-74.650152],
+[40.349648,-74.650146],
+[40.349648,-74.650140],
+[40.349646,-74.650136],
+[40.349641,-74.650135],
+[40.349638,-74.650137],
+[40.349637,-74.650139],
+[40.349636,-74.650151],
+[40.349502,-74.650092],
+[40.349494,-74.650121],
+[40.349487,-74.650118],
+[40.349487,-74.650105],
+[40.349483,-74.650095],
+[40.349479,-74.650088],
+[40.349472,-74.650082],
+[40.349466,-74.650079],
+[40.349458,-74.650078],
+[40.349445,-74.650083],
+[40.349438,-74.650088],
+[40.349434,-74.650094]
+]).addTo(mymap).bindPopup("Bowen Hall");
+  var popup = L.popup();
+  function onMapClick(e) {
+    popup
+      .setLatLng(e.latlng)
+      .setContent("You clicked the map at " + e.latlng.toString())
+      .openOn(mymap);
+  }
+  mymap.on('click', onMapClick);
+</script>
+</body>
+</html>
+
+<a href="/posts" class="btn">Go back</a>
+{% endblock %}
