@@ -58,7 +58,14 @@ var code = '1ciPq3VfxUv3ucttkMPzNXNR1NLKA1JrOq1tGiLg2CsI'
               popupAnchor: [35, -26]
               })
             };
+            var title = data.newsroom,  //value searched
+  loc = [data.longitude, data.latitude]    //position found
 
+  marker = new L.Marker(new L.latLng(loc), {title: title, icon:icon} );//se property searched
+  marker.bindPopup("<strong style='color: #84b819'>" + title + "</strong><br>" + 
+                        data.company + " | " + data.city + "<br>Head: " + data.head);
+
+  markersLayer.addLayer(marker);
           // L.marker([data.longitude, data.latitude], {icon: icon})
           // .addTo(map)
           // .bindPopup("<strong style='color: #84b819'>" + data.newsroom + "</strong><br>" + 
@@ -67,5 +74,11 @@ var code = '1ciPq3VfxUv3ucttkMPzNXNR1NLKA1JrOq1tGiLg2CsI'
     },
     simpleSheet: true 
   })
+    
+
+  controlSearch.on('search:collapsed', function(e) {
+      map.setView([40.346, -74.653], 16);
+  })
+
   
 }
