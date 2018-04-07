@@ -2,43 +2,43 @@ import json
 import re
 import urllib2
 
-# Parse strings of the form <...>info<...>
-def strip_tags(str):
-    return str.replace(">","<").split("<")[2]
+# Parse strings of the form "<...>info<...>"
+def strip_tags(line):
+    return line.replace(">","<").split("<")[2]
+
+# Parse matches
+def clean(match):
+    id = strip_tags(re.search("<location_code>.*?</location_code>", match).group())
+    id = str(int(id)) # Remove leading zeroes
+    name = strip_tags(re.search("<name>.*?</name>", match).group())
+    name = name.replace("amp;","") # Remove encoding
+    lon = strip_tags(re.search("<longitude>.*?</longitude>", match).group())
+    lat = strip_tags(re.search("<latitude>.*?</latitude>", match).group())
+
+    ret = {}
+    ret["id"] = id
+    ret["name"] = name
+    ret["lat"] = lat
+    ret["lon"] = lon
+    return ret
 
 # Return all cleaned matches for regexp in a list
-def scrape_all(regexp):
-    dat = []
+def scrape_all(regexp, feed):
+    dat = {}
     for match in regexp.findall(feed):
-        dat.append(strip_tags(match))
+        ent = clean(match)
+        dat[ent["id"]] = ent
     return dat
 
 # Places data feed
-feed = urllib2.urlopen("http://etcweb.princeton.edu/webfeeds/places/").read()
+feed = urllib2.urlopen("http://etcweb.princeton.edu/webfeeds/map/").read()
+#feed = "".join(feed.split())
 
-# RE expressions
-get_id = re.compile("<building_id>.*?</building_id>")
-get_name = re.compile("<building_name>.*?</building_name>")
-get_lon = re.compile("<longitude>.*?</longitude>")
-get_lat = re.compile("<latitude>.*?</latitude>")
+# RE expression
+get_bldgs = re.compile("<location_code>\d+</location_code><group>Building</group>.*?</latitude>")
 
 # Extract data
-ids = scrape_all(get_id)
-names = scrape_all(get_name)
-lons = scrape_all(get_lon)
-lats = scrape_all(get_lat)
-
-# Combine and save to json
-comb = {}
-for i in range(0,len(ids)):
-    place = ids[i]
-    # Some places are listed more than once; only include the first
-    if not place in comb:
-        comb[place] = {}
-        comb[place]["id"] = place
-        comb[place]["name"] = names[i]
-        comb[place]["lon"] = lons[i]
-        comb[place]["lat"] = lats[i]
+bldgs = scrape_all(get_bldgs, feed)
 
 with open('buildids.json', 'w') as fp:
-    json.dump(comb, fp)
+    json.dump(bldgs, fp)

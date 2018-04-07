@@ -21,7 +21,7 @@ import string
 import sqlite3
 import sys
 import urllib2
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 TERM_CODE = 1122  # seems to be fall 11-12
 TERM_CODE = 1124  # so 1124 would be spring 11-12
@@ -31,8 +31,8 @@ TERM_CODE = 1142  # fall 2013; spring 2014 will be 1144
 TERM_CODE = 1144  # spring 2014
 TERM_CODE = 1154  # spring 2015
 TERM_CODE = 1174  # spring 2017
-TERM_CODE = 1184  # spring 2018
 TERM_CODE = 1182  # fall 2017 ??
+TERM_CODE = 1184  # spring 2018
 
 URL_PREFIX = "http://registrar.princeton.edu/course-offerings/"
 LIST_URL = URL_PREFIX + "search_results.xml?term={term}"
@@ -44,7 +44,7 @@ LISTING_REGEX = re.compile(r'(?P<dept>[A-Z]{3})\s+(?P<num>\d{3})')
 
 def get_course_list(search_page):
   "Grep through the document for a list of course ids."
-  soup = BeautifulSoup(search_page)
+  soup = BeautifulSoup(search_page, "lxml")
   links = soup('a', href=COURSE_URL_REGEX)
   courseids = [COURSE_URL_REGEX.search(a['href']).group('id') for a in links]
   return courseids
@@ -110,7 +110,6 @@ def get_single_class(row):
   cells = row('td')
   time = cells[2].string.split("-")
   bldg_link = cells[4].strong.a
-
   # <td><strong>Enrolled:</strong>0
   # <strong> Limit:</strong>11</td>
   enroll = ''
@@ -124,6 +123,11 @@ def get_single_class(row):
     else:
       limit = "0"
 
+  bldg_id = ''
+  matches = re.search("\d+",str(bldg_link))
+  if matches != None:
+      bldg_id = matches.group()
+
   return {
     'classnum': cells[0].strong.string,
     'section': cells[1].strong.string,
@@ -131,6 +135,7 @@ def get_single_class(row):
     'starttime': time[0].strip(),
     'endtime': time[1].strip(),
     'bldg': bldg_link.string.strip(),
+    'bldg_id': bldg_id,
     'roomnum': bldg_link.nextSibling.string.replace('&nbsp;', ' ').strip(),
     'enroll': enroll, # bwk
     'limit': limit   #bwk
@@ -146,7 +151,7 @@ def get_course_classes(soup):
 
 def scrape_page(page):
   "Returns a dict containing as much course info as possible from the HTML contained in page."
-  soup = BeautifulSoup(page).find('div', id='timetable') # was contentcontainer
+  soup = BeautifulSoup(page, "lxml").find('div', id='timetable') # was contentcontainer
   course = get_course_details(soup)
   course['listings'] = get_course_listings(soup)
   course['profs'] = get_course_profs(soup)
@@ -160,7 +165,7 @@ def scrape_id(id):
 def scrape_all():
   """
   Return an iterator over all courses listed on the registrar's site.
-  
+
   Which courses are retrieved are governed by the globals at the top of this module,
   most importantly LIST_URL and TERM_CODE.
 
@@ -168,7 +173,7 @@ def scrape_all():
   all exceptions and log them to stdout so that the rest of the program can continue.
   """
   search_page = urllib2.urlopen(LIST_URL.format(term=TERM_CODE))
-  courseids = get_course_list(search_page)
+  courseids = list(set(get_course_list(search_page)))
 
   n = 0
   for id in courseids:
@@ -184,11 +189,12 @@ def scrape_all():
 
 if __name__ == "__main__":
   first = True
-  for course in scrape_all():
+  courses = scrape_all()
+  for course in courses:
     if first:
       first = False
-      print '['
+      print('[')
     else:
-      print ','
+      print(',')
     json.dump(course, sys.stdout)
-  print ']'
+  print(']')
