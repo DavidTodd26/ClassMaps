@@ -38,6 +38,7 @@ def search(request):
     query = request.GET.get('q')
     tokens = classify_terms(query)
     results = Section.objects.filter(course__icontains=tokens[0]).filter(number__icontains=tokens[1])
+    print(query)
     print(tokens)
     print(results)
     context = {
