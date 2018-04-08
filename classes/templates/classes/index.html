@@ -41,8 +41,13 @@
     fillColor: '#f03',
     fillOpacity: 0.5
   }).addTo(mymap).bindPopup("I am a circle.");
- 
+  
   var popup = L.popup();
+      
+  // Limits zoom (we could get rid of this)
+  map.options.minZoom = 14;
+  map.options.maxZoom = 18;
+      
   function onMapClick(e) {
     popup
       .setLatLng(e.latlng)
