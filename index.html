@@ -109,14 +109,15 @@
 
   // Displays current user location and accuracy
   function onLocationFound(e) {
-    var radius = e.accuracy / 2;
-
-    L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-    L.circle(e.latlng, radius).addTo(map);
+  var radius = e.accuracy / 2;
+  L.marker(e.latlng).addTo(map)
+    .bindPopup("You are within " + radius + " meters from this point").openPopup();
+  L.circle(e.latlng, radius).addTo(map);
 }
+
 map.on('locationfound', onLocationFound);
+map.locate({setView: true, watch: false, maxZoom: 17});
+//map.locate({setView: true, watch: true, maxZoom: 17});
 
 // Displays coordinates upon mouse click
 var popup = L.popup();
