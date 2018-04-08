@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from .models import Section
 from django.db.models import Q
+from enum import Enum
 
 # Create your views here.
+class Term(Enum):
+    INVALID = 0
+    COURSE = 1
+    NUMBER = 2
+
 
 def index(request):
     context = {
@@ -18,10 +24,26 @@ def details(request, id):
 
     return render(request, 'classes/details.html', context)
 
+def classify_term(query):
+    if len(query) == 3 and isalpha(q[i]):
+        return COURSE
+    elif len(query) == 3 and isdigit(q[i]):
+        return NUMBER
+    else:
+        return INVALID
+
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
-    results = Section.objects.filter(Q(course__icontains=query)) | Section.objects.filter(Q(number__icontains=query)) 
+    tokens = query.split()
+    for t in tokens:
+        category = classify_term(t)
+        if category == COURSE:
+            results = Section.objects.filter(Q(course__icontains=query))
+        elif category == NUMBER:
+            results = Section.objects.filter(Q(number__icontains=query))
+        else:
+            results = None
     context = {
         'classes': results
     }
