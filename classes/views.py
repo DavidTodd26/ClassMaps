@@ -26,7 +26,7 @@ def details(request, id):
 
 def classify_terms(query):
     ret = [""] * 2
-    for q in query.split("+"):
+    for q in query:
         if len(query) == 3 and query.isalpha():
             ret[0] = q
         elif len(query) == 3 and query.isdigit():
@@ -35,7 +35,7 @@ def classify_terms(query):
 
 def search(request):
     template = 'classes/searches.html'
-    query = request.GET.get('q')
+    query = request.GET.get('q').split()
     tokens = classify_terms(query)
     results = Section.objects.filter(course__icontains=tokens[0]).filter(number__icontains=tokens[1])
     print(query)
