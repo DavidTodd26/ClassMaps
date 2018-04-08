@@ -4,12 +4,6 @@ from django.db.models import Q
 from enum import Enum
 
 # Create your views here.
-class Term(Enum):
-    INVALID = 0
-    COURSE = 1
-    NUMBER = 2
-
-
 def index(request):
     context = {
 
@@ -31,6 +25,10 @@ def classify_terms(query):
             ret[0] = q
         elif len(q) == 3 and q.isdigit():
             ret[1] = q
+
+    # If nothing matches
+    if all(ret) == "":
+        return ["zzzzz"] * 2
     return ret
 
 def search(request):
