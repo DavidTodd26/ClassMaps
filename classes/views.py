@@ -26,11 +26,11 @@ def details(request, id):
 
 def classify_term(query):
     if len(query) == 3 and query.isalpha():
-        return COURSE
+        return Term.COURSE
     elif len(query) == 3 and query.isdigit():
-        return NUMBER
+        return Term.NUMBER
     else:
-        return INVALID
+        return Term.INVALID
 
 def search(request):
     template = 'classes/searches.html'
@@ -38,9 +38,9 @@ def search(request):
     tokens = query.split()
     for t in tokens:
         category = classify_term(t)
-        if category == COURSE:
+        if category == Term.COURSE:
             results = Section.objects.filter(Q(course__icontains=query))
-        elif category == NUMBER:
+        elif category == Term.NUMBER:
             results = Section.objects.filter(Q(number__icontains=query))
         else:
             results = None
