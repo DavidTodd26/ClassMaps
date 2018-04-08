@@ -25,9 +25,9 @@ def details(request, id):
     return render(request, 'classes/details.html', context)
 
 def classify_term(query):
-    if len(query) == 3 and isalpha(q[i]):
+    if len(query) == 3 and query.isalpha():
         return COURSE
-    elif len(query) == 3 and isdigit(q[i]):
+    elif len(query) == 3 and query.isdigit():
         return NUMBER
     else:
         return INVALID
