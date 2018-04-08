@@ -9,14 +9,14 @@ def expand(raw):
     for entry in raw:
         info = {}
         if len(entry['listings']) > 0:
-            info['course'] = [e['dept'] for e in entry['listings']]
-            info['number'] = [e['number'] for e in entry['listings']]
+            info['course'] = "_".join([e['dept'] for e in entry['listings']])
+            info['number'] = "_".join([e['number'] for e in entry['listings']])
         else:
             info['course'] = []
             info['number'] = []
         info['area'] = entry['area']
         if len(entry['profs']) > 0:
-            info['profs'] = [e['name'] for e in entry['profs']]
+            info['profs'] = "_".join([e['name'] for e in entry['profs']])
         else:
             info['course'] = []
         info['title'] = entry['title']
@@ -30,9 +30,6 @@ def expand(raw):
             continue
         for c in entry['classes']:
             section = c['section']
-            if section[0] == 'B' or section[0] == 'D' or section[0] == 'E' or \
-               section[0] == 'F' or section[0] == 'P':
-               continue
             entry_info = copy.deepcopy(info)
             entry_info['section'] = section
             entry_info['day'] = c['days']
@@ -54,7 +51,8 @@ def add_bldg(sections, bldgs):
         except KeyError:
             section['building_lat'] = ''
             section['building_lon'] = ''
-            sys.stderr.write("No building data for room: "+section['building']+"\n")
+            #sys.stderr.write("No building data for room: "+section['building']+
+            #                 section['course'][0]+" "+section['number'][0]+section['section']+"\n")
     return sections
 
 # Convert into a form that can be put into the database
@@ -64,7 +62,7 @@ def convert_db(data):
     for ent in data:
         temp = {}
         temp['pk'] = pk
-        temp['model'] = "polls.section"
+        temp['model'] = "classes.section"
         temp['fields'] = ent
         ret.append(temp)
         pk+=1
