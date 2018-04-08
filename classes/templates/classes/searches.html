@@ -3,6 +3,9 @@
 {% block content %}
 
 <ul class ="collection">
+    {% if classes == None %}
+        <b>"Class Not Found"</b>
+    {% endif %}
     {% for classe in classes %}
         <li class="collection-item"><a href="/classes/details/{{classe.id}}">{{classe.course}} {{classe.number}} {{classe.title}} {{classe.section}}</a></li>
     {% endfor %}
