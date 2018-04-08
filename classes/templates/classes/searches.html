@@ -1,0 +1,11 @@
+{% extends 'classes/layout.html' %}
+
+{% block content %}
+
+<ul class ="collection">
+    {% for classe in classes %}
+        <li class="collection-item"><a href="/classes/details/{{classe.id}}">{{classe.course}}</a></li>
+    {% endfor %}
+</ul>
+<a href="/classes" class="btn">Go back</a>
+{% endblock %}
