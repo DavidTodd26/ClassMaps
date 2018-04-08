@@ -27,7 +27,7 @@ def classify_terms(query):
             ret[1] = q
 
     # If nothing matches
-    if all(ret) == "":
+    if any(ret):
         return ["zzzzz"] * 2
     return ret
 
