@@ -24,26 +24,20 @@ def details(request, id):
 
     return render(request, 'classes/details.html', context)
 
-def classify_term(query):
-    if len(query) == 3 and query.isalpha():
-        return Term.COURSE
-    elif len(query) == 3 and query.isdigit():
-        return Term.NUMBER
-    else:
-        return Term.INVALID
+def classify_terms(query):
+    ret = [""] * 2
+    for q in query.split():
+        if len(query) == 3 and query.isalpha():
+            ret[0] = q
+        elif len(query) == 3 and query.isdigit():
+            ret[1] = q
+    return ret
 
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
-    tokens = query.split()
-    for t in tokens:
-        category = classify_term(t)
-        if category == Term.COURSE:
-            results = Section.objects.filter(Q(course__icontains=query))
-        elif category == Term.NUMBER:
-            results = Section.objects.filter(Q(number__icontains=query))
-        else:
-            results = None
+    tokens = classify_terms(query)
+    results = Section.objects.filter(Q(course__icontains=tokens[0]) & Q(number__icontains=tokens[1]))
     context = {
         'classes': results
     }
