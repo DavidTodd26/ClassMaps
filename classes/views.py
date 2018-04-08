@@ -37,7 +37,7 @@ def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
     tokens = classify_terms(query)
-    results = Section.objects.filter(course__icontains=tokens[0], number__icontains=tokens[1])
+    results = Section.objects.filter(course__icontains=tokens[0]).filter(number__icontains=tokens[1])
     context = {
         'classes': results
     }
