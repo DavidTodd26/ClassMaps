@@ -4,11 +4,11 @@
 
 <ul class ="collection">
     {% if classes %}
-        <p>Class Not Found!</p>
-    {% else %}
         {% for classe in classes %}
             <li class="collection-item"><a href="/classes/details/{{classe.id}}">{{classe.course}} {{classe.number}} {{classe.title}} {{classe.section}} {{classe.building}} {{classe.room}}</a></li>
         {% endfor %}
+    {% else %}
+        <p>Class Not Found!</p>
     {% endif %}
 </ul>
 <a href="/classes" class="btn">Go back</a>
