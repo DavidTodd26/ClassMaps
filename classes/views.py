@@ -27,9 +27,9 @@ def details(request, id):
 def classify_terms(query):
     ret = [""] * 2
     for q in query:
-        if len(query) == 3 and query.isalpha():
+        if len(q) == 3 and q.isalpha():
             ret[0] = q
-        elif len(query) == 3 and query.isdigit():
+        elif len(q) == 3 and q.isdigit():
             ret[1] = q
     return ret
 
