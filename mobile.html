@@ -42,21 +42,6 @@
 		id: 'mapbox.streets'
 	}).addTo(map);
 
-	// add a layer group, yet empty
-	var markersLayer = new L.LayerGroup();  
-	map.addLayer(markersLayer); 
-	 
-	// add the search bar to the map
-	  var controlSearch = new L.Control.Search({
-	    position:'topright',    // where do you want the search bar?
-	    layer: markersLayer,  // name of the layer
-	    initial: false,
-	    zoom: 11,        // set zoom to found location when searched
-	    marker: false,
-	    textPlaceholder: 'search...' // placeholder while nothing is searched
-	  });
-	 
-	  map.addControl(controlSearch); // add it to the map
 </script>
 
 
