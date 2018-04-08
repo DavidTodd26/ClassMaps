@@ -3,11 +3,11 @@
 {% block content %}
 
 <ul class ="collection">
-    {% if classes == None %}
-        <a href="/classes" class="btn">Go back</a>
-    {% endif %}
     {% for classe in classes %}
-        <li class="collection-item"><a href="/classes/details/{{classe.id}}">{{classe.course}} {{classe.number}} {{classe.title}} {{classe.section}}</a></li>
+        {% if classe.course == None %}
+            <a href="/classes" class="btn">Go back</a>
+        {% endif %}
+        <li class="collection-item"><a href="/classes/details/{{classe.id}}">{{classe.course}} {{classe.number}} {{classe.title}} {{classe.section}} {{classe.building}} {{classe.room}}</a></li>
     {% endfor %}
 </ul>
 <a href="/classes" class="btn">Go back</a>
