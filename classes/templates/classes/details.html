@@ -36,8 +36,8 @@
   <script>  
     var c = "{{classe.building}}";
     var d = "{{classe.room}}"
-    var loc1 = "{{classe.building_lon}}";
-    var loc2 = "{{classe.building_lat}}";
+    var loc2 = "{{classe.building_lon}}";
+    var loc1 = "{{classe.building_lat}}";
 
   // initialize the map
   var mymap = L.map('mapid').setView([loc1, loc2], 16);
@@ -49,7 +49,7 @@
     id: 'mapbox.streets'
   }).addTo(mymap);
   L.marker([loc1, loc2]).addTo(mymap)
-    .bindPopup(c + d).openPopup();
+    .bindPopup(c + " " + d).openPopup();
   L.circle([loc1, loc2], 5, {
     color: 'red',
     fillColor: '#f03',
