@@ -3,4 +3,8 @@
 
 The basic user interface of the map will show the campus with markers for where classes are being held at the current time. In addition, students will also be able to search for specific courses and pull up more details through a permanent search bar at the top of the page. Given a location, it will be easy to find the ongoing course(s) and those that precede and follow it. Unlike previous course offering projects which are used primarily during course selection, we envision ClassMaps to be used consistently throughout the entire school year by students of all class years, concentrations, and academic interests."
 
+More info:
 https://andsylin.github.io/
+
+Live site:
+http://classmaps.herokuapp.com/
