@@ -26,12 +26,12 @@
    integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
    crossorigin=""></script>
   <style>
-    #mapid { width: 100%; height: 600px; }
+    #map { width: 100%; height: 600px; }
   </style>
 </head>
 <body>
 
-  <div id="mapid"></div>
+  <div id="map"></div>
 
   <script>
     var c = "{{classe.building}}";
@@ -40,29 +40,29 @@
     var loc1 = "{{classe.building_lat}}";
 
   // initialize the map
-  var mymap = L.map('mapid').setView([loc1, loc2], 16);
+  var map = L.map('map').setView([loc1, loc2], 16);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
       '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="http://mapbox.com">Mapbox</a>',
     id: 'mapbox.streets'
-  }).addTo(mymap);
-  L.marker([loc1, loc2]).addTo(mymap)
+  }).addTo(map);
+  L.marker([loc1, loc2]).addTo(map)
     .bindPopup(c + " " + d).openPopup();
   L.circle([loc1, loc2], 5, {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5
-  }).addTo(mymap).bindPopup("I am a circle.");
+  }).addTo(map).bindPopup("I am a circle.");
   var popup = L.popup();
   function onMapClick(e) {
     popup
       .setLatLng(e.latlng)
       .setContent("You clicked the map at " + e.latlng.toString())
-      .openOn(mymap);
+      .openOn(map);
   }
-  mymap.on('click', onMapClick);
+  map.on('click', onMapClick);
 </script>
 </body>
 </html>
