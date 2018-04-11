@@ -47,7 +47,10 @@ def search_terms(query):
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
-    results = search_terms(query)
+    if len(query) == 0:
+        results = Section.objects.none()
+    else:
+        results = search_terms(query)
     context = {
         'classes': results
     }
