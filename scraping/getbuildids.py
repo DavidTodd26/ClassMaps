@@ -1,6 +1,6 @@
 import json
 import re
-import urllib2
+import requests
 
 # Parse strings of the form "<...>info<...>"
 def strip_tags(line):
@@ -31,7 +31,7 @@ def scrape_all(regexp, feed):
     return dat
 
 # Places data feed
-feed = urllib2.urlopen("http://etcweb.princeton.edu/webfeeds/map/").read()
+feed = requests.get("http://etcweb.princeton.edu/webfeeds/map/").text
 #feed = "".join(feed.split())
 
 # RE expression

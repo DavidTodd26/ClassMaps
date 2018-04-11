@@ -20,7 +20,7 @@ import re
 import string
 import sqlite3
 import sys
-import urllib2
+import requests
 from bs4 import BeautifulSoup
 
 TERM_CODE = 1122  # seems to be fall 11-12
@@ -44,7 +44,7 @@ LISTING_REGEX = re.compile(r'(?P<dept>[A-Z]{3})\s+(?P<num>\d{3})')
 
 def get_course_list(search_page):
   "Grep through the document for a list of course ids."
-  soup = BeautifulSoup(search_page, "lxml")
+  soup = BeautifulSoup(search_page, "html.parser")
   links = soup('a', href=COURSE_URL_REGEX)
   courseids = [COURSE_URL_REGEX.search(a['href']).group('id') for a in links]
   return courseids
@@ -108,6 +108,7 @@ def get_course_profs(soup):
 def get_single_class(row):
   "Helper function to turn table rows into class tuples."
   cells = row('td')
+
   time = cells[2].string.split("-")
   bldg_link = cells[4].strong.a
   # <td><strong>Enrolled:</strong>0
@@ -141,17 +142,24 @@ def get_single_class(row):
     'limit': limit   #bwk
   }
 
+# Check if a section has been canceled
+def check_canceled(section):
+    if section == None:
+        return False
+    return section.strip() == "Canceled"
+
 def get_course_classes(soup):
   "Return a list of {classnum, days, starttime, endtime, bldg, roomnum} dicts for classes in this course."
   class_rows = soup('tr')[1:] # the first row is actually just column headings
   # This next bit tends to cause problems because the registrar includes precepts and canceled
   # classes. Having text in both 1st and 4th columns (class number and day of the week)
   # currently indicates a valid class.
-  return [get_single_class(row) for row in class_rows if row('td')[0].strong and row('td')[3].strong.string]
+  return [get_single_class(row) for row in class_rows if row('td')[0].strong.string \
+          and row('td')[3].strong.string and not check_canceled(row('td')[6].strong.string)]
 
 def scrape_page(page):
   "Returns a dict containing as much course info as possible from the HTML contained in page."
-  soup = BeautifulSoup(page, "lxml").find('div', id='timetable') # was contentcontainer
+  soup = BeautifulSoup(page, "html.parser").find('div', id='timetable') # was contentcontainer
   course = get_course_details(soup)
   course['listings'] = get_course_listings(soup)
   course['profs'] = get_course_profs(soup)
@@ -159,7 +167,7 @@ def scrape_page(page):
   return course
 
 def scrape_id(id):
-  page = urllib2.urlopen(COURSE_URL.format(term=TERM_CODE, courseid=id))
+  page = requests.get(COURSE_URL.format(term=TERM_CODE, courseid=id)).text
   return scrape_page(page)
 
 def scrape_all():
@@ -172,7 +180,7 @@ def scrape_all():
   To be robust in case the registrar breaks a small subset of courses, we trap
   all exceptions and log them to stdout so that the rest of the program can continue.
   """
-  search_page = urllib2.urlopen(LIST_URL.format(term=TERM_CODE))
+  search_page = requests.get(LIST_URL.format(term=TERM_CODE)).text
   courseids = list(set(get_course_list(search_page)))
 
   n = 0
