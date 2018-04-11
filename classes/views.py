@@ -19,41 +19,35 @@ def details(request, id):
 
     return render(request, 'classes/details.html', context)
 
-def classify_terms(query):
-    ret = [""] * 5
+# Filter by course, number, section, day, and time
+def search_terms(query):
+    query = query.split()
+    results = Section.objects.all()
     for q in query:
+        # Day
         if re.match("[MTWThF]+", q):
-            ret[0] = q
+            results = results.filter(day__icontains = q)
+        # Course
         elif len(q) == 3 and q.isalpha():
-            ret[1] = q
+            results = results.filter(course__icontains = q)
+        # Number
         elif len(q) == 3 and q.isdigit():
-            ret[2] = q
+            results = results.filter(number__icontains = q)
+        # Section
         elif re.match("[A-Z]\d\d[A-Z]?", q):
-            ret[3] = q
+            results = results.filter(section__icontains = q)
+        # Time
         elif re.match("\d\d:\d\d", q):
-            ret[4] = q
+            t = q.split(":")
+            t = time(hour = int(t[0]), minute = int(t[1]))
+            results = results.filter(starttime__lte = t, endtime__gte = t)
 
-    # If nothing matches
-    if not any(ret):
-        return ["zzzzz"]*4 + [""]
-    return ret
+    return results
 
 def search(request):
     template = 'classes/searches.html'
-    query = request.GET.get('q').split()
-    tokens = classify_terms(query)
-
-    # Filter by course, number, section, and day
-    results = Section.objects.filter(day__icontains = tokens[0],
-                                     course__icontains = tokens[1],
-                                     number__icontains = tokens[2],
-                                     section__icontains = tokens[3])
-    # Filter by time
-    if tokens[4] != "":
-        t = tokens[4].split(":")
-        t = time(hour = int(t[0]), minute = int(t[1]))
-        results = results.filter(starttime__lte = t, endtime__gte = t)
-
+    query = request.GET.get('q')
+    results = search_terms(query)
     context = {
         'classes': results
     }
