@@ -22,13 +22,13 @@ def details(request, id):
 def classify_terms(query):
     ret = [""] * 5
     for q in query:
-        if len(q) == 3 and q.isalpha():
+        if re.match("[MTWThF]+", q):
             ret[0] = q
-        elif len(q) == 3 and q.isdigit():
+        elif len(q) == 3 and q.isalpha():
             ret[1] = q
-        elif re.match("[A-Z]\d\d[A-Z]?", q):
+        elif len(q) == 3 and q.isdigit():
             ret[2] = q
-        elif re.match("[MTWThF]+", q):
+        elif re.match("[A-Z]\d\d[A-Z]?", q):
             ret[3] = q
         elif re.match("\d\d:\d\d", q):
             ret[4] = q
@@ -44,10 +44,10 @@ def search(request):
     tokens = classify_terms(query)
 
     # Filter by course, number, section, and day
-    results = Section.objects.filter(course__icontains = tokens[0],
-                                     number__icontains = tokens[1],
-                                     section__icontains = tokens[2],
-                                     day__icontains = tokens[3])
+    results = Section.objects.filter(day__icontains = tokens[0],
+                                     course__icontains = tokens[1],
+                                     number__icontains = tokens[2],
+                                     section__icontains = tokens[3])
     # Filter by time
     if tokens[4] != "":
         t = tokens[4].split(":")
