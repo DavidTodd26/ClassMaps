@@ -47,6 +47,17 @@
   // Limits zoom (we could get rid of this)
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
+
+    // Displays current user location and accuracy
+  function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(map);
+}
+map.on('locationfound', onLocationFound);
       
   function onMapClick(e) {
     popup
