@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h5 class="center-align">{{classe.course}} {{classe.number}} {{classe.title}} {{classe.section}}</h5>
+<h5 class="center-align">{{classe}}</h5>
 <div class="card">
     <div class="card-content">
         {{classe.building}} {{classe.room}} {{classe.day}} {{classe.time}}
@@ -16,7 +16,7 @@
     </button>
 </form>
 
-<html>  
+<html>
 <head>
   <title>ClassMaps</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
@@ -33,7 +33,7 @@
 
   <div id="mapid"></div>
 
-  <script>  
+  <script>
     var c = "{{classe.building}}";
     var d = "{{classe.room}}"
     var loc2 = "{{classe.building_lon}}";
@@ -68,7 +68,7 @@
 [40.349388,-74.651143],
 [40.349564,-74.651221],
 [40.349687,-74.650663]
-]).addTo(mymap).bindPopup("Andlinger Center for Energy and Environment"); 
+]).addTo(mymap).bindPopup("Andlinger Center for Energy and Environment");
   L.polygon([
 [40.348657,-74.654009],
 [40.348646,-74.654044],
@@ -86,7 +86,7 @@
 [40.348866,-74.654093],
 [40.348691,-74.654002],
 [40.348685,-74.654022]
-]).addTo(mymap).bindPopup("Bendheim Hall"); 
+]).addTo(mymap).bindPopup("Bendheim Hall");
   L.polygon([
 [40.348835,-74.649508],
 [40.348788,-74.649486],
@@ -106,7 +106,7 @@
 [40.348908,-74.649393],
 [40.348900,-74.649423],
 [40.348863,-74.649406]
-]).addTo(mymap).bindPopup("Bobst Hall"); 
+]).addTo(mymap).bindPopup("Bobst Hall");
   L.polygon([
 [40.349357,-74.650394],
 [40.349394,-74.650408],

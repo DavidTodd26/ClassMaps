@@ -5,7 +5,7 @@
 <ul class ="collection">
     {% if classes %}
         {% for classe in classes %}
-            <li class="collection-item"><a href="/classes/details/{{classe.id}}">{{classe.course}} {{classe.number}} {{classe.title}} {{classe.section}} {{classe.building}} {{classe.room}}</a></li>
+            <li class="collection-item"><a href="/classes/details/{{classe.id}}">{{classe}}</a></li>
         {% endfor %}
     {% else %}
         <img src="http://www.cs.princeton.edu/~yangsong/calvinandhobbes.png" alt="NotFound" class="center" style="width:100%;height:25%;">
