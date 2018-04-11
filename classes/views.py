@@ -23,6 +23,8 @@ def details(request, id):
 def search_terms(query):
     query = query.split()
     results = Section.objects.all()
+    foundMatch = False
+
     for q in query:
         # Day
         if re.match("[MTWThF]+", q):
@@ -41,6 +43,9 @@ def search_terms(query):
             t = q.split(":")
             t = time(hour = int(t[0]), minute = int(t[1]))
             results = results.filter(starttime__lte = t, endtime__gte = t)
+        # Badly formatted
+        else:
+            results = Section.objects.none()
 
     return results
 
