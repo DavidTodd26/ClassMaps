@@ -6,5 +6,5 @@ app_name = 'classes'
 urlpatterns = [
     path('', views.index, name="index"),
     path('results/', search, name="search"),
-    re_path(r'details/(?P<id>\d+)/', views.details, name="details"),
+    re_path('details/(?P<id>.*)/', views.details, name="details"),
 ];
