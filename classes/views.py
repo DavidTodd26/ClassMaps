@@ -23,14 +23,13 @@ def details(request, id):
 def search_terms(query):
     query = query.split()
     results = Section.objects.all()
-    foundMatch = False
 
     for q in query:
         # Day
-        if re.match("[MTWThF]+", q):
-            results = results.filter(day__icontains = q)
+        #if re.match("[MTWThF]+", q):
+        #    results = results.filter(day__icontains = q)
         # Course
-        elif len(q) == 3 and q.isalpha():
+        if len(q) == 3 and q.isalpha():
             results = results.filter(course__icontains = q)
         # Number
         elif len(q) == 3 and q.isdigit():
@@ -39,11 +38,14 @@ def search_terms(query):
         elif re.match("[A-Z]\d\d[A-Z]?", q):
             results = results.filter(section__icontains = q)
         # Time
-        elif re.match("\d\d:\d\d", q):
-            t = q.split(":")
-            t = time(hour = int(t[0]), minute = int(t[1]))
-            results = results.filter(starttime__lte = t, endtime__gte = t)
+        #elif re.match("\d\d:\d\d", q):
+        #    t = q.split(":")
+        #    t = time(hour = int(t[0]), minute = int(t[1]))
+        #    results = results.filter(starttime__lte = t, endtime__gte = t)
         # Badly formatted
+
+        elif len(q) > 0:
+            results = results.filter(building__icontains = q)
         else:
             results = Section.objects.none()
 
