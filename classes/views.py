@@ -51,7 +51,8 @@ def search_terms(query):
             results = results.filter(starttime__lte = t, endtime__gte = t)
         # Building
         elif len(q) > 0:
-            buildings = Section.objects.filter(building__icontains = q).first()
+            buildings = Section.objects.filter(building__icontains = q)
+            buildings = buildings.values_list('building', flat=True).distinct()
             results = Section.objects.none()
         else:
             results = Section.objects.none()
@@ -61,10 +62,10 @@ def search_terms(query):
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
-    results, building = search_terms(query)
+    results, buildings = search_terms(query)
     context = {
         'classes': results,
-        'building': building
+        'buildings': buildings
     }
 
     return render(request, template, context)
