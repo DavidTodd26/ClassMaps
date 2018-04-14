@@ -7,23 +7,25 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
-<form method="GET" action="{% url 'classes:search' %}">
-    <div style="width:60%; float:left;">
-     <input name = "q" value="{{request.GET.q}}" placeholder="Search dept/course num... ex: COS 333">
-    <button class="btn btn-success" type="submit">
-        Search
-    </button>
-  </div>
 
-  <div style="width:30%; float:right;">
-      <div class="input-group clockpicker pull-center"  data-autoclose="true">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-time"></span>
-        </span>
-      </div>
+<div style="width:60%; float:left;">
+    <form method="GET" action="{% url 'classes:search' %}">
+        <input name = "q" value="{{request.GET.q}}" placeholder="Search dept/course num... ex: COS 333">
+        <button class="btn btn-success" type="submit">
+            Search
+        </button>
+    </form>
+</div>
+
+<div style="width:30%; float:right;">
+  <div class="input-group clockpicker pull-center"  data-autoclose="true">
+    <input type="text" class="form-control">
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-time"></span>
+    </span>
   </div>
-</form>
+</div>
+
 
 <html>
 <head>
@@ -221,7 +223,7 @@
         var c = b.indexOf(",");
         var loc1 = b.substring(0, c);
         var loc2 = b.substring(c+1, b.length);
-        L.marker([loc1, loc2]).addTo(map)
+        L.marker([loc1, loc2]).addTo(mymap)
         .bindPopup(a).openPopup();
     </script>
   {% endif %}  
