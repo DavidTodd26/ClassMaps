@@ -3,15 +3,17 @@
 {% block content %}
 
 <ul class ="collection">
+    {% if buildings %}
+        {% for b in buildings %}
+        <li class="collection-item"><a href="/classes/details/{{b}}">{{b}}</a></li>
+        {% endfor %}
+    {% endif %}
     {% if classes %}
         {% for c in classes %}
             <li class="collection-item"><a href="/classes/details/{{c.id}}">{{c}}</a></li>
         {% endfor %}
-    {% elif buildings %}
-        {% for b in buildings %}
-        <li class="collection-item"><a href="/classes/details/{{b}}">{{b}}</a></li>
-        {% endfor %}
-    {% else %}
+    {% endif %}
+    {% if not classes and not buildings %}
         <img src="http://www.cs.princeton.edu/~yangsong/calvinandhobbes.png" alt="NotFound" class="center" style="width:100%;height:25%;">
     {% endif %}
 </ul>

@@ -27,6 +27,9 @@ def details(request, id):
 
 # Filter by course, number, section, day, and time
 def search_terms(query):
+    if len(query) == 0:
+        return (Section.objects.none(), Section.objects.none())
+        
     query = query.split()
     results = Section.objects.all()
     buildings = Section.objects.none()
@@ -53,7 +56,7 @@ def search_terms(query):
         elif len(q) > 0:
             buildings = Section.objects.filter(building__icontains = q)
             buildings = buildings.values_list('building', flat=True).distinct()
-            results = Section.objects.none()
+            results = results.filter(building__icontains = q)
         else:
             results = Section.objects.none()
 
