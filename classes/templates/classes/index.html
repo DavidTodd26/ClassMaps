@@ -9,15 +9,15 @@
     </button>
 </form>
 
-<html>  
+<html>
 <head>
   <title>ClassMaps</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
-   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-   crossorigin=""/>
-   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
-   integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
-   crossorigin=""></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="http://leafletjs.com/examples/layers-control/docs/images/favicon.ico">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
   <style>
     #map { width: 100%; height: 600px; }
   </style>
@@ -25,50 +25,135 @@
 <body>
 
   <div id="map"></div>
-
   <script>
-  // initialize the map
-  var map = L.map('map').setView([40.346, -74.653], 16);
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    id: 'mapbox.streets'
-  }).addTo(map);
-  L.circle([40.3462, -74.652], 5, {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5
-  }).addTo(map).bindPopup("I am a circle.");
-  
-  var popup = L.popup();
-      
-  // Limits zoom (we could get rid of this)
-  map.options.minZoom = 14;
-  map.options.maxZoom = 18;
+    // Adds different layer groups
+    var printers = L.layerGroup();
+
+    var printerLocs = [['40.34614', '-74.660091'],
+     ['40.345863', '-74.656253'],
+     ['40.344532', '-74.655534'],
+     ['40.343418', '-74.655867'],
+     ['40.347546', '-74.654514'],
+     ['40.346659', '-74.653703'],
+     ['40.34714524', '-74.65927882'],
+     ['40.349123', '-74.651827'],
+     ['40.349582', '-74.657495'],
+     ['40.342214', '-74.661144'],
+     ['40.342214', '-74.661144'],
+     ['40.350268', '-74.652827'],
+     ['40.350268', '-74.652827'],
+     ['40.34673', '-74.655259'],
+     ['40.34673', '-74.655259'],
+     ['40.34673', '-74.655259'],
+     ['40.348599', '-74.661556'],
+     ['40.348599', '-74.661556'],
+     ['40.34491', '-74.656064'],
+     ['40.343615', '-74.658358'],
+     ['40.333379', '-74.657018'],
+     ['40.333379', '-74.657018'],
+     ['40.346679', '-74.659941'],
+     ['40.348433', '-74.66236'],
+     ['40.348307', '-74.656521'],
+     ['40.345334', '-74.652546'],
+     ['40.340914', '-74.666387'],
+     ['40.344305', '-74.658391'],
+     ['40.340903', '-74.665119'],
+     ['40.347788', '-74.656319'],
+     ['40.34673', '-74.655259'],
+     ['40.346412', '-74.655946'],
+     ['40.350268', '-74.652827'],
+     ['40.345701', '-74.652474'],
+     ['40.349582', '-74.657495'],
+     ['40.349582', '-74.657495'],
+     ['40.349582', '-74.657495'],
+     ['40.349582', '-74.657495'],
+     ['40.349582', '-74.657495'],
+     ['40.349582', '-74.657495'],
+     ['40.34673', '-74.655259'],
+     ['40.34624', '-74.6528'],
+     ['40.34624', '-74.6528'],
+     ['40.34624', '-74.6528'],
+     ['40.347274', '-74.658045'],
+     ['40.347239', '-74.655894'],
+     ['40.349789', '-74.656103'],
+     ['40.349194', '-74.653644'],
+     ['40.351069', '-74.654141'],
+     ['40.34365', '-74.657332'],
+     ['40.347445', '-74.661497'],
+     ['40.346367', '-74.657862'],
+     ['40.34678', '-74.658659'],
+     ['40.344653', '-74.658267'],
+     ['40.346321', '-74.660941'],
+     ['40.346014', '-74.655508'],
+     ['40.345359', '-74.659666'],
+     ['40.344386', '-74.654874'],
+     ['40.344386', '-74.654874'],
+     ['40.344653', '-74.659248'],
+     ['40.34745173', '-74.66012844'],
+     ['40.34570028', '-74.65758615'],
+     ['40.344719', '-74.656574'],
+     ['40.34673', '-74.655259'],
+     ['40.34673', '-74.655259']];
+
+   for (var i = 0; i < printerLocs.length; i++) {
+    L.marker(printerLocs[i]).bindPopup('This is a printer.').addTo(printers);
+   }
+
+    // URLS of maps for different laters (note: need to add attributes)
+    var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+
+    // Different layers
+    var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr})
+
+    // Initializes the map
+    var map = L.map('map', {
+      center: [40.346, -74.653],
+      zoom: 16,
+      layers: [regular, printers]
+    });
+
+    // Our different layers
+    var baseLayers = {
+      "Regular": regular
+    };
+
+    // Our overlays
+    var overlays = {
+      "Printers": printers
+    };
+
+    // Adds overlays and layers to map
+    L.control.layers(baseLayers, overlays).addTo(map);
+
+    // Limits zoom (we could get rid of this)
+    map.options.minZoom = 14;
+    map.options.maxZoom = 18;
 
     // Displays current user location and accuracy
-  function onLocationFound(e) {
-    var radius = e.accuracy / 2;
+    function onLocationFound(e) {
+      var radius = e.accuracy / 2;
 
-    L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+      L.marker(e.latlng).addTo(map)
+          .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
-    L.circle(e.latlng, radius).addTo(map);
-}
-map.on('locationfound', onLocationFound);
-      
-  function onMapClick(e) {
-    popup
-      .setLatLng(e.latlng)
-      .setContent("You clicked the map at " + e.latlng.toString())
-      .openOn(map);
-  }
-  map.on('click', onMapClick);
-</script>
+      L.circle(e.latlng, radius).addTo(map);
+    }
+    map.on('locationfound', onLocationFound);
+
+    // Displays coordinates upon mouse click
+    var popup = L.popup();
+      function onMapClick(e) {
+        popup
+          .setLatLng(e.latlng)
+          .setContent("You clicked the map at " + e.latlng.toString())
+          .openOn(map);
+      }
+      map.on('click', onMapClick);
+  </script>
 </body>
 </html>
 
 {% endblock %}
-
