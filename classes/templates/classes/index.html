@@ -105,9 +105,9 @@
 
     for (var i = 0; i < printerLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29') 
-    if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]]).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]]).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]]).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
  }
 
     // URLS of maps for different laters (note: need to add attributes)
