@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:tns="http://as.oit.princeton.edu/xml/places-1_1"
+		targetNamespace="http://as.oit.princeton.edu/xml/places-1_1"
+		elementFormDefault="qualified" >
+
+    <element name="data" type="tns:places_data"></element>
+    
+    <complexType name="places_data">
+    	<sequence>
+    		<element name="categories" type="tns:children" maxOccurs="1" minOccurs="0"></element>
+    		<element name="places" type="tns:places" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="places">
+    	<sequence>
+    		<element name="PLPlace" type="tns:PLPlace" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="TCCategory">
+    	<sequence>
+    		<element name="name" type="string"></element>
+    		<element name="category_id" type="int"></element>
+    		<element name="children" type="tns:children" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="children">
+    	<sequence>
+    		<element name="TCCategory" type="tns:TCCategory" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="PLPlace">
+    	<sequence>
+    		<element name="name" type="string"></element>
+    		<element name="id" type="int"></element>
+    		<element name="category_id" type="int"></element>
+    		<element name="building_id" type="int"></element>
+    		<element name="building_name" type="string"></element>
+    		<element name="longitude" type="float"></element>
+    		<element name="latitude" type="float"></element>
+    		<element name="attributes" type="tns:attributes"></element>
+    		<element name="open" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="times" type="tns:times" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+
+    </complexType>
+
+    <complexType name="attributes">
+    	<sequence>
+    		<element name="attribute" type="tns:attribute" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="attribute">
+    	<sequence>
+    		<element name="name" type="string"></element>
+    		<element name="value" type="string"></element>
+    		<element name="linkType" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="times">
+    	<sequence>
+    		<element name="day" type="tns:day" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="day">
+    	<sequence>
+    		<element name="name" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="date" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="sessions" type="tns:sessions"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="sessions">
+    	<sequence>
+    		<element name="session" type="tns:session"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="session">
+    	<sequence>
+    		<element name="name" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="hourset" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="start" type="long" maxOccurs="1" minOccurs="0"></element>
+    		<element name="end" type="long" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+</schema>
