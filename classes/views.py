@@ -20,7 +20,7 @@ def details(request, id):
     else:
         building = Section.objects.filter(building__icontains = id).first()
         context = {
-            'c': building
+            'building': building
         }
 
     return render(request, 'classes/index.html', context)
