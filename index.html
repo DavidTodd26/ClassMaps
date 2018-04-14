@@ -33,17 +33,17 @@
 <script>
   // Adds different layer groups
   var printers = L.layerGroup();
+  var copiers = L.layerGroup();
   var laundry = L.layerGroup();
-  var color = L.layerGroup();
   var scanners = L.layerGroup();
   var library = L.layerGroup();
   var food = L.layerGroup();
 
   // Coordinates of printers
-  L.marker([40.3467, -74.6601]).bindPopup('Little Hall Basement Entryway 4').addTo(printers),
-  L.marker([40.347, -74.652]).bindPopup('This is Denver, CO.').addTo(printers),
-  L.marker([40.345, -74.654]).bindPopup('This is Aurora, CO.').addTo(printers),
-  L.marker([40.3475, -74.6526]).bindPopup('This is Golden, CO.').addTo(printers);
+  //L.marker([40.3467, -74.6601]).bindPopup('Little Hall Basement Entryway 4').addTo(printers),
+  //L.marker([40.347, -74.652]).bindPopup('This is Denver, CO.').addTo(printers),
+  //L.marker([40.345, -74.654]).bindPopup('This is Aurora, CO.').addTo(printers),
+  //L.marker([40.3475, -74.6526]).bindPopup('This is Golden, CO.').addTo(printers);
 
   var hi = [['40.34614', '-74.660091', '1901 Hall - Ground Floor', '6'],
  ['40.345863', '-74.656253', '1937 Hall - Ground Floor', '6'],
@@ -112,7 +112,10 @@
  ['40.34673', '-74.655259', 'Frist Campus Center - B Level', '30']];
 
  for (var i = 0; i < hi.length; i++) {
-  L.marker([hi[i][0], hi[i][1]]).bindPopup(hi[i][2]).addTo(printers);
+  //if (hi[i][3] == '6' || hi[i][3] == '29') 
+    if (hi[i][3] == '6') L.marker([hi[i][0], hi[i][1]]).bindPopup(hi[i][2]).addTo(printers);
+    if (hi[i][3] == '29') L.marker([hi[i][0], hi[i][1]]).bindPopup(hi[i][2]).addTo(printers);
+    if (hi[i][3] == '28') L.marker([hi[i][0], hi[i][1]]).bindPopup(hi[i][2]).addTo(copiers);
  }
 
   // URLS of maps for different laters (note: need to add attributes)
@@ -120,25 +123,25 @@
       '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="http://mapbox.com">Mapbox</a>',
     mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    mbUrl2 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    mbUrl3 = 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
-    mbUrl4 = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-    mbUrl5 = 'http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png',
-    mbUrl6 = 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png',
-    mbUrl7 = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
-    mbUrl8 = 'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png',
-    mbUrl9 = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png';
+    mbUrl2 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+    //mbUrl3 = 'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
+    //mbUrl4 = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+    //mbUrl5 = 'http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png',
+    //mbUrl6 = 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png',
+    //mbUrl7 = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
+    //mbUrl8 = 'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png',
+    //mbUrl9 = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png';
 
     // Different layers
   var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-    satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite',   attribution: mbAttr}),
-    watercolor = L.tileLayer(mbUrl3, {id: 'mapbox.watercolor',   attribution: mbAttr}),
-    landscape = L.tileLayer(mbUrl4, {id: 'mapbox.landscape',   attribution: mbAttr}),
-    transport = L.tileLayer(mbUrl5, {id: 'mapbox.transport',   attribution: mbAttr}),
-    outdoors = L.tileLayer(mbUrl6, {id: 'mapbox.outdoors',    attribution:mbAttr}),
-    cycle = L.tileLayer(mbUrl7, {id: 'mapbox.cycle',   attribution: mbAttr}),
-    blackwhite = L.tileLayer(mbUrl8, {id: 'mapbox.blackwhite',   attribution: mbAttr}),
-    standard = L.tileLayer(mbUrl9, {id: 'mapbox.standard',   attribution: mbAttr});
+    satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite',   attribution: mbAttr});
+    //watercolor = L.tileLayer(mbUrl3, {id: 'mapbox.watercolor',   attribution: mbAttr}),
+    //landscape = L.tileLayer(mbUrl4, {id: 'mapbox.landscape',   attribution: mbAttr}),
+    //transport = L.tileLayer(mbUrl5, {id: 'mapbox.transport',   attribution: mbAttr}),
+    //outdoors = L.tileLayer(mbUrl6, {id: 'mapbox.outdoors',    attribution:mbAttr}),
+    //cycle = L.tileLayer(mbUrl7, {id: 'mapbox.cycle',   attribution: mbAttr}),
+    //blackwhite = L.tileLayer(mbUrl8, {id: 'mapbox.blackwhite',   attribution: mbAttr}),
+    //standard = L.tileLayer(mbUrl9, {id: 'mapbox.standard',   attribution: mbAttr});
 
     // Initializes the map
   var map = L.map('map', {
@@ -147,24 +150,23 @@
     layers: [regular, printers]
   });
 
-  // Our different layers
-  var baseLayers = {
-    "Regular": regular,
-    "Satellite": satellite,
-    "Watercolor": watercolor,
-    "Landscape": landscape,
+  // Our different layers "Watercolor": watercolor,
+    /*-"Landscape": landscape,
     "Transport": transport,
     "Outdoors": outdoors,
     "Cycle": cycle,
     "Black-White": blackwhite,
-    "Standard": standard
+    "Standard": standard */
+  var baseLayers = {
+    "Regular": regular,
+    "Satellite": satellite
   };
 
   // Our overlays
   var overlays = {
     "Printers": printers,
     "Scanners": scanners,
-    "Color printers": color,
+    "Copiers": copiers,
     "Laundry": laundry,
     "Food": food,
     "Libraries": library
