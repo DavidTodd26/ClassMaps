@@ -224,7 +224,7 @@
         var c = b.indexOf(",");
         var loc1 = b.substring(0, c);
         var loc2 = b.substring(c+1, b.length);
-        L.marker([loc1, loc2]).addTo(mymap)
+        L.marker([loc1, loc2]).addTo(map)
         .bindPopup(a).openPopup();
     </script>
   {% endif %}  
