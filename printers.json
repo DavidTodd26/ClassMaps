@@ -1,0 +1,1792 @@
+{
+  "places": {
+    "-xmlns": "http://as.oit.princeton.edu/xml/places-1_2",
+    "-xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "-version": "1.2",
+    "-xsi:schemaLocation": "http://as.oit.princeton.edu/xml/places-1_2    http://atsweb.princeton.edu/mobile/xsd/places-1_2.xsd",
+    "categories": {
+      "TCCategory": {
+        "name": "Computing and Printing",
+        "category_id": "5",
+        "children": {
+          "TCCategory": [
+            {
+              "name": "Computer Clusters",
+              "category_id": "6"
+            },
+            {
+              "name": "Copiers",
+              "category_id": "28"
+            },
+            {
+              "name": "Digital Print Center",
+              "category_id": "92"
+            },
+            {
+              "name": "Printers",
+              "category_id": "29"
+            },
+            {
+              "name": "Web Kiosks",
+              "category_id": "30"
+            }
+          ]
+        }
+      }
+    },
+    "places": {
+      "PLPlace": [
+        {
+          "name": "1901 Hall - Ground Floor",
+          "id": "125",
+          "category_id": "6",
+          "building_id": "0047",
+          "building_name": "1901-Laughlin Hall",
+          "longitude": "-74.660091",
+          "latitude": "40.34614",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "4"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "1937 Hall - Ground Floor",
+          "id": "126",
+          "category_id": "6",
+          "building_id": "0091",
+          "building_name": "1937 Hall",
+          "longitude": "-74.656253",
+          "latitude": "40.345863",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Macs",
+                "value": "6"
+              },
+              {
+                "name": "Printers",
+                "value": "2"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-4696",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "1976 Hall - Room 33",
+          "id": "132",
+          "category_id": "6",
+          "building_id": "0703",
+          "building_name": "1976 Hall",
+          "longitude": "-74.655534",
+          "latitude": "40.344532",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Dept",
+                "value": "Butler College"
+              },
+              {
+                "name": "Macs",
+                "value": "6"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Bloomberg Hall - Room 315",
+          "id": "129",
+          "category_id": "6",
+          "building_id": "0627",
+          "building_name": "Bloomberg Hall",
+          "longitude": "-74.655867",
+          "latitude": "40.343418",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Macs",
+                "value": "3"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Campus Club - 2nd Floor",
+          "id": "133",
+          "category_id": "6",
+          "building_id": "0579",
+          "building_name": "Campus Club",
+          "longitude": "-74.654514",
+          "latitude": "40.347546",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Macs",
+                "value": "2"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Center for Jewish Life - 2nd Floor",
+          "id": "134",
+          "description": "Limited hours",
+          "category_id": "6",
+          "building_id": "0554",
+          "building_name": "Center for Jewish Life",
+          "longitude": "-74.653703",
+          "latitude": "40.346659",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Dept",
+                "value": "Center for Jewish Life"
+              },
+              {
+                "name": "Macs",
+                "value": "3"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Edwards Hall - Basement",
+          "id": "136",
+          "category_id": "6",
+          "building_id": "0010",
+          "building_name": "Edwards Hall",
+          "longitude": "-74.65927882",
+          "latitude": "40.34714524",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "5"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-1708",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Fields Center - Room 308",
+          "id": "137",
+          "category_id": "6",
+          "building_id": "0586",
+          "building_name": "Fields Center",
+          "longitude": "-74.651827",
+          "latitude": "40.349123",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Dept",
+                "value": "Fields Center"
+              },
+              {
+                "name": "Macs",
+                "value": "3"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-5494",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Firestone Library - Room B-4-K",
+          "id": "138",
+          "description": "Limited hours",
+          "category_id": "6",
+          "building_id": "0069",
+          "building_name": "Firestone Library",
+          "longitude": "-74.657495",
+          "latitude": "40.349582",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "8"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-4907",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Forbes College - Library, Room 32",
+          "id": "141",
+          "category_id": "6",
+          "building_id": "0148",
+          "building_name": "Forbes Main",
+          "longitude": "-74.661144",
+          "latitude": "40.342214",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "4"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Forbes College - Rooms 21, 22",
+          "id": "140",
+          "category_id": "6",
+          "building_id": "0148",
+          "building_name": "Forbes Main",
+          "longitude": "-74.661144",
+          "latitude": "40.342214",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "12"
+              },
+              {
+                "name": "Printers",
+                "value": "2"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-3823",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Friend Center - Room 016",
+          "id": "143",
+          "description": "Limited hours",
+          "category_id": "6",
+          "building_id": "0616",
+          "building_name": "Friend Center",
+          "longitude": "-74.652827",
+          "latitude": "40.350268",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Dept",
+                "value": "Engineering & Applied Science"
+              },
+              {
+                "name": "Macs",
+                "value": "10"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Friend Center - Room 017",
+          "id": "144",
+          "description": "Limited hours",
+          "category_id": "6",
+          "building_id": "0616",
+          "building_name": "Friend Center",
+          "longitude": "-74.652827",
+          "latitude": "40.350268",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Dept",
+                "value": "Engineering & Applied Science"
+              },
+              {
+                "name": "Macs",
+                "value": "18"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-7649",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frist Campus Center - 100 Level",
+          "id": "150",
+          "category_id": "6",
+          "building_id": "0605",
+          "building_name": "Frist Campus Center",
+          "longitude": "-74.655259",
+          "latitude": "40.34673",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frist Campus Center - 200 Level",
+          "id": "147",
+          "description": "Limited hours",
+          "category_id": "6",
+          "building_id": "0605",
+          "building_name": "Frist Campus Center",
+          "longitude": "-74.655259",
+          "latitude": "40.34673",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "8"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frist Campus Center - 300 Level",
+          "id": "148",
+          "description": "Limited hours",
+          "category_id": "6",
+          "building_id": "0605",
+          "building_name": "Frist Campus Center",
+          "longitude": "-74.655259",
+          "latitude": "40.34673",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "8"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Holder Hall - Room B11",
+          "id": "151",
+          "category_id": "6",
+          "building_id": "0028",
+          "building_name": "Holder Hall",
+          "longitude": "-74.661556",
+          "latitude": "40.348599",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "5"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-9453",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Holder Hall - Room B31",
+          "id": "152",
+          "category_id": "6",
+          "building_id": "0028",
+          "building_name": "Holder Hall",
+          "longitude": "-74.661556",
+          "latitude": "40.348599",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "PCs",
+                "value": "6"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Julian Street Library",
+          "id": "167",
+          "category_id": "6",
+          "building_id": "0099",
+          "building_name": "Wilcox Hall",
+          "longitude": "-74.656064",
+          "latitude": "40.34491",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "2"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Lauritzen Hall - Room 409",
+          "id": "153",
+          "category_id": "6",
+          "building_id": "0636",
+          "building_name": "Lauritzen Hall",
+          "longitude": "-74.658358",
+          "latitude": "40.343615",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Lawrence Apartments - Building 1",
+          "id": "154",
+          "category_id": "6",
+          "building_id": "5202",
+          "building_name": "Lawrence Apartments",
+          "longitude": "-74.657018",
+          "latitude": "40.333379",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "4"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-9557",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Lawrence Apartments - Building 14",
+          "id": "155",
+          "category_id": "6",
+          "building_id": "5202",
+          "building_name": "Lawrence Apartments",
+          "longitude": "-74.657018",
+          "latitude": "40.333379",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "5"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-1720",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Little Hall - Basement",
+          "id": "156",
+          "category_id": "6",
+          "building_id": "0021",
+          "building_name": "Little Hall",
+          "longitude": "-74.659941",
+          "latitude": "40.346679",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "2"
+            }
+          }
+        },
+        {
+          "name": "Madison Hall - Room G17",
+          "id": "157",
+          "category_id": "6",
+          "building_id": "0036",
+          "building_name": "Madison Hall",
+          "longitude": "-74.66236",
+          "latitude": "40.348433",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Macs",
+                "value": "2"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "McCosh Hall - Room B59",
+          "id": "158",
+          "category_id": "6",
+          "building_id": "0024",
+          "building_name": "McCosh Hall",
+          "longitude": "-74.656521",
+          "latitude": "40.348307",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Dept",
+                "value": "English"
+              },
+              {
+                "name": "Macs",
+                "value": "4"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-5888",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "McDonnell Hall - Brush Gallery",
+          "id": "160",
+          "category_id": "6",
+          "building_id": "0604",
+          "building_name": "McDonnell Hall",
+          "longitude": "-74.652546",
+          "latitude": "40.345334",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Macs",
+                "value": "4"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "New Graduate College - Entry 33/34",
+          "id": "161",
+          "category_id": "6",
+          "building_id": "0113",
+          "building_name": "New Graduate College",
+          "longitude": "-74.666387",
+          "latitude": "40.340914",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Macs",
+                "value": "4"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-2758",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "North Hall - Library",
+          "id": "166",
+          "category_id": "6",
+          "building_id": "0670",
+          "building_name": "Wendell Hall C",
+          "longitude": "-74.658391",
+          "latitude": "40.344305",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Macs",
+                "value": "12"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Old Graduate College - Room B-9-B",
+          "id": "149",
+          "category_id": "6",
+          "building_id": "0033",
+          "building_name": "Old Graduate College",
+          "longitude": "-74.665119",
+          "latitude": "40.340903",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Macs",
+                "value": "3"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              },
+              {
+                "name": "Scanners",
+                "value": "1"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-2329",
+                "linkType": "phone"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Architecture Library - 2nd Floor",
+          "id": "336",
+          "category_id": "28",
+          "building_id": "0109",
+          "building_name": "Architecture Building",
+          "longitude": "-74.656319",
+          "latitude": "40.347788",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "East Asian Library - Frist Campus Center",
+          "id": "338",
+          "category_id": "28",
+          "building_id": "0605",
+          "building_name": "Frist Campus Center",
+          "longitude": "-74.655259",
+          "latitude": "40.34673",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "East Asian Library - Jones Hall",
+          "id": "339",
+          "category_id": "28",
+          "building_id": "0058",
+          "building_name": "Jones Hall",
+          "longitude": "-74.655946",
+          "latitude": "40.346412",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Engineering Library - 2nd Floor",
+          "id": "340",
+          "category_id": "28",
+          "building_id": "0616",
+          "building_name": "Friend Center",
+          "longitude": "-74.652827",
+          "latitude": "40.350268",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Fine Hall Library - Basement",
+          "id": "341",
+          "category_id": "28",
+          "building_id": "0139",
+          "building_name": "Fine Hall",
+          "longitude": "-74.652474",
+          "latitude": "40.345701",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Firestone Library - 1st Floor, Reserve",
+          "id": "330",
+          "category_id": "28",
+          "building_id": "0069",
+          "building_name": "Firestone Library",
+          "longitude": "-74.657495",
+          "latitude": "40.349582",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000"
+              },
+              {
+                "name": "Payment",
+                "value": "PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Firestone Library - 3rd Floor",
+          "id": "331",
+          "category_id": "28",
+          "building_id": "0069",
+          "building_name": "Firestone Library",
+          "longitude": "-74.657495",
+          "latitude": "40.349582",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Firestone Library - A Floor",
+          "id": "307",
+          "category_id": "28",
+          "building_id": "0069",
+          "building_name": "Firestone Library",
+          "longitude": "-74.657495",
+          "latitude": "40.349582",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "2"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, Credit Card, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Firestone Library - A Floor - Reserve",
+          "id": "327",
+          "category_id": "28",
+          "building_id": "0069",
+          "building_name": "Firestone Library",
+          "longitude": "-74.657495",
+          "latitude": "40.349582",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Firestone Library - B Floor",
+          "id": "328",
+          "category_id": "28",
+          "building_id": "0069",
+          "building_name": "Firestone Library",
+          "longitude": "-74.657495",
+          "latitude": "40.349582",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "3"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000, Ricoh MP5000, Ricoh MPC2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Credit Card, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Firestone Library - C Floor",
+          "id": "329",
+          "category_id": "28",
+          "building_id": "0069",
+          "building_name": "Firestone Library",
+          "longitude": "-74.657495",
+          "latitude": "40.349582",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "2"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000"
+              },
+              {
+                "name": "Payment",
+                "value": "PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frist Campus Center - 100 Level",
+          "id": "337",
+          "category_id": "28",
+          "building_id": "0605",
+          "building_name": "Frist Campus Center",
+          "longitude": "-74.655259",
+          "latitude": "40.34673",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "2"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Lewis Library - 1st Floor",
+          "id": "343",
+          "category_id": "28",
+          "building_id": "0630",
+          "building_name": "Lewis Library",
+          "longitude": "-74.6528",
+          "latitude": "40.34624",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Lewis Library - 2nd Floor",
+          "id": "344",
+          "category_id": "28",
+          "building_id": "0630",
+          "building_name": "Lewis Library",
+          "longitude": "-74.6528",
+          "latitude": "40.34624",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MPC2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Lewis Library - A Floor",
+          "id": "342",
+          "category_id": "28",
+          "building_id": "0630",
+          "building_name": "Lewis Library",
+          "longitude": "-74.6528",
+          "latitude": "40.34624",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Marquand Library",
+          "id": "332",
+          "category_id": "28",
+          "building_id": "0039",
+          "building_name": "McCormick Hall",
+          "longitude": "-74.658045",
+          "latitude": "40.347274",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "2"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000"
+              },
+              {
+                "name": "Payment",
+                "value": "Credit Card, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Music Library - Woolworth",
+          "id": "334",
+          "category_id": "28",
+          "building_id": "0116",
+          "building_name": "Woolworth Center",
+          "longitude": "-74.655894",
+          "latitude": "40.347239",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP4000"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Psychology Library",
+          "id": "333",
+          "category_id": "28",
+          "building_id": "0048",
+          "building_name": "Green Hall",
+          "longitude": "-74.656103",
+          "latitude": "40.349789",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Stokes Library - Basement",
+          "id": "335",
+          "category_id": "28",
+          "building_id": "0615",
+          "building_name": "Wallace Hall",
+          "longitude": "-74.653644",
+          "latitude": "40.349194",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Copiers",
+                "value": "1"
+              },
+              {
+                "name": "Cost Per Page",
+                "value": ".10 bw, 1.00 color"
+              },
+              {
+                "name": "Model",
+                "value": "Ricoh MP2550"
+              },
+              {
+                "name": "Payment",
+                "value": "Coin, PawPoints"
+              }
+            ]
+          }
+        },
+        {
+          "name": "201 Nassau Street",
+          "id": "606",
+          "description": "Serving Princeton University\\'s students, faculty and staff, the Digital Print Center is the University\\'s on-campus location of Print & Mail Services for all your printing and direct mail needs. We offer on-demand printing, large format output, production art services, an offset & specialty print outsource program, bindery, and lamination. Additional services include direct mail services, electronic envelope addressing, mail list processing, mail panel design review. We also provide wifi, a computer cluster, and self-serve black and white copying. ",
+          "category_id": "92",
+          "building_id": "0168",
+          "building_name": "201 Nassau Street",
+          "longitude": "-74.654141",
+          "latitude": "40.351069",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Contact",
+                "value": "Barbara Valenza, Client Relations/Business Development/DPC Manager"
+              },
+              {
+                "name": "Email address",
+                "value": "digitalprintcenter@princeton.edu; bvalenza@princeton.edu",
+                "linkType": "email"
+              },
+              {
+                "name": "Payment",
+                "value": "Cash, Check, VISA/MC/Discover, Student Charge/Tiger Card, Tower Card/Project Grant"
+              },
+              {
+                "name": "Products ",
+                "value": "Academic Posters, Indoor/Outdoor Banners, Brochures, Flyers, Stationery, Business Cards and more"
+              },
+              {
+                "name": "Services",
+                "value": "Digital and offset printing, Large Format, Mounting/Laminating/Finishing, Direct Mail Services"
+              },
+              {
+                "name": "Telephone",
+                "value": "609-258-5560 (main number) or 609-258-5428",
+                "linkType": "phone"
+              },
+              {
+                "name": "Web address",
+                "value": "www.princeton.edu/printing",
+                "linkType": "url"
+              },
+              {
+                "name": "Wifi",
+                "value": "Computer Clusters (2 PCs and 1 MAC)"
+              }
+            ]
+          },
+          "open": "no",
+          "times": {
+            "day": [
+              {
+                "name": "Wednesday",
+                "date": "2018-04-11",
+                "sessions": {
+                  "session": {
+                    "name": "Daily",
+                    "hourset": "9:00am-5:00pm",
+                    "start": "1523451600",
+                    "end": "1523480400"
+                  }
+                }
+              },
+              {
+                "name": "Thursday",
+                "date": "2018-04-12",
+                "sessions": {
+                  "session": {
+                    "name": "Daily",
+                    "hourset": "9:00am-5:00pm",
+                    "start": "1523538000",
+                    "end": "1523566800"
+                  }
+                }
+              },
+              {
+                "name": "Friday",
+                "date": "2018-04-13",
+                "sessions": {
+                  "session": {
+                    "name": "Daily",
+                    "hourset": "8:00pm-5:00pm",
+                    "start": "1523664000",
+                    "end": "1523739600"
+                  }
+                }
+              },
+              {
+                "name": "Saturday",
+                "date": "2018-04-14"
+              },
+              {
+                "name": "Sunday",
+                "date": "2018-04-15"
+              },
+              {
+                "name": "Monday",
+                "date": "2018-04-16",
+                "sessions": {
+                  "session": {
+                    "name": "Daily",
+                    "hourset": "9:00am-5:00pm",
+                    "start": "1523883600",
+                    "end": "1523912400"
+                  }
+                }
+              },
+              {
+                "name": "Tuesday",
+                "date": "2018-04-17",
+                "sessions": {
+                  "session": {
+                    "name": "Daily",
+                    "hourset": "9:00am-5:00pm",
+                    "start": "1523970000",
+                    "end": "1523998800"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "1981 Hall - Room B10",
+          "id": "127",
+          "category_id": "29",
+          "building_id": "0668",
+          "building_name": "1981 Hall",
+          "longitude": "-74.657332",
+          "latitude": "40.34365",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Blair Hall - Entry 11",
+          "id": "128",
+          "category_id": "29",
+          "building_id": "0019",
+          "building_name": "Blair Hall",
+          "longitude": "-74.661497",
+          "latitude": "40.347445",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Brown Hall - Basement",
+          "id": "130",
+          "category_id": "29",
+          "building_id": "0014",
+          "building_name": "Brown Hall",
+          "longitude": "-74.657862",
+          "latitude": "40.346367",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Dod Hall - Lower Level",
+          "id": "135",
+          "category_id": "29",
+          "building_id": "0012",
+          "building_name": "Dod Hall",
+          "longitude": "-74.658659",
+          "latitude": "40.34678",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Fisher Hall Dorm - Room 213",
+          "id": "139",
+          "category_id": "29",
+          "building_id": "0671",
+          "building_name": "Fisher Hall Dorm",
+          "longitude": "-74.658267",
+          "latitude": "40.344653",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Foulke Hall - Basement",
+          "id": "142",
+          "category_id": "29",
+          "building_id": "0042",
+          "building_name": "Foulke Hall",
+          "longitude": "-74.660941",
+          "latitude": "40.346321",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "McCosh Health Center - Solarium",
+          "id": "159",
+          "category_id": "29",
+          "building_id": "0046",
+          "building_name": "McCosh Health Center",
+          "longitude": "-74.655508",
+          "latitude": "40.346014",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Dept",
+                "value": "Health Services"
+              },
+              {
+                "name": "Macs",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Pyne Hall - Room 231",
+          "id": "162",
+          "category_id": "29",
+          "building_id": "0040",
+          "building_name": "Pyne Hall",
+          "longitude": "-74.659666",
+          "latitude": "40.345359",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Scully Hall - Room 269A",
+          "id": "163",
+          "category_id": "29",
+          "building_id": "0603",
+          "building_name": "Scully Hall",
+          "longitude": "-74.654874",
+          "latitude": "40.344386",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Scully Hall - Room 309",
+          "id": "164",
+          "category_id": "29",
+          "building_id": "0603",
+          "building_name": "Scully Hall",
+          "longitude": "-74.654874",
+          "latitude": "40.344386",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Spelman Halls - Laundry Room",
+          "id": "165",
+          "category_id": "29",
+          "building_id": "0153",
+          "building_name": "Spelman Halls",
+          "longitude": "-74.659248",
+          "latitude": "40.344653",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Witherspoon Hall - Room 109",
+          "id": "168",
+          "category_id": "29",
+          "building_id": "0007",
+          "building_name": "Witherspoon Hall",
+          "longitude": "-74.66012844",
+          "latitude": "40.34745173",
+          "attributes": {
+            "attribute": {
+              "name": "Printers",
+              "value": "1"
+            }
+          }
+        },
+        {
+          "name": "Wright Hall - 3rd Floor",
+          "id": "169",
+          "category_id": "29",
+          "building_id": "0619",
+          "building_name": "Wright Hall",
+          "longitude": "-74.65758615",
+          "latitude": "40.34570028",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Wu Hall - Mellon Library",
+          "id": "170",
+          "category_id": "29",
+          "building_id": "0160",
+          "building_name": "Wu Hall",
+          "longitude": "-74.656574",
+          "latitude": "40.344719",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Dept",
+                "value": "Butler College"
+              },
+              {
+                "name": "Printers",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frist Campus Center - 100 Level",
+          "id": "145",
+          "description": "Limited hours",
+          "category_id": "30",
+          "building_id": "0605",
+          "building_name": "Frist Campus Center",
+          "longitude": "-74.655259",
+          "latitude": "40.34673",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Web_Kiosks",
+                "value": "12"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frist Campus Center - B Level",
+          "id": "146",
+          "description": "Limited hours",
+          "category_id": "30",
+          "building_id": "0605",
+          "building_name": "Frist Campus Center",
+          "longitude": "-74.655259",
+          "latitude": "40.34673",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Accessible",
+                "value": "Wheelchair Accessible"
+              },
+              {
+                "name": "Web_Kiosks",
+                "value": "2"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
