@@ -15,15 +15,15 @@ def details(request, id):
     if id.isdigit():
         course = Section.objects.get(id=int(id))
         context = {
-            'classe': course
+            'c': course
         }
     else:
         building = Section.objects.filter(building__icontains = id).first()
         context = {
-            'building': building
+            'c': building
         }
 
-    return render(request, 'classes/details.html', context)
+    return render(request, 'classes/index.html', context)
 
 # Filter by course, number, section, day, and time
 def search_terms(query):
