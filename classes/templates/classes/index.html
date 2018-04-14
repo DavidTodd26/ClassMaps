@@ -217,17 +217,21 @@
     }
     map.on('click', onMapClick);
   </script>
-  {% if c %}
-    <script>
-        var a = "{{c.title}}";
-        var b = "{{c.body}}";
-        var c = b.indexOf(",");
-        var loc1 = b.substring(0, c);
-        var loc2 = b.substring(c+1, b.length);
-        L.marker([loc1, loc2]).addTo(map)
-        .bindPopup(a).openPopup();
-    </script>
-  {% endif %}  
+  <script>
+    {% if building %}
+        var c = "{{building.building}}";
+        var d = "";
+        var loc2 = "{{building.building_lon}}";
+        var loc1 = "{{building.building_lat}}";
+    {% elif c %}
+        var c = "{{c.building}}";
+        var d = "{{c.room}}";
+        var loc2 = "{{c.building_lon}}";
+        var loc1 = "{{c.building_lat}}";
+    {% endif %}
+     L.marker([loc1, loc2]).addTo(map)
+    .bindPopup(a).openPopup();
+  </script>
     
 </body>
 </html>
