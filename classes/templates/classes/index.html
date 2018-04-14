@@ -9,12 +9,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
 
 <form method="GET" action="{% url 'classes:search' %}">
-    <div style="width:60%; float:left;">
     <input name = "q" value="{{request.GET.q}}" placeholder="Search dept/course num... ex: COS 333">
     <button class="btn btn-success" type="submit">
         Search
     </button>
-    </div>
 </form>
 
 
@@ -232,7 +230,7 @@
      L.marker([loc1, loc2]).addTo(map)
     .bindPopup(a).openPopup();
   </script>
-    
+
 </body>
 </html>
 
