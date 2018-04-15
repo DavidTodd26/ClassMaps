@@ -22,7 +22,12 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
-
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
 <form method="GET" action="{% url 'classes:search' %}">
     <input name = "q" value="{{request.GET.q}}" placeholder="Search dept/course num... ex: COS 333">
     <button class="btn btn-success" type="submit">
