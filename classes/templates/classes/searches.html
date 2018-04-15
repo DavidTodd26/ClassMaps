@@ -5,12 +5,12 @@
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
-        <li class="collection-item"><a href="/classes/details/{{b}}">{{b}}</a></li>
+        <li class="collection-item"><a href="/classes/{{b}}">{{b}}</a></li>
         {% endfor %}
     {% endif %}
     {% if classes %}
         {% for c in classes %}
-            <li class="collection-item"><a href="/classes/details/{{c.id}}">{{c}}</a></li>
+            <li class="collection-item"><a href="/classes/{{c.id}}">{{c}}</a></li>
         {% endfor %}
     {% endif %}
     {% if not classes and not buildings %}

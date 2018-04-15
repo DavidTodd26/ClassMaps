@@ -1,0 +1,161 @@
+{% extends 'classes/layout.html' %}
+
+{% block content %}
+
+<form method="GET" action="{% url 'classes:search' %}">
+    <input name = "q" value="{{request.GET.q}}" placeholder="Search dept/course num... ex: COS 333">
+    <button class="btn btn-success" type="submit">
+        Search
+    </button>
+</form>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/github.min.css">
+
+<html>  
+<head>
+  <title>ClassMaps</title>
+  <div class="slidecontainer">
+      <input type="range" min="0" max="1440" value="720" class="slider" id="myRange">
+      <p>Time: <span id="demo"></span></p>
+      <select id="dayofweek">
+      <option value="All Days">All Days</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturay">Saturday</option>
+      <option value="Sunday">Sunday</option>
+    </select>
+    <select id="year">
+      <option value="Spring 2018">Spring 2018</option>
+      <option value="Fall 2018">Fall 2018</option>
+    </select>
+      <div class="input-group clockpicker pull-center"  data-autoclose="true">
+        <input type="text" class="form-control" value="13:14">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+        </span>
+      </div>
+    </div>
+  
+  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript">
+$('.clockpicker').clockpicker()
+  .find('input').change(function(){
+    console.log(this.value);
+  });
+var input = $('#single-input').clockpicker({
+  placement: 'bottom',
+  align: 'left',
+  autoclose: true,
+  'default': 'now'
+});
+</script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+   integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+   crossorigin=""></script>
+  <style>
+    #map { width: 100%; height: 600px; }
+    .slidecontainer {
+        margin: 0 auto;
+        width: 350px;
+    }
+    .slider {
+        align: center-align;
+        -webkit-appearance: none;
+        
+        width: 100%;
+        height: 25px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+  </style>
+</head>
+<script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript">
+    $('.clockpicker').clockpicker();
+</script>
+<script>
+    
+
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = (slider.value/60).toString()+":00 "+"All Days Fall 2018";
+
+    slider.oninput = function() {
+        var e = document.getElementById("dayofweek");
+        var y = document.getElementById("year");
+        var value = e.options[e.selectedIndex].value;
+        var text = e.options[e.selectedIndex].text;
+        var text2 = y.options[y.selectedIndex].text;
+        var hours = Math.trunc(this.value/60)
+        var minutes = this.value%60
+        //console.log(this.value/60);
+        if(hours < 10)
+            hours = "0"+hours;
+        if(minutes < 10)
+            minutes = "0"+minutes;
+        output.innerHTML = hours+":"+minutes+" "+text+" "+text2
+    }
+    </script>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+  // initialize the map
+  var map = L.map('map').setView([40.346, -74.653], 16);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    id: 'mapbox.streets'
+  }).addTo(map);
+  L.circle([40.3462, -74.652], 5, {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5
+  }).addTo(map).bindPopup("I am a circle.");
+  
+  var popup = L.popup();
+      
+  // Limits zoom (we could get rid of this)
+  map.options.minZoom = 14;
+  map.options.maxZoom = 18;
+
+    // Displays current user location and accuracy
+  function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(map);
+}
+map.on('locationfound', onLocationFound);
+      
+  function onMapClick(e) {
+    popup
+      .setLatLng(e.latlng)
+      .setContent("You clicked the map at " + e.latlng.toString())
+      .openOn(map);
+  }
+  map.on('click', onMapClick);
+</script>
+</body>
+</html>
+
+{% endblock %}
+
