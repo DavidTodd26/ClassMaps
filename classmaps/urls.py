@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import django_cas_ng.views
 
 urlpatterns = [
+    url(r'accounts/login/$', django_cas_ng.views.login),
+    url(r'accounts/logout/$', django_cas_ng.views.logout),
     path('', include('classes.urls')),
     path('admin/', admin.site.urls),
     path('classes/', include('classes.urls')),
