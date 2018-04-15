@@ -1,0 +1,276 @@
+{
+  "places": {
+    "PLPlace": [
+      {
+        "name": "185 Nassau Street Hot Spot",
+        "id": "967",
+        "description": "1st Floor (near elevator)",
+        "category_id": "111",
+        "building_id": "0132",
+        "building_name": "185 Nassau Street",
+        "longitude": "-74.654932",
+        "latitude": "40.35063"
+      },
+      {
+        "name": "200 Elm (Dept. of Public Safety) Hot Spot",
+        "id": "634",
+        "description": "Communication Center window",
+        "category_id": "111",
+        "building_id": "0044",
+        "building_name": "200 Elm Drive",
+        "longitude": "-74.657116",
+        "latitude": "40.342738"
+      },
+      {
+        "name": "87 Prospect Hot Spot",
+        "id": "786",
+        "description": "Next to elevator, main lobby",
+        "category_id": "111",
+        "building_id": "0145",
+        "building_name": "87 Prospect Avenue",
+        "longitude": "-74.648976",
+        "latitude": "40.348357"
+      },
+      {
+        "name": "Chancellor Green Hot Spot",
+        "id": "968",
+        "description": "Chancellor Green Cafe",
+        "category_id": "111",
+        "building_id": "0006",
+        "building_name": "Chancellor Green",
+        "longitude": "-74.6586",
+        "latitude": "40.349043"
+      },
+      {
+        "name": "Computer Science Building Hot Spot",
+        "id": "726",
+        "description": "South Lobby, near stairwell",
+        "category_id": "111",
+        "building_id": "0167",
+        "building_name": "Computer Science Building",
+        "longitude": "-74.652298",
+        "latitude": "40.350182"
+      },
+      {
+        "name": "Dillon Gym Hot Spot",
+        "id": "626",
+        "description": "Lobby, west wall",
+        "category_id": "111",
+        "building_id": "0067",
+        "building_name": "Dillon Gym",
+        "longitude": "-74.658685",
+        "latitude": "40.345591"
+      },
+      {
+        "name": "Engineering Quad Hot Spot",
+        "id": "889",
+        "description": "On column next to cafe entrance",
+        "category_id": "111",
+        "building_id": "0103",
+        "building_name": "Engineering Quad C Wing",
+        "longitude": "-74.651539",
+        "latitude": "40.350484"
+      },
+      {
+        "name": "Firestone Library Hot Spot",
+        "id": "969",
+        "description": "Firestone Library Front Desk",
+        "category_id": "111",
+        "building_id": "0069",
+        "building_name": "Firestone Library",
+        "longitude": "-74.657495",
+        "latitude": "40.349582"
+      },
+      {
+        "name": "Forbes College Hot Spots",
+        "id": "635",
+        "description": "1) North wing, main lobby 2) Dining Hall, card checker station",
+        "category_id": "111",
+        "building_id": "5109",
+        "building_name": "Forbes College",
+        "longitude": "-74.661065",
+        "latitude": "40.342027"
+      },
+      {
+        "name": "Frick Chemistry Laboratory Hot Spot",
+        "id": "970",
+        "description": "Frick Chemistry CaFe",
+        "category_id": "111",
+        "building_id": "0649",
+        "building_name": "Frick Chemistry Laboratory",
+        "longitude": "-74.65084",
+        "latitude": "40.344018"
+      },
+      {
+        "name": "Frist Campus Center Hot Spots",
+        "id": "632",
+        "description": "1) 100 Level mailboxes (x2) 2) Southwest entrance, A Level",
+        "category_id": "111",
+        "building_id": "0605",
+        "building_name": "Frist Campus Center",
+        "longitude": "-74.655259",
+        "latitude": "40.34673"
+      },
+      {
+        "name": "Graduate College Hot Spot",
+        "id": "630",
+        "description": "Procter Hall, card checker station",
+        "category_id": "111",
+        "building_id": "0033",
+        "building_name": "Old Graduate College",
+        "longitude": "-74.665119",
+        "latitude": "40.340903"
+      },
+      {
+        "name": "Guyot Hall Hot Spots",
+        "id": "887",
+        "description": "1) Near west end elevator on the first floor 2) Near west end elevator on the third floor",
+        "category_id": "111",
+        "building_id": "0027",
+        "building_name": "Guyot Hall",
+        "longitude": "-74.65456",
+        "latitude": "40.345797"
+      },
+      {
+        "name": "Icahn Laboratory Hot Spot",
+        "id": "971",
+        "description": "Genomics Cafe",
+        "category_id": "111",
+        "building_id": "0620",
+        "building_name": "Icahn Laboratory",
+        "longitude": "-74.653435",
+        "latitude": "40.344366"
+      },
+      {
+        "name": "Jadwin Gym Hot Spot",
+        "id": "629",
+        "description": "Lobby, east wall",
+        "category_id": "111",
+        "building_id": "0140",
+        "building_name": "Jadwin Gym",
+        "longitude": "-74.6488",
+        "latitude": "40.343413"
+      },
+      {
+        "name": "Jadwin Hall Hot Spot",
+        "id": "972",
+        "description": "1st Floor",
+        "category_id": "111",
+        "building_id": "0141",
+        "building_name": "Jadwin Hall",
+        "longitude": "-74.651918",
+        "latitude": "40.34495"
+      },
+      {
+        "name": "Lewis Library Hot Spot",
+        "id": "888",
+        "description": "Lower floor in the common lobby area across from internal library main entrance",
+        "category_id": "111",
+        "building_id": "0630",
+        "building_name": "Lewis Library",
+        "longitude": "-74.6528",
+        "latitude": "40.34624"
+      },
+      {
+        "name": "Mathey College Hot Spot",
+        "id": "686",
+        "description": "Witherspoon Hall, exterior near entry 4",
+        "category_id": "111",
+        "building_id": "5108",
+        "building_name": "Mathey College",
+        "longitude": "-74.661595",
+        "latitude": "40.347697"
+      },
+      {
+        "name": "McCormick Hall Hot Spot",
+        "id": "973",
+        "description": "Near Marquand Library",
+        "category_id": "111",
+        "building_id": "0039",
+        "building_name": "McCormick Hall",
+        "longitude": "-74.658045",
+        "latitude": "40.347274"
+      },
+      {
+        "name": "Moffett Laboratory Hot Spot",
+        "id": "974",
+        "description": "Lower Level (near maintenance shop)",
+        "category_id": "111",
+        "building_id": "0100",
+        "building_name": "Moffett Laboratory",
+        "longitude": "-74.653978",
+        "latitude": "40.345611"
+      },
+      {
+        "name": "New South Hot Spots",
+        "id": "636",
+        "description": "1) Housing Office, Floor 5 2) TigerCard Office, Floor A",
+        "category_id": "111",
+        "building_id": "0127",
+        "building_name": "New South Building",
+        "longitude": "-74.658934",
+        "latitude": "40.343333"
+      },
+      {
+        "name": "Robertson Hall Hot Spot",
+        "id": "975",
+        "description": "Woodrow Wilson Cafe",
+        "category_id": "111",
+        "building_id": "0130",
+        "building_name": "Robertson Hall",
+        "longitude": "-74.654762",
+        "latitude": "40.348373"
+      },
+      {
+        "name": "Rockefeller College Hot Spot",
+        "id": "631",
+        "description": "Madison Hall, card checker station (x2)",
+        "category_id": "111",
+        "building_id": "5107",
+        "building_name": "Rockefeller College",
+        "longitude": "-74.661928",
+        "latitude": "40.348528"
+      },
+      {
+        "name": "Whitman College Hot Spot",
+        "id": "637",
+        "description": "Community Hall, Gallery",
+        "category_id": "111",
+        "building_id": "5110",
+        "building_name": "Whitman College",
+        "longitude": "-74.657933",
+        "latitude": "40.344058"
+      },
+      {
+        "name": "Wilson College Hot Spot",
+        "id": "633",
+        "description": "Wilcox Hall, card checker station",
+        "category_id": "111",
+        "building_id": "0099",
+        "building_name": "Wilcox Hall",
+        "longitude": "-74.656064",
+        "latitude": "40.34491"
+      },
+      {
+        "name": "Witherspoon Hall Hot Spot",
+        "id": "628",
+        "description": "Exterior, near Entry 4",
+        "category_id": "111",
+        "building_id": "0007",
+        "building_name": "Witherspoon Hall",
+        "longitude": "-74.66012844",
+        "latitude": "40.34745173"
+      },
+      {
+        "name": "Wright/Patton Arch Hot Spot",
+        "id": "627",
+        "description": "North wall, exterior",
+        "category_id": "111",
+        "building_id": "0619",
+        "building_name": "Wright Hall",
+        "longitude": "-74.65758615",
+        "latitude": "40.34570028"
+      }
+    ]
+  }
+}
