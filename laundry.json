@@ -1,0 +1,781 @@
+{
+  "places": {
+    "-xmlns": "http://as.oit.princeton.edu/xml/places-1_2",
+    "-xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "-version": "1.2",
+    "-xsi:schemaLocation": "http://as.oit.princeton.edu/xml/places-1_2 http://atsweb.princeton.edu/mobile/xsd/places-1_2.xsd",
+    "categories": {
+      "TCCategory": {
+        "name": "Laundry Rooms",
+        "category_id": "14"
+      }
+    },
+    "places": {
+      "PLPlace": [
+        {
+          "name": "1915 Hall - Entry 6",
+          "id": "301",
+          "category_id": "14",
+          "building_id": "0071",
+          "building_name": "1915 Hall",
+          "longitude": "-74.65694",
+          "latitude": "40.344719",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Butler"
+              }
+            ]
+          }
+        },
+        {
+          "name": "1927/Clapp Hall - Basement",
+          "id": "305",
+          "category_id": "14",
+          "building_id": "0164",
+          "building_name": "1927 - Clapp Hall",
+          "longitude": "-74.655828",
+          "latitude": "40.345162",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Wilson"
+              }
+            ]
+          }
+        },
+        {
+          "name": "1976 Hall - Room 032",
+          "id": "285",
+          "category_id": "14",
+          "building_id": "0703",
+          "building_name": "1976 Hall",
+          "longitude": "-74.655534",
+          "latitude": "40.344532",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "9 Washers/10 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Butler"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073463
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "1981 Hall - Room F312",
+          "id": "292",
+          "category_id": "14",
+          "building_id": "0668",
+          "building_name": "1981 Hall",
+          "longitude": "-74.657332",
+          "latitude": "40.34365",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073470
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "1981 Hall - Room F403",
+          "id": "293",
+          "category_id": "14",
+          "building_id": "0668",
+          "building_name": "1981 Hall",
+          "longitude": "-74.657332",
+          "latitude": "40.34365",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "1 Washer/2 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073471
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "1981 Hall - Room FB11",
+          "id": "294",
+          "category_id": "14",
+          "building_id": "0668",
+          "building_name": "1981 Hall",
+          "longitude": "-74.657332",
+          "latitude": "40.34365",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "5 Washers/10 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073469
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Blair Hall - Basement, entry 10",
+          "id": "279",
+          "category_id": "14",
+          "building_id": "0019",
+          "building_name": "Blair Hall",
+          "longitude": "-74.661497",
+          "latitude": "40.347445",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "6 Washers/ 10 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Mathey"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=307342
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Bloomberg Hall - Room 041",
+          "id": "280",
+          "category_id": "14",
+          "building_id": "0627",
+          "building_name": "Bloomberg Hall",
+          "longitude": "-74.655867",
+          "latitude": "40.343418",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 washer/ 4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Butler"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073427
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Bloomberg Hall - Room 269",
+          "id": "281",
+          "category_id": "14",
+          "building_id": "0627",
+          "building_name": "Bloomberg Hall",
+          "longitude": "-74.655867",
+          "latitude": "40.343418",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Butler"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073440
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Bloomberg Hall - Room 332",
+          "id": "282",
+          "category_id": "14",
+          "building_id": "0627",
+          "building_name": "Bloomberg Hall",
+          "longitude": "-74.655867",
+          "latitude": "40.343418",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Butler"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073441
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Bloomberg Hall - Room 460",
+          "id": "283",
+          "category_id": "14",
+          "building_id": "0627",
+          "building_name": "Bloomberg Hall",
+          "longitude": "-74.655867",
+          "latitude": "40.343418",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Butler"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073442
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Buyers Hall - Basement",
+          "id": "187",
+          "category_id": "14",
+          "building_id": "0631",
+          "building_name": "Buyers Hall",
+          "longitude": "-74.660712",
+          "latitude": "40.347405",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "4 Washers/8 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Rockefeller"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073444
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Edwards Hall",
+          "id": "286",
+          "category_id": "14",
+          "building_id": "0010",
+          "building_name": "Edwards Hall",
+          "longitude": "-74.65927882",
+          "latitude": "40.34714524",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "4 Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Mathey"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=307345
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Feinberg Hall - Basement",
+          "id": "287",
+          "category_id": "14",
+          "building_id": "0162",
+          "building_name": "Feinberg Hall",
+          "longitude": "-74.656613",
+          "latitude": "40.345827",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "4 Washers/6 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Wilson"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=307346
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Fisher Hall - Room A119",
+          "id": "288",
+          "category_id": "14",
+          "building_id": "0671",
+          "building_name": "Fisher Hall Dorm",
+          "longitude": "-74.658267",
+          "latitude": "40.344653",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073465
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Forbes Annex - Basement",
+          "id": "262",
+          "category_id": "14",
+          "building_id": "0592",
+          "building_name": "Forbes Addition",
+          "longitude": "-74.660568",
+          "latitude": "40.341498",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "8 Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Forbes"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=307348
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Forbes Main - Basement",
+          "id": "259",
+          "category_id": "14",
+          "building_id": "0148",
+          "building_name": "Forbes Main",
+          "longitude": "-74.661144",
+          "latitude": "40.342214",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "7 Washers/8 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Forbes"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=307347
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Hamilton Hall - Basement",
+          "id": "302",
+          "category_id": "14",
+          "building_id": "0029",
+          "building_name": "Hamilton Hall",
+          "longitude": "-74.66219",
+          "latitude": "40.34811",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Mathey"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Holder Hall - Basement, entry 5",
+          "id": "195",
+          "category_id": "14",
+          "building_id": "0028",
+          "building_name": "Holder Hall",
+          "longitude": "-74.661556",
+          "latitude": "40.348599",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "10 Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Rockefeller"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Joline Hall - Entry 3",
+          "id": "303",
+          "category_id": "14",
+          "building_id": "0059",
+          "building_name": "Joline Hall",
+          "longitude": "-74.662118",
+          "latitude": "40.347803",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Mathey"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Little Hall - Basement, entry 1",
+          "id": "304",
+          "category_id": "14",
+          "building_id": "0021",
+          "building_name": "Little Hall",
+          "longitude": "-74.659941",
+          "latitude": "40.346679",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Rockefeller"
+              }
+            ]
+          }
+        },
+        {
+          "name": "North Hall - Room C205",
+          "id": "289",
+          "category_id": "14",
+          "building_id": "0670",
+          "building_name": "Wendell Hall C",
+          "longitude": "-74.658391",
+          "latitude": "40.344305",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073466
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "North Hall - Room C305",
+          "id": "290",
+          "category_id": "14",
+          "building_id": "0670",
+          "building_name": "Wendell Hall C",
+          "longitude": "-74.658391",
+          "latitude": "40.344305",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073467
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "North Hall - Room C407",
+          "id": "291",
+          "category_id": "14",
+          "building_id": "0670",
+          "building_name": "Wendell Hall C",
+          "longitude": "-74.658391",
+          "latitude": "40.344305",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "1 Washer/2 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073468
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "South Baker Hall - Room S201",
+          "id": "295",
+          "category_id": "14",
+          "building_id": "0673",
+          "building_name": "Baker Hall",
+          "longitude": "-74.65792",
+          "latitude": "40.343449",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073472
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "South Baker Hall - Room S301",
+          "id": "296",
+          "category_id": "14",
+          "building_id": "0673",
+          "building_name": "Baker Hall",
+          "longitude": "-74.65792",
+          "latitude": "40.343449",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "2 Washers/4 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073473
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "South Baker Hall - Room S401",
+          "id": "297",
+          "category_id": "14",
+          "building_id": "0673",
+          "building_name": "Baker Hall",
+          "longitude": "-74.65792",
+          "latitude": "40.343449",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "1 Washer/2 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Whitman"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073474
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Witherspoon Hall - Basement",
+          "id": "202",
+          "category_id": "14",
+          "building_id": "0007",
+          "building_name": "Witherspoon Hall",
+          "longitude": "-74.66012844",
+          "latitude": "40.34745173",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "6 Washers/Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Rockefeller"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Yoseloff Hall - Room 005",
+          "id": "284",
+          "category_id": "14",
+          "building_id": "0693",
+          "building_name": "Yoseloff Hall",
+          "longitude": "-74.656129",
+          "latitude": "40.344255",
+          "attributes": {
+            "attribute": [
+              {
+                "name": "Amenities",
+                "value": "9 Washers/10 Dryers"
+              },
+              {
+                "name": "College",
+                "value": "Butler"
+              },
+              {
+                "name": "LaundryView",
+                "value": "
+http://lite.laundryview.com/laundry_room.php?lr=3073462
+",
+                "linkType": "url"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
