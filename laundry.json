@@ -1,9 +1,9 @@
 {
   "places": {
     "-xmlns": "http://as.oit.princeton.edu/xml/places-1_2",
-    "-xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-    "-version": "1.2",
-    "-xsi:schemaLocation": "http://as.oit.princeton.edu/xml/places-1_2 http://atsweb.princeton.edu/mobile/xsd/places-1_2.xsd",
+    "-xmlnsxsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "-version":"1.2",
+    "-xsi:schemaLocation": "http://as.oit.princeton.edu/xml/places-1_2http://atsweb.princeton.edu/mobile/xsd/places-1_2.xsd",
     "categories": {
       "TCCategory": {
         "name": "Laundry Rooms",
@@ -74,9 +74,7 @@
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073463
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073463",
                 "linkType": "url"
               }
             ]
@@ -102,9 +100,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073463
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073470
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073470",
                 "linkType": "url"
               }
             ]
@@ -130,9 +126,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073470
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073471
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073471",
                 "linkType": "url"
               }
             ]
@@ -158,9 +152,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073471
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073469
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073469",
                 "linkType": "url"
               }
             ]
@@ -186,9 +178,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073469
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=307342
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=307342",
                 "linkType": "url"
               }
             ]
@@ -214,9 +204,7 @@ http://lite.laundryview.com/laundry_room.php?lr=307342
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073427
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073427",
                 "linkType": "url"
               }
             ]
@@ -242,9 +230,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073427
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073440
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073440",
                 "linkType": "url"
               }
             ]
@@ -270,9 +256,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073440
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073441
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073441",
                 "linkType": "url"
               }
             ]
@@ -298,9 +282,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073441
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073442
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073442",
                 "linkType": "url"
               }
             ]
@@ -326,9 +308,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073442
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073444
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073444",
                 "linkType": "url"
               }
             ]
@@ -354,9 +334,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073444
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=307345
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=307345",
                 "linkType": "url"
               }
             ]
@@ -382,9 +360,7 @@ http://lite.laundryview.com/laundry_room.php?lr=307345
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=307346
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=307346",
                 "linkType": "url"
               }
             ]
@@ -410,9 +386,7 @@ http://lite.laundryview.com/laundry_room.php?lr=307346
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073465
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073465",
                 "linkType": "url"
               }
             ]
@@ -438,9 +412,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073465
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=307348
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=307348",
                 "linkType": "url"
               }
             ]
@@ -466,9 +438,7 @@ http://lite.laundryview.com/laundry_room.php?lr=307348
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=307347
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=307347",
                 "linkType": "url"
               }
             ]
@@ -578,9 +548,7 @@ http://lite.laundryview.com/laundry_room.php?lr=307347
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073466
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073466",
                 "linkType": "url"
               }
             ]
@@ -606,9 +574,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073466
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073467
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073467",
                 "linkType": "url"
               }
             ]
@@ -634,9 +600,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073467
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073468
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073468",
                 "linkType": "url"
               }
             ]
@@ -662,9 +626,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073468
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073472
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073472",
                 "linkType": "url"
               }
             ]
@@ -690,9 +652,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073472
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073473
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073473",
                 "linkType": "url"
               }
             ]
@@ -718,9 +678,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073473
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073474
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073474",
                 "linkType": "url"
               }
             ]
@@ -767,9 +725,7 @@ http://lite.laundryview.com/laundry_room.php?lr=3073474
               },
               {
                 "name": "LaundryView",
-                "value": "
-http://lite.laundryview.com/laundry_room.php?lr=3073462
-",
+                "value": "http://lite.laundryview.com/laundry_room.php?lr=3073462",
                 "linkType": "url"
               }
             ]
