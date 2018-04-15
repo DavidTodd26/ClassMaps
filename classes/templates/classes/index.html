@@ -171,7 +171,7 @@
        iconSize:     [28, 28], // size of the icon
        iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
-     })
+     });
 
     for (var i = 0; i < printerLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
@@ -187,7 +187,7 @@
     mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
     // Different layers
-    var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr})
+    var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr});
 
     // Initializes the map
     var map = L.map('map', {
@@ -197,7 +197,7 @@
     });
 
     // Bookmarks
-    var control = new L.Control.Bookmarks().addTo(map);
+    //var control = new L.Control.Bookmarks().addTo(map);
 
     // Our different layers
     var baseLayers = {
