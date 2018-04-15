@@ -91,7 +91,7 @@
     <a class="dropdown-item" href="#T">Tuesday</a>
     <a class="dropdown-item" href="#W">Wednesday</a>
     <a class="dropdown-item" href="#Th">Thursday</a>
-    <a class="dropdown-item" href="#F">Frida</a>
+    <a class="dropdown-item" href="#F">Friday</a>
   </div>
 </div>
   <div id="map"></div>
@@ -217,14 +217,14 @@
     map.options.maxZoom = 18;
 
     // Displays current user location and accuracy
-    function onLocationFound(e) {
+    /*function onLocationFound(e) {
       var radius = e.accuracy / 2;
 
       L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup();
 
       L.circle(e.latlng, radius).addTo(map);
     }
-    map.on('locationfound', onLocationFound);
+    map.on('locationfound', onLocationFound);*/
 
     // Displays coordinates upon mouse click
     var popup = L.popup();
