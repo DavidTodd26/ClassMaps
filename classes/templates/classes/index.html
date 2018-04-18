@@ -294,6 +294,10 @@ var hotspotIcon = L.icon({
       layers: [regular]
     });
 
+    $('.pure-button').on('click', function(){
+mymap.locate({setView: true, maxZoom: 15});
+});
+
         map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
