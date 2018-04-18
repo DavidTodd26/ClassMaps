@@ -276,14 +276,16 @@ var hotspotIcon = L.icon({
     L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);
  }
 
-    // URLS of maps for different laters (note: need to add attributes)
+    // URLS of maps for different layers (note: need to add attributes)
     var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
       '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    mbUrl2 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
     // Different layers
-    var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr});
+    var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+    satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite',   attribution: mbAttr});
 
     // Initializes the map
     var map = L.map('map', {
@@ -297,7 +299,8 @@ var hotspotIcon = L.icon({
 
     // Our different layers
     var baseLayers = {
-      "Regular": regular
+      "Regular": regular,
+    "Satellite": satellite
     };
 
     // Our overlays
