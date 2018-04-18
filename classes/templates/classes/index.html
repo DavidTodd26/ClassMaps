@@ -98,6 +98,8 @@
   <script>
     // Adds different layer groups
     var printers = L.layerGroup();
+    var hotspots = L.layerGroup();
+    var laundry = L.layerGroup();
 
     var printerLocs = [['40.34614', '-74.660091', '1901 Hall - Ground Floor', '6'],
  ['40.345863', '-74.656253', '1937 Hall - Ground Floor', '6'],
@@ -165,8 +167,92 @@
  ['40.34673', '-74.655259', 'Frist Campus Center - 100 Level', '30'],
  ['40.34673', '-74.655259', 'Frist Campus Center - B Level', '30']];
 
+ hotspotLocs = hot = [['40.35063', '-74.654932', '1st Floor (near elevator)'],
+ ['40.342738', '-74.657116', 'Communication Center window'],
+ ['40.348357', '-74.648976', 'Next to elevator, main lobby'],
+ ['40.349043', '-74.6586', 'Chancellor Green Cafe'],
+ ['40.350182', '-74.652298', 'South Lobby, near stairwell'],
+ ['40.345591', '-74.658685', 'Lobby, west wall'],
+ ['40.350484', '-74.651539', 'On column next to cafe entrance'],
+ ['40.349582', '-74.657495', 'Firestone Library Front Desk'],
+ ['40.342027',
+  '-74.661065',
+  '1) North wing, main lobby 2) Dining Hall, card checker station'],
+ ['40.344018', '-74.65084', 'Frick Chemistry CaFe'],
+ ['40.34673',
+  '-74.655259',
+  '1) 100 Level mailboxes (x2) 2) Southwest entrance, A Level'],
+ ['40.340903', '-74.665119', 'Procter Hall, card checker station'],
+ ['40.345797',
+  '-74.65456',
+  '1) Near west end elevator on the first floor 2) Near west end elevator on the third floor'],
+ ['40.344366', '-74.653435', 'Genomics Cafe'],
+ ['40.343413', '-74.6488', 'Lobby, east wall'],
+ ['40.34495', '-74.651918', '1st Floor'],
+ ['40.34624',
+  '-74.6528',
+  'Lower floor in the common lobby area across from internal library main entrance'],
+ ['40.347697', '-74.661595', 'Witherspoon Hall, exterior near entry 4'],
+ ['40.347274', '-74.658045', 'Near Marquand Library'],
+ ['40.345611', '-74.653978', 'Lower Level (near maintenance shop)'],
+ ['40.343333',
+  '-74.658934',
+  '1) Housing Office, Floor 5 2) TigerCard Office, Floor A'],
+ ['40.348373', '-74.654762', 'Woodrow Wilson Cafe'],
+ ['40.348528', '-74.661928', 'Madison Hall, card checker station (x2)'],
+ ['40.344058', '-74.657933', 'Community Hall, Gallery'],
+ ['40.34491', '-74.656064', 'Wilcox Hall, card checker station'],
+ ['40.34745173', '-74.66012844', 'Exterior, near Entry 4'],
+ ['40.34570028', '-74.65758615', 'North wall, exterior']];
+
+ laundryLoscs = laund = [['40.344719', '-74.65694', '1915 Hall - Entry 6'],
+ ['40.345162', '-74.655828', '1927/Clapp Hall - Basement'],
+ ['40.344532', '-74.655534', '1976 Hall - Room 032'],
+ ['40.34365', '-74.657332', '1981 Hall - Room F312'],
+ ['40.34365', '-74.657332', '1981 Hall - Room F403'],
+ ['40.34365', '-74.657332', '1981 Hall - Room FB11'],
+ ['40.347445', '-74.661497', 'Blair Hall - Basement, entry 10'],
+ ['40.343418', '-74.655867', 'Bloomberg Hall - Room 041'],
+ ['40.343418', '-74.655867', 'Bloomberg Hall - Room 269'],
+ ['40.343418', '-74.655867', 'Bloomberg Hall - Room 332'],
+ ['40.343418', '-74.655867', 'Bloomberg Hall - Room 460'],
+ ['40.347405', '-74.660712', 'Buyers Hall - Basement'],
+ ['40.34714524', '-74.65927882', 'Edwards Hall'],
+ ['40.345827', '-74.656613', 'Feinberg Hall - Basement'],
+ ['40.344653', '-74.658267', 'Fisher Hall - Room A119'],
+ ['40.341498', '-74.660568', 'Forbes Annex - Basement'],
+ ['40.342214', '-74.661144', 'Forbes Main - Basement'],
+ ['40.34811', '-74.66219', 'Hamilton Hall - Basement'],
+ ['40.348599', '-74.661556', 'Holder Hall - Basement, entry 5'],
+ ['40.347803', '-74.662118', 'Joline Hall - Entry 3'],
+ ['40.346679', '-74.659941', 'Little Hall - Basement, entry 1'],
+ ['40.344305', '-74.658391', 'North Hall - Room C205'],
+ ['40.344305', '-74.658391', 'North Hall - Room C305'],
+ ['40.344305', '-74.658391', 'North Hall - Room C407'],
+ ['40.343449', '-74.65792', 'South Baker Hall - Room S201'],
+ ['40.343449', '-74.65792', 'South Baker Hall - Room S301'],
+ ['40.343449', '-74.65792', 'South Baker Hall - Room S401'],
+ ['40.34745173', '-74.66012844', 'Witherspoon Hall - Basement'],
+ ['40.344255', '-74.656129', 'Yoseloff Hall - Room 005']];
+
      var printerIcon = L.icon({
        iconUrl: 'http://www.cs.princeton.edu/~yangsong/printer_icon.png',
+
+       iconSize:     [28, 28], // size of the icon
+       iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+     });
+
+     var laundryIcon = L.icon({
+       iconUrl: 'http://www.cs.princeton.edu/~yangsong/washer.png',
+
+       iconSize:     [28, 28], // size of the icon
+       iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+     });
+
+var hotspotIcon = L.icon({
+       iconUrl: 'http://www.cs.princeton.edu/~yangsong/hotspot.png',
 
        iconSize:     [28, 28], // size of the icon
        iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
@@ -178,6 +264,16 @@
     if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
     if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
     if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+ }
+
+ for (var i = 0; i < laundryLocs.length; i++) {
+  //if (hi[i][3] == '6' || hi[i][3] == '29') 
+    L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);
+ }
+
+ for (var i = 0; i < hotspotLocs.length; i++) {
+  //if (hi[i][3] == '6' || hi[i][3] == '29') 
+    L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);
  }
 
     // URLS of maps for different laters (note: need to add attributes)
@@ -206,7 +302,9 @@
 
     // Our overlays
     var overlays = {
-      "Printers": printers
+      "Printers": printers,
+      "Laundry": laundry,
+    "Hotspots": hotspots
     };
 
     // Adds overlays and layers to map
