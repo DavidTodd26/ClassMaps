@@ -71,7 +71,7 @@ def search(request):
         results = results.filter(Q(day__icontains=query2))
         buildings = buildings.filter(Q(day__icontains=query2))
     if (query == None):
-        results = Section.objects.filter(Q(day__icontains=query)) 
+        results = Section.objects.filter(Q(day__icontains=query2)) 
     context = {
         'classes': results,
         'buildings': buildings
