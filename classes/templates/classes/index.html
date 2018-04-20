@@ -22,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
-
+<body bgcolor="#000000">
 <form method="GET" action="{% url 'classes:search' %}">
     <input name = "q" value="{{request.GET.q}}" placeholder="Search dept/course num... ex: COS 333">
 <!--     <label class="switch">
