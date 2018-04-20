@@ -25,6 +25,11 @@
 
 <form method="GET" action="{% url 'classes:search' %}">
     <input name = "q" value="{{request.GET.q}}" placeholder="Search dept/course num... ex: COS 333">
+    <label class="switch">
+      <p>333</p>
+      <input name = "q2" value = "333" type="checkbox">
+      <span class="slider"></span>
+     </label>
     <button class="btn btn-success" type="submit">
         Search
     </button>
