@@ -66,6 +66,7 @@ def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
     query2 = request.GET.get('q2', None)
+    results, buildings = search_terms(query)
     if (query2 != None):
         results = results.filter(Q(day__icontains=query2))
         buildings = buildings.filter(Q(day__icontains=query2))
