@@ -734,29 +734,34 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  /* changed 15 to 0 */
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
 }
 @media (min-width: 768px) {
   .container {
-    width: 750px;
+    width: 100%;
+/*     width: 750px; */
   }
 }
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 100%;
+/*     width: 970px; */
   }
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 100%;
+/*     width: 1170px; */
   }
 }
 .container-fluid {
-  padding-right: 15px;
-  padding-left: 15px;
+  /* changed 15 to 0 */
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
 }
