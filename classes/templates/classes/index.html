@@ -336,15 +336,16 @@ mymap.locate({setView: true, maxZoom: 15});
     }
     map.on('locationfound', onLocationFound);*/
 
-    // Displays coordinates upon mouse click
-    var popup = L.popup();
-    function onMapClick(e) {
-      popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-    }
-    map.on('click', onMapClick);
+//     // Displays coordinates upon mouse click
+//     var popup = L.popup();
+//     function onMapClick(e) {
+//       popup
+//         .setLatLng(e.latlng)
+//         .setContent("You clicked the map at " + e.latlng.toString())
+//         .openOn(map);
+//     }
+//     map.on('click', onMapClick);
+      
   </script>
   <script>
     {% if building %}
