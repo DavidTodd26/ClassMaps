@@ -9,8 +9,8 @@ urlpatterns = [
     re_path('^accounts/logout$', django_cas_ng.views.logout, name='cas_ng_logout'),
     re_path('^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback'),
     path('', views.login, name="login"),
-    path('courses/', views.index, name="index"),
+    path('map/', views.index, name="index"),
     path('results/', search, name="search"),
-    re_path('courses/(?P<id>.*)/', views.details, name="details"),
+    re_path('map/(?P<id>.*)/', views.details, name="details"),
     re_path('buildings/(?P<id>.*)/', views.details, name="details"),
 ]
