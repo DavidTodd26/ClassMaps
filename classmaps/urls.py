@@ -18,8 +18,8 @@ from django.urls import path, re_path, include
 import django_cas_ng.views
 
 urlpatterns = [
-    re_path(r^'accounts/login$', django_cas_ng.views.login, name='cas_ng_login'),
-    re_path(r^'accounts/logout$', django_cas_ng.views.logout, name='cas_ng_logout'),
+    re_path(r'^accounts/login$', django_cas_ng.views.login, name='cas_ng_login'),
+    re_path(r'^accounts/logout$', django_cas_ng.views.logout, name='cas_ng_logout'),
     path('', include('classes.urls')),
     path('admin/', admin.site.urls),
     path('classes/', include('classes.urls')),
