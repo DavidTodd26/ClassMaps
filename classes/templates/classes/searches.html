@@ -10,7 +10,7 @@
     {% endif %}
     {% if classes %}
         {% for c in classes %}
-            <li class="collection-item"><a href="/{{c.id}}">{{c}}</a></li>
+            <li class="collection-item"><a href="/courses/{{c.pk}}">{{c}}</a></li>
         {% endfor %}
     {% endif %}
     {% if not classes and not buildings %}

@@ -39,6 +39,8 @@ def index(request):
     return render(request, 'classes/index.html', context)
 
 def details(request, id):
+    print(request)
+    print("teSt",id.isdigit())
     if id.isdigit():
         course = Section.objects.get(id=int(id))
         context = {
@@ -47,6 +49,7 @@ def details(request, id):
             'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
         }
     else:
+        print("TEST")
         building = Building.objects.get(names__contains=[id])
         context = {
             'building': building,
@@ -102,7 +105,7 @@ def search(request):
         results = results.filter(Q(day__icontains=query2))
         buildings = buildings.filter(Q(day__icontains=query2))
     if (len(query) == 0 and query2 != None):
-        results = Section.objects.filter(Q(day__icontains=query2)) 
+        results = Section.objects.filter(Q(day__icontains=query2))
     context = {
         'classes': results,
         'buildings': buildings
