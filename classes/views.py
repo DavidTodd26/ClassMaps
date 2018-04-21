@@ -1,13 +1,40 @@
 from django.shortcuts import render
-from .models import Section
+from .models import Section, Building
 from django.db.models import Q
+from itertools import chain
 from datetime import time
 import re
 
 # Create your views here.
 def index(request):
-    context = {
+    id = request.GET.get('s')
+    if id != None:
+        func = 's'
+        match = id[-1]
+        id = id[:-1]
+    else:
+        id = request.GET.get('r')
+        if id != None:
+            match = id[-1]
+            id = id[:-1]
+            func = 'r'
 
+    if id != None:
+        print(id)
+        if match == 'c':
+            match = Section.objects.get(id=int(id))
+        else:
+            match = Building.objects.get(id=int(id))
+        if func == 's':
+            match.saved.append("dtodd") #TODO: Replace netid
+            match.save()
+        elif func == 'r':
+            match.saved.remove("dtodd") #TODO: Replace netid
+            match.save()
+    context = {
+        #TODO: Replace netid
+        'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
+        'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
     }
     return render(request, 'classes/index.html', context)
 
@@ -15,21 +42,25 @@ def details(request, id):
     if id.isdigit():
         course = Section.objects.get(id=int(id))
         context = {
-            'c': course
+            'c': course,
+            'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
+            'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
         }
     else:
-        building = Section.objects.filter(building__icontains = id).first()
+        building = Building.objects.get(names__contains=[id])
         context = {
-            'building': building
+            'building': building,
+            'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
+            'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
         }
 
     return render(request, 'classes/index.html', context)
 
 # Filter by course, number, section, day, and time
 def search_terms(query):
-    if len(query) == 0:
+    if query == None or len(query) == 0:
         return (Section.objects.none(), Section.objects.none())
-        
+
     query = query.split()
     results = Section.objects.all()
     buildings = Section.objects.none()
