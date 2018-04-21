@@ -3,20 +3,6 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}" />
-{% if building %}
-<div class="card">
-    <div class="card-content">
-        {{building.building}}
-    </div>
-</div>
-{% elif c %}
-    <h6 class="center-align">{{c}}</h6>
-    <div class="card">
-        <div class="card-content">
-            {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}
-        </div>
-    </div>
-{% endif %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
@@ -67,7 +53,20 @@
     </button>
 </form>
 
-
+{% if building %}
+<div class="card">
+    <div class="card-content">
+        {{building.building}}
+    </div>
+</div>
+{% elif c %}
+    <h6 class="center-align">{{c}}</h6>
+    <div class="card">
+        <div class="card-content">
+            {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}
+        </div>
+    </div>
+{% endif %}
 
 <html>
 <head bgcolor="#000000">
