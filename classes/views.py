@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    print(request.user.username)
+    netid = request.user.username
     id = request.GET.get('s')
     if id != None:
         func = 's'
@@ -28,16 +28,16 @@ def index(request):
             match = Section.objects.get(id=int(id))
         else:
             match = Building.objects.get(id=int(id))
-        if func == 's':
-            match.saved.append(request.user.username)
+        if func == 's' and not netid in match.saved:
+            match.saved.append(netid)
             match.save()
-        elif func == 'r':
-            match.saved.remove(request.user.username)
+        elif func == 'r' and netid in match.saved:
+            match.saved.remove(netid)
             match.save()
     context = {
         #TODO: Replace netid
-        'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
-        'saved_buildings': Building.objects.filter(saved__contains=[request.user.username])
+        'saved_courses': Section.objects.filter(saved__contains=[netid]),
+        'saved_buildings': Building.objects.filter(saved__contains=[netid])
     }
     return render(request, 'classes/index.html', context)
 
