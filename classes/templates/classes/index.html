@@ -23,7 +23,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
 <body bgcolor="#000000">
 <form method="GET" action="{% url 'classes:search' %}">
-    <div style="width:70%; float:left;">
+    <div style="width:40%; float:left;">
     <input name = "q" value="{{request.GET.q}}" placeholder="search..">
     </div>
     <div div style="width:30%; float:right;">
@@ -52,22 +52,20 @@
       <input name = "q6" value = "F" type="checkbox">
       <span class="slider"></span>
     </label>
-    <input id="time" type="time" name="t">
       </div>
+    <div style="width:30%; float:right;">
+      <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
+        <input type="text" class="form-control">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+        </span>
+      </div>
+    </div>
     <button class="btn btn-success" type="submit">
        Search
     </button>
 </form>
 
-
-<div style="width:30%; float:right;">
-  <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-    <input type="text" class="form-control">
-    <span class="input-group-addon">
-      <span class="glyphicon glyphicon-time"></span>
-    </span>
-  </div>
-</div>
 
 
 <html>
