@@ -130,7 +130,8 @@ USE_L10N = True
 USE_TZ = True
 
 CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
-CAS_REDIRECT_URL = 'https://classmaps.herokuapp.com/test'
+CAS_REDIRECT_URL = 'https://classmaps.herokuapp.com/'
+LOGIN_URL = 'accounts/login'
 CAS_VERSION = '3'
 
 # CAS_PROXY_CALLBACK = re_path(r'^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback')
