@@ -54,7 +54,7 @@
     </div>
 </form>
 
-{% if building %}
+<!-- {% if building %}
 <div class="card">
     <div class="card-content">
         {{building.building}}
@@ -67,7 +67,7 @@
             {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}
         </div>
     </div>
-{% endif %}
+{% endif %} -->
 
 <html>
 <head bgcolor="#000000">
@@ -403,7 +403,8 @@ mymap.locate({setView: true, maxZoom: 15});
         var loc1 = "{{c.building_lat}}";
         var id = "{{c.pk}}";
         var type = "c";
-        var name = "{{c}}";
+//      modified this line to add parameters
+        var name = "{{c} {c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
     {% endif %}
    
     {% if building or c %}
