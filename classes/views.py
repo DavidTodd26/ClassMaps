@@ -126,10 +126,8 @@ def search(request):
     if (query6 != None):
         results2 = results2 | results.filter(Q(day__icontains=query6))
         buildings2 = buildings2 | buildings.filter(Q(day__icontains=query6))
-    if (not results2):
-        results2 = results
     context = {
-        'classes': results,
-        'buildings': buildings
+        'classes': results2,
+        'buildings': buildings2
     }
     return render(request, template, context)
