@@ -363,7 +363,22 @@ mymap.locate({setView: true, maxZoom: 15});
 //     }
 //     map.on('click', onMapClick);
     
-        // Saved stuff
+    
+    {% if building %}
+        var loc2 = "{{building.lon}}";
+        var loc1 = "{{building.lat}}";
+        var id = "{{building.pk}}";
+        var type = "b";
+        var name = "{{building}}";
+    {% elif c %}
+        var loc2 = "{{c.building_lon}}";
+        var loc1 = "{{c.building_lat}}";
+        var id = "{{c.pk}}";
+        var type = "c";
+        var name = "{{c}}";
+    {% endif %}
+    
+     // Saved stuff
     {% if saved_courses %}
        {% for s in saved_courses %}
          var saved =
@@ -391,20 +406,6 @@ mymap.locate({setView: true, maxZoom: 15});
          var loc1 = "{{s.lat}}";
            L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved).openPopup();
         {% endfor %}
-    {% endif %}
-    
-    {% if building %}
-        var loc2 = "{{building.lon}}";
-        var loc1 = "{{building.lat}}";
-        var id = "{{building.pk}}";
-        var type = "b";
-        var name = "{{building}}";
-    {% elif c %}
-        var loc2 = "{{c.building_lon}}";
-        var loc1 = "{{c.building_lat}}";
-        var id = "{{c.pk}}";
-        var type = "c";
-        var name = "{{c}}";
     {% endif %}
 
     {% if building or c %}
