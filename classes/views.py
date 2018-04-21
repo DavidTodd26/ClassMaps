@@ -126,6 +126,9 @@ def search(request):
     if (query6 != None):
         results2 = results2 | results.filter(Q(day__icontains=query6))
         buildings2 = buildings2 | buildings.filter(Q(day__icontains=query6))
+    if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
+        results2 = results
+        buildings2 = buildings
     context = {
         'classes': results2,
         'buildings': buildings2
