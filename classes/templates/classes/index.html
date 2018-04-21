@@ -23,7 +23,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
 <body bgcolor="#000000">
 <form method="GET" action="{% url 'classes:search' %}">
-    <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:10%">
+    <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:10%; float:left;">
     <div style="width:40%; float:left;">
     <input name = "q" value="{{request.GET.q}}" placeholder="search..">
     </div>
