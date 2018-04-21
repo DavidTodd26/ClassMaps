@@ -10,11 +10,13 @@
 </div>
 {% else %}
     <h6 class="center-align">{{classe}}</h6>
+	<div class="container" bgcolor="#000000">
     <div class="card">
         <div class="card-content">
             {{classe.building}} {{classe.room}} {{classe.day}}
         </div>
     </div>
+		</div>
 {% endif %}
 
 <form method="GET" action="{% url 'classes:search' %}">
