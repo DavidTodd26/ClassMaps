@@ -22,6 +22,7 @@ class Section(models.Model):
     number = ArrayField(models.CharField(max_length=100, blank=True, null=True), blank=True, null=True)
     enroll = models.CharField(max_length=200, blank=True, null=True)
     capacity = models.CharField(max_length=200, blank=True, null=True)
+    saved = ArrayField(models.CharField(max_length=9, blank=True, null=True), default=list())
 
     def __str__(self):
         courses = []
@@ -29,3 +30,14 @@ class Section(models.Model):
             courses.append(self.course[i]+" "+self.number[i])
         ret = "/".join(courses)
         return "/".join(courses)+" "+self.title+" "+self.section
+
+# A building
+class Building(models.Model):
+    names = ArrayField(models.CharField(max_length=200, blank=True, null=True), blank=True, null=True)
+    building_id = models.CharField(max_length=200, blank=True, null=True)
+    lat = models.CharField(max_length=200, blank=True, null=True)
+    lon = models.CharField(max_length=200, blank=True, null=True)
+    saved = ArrayField(models.CharField(max_length=9, blank=True, null=True), default=list())
+
+    def __str__(self):
+        return self.names[0]
