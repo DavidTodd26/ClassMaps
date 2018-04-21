@@ -404,7 +404,7 @@ mymap.locate({setView: true, maxZoom: 15});
         var id = "{{c.pk}}";
         var type = "c";
 //      modified this line to add parameters
-        var name = "{{c} {c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
+        var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
     {% endif %}
    
     {% if building or c %}
