@@ -5,12 +5,11 @@ from itertools import chain
 from datetime import time
 import re
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
-def login(request):
-    return redirect('/accounts/login')
-
-# Create your views here.
+@login_required
 def index(request):
+    netid = request.user.username
     id = request.GET.get('s')
     if id != None:
         func = 's'
@@ -29,16 +28,16 @@ def index(request):
             match = Section.objects.get(id=int(id))
         else:
             match = Building.objects.get(id=int(id))
-        if func == 's':
-            match.saved.append("dtodd") #TODO: Replace netid
+        if func == 's' and not netid in match.saved:
+            match.saved.append(netid)
             match.save()
-        elif func == 'r':
-            match.saved.remove("dtodd") #TODO: Replace netid
+        elif func == 'r' and netid in match.saved:
+            match.saved.remove(netid)
             match.save()
     context = {
         #TODO: Replace netid
-        'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
-        'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
+        'saved_courses': Section.objects.filter(saved__contains=[netid]),
+        'saved_buildings': Building.objects.filter(saved__contains=[netid])
     }
     return render(request, 'classes/index.html', context)
 
@@ -49,7 +48,7 @@ def details(request, id):
         course = Section.objects.get(id=int(id))
         context = {
             'c': course,
-            'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
+            'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
             'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
         }
     else:
@@ -57,8 +56,8 @@ def details(request, id):
         building = Building.objects.get(names__contains=[id])
         context = {
             'building': building,
-            'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
-            'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
+            'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
+            'saved_buildings': Building.objects.filter(saved__contains=[request.user.username])
         }
 
     return render(request, 'classes/index.html', context)
@@ -108,6 +107,7 @@ def search(request):
     query4 = request.GET.get('q4', None)
     query5 = request.GET.get('q5', None)
     query6 = request.GET.get('q6', None)
+    time = request.GET.get('t', None)
     results, buildings = search_terms(query)
     results2 = Section.objects.none()
     buildings2 = Section.objects.none()
@@ -126,6 +126,13 @@ def search(request):
     if (query6 != None):
         results2 = results2 | results.filter(Q(day__icontains=query6))
         buildings2 = buildings2 | buildings.filter(Q(day__icontains=query6))
+    if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
+        results2 = results
+        buildings2 = buildings
+    if (time != None):
+        time = time[:-2]
+        results2 = results2.filter(Q(time__icontains=time))
+        buildings2 = buildings2.filter(Q(time__icontains=time))
     context = {
         'classes': results2,
         'buildings': buildings2

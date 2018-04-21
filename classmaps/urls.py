@@ -22,8 +22,10 @@ urlpatterns = [
     re_path('^accounts/logout$', django_cas_ng.views.logout, name='cas_ng_logout'),
     re_path('^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback'),
     path('', include('classes.urls')),
+    path('test/', include('classes.urls')),
     path('admin/', admin.site.urls),
-    path('classes/', include('classes.urls')),
+    path('buildings/', include('classes.urls')),
+    path('courses/', include('classes.urls')),
 ]
 
 # re_path(r'^accounts/login$', django_cas_ng.views.login, name='cas_ng_login'),
