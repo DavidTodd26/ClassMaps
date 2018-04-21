@@ -9,9 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    print("--------------TEST---------------")
     print(request.user.username)
-    print("--------------TEST---------------")
     id = request.GET.get('s')
     if id != None:
         func = 's'
@@ -31,15 +29,15 @@ def index(request):
         else:
             match = Building.objects.get(id=int(id))
         if func == 's':
-            match.saved.append("dtodd") #TODO: Replace netid
+            match.saved.append(request.user.username)
             match.save()
         elif func == 'r':
-            match.saved.remove("dtodd") #TODO: Replace netid
+            match.saved.remove(request.user.username)
             match.save()
     context = {
         #TODO: Replace netid
-        'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
-        'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
+        'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
+        'saved_buildings': Building.objects.filter(saved__contains=[request.user.username])
     }
     return render(request, 'classes/index.html', context)
 
@@ -50,7 +48,7 @@ def details(request, id):
         course = Section.objects.get(id=int(id))
         context = {
             'c': course,
-            'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
+            'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
             'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
         }
     else:
@@ -58,8 +56,8 @@ def details(request, id):
         building = Building.objects.get(names__contains=[id])
         context = {
             'building': building,
-            'saved_courses': Section.objects.filter(saved__contains=["dtodd"]),
-            'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
+            'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
+            'saved_buildings': Building.objects.filter(saved__contains=[request.user.username])
         }
 
     return render(request, 'classes/index.html', context)
