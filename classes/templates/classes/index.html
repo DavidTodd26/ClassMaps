@@ -11,7 +11,10 @@
 <form method="GET" action="{% url 'classes:search' %}">
     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15">
     <div style="width:30%; float:left;">
-    <input name = "q" value="{{request.GET.q}}" placeholder="search..">
+        <input name = "q" value="{{request.GET.q}}" placeholder="search..">
+        <button class="btn btn-success" type="submit">
+       Search ClassMaps!
+        </button>
     </div>
     <div div style="width:30%; float:right;">
     <label class="switch">
@@ -41,16 +44,13 @@
     </label>
       </div>
     <div style="width:30%; float:right;">
-      <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
+      <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
         <input type="text" class="form-control" name="t">
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
         </span>
       </div>
     </div>
-    <button class="btn btn-success" type="submit">
-       Search
-    </button>
 </form>
 
 {% if building %}
