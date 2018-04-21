@@ -11,7 +11,7 @@
 <form method="GET" action="{% url 'classes:search' %}">
     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15">
     <div id="searchbar" style="width:90%">
-
+       <div style="width:25%;">
         <label class="switch">
           Monday
           <input name = "q2" value = "M" type="checkbox">
@@ -37,19 +37,21 @@
           <input name = "q6" value = "F" type="checkbox">
           <span class="slider"></span>
         </label>
-
+      </div>
+      <div style="width:10%;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
         <input type="text" class="form-control" name="t">
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
         </span>
       </div>
-        
+      </div>
+       <div style="width:40%;">
         <input name = "q" value="{{request.GET.q}}" placeholder="search..">
         <button class="btn btn-success" type="submit">
            Search ClassMaps!
         </button>
-
+        </div>
     </div>
 </form>
 
