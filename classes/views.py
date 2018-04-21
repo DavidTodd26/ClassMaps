@@ -104,15 +104,32 @@ def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
     query2 = request.GET.get('q2', None)
+    query3 = request.GET.get('q3', None)
+    query4 = request.GET.get('q4', None)
+    query5 = request.GET.get('q5', None)
+    query6 = request.GET.get('q6', None)
     results, buildings = search_terms(query)
+    results2 = Section.objects.none()
+    buildings2 = Section.objects.none()
     if (query2 != None):
-        results = results.filter(Q(day__icontains=query2))
-        buildings = buildings.filter(Q(day__icontains=query2))
-    if (len(query) == 0 and query2 != None):
-        results = Section.objects.filter(Q(day__icontains=query2))
+        results2 = results2 | results.filter(Q(day__icontains=query2))
+        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query2))
+    if (query3 != None):
+        results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
+        buildings2 = buildings2 | buildings.filter(Q(day__iregex=r'T(?!h)'))
+    if (query4 != None):
+        results2 = results2 | results.filter(Q(day__icontains=query4))
+        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query4))
+    if (query5 != None):
+        results2 = results2 | results.filter(Q(day__icontains=query5))
+        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query5))
+    if (query6 != None):
+        results2 = results2 | results.filter(Q(day__icontains=query6))
+        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query6))
+    if (not results2):
+        results2 = results
     context = {
         'classes': results,
         'buildings': buildings
     }
-
     return render(request, template, context)
