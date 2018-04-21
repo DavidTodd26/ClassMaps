@@ -10,46 +10,46 @@
 <body bgcolor="#000000">
 <form method="GET" action="{% url 'classes:search' %}">
     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15">
-    <div style="width:30%; float:left;">
-        <input name = "q" value="{{request.GET.q}}" placeholder="search..">
-        <button class="btn btn-success" type="submit">
-       Search ClassMaps!
-        </button>
-    </div>
-    <div div style="width:30%; float:right;">
-    <label class="switch">
-      Monday
-      <input name = "q2" value = "M" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Tuesday
-      <input name = "q3" value = "T" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Wednesday
-      <input name = "q4" value = "W" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Thursday
-      <input name = "q5" value = "Th" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Friday
-      <input name = "q6" value = "F" type="checkbox">
-      <span class="slider"></span>
-    </label>
-      </div>
-    <div style="width:30%; float:right;">
+    <div id="searchbar" style="width:90%">
+
+        <label class="switch">
+          Monday
+          <input name = "q2" value = "M" type="checkbox">
+          <span class="slider"></span>
+        </label>
+        <label class="switch">
+          Tuesday
+          <input name = "q3" value = "T" type="checkbox">
+          <span class="slider"></span>
+        </label>
+        <label class="switch">
+          Wednesday
+          <input name = "q4" value = "W" type="checkbox">
+          <span class="slider"></span>
+        </label>
+        <label class="switch">
+          Thursday
+          <input name = "q5" value = "Th" type="checkbox">
+          <span class="slider"></span>
+        </label>
+        <label class="switch">
+          Friday
+          <input name = "q6" value = "F" type="checkbox">
+          <span class="slider"></span>
+        </label>
+
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
         <input type="text" class="form-control" name="t">
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
         </span>
       </div>
+        
+        <input name = "q" value="{{request.GET.q}}" placeholder="search..">
+        <button class="btn btn-success" type="submit">
+           Search ClassMaps!
+        </button>
+
     </div>
 </form>
 
