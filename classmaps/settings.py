@@ -131,7 +131,7 @@ USE_TZ = True
 
 CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
 
-# CAS_PROXY_CALLBACK = url(r'^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback')
+CAS_PROXY_CALLBACK = url(r'^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
