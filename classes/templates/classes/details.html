@@ -3,14 +3,14 @@
 {% block content %}
 
 {% if building %}
-<div class="card">
+<div class="card" style="margin:5%;padding:5%">
     <div class="card-content">
         {{building.building}}
     </div>
 </div>
 {% else %}
     <h6 class="center-align">{{classe}}</h6>
-    <div class="card">
+    <div class="card" style="margin:5%;padding:5%">
         <div class="card-content">
             {{classe.building}} {{classe.room}} {{classe.day}}
         </div>
