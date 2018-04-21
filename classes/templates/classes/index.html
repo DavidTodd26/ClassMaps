@@ -362,7 +362,8 @@ mymap.locate({setView: true, maxZoom: 15});
 //         .openOn(map);
 //     }
 //     map.on('click', onMapClick);
-
+    
+    
     {% if building %}
         var loc2 = "{{building.lon}}";
         var loc1 = "{{building.lat}}";
@@ -376,7 +377,7 @@ mymap.locate({setView: true, maxZoom: 15});
         var type = "c";
         var name = "{{c}}";
     {% endif %}
-
+   
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
       "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
@@ -386,8 +387,8 @@ mymap.locate({setView: true, maxZoom: 15});
       "</form>";
        L.marker([loc1, loc2]).addTo(map).bindPopup(search).openPopup();
     {% endif %}
-
-    // Saved stuff
+     
+     // Saved stuff
     {% if saved_courses %}
        {% for s in saved_courses %}
          var saved =
@@ -416,6 +417,7 @@ mymap.locate({setView: true, maxZoom: 15});
            L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved).openPopup();
         {% endfor %}
     {% endif %}
+
   </script>
 
 </body>
