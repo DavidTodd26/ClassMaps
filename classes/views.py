@@ -5,11 +5,9 @@ from itertools import chain
 from datetime import time
 import re
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
-def login(request):
-    return redirect('/accounts/login')
-
-# Create your views here.
+@login_required
 def index(request):
     id = request.GET.get('s')
     if id != None:
