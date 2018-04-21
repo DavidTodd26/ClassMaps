@@ -4,6 +4,10 @@ from django.db.models import Q
 from itertools import chain
 from datetime import time
 import re
+from django.shortcuts import redirect
+
+def login(request):
+    return redirect('/accounts/login')
 
 # Create your views here.
 def index(request):
