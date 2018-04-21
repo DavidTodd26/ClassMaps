@@ -22,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
 <body bgcolor="#000000">
-<form method="GET" action="{% url 'posts:search' %}">
+<form method="GET" action="{% url 'classes:search' %}">
     <input name = "q" value="{{request.GET.q}}" placeholder="search..">
     <div>
     <label class="switch">
