@@ -23,8 +23,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
 <body bgcolor="#000000">
 <form method="GET" action="{% url 'classes:search' %}">
+    <div style="width:70%; float:left;">
     <input name = "q" value="{{request.GET.q}}" placeholder="search..">
-    <div>
+    </div>
+    <div div style="width:30%; float:right;">
     <label class="switch">
       Monday
       <input name = "q2" value = "M" type="checkbox">
