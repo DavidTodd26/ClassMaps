@@ -107,6 +107,7 @@ def search(request):
     query4 = request.GET.get('q4', None)
     query5 = request.GET.get('q5', None)
     query6 = request.GET.get('q6', None)
+    time = request.GET.get('t', None)
     results, buildings = search_terms(query)
     results2 = Section.objects.none()
     buildings2 = Section.objects.none()
@@ -128,6 +129,10 @@ def search(request):
     if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
         results2 = results
         buildings2 = buildings
+    if (time != None):
+        time = time[:-2]
+        results2 = results2.filter(Q(time__icontains=time))
+        buildings2 = buildings2.filter(Q(time__icontains=time))
     context = {
         'classes': results2,
         'buildings': buildings2
