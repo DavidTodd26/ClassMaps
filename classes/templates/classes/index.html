@@ -101,6 +101,21 @@
     var hotspots = L.layerGroup();
     var laundry = L.layerGroup();
 
+    //var geojsonLayer = new L.GeoJSON.AJAX("scraping/shapes.json");
+
+    var district_boundary = new L.geoJson();
+district_boundary.addTo(map);
+
+$.ajax({
+dataType: "json",
+url: "scraping/shapes.json",
+success: function(data) {
+    $(data.features).each(function(key, data) {
+        district_boundary.addData(data);
+    });
+}
+}).error(function() {});
+
     var printerLocs = [['40.34614', '-74.660091', '1901 Hall - Ground Floor', '6'],
  ['40.345863', '-74.656253', '1937 Hall - Ground Floor', '6'],
  ['40.344532', '-74.655534', '1976 Hall - Room 33', '6'],
