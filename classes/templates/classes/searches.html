@@ -5,16 +5,16 @@
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
-        <li class="collection-item"><a href="/buildings/{{b}}">{{b}}</a></li>
+          <li class="collection-item"><a href="/buildings/{{b}}">{{b}}</a></li>
         {% endfor %}
     {% endif %}
     {% if classes %}
         {% for c in classes %}
-            <li class="collection-item"><a href="/classes/{{c.id}}">{{c}}</a></li>
+            <li class="collection-item"><a href="/{{c.id}}">{{c}}</a></li>
         {% endfor %}
     {% endif %}
     {% if not classes and not buildings %}
-        <img src="http://www.cs.princeton.edu/~yangsong/calvinandhobbes.png" alt="NotFound" class="center" style="width:100%;height:25%;">
+        <img src="../../static/classes/images/calvinandhobbes.png" alt="NotFound" class="center" style="width:100%;height:25%;">
     {% endif %}
 </ul>
 <a href="/classes" class="btn">Go back</a>

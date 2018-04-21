@@ -96,7 +96,13 @@ def search_terms(query):
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
+    query2 = request.GET.get('q2', None)
     results, buildings = search_terms(query)
+    if (query2 != None):
+        results = results.filter(Q(day__icontains=query2))
+        buildings = buildings.filter(Q(day__icontains=query2))
+    if (len(query) == 0 and query2 != None):
+        results = Section.objects.filter(Q(day__icontains=query2)) 
     context = {
         'classes': results,
         'buildings': buildings

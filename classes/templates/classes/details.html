@@ -3,16 +3,16 @@
 {% block content %}
 
 {% if building %}
-<div class="card">
+<div class="card" style="margin:5%;padding:5%">
     <div class="card-content">
         {{building.building}}
     </div>
 </div>
 {% else %}
     <h6 class="center-align">{{classe}}</h6>
-    <div class="card">
+    <div class="card" style="margin:5%;padding:5%">
         <div class="card-content">
-            {{classe.building}} {{classe.room}} {{classe.day}} {{classe.time}}
+            {{classe.building}} {{classe.room}} {{classe.day}}
         </div>
     </div>
 {% endif %}
@@ -73,6 +73,16 @@
     zoom: 16,
     layers: [regular, printers]
   });
+
+   map.locate({setView: true,watch: true, maxZoom: 16});
+    function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    L.circle(e.latlng, radius).addTo(map);
+    }
+    map.on('locationfound', onLocationFound);
+    
   L.marker([loc1, loc2]).addTo(map)
     .bindPopup(c + " " + d).openPopup();
   L.circle([loc1, loc2], 5, {

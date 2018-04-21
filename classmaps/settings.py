@@ -55,12 +55,14 @@ MIDDLEWARE = [
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django_cas.middleware.CASMiddleware',
+    'django_cas_ng.middleware.CASMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'django_cas.backends.CASBackend',
+    'django_cas_ng.backends.CASBackend',
 )
 
 ROOT_URLCONF = 'classmaps.urls'
@@ -127,7 +129,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
+CAS_VERSION = '3'
 
+# CAS_PROXY_CALLBACK = re_path(r'^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
