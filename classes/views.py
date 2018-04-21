@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
+    print("--------------TEST---------------")
+    print(request.user.username)
+    print("--------------TEST---------------")
     id = request.GET.get('s')
     if id != None:
         func = 's'
