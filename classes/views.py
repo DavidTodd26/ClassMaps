@@ -3,6 +3,7 @@ from .models import Section, Building
 from django.db.models import Q
 from itertools import chain
 from datetime import datetime
+from datetime import time
 import re
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
