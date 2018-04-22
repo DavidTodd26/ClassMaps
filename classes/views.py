@@ -110,7 +110,7 @@ def searchTime(results):
             timeHour += 12
         timeHour *= 100
         timeHour += timeMinutes
-        for result in results2: 
+        for result in results: 
             start = result.starttime
             end = result.endtime
             if len(start) == 9:
