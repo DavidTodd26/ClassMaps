@@ -47,14 +47,17 @@
       </div>
     </div>
     <div style="width:30%; float:left;">
+        <span>
         <input name = "q" value="{{request.GET.q}}" placeholder="search..">
         <button class="btn btn-success" type="submit">
-       Search ClassMaps!
+            Search ClassMaps!
         </button>
+        </span>
     </div>
 </form>
 
 <!-- {% if building %}
+removed the cards
 <div class="card">
     <div class="card-content">
         {{building.building}}
@@ -404,7 +407,7 @@ mymap.locate({setView: true, maxZoom: 15});
         var id = "{{c.pk}}";
         var type = "c";
 //      modified this line to add parameters
-        var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
+        var name = "{{c}}"+"\n"+"{{c.building}} {{c.room}}"+"\n"+"{{c.day}} {{c.starttime}}-{{c.endtime}}";
     {% endif %}
    
     {% if building or c %}
