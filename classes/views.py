@@ -23,7 +23,6 @@ def index(request):
             func = 'r'
 
     if id != None:
-        print(id)
         if match == 'c':
             match = Section.objects.get(id=int(id))
         else:
@@ -35,30 +34,30 @@ def index(request):
             match.saved.remove(netid)
             match.save()
     context = {
-        #TODO: Replace netid
         'saved_courses': Section.objects.filter(saved__contains=[netid]),
-        'saved_buildings': Building.objects.filter(saved__contains=[netid])
+        'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+        'netid': netid
     }
     return render(request, 'classes/index.html', context)
 
 @login_required
 def details(request, id):
-    print(request)
-    print("teSt",id.isdigit())
+    netid = request.user.username
     if id.isdigit():
         course = Section.objects.get(id=int(id))
         context = {
             'c': course,
-            'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
-            'saved_buildings': Building.objects.filter(saved__contains=["dtodd"])
+            'saved_courses': Section.objects.filter(saved__contains=[netid]),
+            'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+            'netid': netid
         }
     else:
-        print("TEST")
         building = Building.objects.get(names__contains=[id])
         context = {
             'building': building,
-            'saved_courses': Section.objects.filter(saved__contains=[request.user.username]),
-            'saved_buildings': Building.objects.filter(saved__contains=[request.user.username])
+            'saved_courses': Section.objects.filter(saved__contains=[netid]),
+            'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+            'netid': netid
         }
 
     return render(request, 'classes/index.html', context)
@@ -132,13 +131,13 @@ def search(request):
         results2 = results
         buildings2 = buildings
     if (time != None):
-        time = time[:-2]
         results2 = results2.filter(Q(time__icontains=time))
         buildings2 = buildings2.filter(Q(time__icontains=time))
     context = {
         'q': query,
         't': time,
         'classes': results2,
-        'buildings': buildings2
+        'buildings': buildings2,
+        'netid': request.user.username
     }
     return render(request, template, context)
