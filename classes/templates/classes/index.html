@@ -3,31 +3,21 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}" />
-{% if building %}
-<div class="card">
-    <div class="card-content">
-        {{building.building}}
-    </div>
-</div>
-{% elif c %}
-    <h6 class="center-align">{{c}}</h6>
-    <div class="card">
-        <div class="card-content">
-            {{c.building}} {{c.room}} {{c.day}} {{c.time}}
-        </div>
-    </div>
-{% endif %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
 <body bgcolor="#000000">
+
 <form method="GET" action="{% url 'classes:search' %}">
-    <div style="width:40%; float:left;">
-    <input name = "q" value="{{request.GET.q}}" placeholder="search..">
+    <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
+     <div style="width:30%; float:left;">
+        <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
+        <button class="btn btn-success" type="submit">
+            Search ClassMaps
+        </button>
     </div>
-    <div style="border-left:1px solid #000;height:20px"></div>
-    <div div style="width:30%; float:right;">
+    <div div style="width:30%; float:left;">
     <label class="switch">
       Monday
       <input name = "q2" value = "M" type="checkbox">
@@ -54,21 +44,31 @@
       <span class="slider"></span>
     </label>
       </div>
-    <div style="border-left:1px solid #000;height:20px"></div>
-    <div style="width:30%; float:right;">
-      <div class="input-group clockpicker pull-center" data-placement="left" data-align="top" data-autoclose="true">
-        <input type="text" class="form-control" name="t">
+    <div style="width:10%; float:left;">
+      <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
+        <input type="text" class="form-control" name="t" placeholder="Set Time">
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
         </span>
       </div>
     </div>
-    <button class="btn btn-success" type="submit">
-       Search
-    </button>
 </form>
 
-
+<!-- {% if building %}
+removed the cards
+<div class="card">
+    <div class="card-content">
+        {{building.building}}
+    </div>
+</div>
+{% elif c %}
+    <div class="card">
+        <h6 class="center-align">{{c}}</h6>
+        <div class="card-content">
+            {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}
+        </div>
+    </div>
+{% endif %} -->
 
 <html>
 <head bgcolor="#000000">
@@ -77,6 +77,8 @@
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+
+  <script type="text/javascript" src="{% static 'classes/buildings.js' %}"></script>
 
   <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
@@ -98,11 +100,15 @@
 
 
 <style>
-  #map { width: 100%; height: 600px; }
+  html, body {
+   height: 100%;
+  }
+  #map { width: 100%; height: 92%;}
   .slidecontainer {
       margin: 0 auto;
       width: 350px;
   }
+  .btn-remove {background-color: #f44336;} /* red */
 </style>
 </head>
 
@@ -287,11 +293,24 @@ success: function(data) {
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
 
-var hotspotIcon = L.icon({
+     var hotspotIcon = L.icon({
        iconUrl: "{% static 'classes/images/hotspot.png' %}",
        iconSize:     [26, 26], // size of the icon
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+     });
+
+     var savedIcon = L.icon({
+       iconUrl: "{% static 'classes/images/marker-icon-orange.png' %}",
+       iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
+     });
+
+     var myIcon = L.icon({
+       iconUrl: "{% static 'classes/images/youarehere.png' %}",
+       iconSize:     [35, 35], // size of the icon
+       iconAnchor:   [18, 18], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
      });
 
     for (var i = 0; i < printerLocs.length; i++) {
@@ -333,10 +352,10 @@ var hotspotIcon = L.icon({
 mymap.locate({setView: true, maxZoom: 15});
 });*/
 
-        map.locate({setView: true,watch: true, maxZoom: 16});
+    map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
-    L.marker(e.latlng).addTo(map)
+    L.marker(e.latlng, {icon: myIcon}).addTo(map)
         .bindPopup("You are within " + radius + " meters from this point").openPopup();
     L.circle(e.latlng, radius).addTo(map);
     }
@@ -367,6 +386,9 @@ mymap.locate({setView: true, maxZoom: 15});
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
 
+    var geojson;
+  geojson = L.geoJson(buildingData).addTo(map);
+
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
       var radius = e.accuracy / 2;
@@ -391,29 +413,29 @@ mymap.locate({setView: true, maxZoom: 15});
     {% if saved_courses %}
        {% for s in saved_courses %}
          var saved =
-         "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-             "<button class=\"btn btn-success\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+         "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
+             "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
                  "Remove" +
              "</button>" +
          "</form>";
          var name = "{{s}}";
          var loc2 = "{{s.building_lon}}";
          var loc1 = "{{s.building_lat}}";
-           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved).openPopup();
+           L.marker([loc1, loc2], {icon: savedIcon}).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
         {% endfor %}
     {% endif %}
     {% if saved_buildings %}
        {% for s in saved_buildings %}
          var saved =
-         "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-             "<button class=\"btn btn-success\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
+         "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
+             "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
                  "Remove" +
              "</button>" +
          "</form>";
          var name = "{{s}}";
          var loc2 = "{{s.lon}}";
          var loc1 = "{{s.lat}}";
-           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved).openPopup();
+           L.marker([loc1, loc2], {icon: savedIcon}).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
         {% endfor %}
     {% endif %}
 
@@ -429,12 +451,13 @@ mymap.locate({setView: true, maxZoom: 15});
         var loc1 = "{{c.building_lat}}";
         var id = "{{c.pk}}";
         var type = "c";
-        var name = "{{c}}";
+        // modified this line to add parameters
+        var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
     {% endif %}
-    
+
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
-      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
+      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
           "<button class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
               "Save" +
           "</button>" +
