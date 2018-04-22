@@ -107,7 +107,7 @@ def searchTime(inputTime, results):
         start = result.starttime
         end = result.endtime
         if (convertedTime >= start and convertedTime <= end):   
-            resultsWithTime = resultsWithTime | result
+            resultsWithTime = resultsWithTime + result
     return resultsWithTime
 
 @login_required
