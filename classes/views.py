@@ -129,7 +129,7 @@ def searchTime(results):
             endAMPM = end[-4:]
             if startAMPM == "p.m.":
                 startTimeHour += 12
-            if endAMPM == "p.m."
+            if endAMPM == "p.m.":
                 endTimeHour += 12
             startTimeHour *= 100
             endTimeHour *= 100
