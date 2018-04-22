@@ -98,6 +98,46 @@ def search_terms(query):
             results = Section.objects.none()
 
     return (results, buildings)
+    
+def searchTime(results):
+    resultsWithTime = Section.objects.none()
+    if (time != None):
+        timeNumbers = time[:-2]
+        timeAMPM = time[-2:]
+        timeHour = int(time[:2])
+        timeMinutes = int(time[3:-2])
+        if (timeAMPM == "PM"):
+            timeHour += 12
+        timeHour *= 100
+        timeHour += timeMinutes
+        for result in results2: 
+            start = result.starttime
+            end = result.endtime
+            if len(start) == 9:
+                startTimeHour = int(start[:1])
+                startTimeMinutes = int(start[1:-5])
+            else:
+                startTimeHour = int(start[:2]) 
+                startTimeMinutes = int(start[2:-5]) 
+            if len(end) == 9:
+                endTimeHour = int(start[:1])
+                endTimeMinutes = int(end[1:-5])
+            else:
+                endTimeHour = int(start[:2]) 
+                endTimeMinutes = int(end[2:-5])   
+            startAMPM = start[-4:]
+            endAMPM = end[-4:]
+            if startAMPM == "p.m.":
+                startTimeHour += 12
+            if endAMPM == "p.m."
+                endTimeHour += 12
+            startTimeHour *= 100
+            endTimeHour *= 100
+            startTimeHour += startTimeMinutes
+            endTimeHour += endTimeMinutes
+            if (timeHour >= startTimeHour and timeHour <= endTimeHour):
+                resultsWithTime = resultsWithTime | result    
+    return resultsWithTime
 
 @login_required
 def search(request):
@@ -131,8 +171,7 @@ def search(request):
         results2 = results
         buildings2 = buildings
     if (time != None):
-        results2 = results2.filter(Q(time__icontains=time))
-        buildings2 = buildings2.filter(Q(time__icontains=time))
+        results2 = searchTime(results2)
     context = {
         'q': query,
         't': time,
