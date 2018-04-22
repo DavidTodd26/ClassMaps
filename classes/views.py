@@ -105,7 +105,7 @@ def searchTime(time, results):
     for result in results: 
         start = result.starttime
         end = result.endtime
-        if (convertedTime >= start and convertedTime <= end)   
+        if (convertedTime >= start and convertedTime <= end):   
             resultsWithTime = resultsWithTime | result
     return resultsWithTime
 
