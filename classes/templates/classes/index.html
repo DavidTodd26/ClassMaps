@@ -514,10 +514,9 @@ if (!jQuery.isEmptyObject(lonlats)) {
     var tokens = key.split(" ");
     var lon = parseFloat(tokens[0])-offset;
     var lat = tokens[1];
-    L.marker([lat, lon]).addTo(map).bindPopup(lonlats[key]);
+    L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
   }
 }
-    //addSavedMarkers();
 
     // Searched marker
     {% if building %}
@@ -544,49 +543,6 @@ if (!jQuery.isEmptyObject(lonlats)) {
       "</form>";
        L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
     {% endif %}
-/*
-    function addSavedMarkers() {
-      lonlats = {};
-      {% if saved_courses %}
-         {% for s in saved_courses %}
-           var key = "{{s.building_lon}} {{s.building_lat}}"
-           var text = "<div>{{s}}</div>"+
-           "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
-               "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
-                   "Remove" +
-               "</button>" +
-           "</form>";
-           if (key in dict) {
-             lonlats[key] += text;
-           } else {
-             lonlats[key] = text;
-           }
-          {% endfor %}
-      {% endif %}
-      {% if saved_buildings %}
-         {% for s in saved_buildings %}
-           var key = "{{s.lon}} {{s.lat}}"
-           var text = "<div>"+name+"</div>"+
-           "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
-               "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
-                   "Remove" +
-               "</button>" +
-           "</form>";
-           if (key in dict) {
-             lonlats[key] += text;
-           } else {
-             lonlats[key] = text;
-           }
-        {% endfor %}
-      {% endif %}
-      for (key in lonlats) {
-        tokens = key.split();
-        lat = tokens[0];
-        lon = tokans[1];
-        L.marker([lat, lon).addTo(map).bindPopup(marker[key]).openPopup();
-      }
-    }
-    */
   </script>
 
 </body>
