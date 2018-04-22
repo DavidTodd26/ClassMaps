@@ -101,12 +101,12 @@ def search_terms(query):
     
 def searchTime(time, results):
     resultsWithTime = Section.objects.none()
-        convertedTime = datetime.strptime(time, '%I:%M%p')
-        for result in results: 
-            start = result.starttime
-            end = result.endtime
-            if (convertedTime >= start and convertedTime <= end)
-                resultsWithTime = resultsWithTime | result
+    convertedTime = datetime.strptime(time, '%I:%M%p')
+    for result in results: 
+        start = result.starttime
+        end = result.endtime
+        if (convertedTime >= start and convertedTime <= end)   
+            resultsWithTime = resultsWithTime | result
     return resultsWithTime
 
 @login_required
