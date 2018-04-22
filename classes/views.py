@@ -99,7 +99,7 @@ def search_terms(query):
 
     return (results, buildings)
     
-def searchTime(results):
+def searchTime(time, results):
     resultsWithTime = Section.objects.none()
     if (time != None):
         timeNumbers = time[:-2]
@@ -171,7 +171,7 @@ def search(request):
         results2 = results
         buildings2 = buildings
     if (time != None):
-        results2 = searchTime(results2)
+        results2 = searchTime(time, results2)
     context = {
         'q': query,
         't': time,
