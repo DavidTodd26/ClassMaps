@@ -19,38 +19,39 @@
     </div>
     <div div style="width:30%; float:left;">
         
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Day of the Week
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <label class="switch">
-      Monday
-      <input name = "q2" value = "M" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Tuesday
-      <input name = "q3" value = "T" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Wednesday
-      <input name = "q4" value = "W" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Thursday
-      <input name = "q5" value = "Th" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Friday
-      <input name = "q6" value = "F" type="checkbox">
-      <span class="slider"></span>
-    </label>
-      </div>
-      </div>
+    <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Day of the Week
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <label class="switch">
+        Monday
+        <input name = "q2" value = "M" type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <label class="switch">
+        Tuesday
+        <input name = "q3" value = "T" type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <label class="switch">
+        Wednesday
+        <input name = "q4" value = "W" type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <label class="switch">
+        Thursday
+        <input name = "q5" value = "Th" type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <label class="switch">
+        Friday
+        <input name = "q6" value = "F" type="checkbox">
+        <span class="slider"></span>
+      </label>
+        </div>
+    </div>
+    </div>
     <div style="width:10%; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
         <input type="text" class="form-control" name="t" placeholder="Set Time">
@@ -65,7 +66,7 @@
   <button class="btn btn-success" id="Logout">
       Logout
   </button>
- </div>
+</div>
 
 <!-- {% if building %}
 removed the cards
@@ -308,7 +309,6 @@ legend.onAdd = function (buildings) {
   return div;
 };
 legend.addTo(buildings);*/
-
 lonlats = {};
 var offset = 0.0001;
 {% if saved_buildings %}
