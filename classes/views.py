@@ -102,12 +102,19 @@ def search_terms(query):
     
 def searchTime(inputTime, results):
     resultsWithTime = Section.objects.none()
+    resultFilter = Section.objects.none()
     convertedTime = datetime.strptime(inputTime, '%I:%M%p').time()
     for result in results: 
         start = result.starttime
         end = result.endtime
-        if (convertedTime >= start and convertedTime <= end):   
-            resultsWithTime = resultsWithTime + result
+        title = result.title
+        section = result.section
+        if (convertedTime >= start and convertedTime <= end):  
+            resultFilter = results.filter(Q(title__icontains=title))
+            resultFilter = resultFilter.filter(Q(section__icontains=section))
+            resultFilter = resultFilter.filter(Q(starttime__icontains=start))
+            resultFilter = resultFilter.filter(Q(endttime__icontains=end))
+            resultsWithTime = resultsWithTime | resultFilter
     return resultsWithTime
 
 @login_required
