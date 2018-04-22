@@ -1,9 +1,9 @@
 {% extends 'classes/layout.html' %}
 
 {% block content %}
+<a href="/" class="btn" style="float: right;">Go back</a>
 <div id="resultList" style="margin-left:10%; margin-right:10%; margin-bottom: 20px;">
     <h4 style="color: white; float: left;">Results for: "{{q}}" {{t}}</h4>
-    <a href="/" class="btn" style="float: right;">Go back</a>
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
