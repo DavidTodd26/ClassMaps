@@ -1,157 +1,15 @@
-{% extends 'classes/layout.html' %}
-{% load static %}
 
-{% block content %}
-<html>
-<link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
-
-    <form method="GET" action="{% url 'classes:search' %}">
-        <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
-
-    <div style="width:30%; float:left;">
-        <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
-        <button class="btn btn-success" type="submit">
-            Search ClassMaps
-        </button>
-    </div>
-    <div div style="width:30%; float:left;">
-    <label class="switch">
-      Monday
-      <input name = "q2" value = "M" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Tuesday
-      <input name = "q3" value = "T" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Wednesday
-      <input name = "q4" value = "W" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Thursday
-      <input name = "q5" value = "Th" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Friday
-      <input name = "q6" value = "F" type="checkbox">
-      <span class="slider"></span>
-    </label>
-      </div>
-    <div style="width:10%; float:left;">
-      <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
-        <input type="text" class="form-control" name="t" placeholder="Set Time">
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-time"></span>
-        </span>
-      </div>
-    </div>
-</form>
-<div style="float: right">
-<div  class="center-div">Welcome, {{netid}}</div>
-  <button class="btn btn-success" id="Logout">
-      Logout
-  </button>
- </div>
-
-<!-- {% if building %}
-removed the cards
-<div class="card">
-    <div class="card-content">
-        {{building.building}}
-    </div>
-</div>
-{% elif c %}
-    <div class="card">
-        <h6 class="center-align">{{c}}</h6>
-        <div class="card-content">
-            {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}
-        </div>
-    </div>
-{% endif %} -->
-
-<head bgcolor="#000000">
-  <title>ClassMaps</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
-
-  <script type="text/javascript" src="{% static 'classes/buildings.js' %}"></script>
-
-  <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'classes/dist/bootstrap-clockpicker.min.js' %}"></script>
-  <script type="text/javascript">
-    $('.clockpicker').clockpicker({
-      twelvehour: true,
-    })
-    .find('input').change(function(){
-      console.log(this.value);
-    });
-    var input = $('#single-input').clockpicker({
-      placement: 'bottom',
-      align: 'right',
-      autoclose: true,
-      default: 'now'
-    });
-</script>
-
-
-<style>
-      html, body {
-       height: 100%;
-      }
-/*     topbar{
-    height: 10%
-    } */
-  #map { width: 100%; height: 100%;}
-  .slidecontainer {
-      margin: 0 auto;
-      width: 350px;
-  }
-  .btn-remove {background-color: #f44336;} /* red */
-</style>
-</head>
-
-<!-- <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Day of the Week
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#M">Monday</a>
-    <a class="dropdown-item" href="#T">Tuesday</a>
-    <a class="dropdown-item" href="#W">Wednesday</a>
-    <a class="dropdown-item" href="#Th">Thursday</a>
-    <a class="dropdown-item" href="#F">Friday</a>
-  </div> -->
-<body bgcolor="#000000">
-  <div id="map"></div>
-  <div id="searchbar" style="z-index: 1;">
-<div id="overlay" style="position:absolute; top:0px; left:0px; background-color:white; width:100%; height:auto; z-index: 100; opacity: 0.8;">
-    </div>
-</div>
-
-<script type="text/javascript">
-document.getElementById("Logout").onclick = function () {
-    location.href = "https://classmaps.herokuapp.com/accounts/logout";
-};
-</script>
-  <script>
     // Adds different layer groups
     var printers = L.layerGroup();
     var hotspots = L.layerGroup();
     var laundry = L.layerGroup();
     var buildings = L.layerGroup();
+
     //var geojsonLayer = new L.GeoJSON.AJAX("scraping/shapes.json");
+
    /* var district_boundary = new L.geoJson();
 district_boundary.addTo(map);
+
 $.ajax({
 dataType: "json",
 url: "scraping/shapes.json",
@@ -161,6 +19,7 @@ success: function(data) {
     });
 }
 }).error(function() {});*/
+
     var printerLocs = [['40.34614', '-74.660091', '1901 Hall - Ground Floor', '6'],
  ['40.345863', '-74.656253', '1937 Hall - Ground Floor', '6'],
  ['40.344532', '-74.655534', '1976 Hall - Room 33', '6'],
@@ -172,8 +31,8 @@ success: function(data) {
  ['40.349582', '-74.657495', 'Firestone Library - Room B-4-K', '6'],
  ['40.342214', '-74.661144', 'Forbes College - Library, Room 32', '6'],
  ['40.342214', '-74.661144', 'Forbes College - Rooms 21, 22', '6'],
- ['40.350268', '-74.652827', 'Friend Center - Room 016<br>Friend Center - Room 017', '6'],
- //['40.350268', '-74.652827', 'Friend Center - Room 017', '6'],
+ ['40.350268', '-74.652827', 'Friend Center - Room 016', '6'],
+ ['40.350268', '-74.652827', 'Friend Center - Room 017', '6'],
  ['40.34673', '-74.655259', 'Frist Campus Center - 100 Level', '6'],
  ['40.34673', '-74.655259', 'Frist Campus Center - 200 Level', '6'],
  ['40.34673', '-74.655259', 'Frist Campus Center - 300 Level', '6'],
@@ -193,7 +52,7 @@ success: function(data) {
  ['40.347788', '-74.656319', 'Architecture Library - 2nd Floor', '28'],
  ['40.34673', '-74.655259', 'East Asian Library - Frist Campus Center', '28'],
  ['40.346412', '-74.655946', 'East Asian Library - Jones Hall', '28'],
- //['40.350268', '-74.652827', 'Engineering Library - 2nd Floor', '28'],
+ ['40.350268', '-74.652827', 'Engineering Library - 2nd Floor', '28'],
  ['40.345701', '-74.652474', 'Fine Hall Library - Basement', '28'],
  ['40.349582', '-74.657495', 'Firestone Library - 1st Floor, Reserve', '28'],
  ['40.349582', '-74.657495', 'Firestone Library - 3rd Floor', '28'],
@@ -226,6 +85,7 @@ success: function(data) {
  ['40.344719', '-74.656574', 'Wu Hall - Mellon Library', '29'],
  ['40.34673', '-74.655259', 'Frist Campus Center - 100 Level', '30'],
  ['40.34673', '-74.655259', 'Frist Campus Center - B Level', '30']];
+
  hotspotLocs = [['40.35063', '-74.654932', '1st Floor (near elevator)'],
  ['40.342738', '-74.657116', 'Communication Center window'],
  ['40.348357', '-74.648976', 'Next to elevator, main lobby'],
@@ -263,6 +123,7 @@ success: function(data) {
  ['40.34491', '-74.656064', 'Wilcox Hall, card checker station'],
  ['40.34745173', '-74.66012844', 'Exterior, near Entry 4'],
  ['40.34570028', '-74.65758615', 'North wall, exterior']];
+
  laundryLocs = [['40.344719', '-74.65694', '1915 Hall - Entry 6'],
  ['40.345162', '-74.655828', '1927/Clapp Hall - Basement'],
  ['40.344532', '-74.655534', '1976 Hall - Room 032'],
@@ -292,6 +153,7 @@ success: function(data) {
  ['40.343449', '-74.65792', 'South Baker Hall - Room S401'],
  ['40.34745173', '-74.66012844', 'Witherspoon Hall - Basement'],
  ['40.344255', '-74.656129', 'Yoseloff Hall - Room 005']];
+
      var printerIcon = L.icon({
        iconUrl: "{% static 'classes/images/printer.png' %}",
        iconSize:     [28, 28], // size of the icon
@@ -304,55 +166,66 @@ success: function(data) {
        iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
+
      var hotspotIcon = L.icon({
        iconUrl: "{% static 'classes/images/hotspot.png' %}",
        iconSize:     [26, 26], // size of the icon
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
+
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-orange.png' %}",
        iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
      });
+
      var myIcon = L.icon({
        iconUrl: "{% static 'classes/images/youarehere.png' %}",
        iconSize:     [35, 35], // size of the icon
        iconAnchor:   [18, 18], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
      });
+
     for (var i = 0; i < printerLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
     if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
     if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
     if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
  }
+
  for (var i = 0; i < laundryLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);
  }
+
  for (var i = 0; i < hotspotLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);
  }
+
     // URLS of maps for different layers (note: need to add attributes)
     var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
       '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="http://mapbox.com">Mapbox</a>',
     mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     mbUrl2 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+
     // Different layers
     var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
     satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite',   attribution: mbAttr});
+
     // Initializes the map
     var map = L.map('map', {
       center: [40.346, -74.653],
       zoom: 16,
       layers: [regular]
     });
+
     /*$('.pure-button').on('click', function(){
 mymap.locate({setView: true, maxZoom: 15});
 });*/
+
     map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
@@ -361,13 +234,16 @@ mymap.locate({setView: true, maxZoom: 15});
     L.circle(e.latlng, radius).addTo(map);
     }
     map.on('locationfound', onLocationFound);
+
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
+
     // Our different layers
     var baseLayers = {
       "Regular": regular,
     "Satellite": satellite
     };
+
     // Our overlays
     var overlays = {
       "Printers": printers,
@@ -375,11 +251,16 @@ mymap.locate({setView: true, maxZoom: 15});
     "Hotspots": hotspots,
     "Buildings": buildings
     };
+
+
+
     // Adds overlays and layers to map
     L.control.layers(baseLayers, overlays, {position: 'topleft'}).addTo(map);
+
     // Limits zoom (we could get rid of this)
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
+
     function getColor(d) {
   if (d == 'dormitory') return '#800026';
   else if (d == 'university') return '#FEB42C';
@@ -393,6 +274,8 @@ mymap.locate({setView: true, maxZoom: 15});
       d > 10   ? '#FED976' :
             '#FFEDA0';*/
 }
+
+
     function style(feature) {
   return {
     weight: 2,
@@ -404,19 +287,24 @@ mymap.locate({setView: true, maxZoom: 15});
     //fillColor: '#FED976'
   };
 }
+
       function highlightFeature(e) {
   var layer = e.target;
+
   layer.setStyle({
     weight: 5,
     color: '#666',
     dashArray: '',
     fillOpacity: 0.7
   });
+
   //if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
   //  layer.bringToFront();
   //}
+
   //info.update(layer.feature.properties);
 }
+
 function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,//,
@@ -424,40 +312,54 @@ function onEachFeature(feature, layer) {
     click: zoomToFeature
   });
 }
+
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
   e.bindPopup("You are within meters from this point");//.openPopup();
 }
+
 function resetHighlight(e) {
   geojson.resetStyle(e.target);
   //info.update();
 }
+
     var geojson;
   geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
+
   var legend = L.control({position: 'bottomright'});
+
 legend.onAdd = function (buildings) {
+
   var div = L.DomUtil.create('div', 'info legend'),
     grades = ['dormitory', 'university', 'other'],
     labels = [],
     from, to;
+
   for (var i = 0; i < grades.length; i++) {
     from = grades[i];
     //to = grades[i + 1];
+
     labels.push(
       '<i style="background:' + getColor(from) + '"></i> ' +
       from + (from ? '&ndash;' + from : '+'));
   }
+
   div.innerHTML = labels.join('<br>');
   return div;
 };
+
 legend.addTo(buildings);
+
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
       var radius = e.accuracy / 2;
+
       L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup();
+
       L.circle(e.latlng, radius).addTo(map);
     }
     map.on('locationfound', onLocationFound);*/
+
 //     // Displays coordinates upon mouse click
 //     var popup = L.popup();
 //     function onMapClick(e) {
@@ -467,6 +369,7 @@ legend.addTo(buildings);
 //         .openOn(map);
 //     }
 //     map.on('click', onMapClick);
+
 lonlats = {};
 var offset = 0.0001;
 {% if saved_buildings %}
@@ -501,6 +404,7 @@ var offset = 0.0001;
      }
     {% endfor %}
 {% endif %}
+
 if (!jQuery.isEmptyObject(lonlats)) {
   for (var key in lonlats) {
     var tokens = key.split(" ");
@@ -509,6 +413,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
     L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
   }
 }
+
     // Searched marker
     {% if building %}
         var lon = "{{building.lon}}";
@@ -524,6 +429,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
         // modified this line to add parameters
         var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
     {% endif %}
+
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
       "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
@@ -533,9 +439,3 @@ if (!jQuery.isEmptyObject(lonlats)) {
       "</form>";
        L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
     {% endif %}
-  </script>
-
-</body>
-</html>
-
-{% endblock %}
