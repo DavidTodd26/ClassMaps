@@ -54,7 +54,16 @@
     </div>
 </form>
   <div>Welcome, {{netid}}</div>
+  <button class="btn btn-success" id="Logout">
+      Logout
+  </button>
     </div>
+
+    <script type="text/javascript">
+        document.getElementById("Logout").onclick = function () {
+            location.href = "https://classmaps.herokuapp.com/accounts/logout";
+        };
+    </script>
 <!-- {% if building %}
 removed the cards
 <div class="card">
@@ -475,4 +484,3 @@ mymap.locate({setView: true, maxZoom: 15});
 </html>
 
 {% endblock %}
-  
