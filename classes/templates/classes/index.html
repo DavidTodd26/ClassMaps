@@ -18,6 +18,12 @@
         </button>
     </div>
     <div div style="width:30%; float:left;">
+        
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Day of the Week
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <label class="switch">
       Monday
       <input name = "q2" value = "M" type="checkbox">
@@ -43,6 +49,7 @@
       <input name = "q6" value = "F" type="checkbox">
       <span class="slider"></span>
     </label>
+      </div>
       </div>
     <div style="width:10%; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
@@ -123,17 +130,6 @@ removed the cards
 </style>
 </head>
 
-<!-- <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Day of the Week
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#M">Monday</a>
-    <a class="dropdown-item" href="#T">Tuesday</a>
-    <a class="dropdown-item" href="#W">Wednesday</a>
-    <a class="dropdown-item" href="#Th">Thursday</a>
-    <a class="dropdown-item" href="#F">Friday</a>
-  </div> -->
 <body bgcolor="#000000">
   <div id="map"></div>
   <div id="searchbar" style="z-index: 1;">
@@ -312,22 +308,7 @@ legend.onAdd = function (buildings) {
   return div;
 };
 legend.addTo(buildings);*/
-    // Displays current user location and accuracy
-    /*function onLocationFound(e) {
-      var radius = e.accuracy / 2;
-      L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup();
-      L.circle(e.latlng, radius).addTo(map);
-    }
-    map.on('locationfound', onLocationFound);*/
-//     // Displays coordinates upon mouse click
-//     var popup = L.popup();
-//     function onMapClick(e) {
-//       popup
-//         .setLatLng(e.latlng)
-//         .setContent("You clicked the map at " + e.latlng.toString())
-//         .openOn(map);
-//     }
-//     map.on('click', onMapClick);
+
 lonlats = {};
 var offset = 0.0001;
 {% if saved_buildings %}
