@@ -371,7 +371,7 @@ function resetHighlight(e) {
 }
     var geojson;
   geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
-  var legend = L.control({position: 'bottomright'});
+ /* var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (buildings) {
   var div = L.DomUtil.create('div', 'info legend'),
     grades = ['dormitory', 'university', 'other'],
@@ -387,7 +387,7 @@ legend.onAdd = function (buildings) {
   div.innerHTML = labels.join('<br>');
   return div;
 };
-legend.addTo(buildings);
+legend.addTo(buildings);*/
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
       var radius = e.accuracy / 2;
