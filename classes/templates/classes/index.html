@@ -404,6 +404,19 @@ mymap.locate({setView: true, maxZoom: 15});
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
 
+
+    function style(feature) {
+  return {
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    dashArray: '3',
+    fillOpacity: 0.7,
+    //fillColor: getColor(feature.properties.density)
+    fillColor: '#FED976'
+  };
+}
+
       function highlightFeature(e) {
   var layer = e.target;
 
@@ -439,7 +452,7 @@ function resetHighlight(e) {
 }
 
     var geojson;
-  geojson = L.geoJson(buildingData, {onEachFeature: onEachFeature}).addTo(buildings);
+  geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
 
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
