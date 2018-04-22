@@ -430,7 +430,7 @@ mymap.locate({setView: true, maxZoom: 15});
          var name = "{{s}}";
          var loc2 = "{{s.building_lon}}";
          var loc1 = "{{s.building_lat}}";
-           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved).openPopup();
+           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
         {% endfor %}
     {% endif %}
     {% if saved_buildings %}
@@ -444,7 +444,7 @@ mymap.locate({setView: true, maxZoom: 15});
          var name = "{{s}}";
          var loc2 = "{{s.lon}}";
          var loc1 = "{{s.lat}}";
-           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved).openPopup();
+           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
         {% endfor %}
     {% endif %}
 
