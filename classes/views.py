@@ -99,6 +99,50 @@ def search_terms(query):
 
     return (results, buildings)
 
+def searchTime(time, results):
+	resultsWithTime = Section.objects.none()
+	timeAMPM = time[-2:]
+	timeHour = int(time[:2])
+	timeMinutes = int(time[3:-2])
+	if (timeAMPM == "PM"):
+		if (timeHour == 12):
+			timeHour = 0
+	timeHour += 12
+	timeHour *= 100
+	timeHour += timeMinutes	
+	for result in results:
+		start = result.starttime
+		end = result.endtime
+		if len(start) == 9:
+			startTimeHour = int(start[:1])
+			startTimeMinutes = int(start[2:-5])
+		else:
+			startTimeHour = int(start[:2]) 
+			startTimeMinutes = int(start[3:-5]) 
+		if len(end) == 9:
+			endTimeHour = int(end[:1])
+			endTimeMinutes = int(end[2:-5])
+		else:
+			endTimeHour = int(end[:2]) 
+			endTimeMinutes = int(end[3:-5])   
+		startAMPM = start[-4:]
+		endAMPM = end[-4:]
+		if startAMPM == "p.m.":
+			if (startTimeHour == 12):
+				startTimeHour = 0
+			startTimeHour += 12
+		if endAMPM == "p.m.":
+			if (endTimeHour == 12):
+				endTimeHour = 0
+			endTimeHour += 12
+		startTimeHour *= 100
+		endTimeHour *= 100
+		startTimeHour += startTimeMinutes
+		endTimeHour += endTimeMinutes
+		if (timeHour >= startTimeHour and timeHour <= endTimeHour):
+			resultsWithTime = resultsWithTime | result
+	return resultsWithTime
+
 @login_required
 def search(request):
     template = 'classes/searches.html'
@@ -131,8 +175,7 @@ def search(request):
         results2 = results
         buildings2 = buildings
     if (time != None):
-        results2 = results2.filter(Q(time__icontains=time))
-        buildings2 = buildings2.filter(Q(time__icontains=time))
+        results2 = searchTime(time, results2)
     context = {
         'q': query,
         't': time,
