@@ -7,11 +7,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
-<body bgcolor="#000000">
-<div id="topbar">
-<form method="GET" action="{% url 'classes:search' %}">
-    <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
-     <div style="width:30%; float:left;">
+
+    <form method="GET" action="{% url 'classes:search' %}">
+        <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
+
+    <div style="width:30%; float:left;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
         <button class="btn btn-success" type="submit">
             Search ClassMaps
@@ -53,17 +53,11 @@
       </div>
     </div>
 </form>
-  <div>Welcome, {{netid}}</div>
+      <div>Welcome, {{netid}}</div>
   <button class="btn btn-success" id="Logout">
       Logout
   </button>
-    </div>
 
-    <script type="text/javascript">
-        document.getElementById("Logout").onclick = function () {
-            location.href = "https://classmaps.herokuapp.com/accounts/logout";
-        };
-    </script>
 <!-- {% if building %}
 removed the cards
 <div class="card">
@@ -109,13 +103,13 @@ removed the cards
 
 
 <style>
-  html, body {
-   height: 100%;
-  }
-    topbar{
+      html, body {
+       height: 100%;
+      }
+/*     topbar{
     height: 10%
-    }
-  #map { width: 100%; height: 90%;}
+    } */
+  #map { width: 100%; height: 100%;}
   .slidecontainer {
       margin: 0 auto;
       width: 350px;
@@ -135,8 +129,18 @@ removed the cards
     <a class="dropdown-item" href="#Th">Thursday</a>
     <a class="dropdown-item" href="#F">Friday</a>
   </div> -->
-</div>
+<body bgcolor="#000000">
   <div id="map"></div>
+  <div id="searchbar" style="z-index: 1;">
+<div id="overlay" style="position:absolute; top:0px; left:0px; background-color:white; width:100%; height:auto; z-index: 100; opacity: 0.8;">
+    </div>
+</div>
+
+<script type="text/javascript">
+document.getElementById("Logout").onclick = function () {
+    location.href = "https://classmaps.herokuapp.com/accounts/logout";
+};
+</script>
   <script>
     // Adds different layer groups
     var printers = L.layerGroup();
@@ -400,8 +404,56 @@ mymap.locate({setView: true, maxZoom: 15});
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
 
+
+    function style(feature) {
+  return {
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    dashArray: '3',
+    fillOpacity: 0.7,
+    //fillColor: getColor(feature.properties.density)
+    fillColor: '#FED976'
+  };
+}
+
+      function highlightFeature(e) {
+  var layer = e.target;
+
+  layer.setStyle({
+    weight: 5,
+    color: '#666',
+    dashArray: '',
+    fillOpacity: 0.7
+  });
+
+  //if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+  //  layer.bringToFront();
+  //}
+
+  //info.update(layer.feature.properties);
+}
+
+function onEachFeature(feature, layer) {
+  layer.on({
+    mouseover: highlightFeature,//,
+    mouseout: resetHighlight,
+    click: zoomToFeature
+  });
+}
+
+function zoomToFeature(e) {
+  map.fitBounds(e.target.getBounds());
+}
+
+function resetHighlight(e) {
+  geojson.resetStyle(e.target);
+  //info.update();
+}
+
     var geojson;
-  geojson = L.geoJson(buildingData).addTo(buildings);
+  geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
+
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
       var radius = e.accuracy / 2;
