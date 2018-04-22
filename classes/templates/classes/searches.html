@@ -1,15 +1,16 @@
 {% extends 'classes/layout.html' %}
 
 {% block content %}
-<style>
+<!-- <style>
     .resultList{
             margin-top: 10%;
             margin-bottom: 10%;
             margin-right: 20%;
             margin-left: 20%;
     }
-</style>
-<div id="resultList" style="margin-left:10%; margin-right:10%; margin-top:20px; margin-bottom: 20px; padding:5%">
+</style> -->
+<div id="resultList" style="margin-left:10%; margin-right:10%; margin-bottom: 20px; padding:5%">
+    <h2>Results</h2>
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
