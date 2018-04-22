@@ -174,7 +174,7 @@ def search(request):
     if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
         results2 = results
         buildings2 = buildings
-    if (time != None):
+    if (time):
         results2 = searchTime(time, results2)
     context = {
         'q': query,
