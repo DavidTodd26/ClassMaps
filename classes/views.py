@@ -176,7 +176,7 @@ def search(request):
         buildings2 = buildings
     if (time):
         results2 = searchTime(time, results2)	
-    query = query[:30]
+    query = query[:50]
     context = {
         'q': query,
         't': time,
