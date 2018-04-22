@@ -460,6 +460,7 @@ function onEachFeature(feature, layer) {
 
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
+  e.bindPopup("You are within meters from this point").openPopup();
 }
 
 function resetHighlight(e) {
