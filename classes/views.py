@@ -113,7 +113,7 @@ def searchTime(inputTime, results):
             resultFilter = results.filter(Q(title__icontains=title))
             resultFilter = resultFilter.filter(Q(section__icontains=section))
             resultFilter = resultFilter.filter(Q(starttime__icontains=start))
-            resultFilter = resultFilter.filter(Q(endttime__icontains=end))
+            resultFilter = resultFilter.filter(Q(endtime__icontains=end))
             resultsWithTime = resultsWithTime | resultFilter
     return resultsWithTime
 
