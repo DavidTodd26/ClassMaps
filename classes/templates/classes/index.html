@@ -410,7 +410,7 @@ mymap.locate({setView: true, maxZoom: 15});
    
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
-      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
+      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
           "<button class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
               "Save" +
           "</button>" +
