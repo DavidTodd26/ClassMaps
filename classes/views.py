@@ -131,7 +131,6 @@ def search(request):
         results2 = results
         buildings2 = buildings
     if (time != None):
-        time = time[:-2]
         results2 = results2.filter(Q(time__icontains=time))
         buildings2 = buildings2.filter(Q(time__icontains=time))
     context = {
