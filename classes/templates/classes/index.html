@@ -218,8 +218,10 @@ document.getElementById("Logout").onclick = function () {
     var map = L.map('map', {
       center: [40.346, -74.653],
       zoom: 16,
-      layers: [regular, buildings]
+      layers: [regular, buildings],
+      zoomControl: true
     });
+    map.zoomControl.setPosition('bottomleft');
     /*$('.pure-button').on('click', function(){
 mymap.locate({setView: true, maxZoom: 15});
 });*/
