@@ -105,6 +105,7 @@ removed the cards
       margin: 0 auto;
       width: 350px;
   }
+  .btn-remove {background-color: #f44336;} /* red */
 </style>
 </head>
 
@@ -295,6 +296,10 @@ var hotspotIcon = L.icon({
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
+     
+     var savedIcon = L.icon({
+       iconUrl: "{% static 'classes/images/marker-icon-orange.png' %}"
+     });
 
     for (var i = 0; i < printerLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
@@ -423,28 +428,28 @@ mymap.locate({setView: true, maxZoom: 15});
        {% for s in saved_courses %}
          var saved =
          "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" + "\n" +
-             "<button class=\"btn btn-success\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+             "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
                  "Remove" +
              "</button>" +
          "</form>";
          var name = "{{s}}";
          var loc2 = "{{s.building_lon}}";
          var loc1 = "{{s.building_lat}}";
-           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
+           L.marker([loc1, loc2], {icon: savedIcon}).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
         {% endfor %}
     {% endif %}
     {% if saved_buildings %}
        {% for s in saved_buildings %}
          var saved =
          "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-             "<button class=\"btn btn-success\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
+             "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
                  "Remove" +
              "</button>" +
          "</form>";
          var name = "{{s}}";
          var loc2 = "{{s.lon}}";
          var loc1 = "{{s.lat}}";
-           L.marker([loc1, loc2]).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
+           L.marker([loc1, loc2], {icon: savedIcon}).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
         {% endfor %}
     {% endif %}
 
