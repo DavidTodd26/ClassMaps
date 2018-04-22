@@ -137,6 +137,7 @@ def search(request):
         buildings2 = buildings2.filter(Q(time__icontains=time))
     context = {
         'q': query,
+        't': time,
         'classes': results2,
         'buildings': buildings2
     }
