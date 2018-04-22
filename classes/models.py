@@ -22,7 +22,8 @@ class Section(models.Model):
     number = ArrayField(models.CharField(max_length=100, blank=True, null=True), blank=True, null=True)
     enroll = models.CharField(max_length=200, blank=True, null=True)
     capacity = models.CharField(max_length=200, blank=True, null=True)
-    saved = ArrayField(models.CharField(max_length=9, blank=True, null=True), default=list())
+    saved = ArrayField(models.CharField(max_length=20, blank=True, null=True), default=list())
+    searched = models.IntegerField(default=0)
 
     def __str__(self):
         courses = []
@@ -37,7 +38,8 @@ class Building(models.Model):
     building_id = models.CharField(max_length=200, blank=True, null=True)
     lat = models.CharField(max_length=200, blank=True, null=True)
     lon = models.CharField(max_length=200, blank=True, null=True)
-    saved = ArrayField(models.CharField(max_length=9, blank=True, null=True), default=list())
+    saved = ArrayField(models.CharField(max_length=20, blank=True, null=True), default=list())
+    searched = models.IntegerField(default=0)
 
     def __str__(self):
         return self.names[0]

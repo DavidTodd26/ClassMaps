@@ -30,6 +30,7 @@ def index(request):
             match = Building.objects.get(id=int(id))
         if func == 's' and not netid in match.saved:
             match.saved.append(netid)
+            match.searched += 1
             match.save()
         elif func == 'r' and netid in match.saved:
             match.saved.remove(netid)
