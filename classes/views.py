@@ -98,6 +98,16 @@ def search_terms(query):
             results = Section.objects.none()
 
     return (results, buildings)
+    
+def searchTime(time, results):
+    resultsWithTime = Section.objects.none()
+        convertedTime = datetime.strptime(time, '%I:%M%p')
+        for result in results: 
+            start = result.starttime
+            end = result.endtime
+            if (convertedTime >= start and convertedTime <= end)
+                resultsWithTime = resultsWithTime | result
+    return resultsWithTime
 
 @login_required
 def search(request):
@@ -130,9 +140,8 @@ def search(request):
     if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
         results2 = results
         buildings2 = buildings
-    if (time != None):
-        results2 = results2.filter(Q(time__icontains=time))
-        buildings2 = buildings2.filter(Q(time__icontains=time))
+    if (time):
+        results2 = searchTime(time, results2)
     context = {
         'q': query,
         't': time,
