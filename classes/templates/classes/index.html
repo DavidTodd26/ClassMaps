@@ -308,9 +308,9 @@ success: function(data) {
      
      var myIcon = L.icon({
        iconUrl: "{% static 'classes/images/youarehere.png' %}",
-       iconSize:     [28, 28], // size of the icon
-       iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [35, 35], // size of the icon
+       iconAnchor:   [18, 18], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
      });
 
     for (var i = 0; i < printerLocs.length; i++) {
