@@ -1,7 +1,15 @@
 {% extends 'classes/layout.html' %}
 
 {% block content %}
-
+<style>
+    .resultList{
+            margin-top: 10%;
+            margin-bottom: 10%;
+            margin-right: 20%;
+            margin-left: 20%;
+    }
+</style>
+<div id="resultList">
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
@@ -18,4 +26,5 @@
     {% endif %}
 </ul>
 <a href="/test" class="btn">Go back</a>
+</div>
 {% endblock %}
