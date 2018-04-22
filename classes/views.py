@@ -102,7 +102,7 @@ def search_terms(query):
     
 def searchTime(time, results):
     resultsWithTime = Section.objects.none()
-    convertedTime = datetime.strptime(time, '%I:%M%p')
+    convertedTime = datetime.strptime(time, '%I:%M%p').date
     for result in results: 
         start = result.starttime
         end = result.endtime
