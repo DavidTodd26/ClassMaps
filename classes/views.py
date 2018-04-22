@@ -40,6 +40,7 @@ def index(request):
     }
     return render(request, 'classes/index.html', context)
 
+@login_required
 def details(request, id):
     netid = request.user.username
     if id.isdigit():
@@ -98,6 +99,7 @@ def search_terms(query):
 
     return (results, buildings)
 
+@login_required
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
@@ -133,6 +135,8 @@ def search(request):
         results2 = results2.filter(Q(time__icontains=time))
         buildings2 = buildings2.filter(Q(time__icontains=time))
     context = {
+        'q': query,
+        't': time,
         'classes': results2,
         'buildings': buildings2,
         'netid': request.user.username

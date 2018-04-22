@@ -133,6 +133,7 @@ removed the cards
     var printers = L.layerGroup();
     var hotspots = L.layerGroup();
     var laundry = L.layerGroup();
+    var buildings = L.layerGroup();
 
     //var geojsonLayer = new L.GeoJSON.AJAX("scraping/shapes.json");
 
@@ -377,7 +378,8 @@ mymap.locate({setView: true, maxZoom: 15});
     var overlays = {
       "Printers": printers,
       "Laundry": laundry,
-    "Hotspots": hotspots
+    "Hotspots": hotspots,
+    "Buildings": buildings
     };
 
 
@@ -390,7 +392,7 @@ mymap.locate({setView: true, maxZoom: 15});
     map.options.maxZoom = 18;
 
     var geojson;
-  geojson = L.geoJson(buildingData).addTo(map);
+  geojson = L.geoJson(buildingData).addTo(buildings);
 
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
@@ -473,3 +475,4 @@ mymap.locate({setView: true, maxZoom: 15});
 </html>
 
 {% endblock %}
+  
