@@ -140,6 +140,7 @@ def search(request):
         buildings2 = buildings
     if (time):
         results2 = searchTime(time, results2)
+        buildings2 = searchTime(time, buildings2)
     context = {
         'q': query,
         't': time,
