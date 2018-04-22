@@ -8,11 +8,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
 
-    <script type="text/javascript">
-        document.getElementById("Logout").onclick = function () {
-            location.href = "https://classmaps.herokuapp.com/accounts/logout";
-        };
-    </script>
 <!-- {% if building %}
 removed the cards
 <div class="card">
@@ -139,6 +134,11 @@ removed the cards
     </div>
 </div>
 
+<script type="text/javascript">
+document.getElementById("Logout").onclick = function () {
+    location.href = "https://classmaps.herokuapp.com/accounts/logout";
+};
+</script>
   <script>
     // Adds different layer groups
     var printers = L.layerGroup();
