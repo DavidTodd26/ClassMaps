@@ -404,8 +404,33 @@ mymap.locate({setView: true, maxZoom: 15});
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
 
+      function highlightFeature(e) {
+  var layer = e.target;
+
+  layer.setStyle({
+    weight: 5,
+    color: '#666',
+    dashArray: '',
+    fillOpacity: 0.7
+  });
+
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
+  }
+
+  //info.update(layer.feature.properties);
+}
+
+function onEachFeature(feature, layer) {
+  layer.on({
+    mouseover: highlightFeature//,
+    //mouseout: resetHighlight,
+    //click: zoomToFeature
+  });
+}
+
     var geojson;
-  geojson = L.geoJson(buildingData).addTo(buildings);
+  geojson = L.geoJson(buildingData, {onEachFeature: onEachFeature}).addTo(buildings);
 
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
