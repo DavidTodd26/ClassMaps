@@ -7,12 +7,55 @@
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
-
-    <script type="text/javascript">
-        document.getElementById("Logout").onclick = function () {
-            location.href = "https://classmaps.herokuapp.com/accounts/logout";
-        };
-    </script>
+<form method="GET" action="{% url 'classes:search' %}">
+    <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
+     <div style="width:30%; float:left;">
+        <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
+        <button class="btn btn-success" type="submit">
+            Search ClassMaps
+        </button>
+    </div>
+    <div div style="width:30%; float:left;">
+    <label class="switch">
+      Monday
+      <input name = "q2" value = "M" type="checkbox">
+      <span class="slider"></span>
+    </label>
+    <label class="switch">
+      Tuesday
+      <input name = "q3" value = "T" type="checkbox">
+      <span class="slider"></span>
+    </label>
+    <label class="switch">
+      Wednesday
+      <input name = "q4" value = "W" type="checkbox">
+      <span class="slider"></span>
+    </label>
+    <label class="switch">
+      Thursday
+      <input name = "q5" value = "Th" type="checkbox">
+      <span class="slider"></span>
+    </label>
+    <label class="switch">
+      Friday
+      <input name = "q6" value = "F" type="checkbox">
+      <span class="slider"></span>
+    </label>
+      </div>
+    <div style="width:10%; float:left;">
+      <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
+        <input type="text" class="form-control" name="t" placeholder="Set Time">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+        </span>
+      </div>
+    </div>
+</form>
+  <div>Welcome, {{netid}}</div>
+  <button class="btn btn-success" id="Logout">
+      Logout
+  </button>
+    
 <!-- {% if building %}
 removed the cards
 <div class="card">
@@ -87,58 +130,15 @@ removed the cards
 <body bgcolor="#000000">
   <div id="map"></div>
   <div id="searchbar" style="z-index: 1;">
-<div id="overlay" style="position:absolute; top:0px; left:0px; background-color:white; width:100%; height:50px; z-index: 100; opacity: 0.8">
-<form method="GET" action="{% url 'classes:search' %}">
-    <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
-     <div style="width:30%; float:left;">
-        <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
-        <button class="btn btn-success" type="submit">
-            Search ClassMaps
-        </button>
-    </div>
-    <div div style="width:30%; float:left;">
-    <label class="switch">
-      Monday
-      <input name = "q2" value = "M" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Tuesday
-      <input name = "q3" value = "T" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Wednesday
-      <input name = "q4" value = "W" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Thursday
-      <input name = "q5" value = "Th" type="checkbox">
-      <span class="slider"></span>
-    </label>
-    <label class="switch">
-      Friday
-      <input name = "q6" value = "F" type="checkbox">
-      <span class="slider"></span>
-    </label>
-      </div>
-    <div style="width:10%; float:left;">
-      <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
-        <input type="text" class="form-control" name="t" placeholder="Set Time">
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-time"></span>
-        </span>
-      </div>
-    </div>
-</form>
-  <div>Welcome, {{netid}}</div>
-  <button class="btn btn-success" id="Logout">
-      Logout
-  </button>
+<div id="overlay" style="position:absolute; top:0px; left:0px; background-color:white; width:100%; height:50px; z-index: 100; opacity: 0.8;">
     </div>
 </div>
 
+<script type="text/javascript">
+document.getElementById("Logout").onclick = function () {
+    location.href = "https://classmaps.herokuapp.com/accounts/logout";
+};
+</script>
   <script>
     // Adds different layer groups
     var printers = L.layerGroup();
