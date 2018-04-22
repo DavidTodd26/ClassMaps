@@ -303,7 +303,14 @@ success: function(data) {
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-orange.png' %}",
        iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
-       popupAnchor:  [-12, -41] // point from which the popup should open relative to the iconAnchor
+       popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
+     });
+     
+     var myIcon = L.icon({
+       iconUrl: "{% static 'classes/images/youarehere.png' %}",
+       iconSize:     [28, 28], // size of the icon
+       iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
 
     for (var i = 0; i < printerLocs.length; i++) {
@@ -345,10 +352,10 @@ success: function(data) {
 mymap.locate({setView: true, maxZoom: 15});
 });*/
 
-        map.locate({setView: true,watch: true, maxZoom: 16});
+    map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
-    L.marker(e.latlng).addTo(map)
+    L.marker(e.latlng, {icon: savedIcon}).addTo(map)
         .bindPopup("You are within " + radius + " meters from this point").openPopup();
     L.circle(e.latlng, radius).addTo(map);
     }
