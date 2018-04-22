@@ -3,7 +3,6 @@ from .models import Section, Building
 from django.db.models import Q
 from itertools import chain
 from datetime import time
-from datetime import datetime
 import re
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -100,9 +99,9 @@ def search_terms(query):
 
     return (results, buildings)
     
-def searchTime(time, results):
+def searchTime(inputTime, results):
     resultsWithTime = Section.objects.none()
-    convertedTime = datetime.strptime(time, '%I:%M%p')
+    convertedTime = time.strptime(inputTime, '%I:%M%p')
     for result in results: 
         start = result.starttime
         end = result.endtime
