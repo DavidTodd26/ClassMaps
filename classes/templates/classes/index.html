@@ -402,7 +402,6 @@ mymap.locate({setView: true, maxZoom: 15});
 
     var geojson;
   geojson = L.geoJson(buildingData).addTo(buildings);
-
     // Displays current user location and accuracy
     /*function onLocationFound(e) {
       var radius = e.accuracy / 2;
@@ -423,46 +422,61 @@ mymap.locate({setView: true, maxZoom: 15});
 //     }
 //     map.on('click', onMapClick);
 
-     // Saved stuff
-    {% if saved_courses %}
-       {% for s in saved_courses %}
-         var saved =
-         "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
-             "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
-                 "Remove" +
-             "</button>" +
-         "</form>";
-         var name = "{{s}}";
-         var loc2 = "{{s.building_lon}}";
-         var loc1 = "{{s.building_lat}}";
-           L.marker([loc1, loc2], {icon: savedIcon}).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
-        {% endfor %}
-    {% endif %}
-    {% if saved_buildings %}
-       {% for s in saved_buildings %}
-         var saved =
-         "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
-             "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
-                 "Remove" +
-             "</button>" +
-         "</form>";
-         var name = "{{s}}";
-         var loc2 = "{{s.lon}}";
-         var loc1 = "{{s.lat}}";
-           L.marker([loc1, loc2], {icon: savedIcon}).addTo(map).bindPopup("<div>"+name+"</div>"+saved) //.openPopup();
-        {% endfor %}
-    {% endif %}
+lonlats = {};
+var offset = 0.0001;
+{% if saved_buildings %}
+   {% for s in saved_buildings %}
+     var key = "{{s.lon}} {{s.lat}}"
+     var text = "<div>{{s}}</div>"+
+     "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
+         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
+             "Remove" +
+         "</button>" +
+     "</form>";
+     if (key in lonlats) {
+       lonlats[key] += "<br>"+text;
+     } else {
+       lonlats[key] = text;
+     }
+  {% endfor %}
+{% endif %}
+{% if saved_courses %}
+   {% for s in saved_courses %}
+     var key = "{{s.building_lon}} {{s.building_lat}}";
+     var text = "<div>{{s}}</div>"+
+     "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
+         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+             "Remove" +
+         "</button>" +
+     "</form>";
+     if (key in lonlats) {
+       lonlats[key] += "<br>"+text;
+     } else {
+       lonlats[key] = text;
+     }
+    {% endfor %}
+{% endif %}
+
+if (!jQuery.isEmptyObject(lonlats)) {
+  for (var key in lonlats) {
+    var tokens = key.split(" ");
+    var lon = parseFloat(tokens[0])-offset;
+    var lat = tokens[1];
+    L.marker([lat, lon]).addTo(map).bindPopup(lonlats[key]);
+  }
+}
+    //addSavedMarkers();
 
     // Searched marker
     {% if building %}
-        var loc2 = "{{building.lon}}";
-        var loc1 = "{{building.lat}}";
+        var lon = "{{building.lon}}";
+        var lat = "{{building.lat}}";
         var id = "{{building.pk}}";
         var type = "b";
         var name = "{{building}}";
     {% elif c %}
-        var loc2 = "{{c.building_lon}}";
-        var loc1 = "{{c.building_lat}}";
+        var lon = "{{c.building_lon}}";
+        var lat = "{{c.building_lat}}";
         var id = "{{c.pk}}";
         var type = "c";
         // modified this line to add parameters
@@ -476,8 +490,51 @@ mymap.locate({setView: true, maxZoom: 15});
               "Save" +
           "</button>" +
       "</form>";
-       L.marker([loc1, loc2]).addTo(map).bindPopup(search).openPopup();
+       L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
     {% endif %}
+/*
+    function addSavedMarkers() {
+      lonlats = {};
+      {% if saved_courses %}
+         {% for s in saved_courses %}
+           var key = "{{s.building_lon}} {{s.building_lat}}"
+           var text = "<div>{{s}}</div>"+
+           "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
+               "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+                   "Remove" +
+               "</button>" +
+           "</form>";
+           if (key in dict) {
+             lonlats[key] += text;
+           } else {
+             lonlats[key] = text;
+           }
+          {% endfor %}
+      {% endif %}
+      {% if saved_buildings %}
+         {% for s in saved_buildings %}
+           var key = "{{s.lon}} {{s.lat}}"
+           var text = "<div>"+name+"</div>"+
+           "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
+               "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
+                   "Remove" +
+               "</button>" +
+           "</form>";
+           if (key in dict) {
+             lonlats[key] += text;
+           } else {
+             lonlats[key] = text;
+           }
+        {% endfor %}
+      {% endif %}
+      for (key in lonlats) {
+        tokens = key.split();
+        lat = tokens[0];
+        lon = tokans[1];
+        L.marker([lat, lon).addTo(map).bindPopup(marker[key]).openPopup();
+      }
+    }
+    */
   </script>
 
 </body>
