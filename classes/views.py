@@ -41,6 +41,7 @@ def index(request):
     }
     return render(request, 'classes/index.html', context)
 
+@login_required
 def details(request, id):
     print(request)
     print("teSt",id.isdigit())
@@ -99,6 +100,7 @@ def search_terms(query):
 
     return (results, buildings)
 
+@login_required
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q')
