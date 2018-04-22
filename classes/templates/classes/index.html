@@ -60,7 +60,7 @@
   .btn-remove {background-color: #f44336;} /* red */
 
   .overlay {
-    height: 100px;
+    height: auto;
     width: 100%;
     margin-left: -100%;
     position: relative;
@@ -88,8 +88,9 @@
 <body bgcolor="#000000">
   <div id="map"></div>
   <div id="overlay" class="overlay">
+    <div style="opacity: 1.0">
     <form method="GET" action="{% url 'classes:search' %}">
-        <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
+     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="15" vspace="10">
 
     <div style="width:30%; float:left;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
@@ -147,8 +148,9 @@
       Logout
   </button>
  </div>
+    </div>
  </div>
-  </div>
+</div>
 
 <script type="text/javascript">
 document.getElementById("Logout").onclick = function () {
