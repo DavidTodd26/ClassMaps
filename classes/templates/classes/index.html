@@ -384,7 +384,7 @@ mymap.locate({setView: true, maxZoom: 15});
 
 
     // Adds overlays and layers to map
-    L.control.layers(baseLayers, overlays).addTo(map);
+    L.control.layers(baseLayers, overlays, {position: 'topleft'}).addTo(map);
 
     // Limits zoom (we could get rid of this)
     map.options.minZoom = 14;
