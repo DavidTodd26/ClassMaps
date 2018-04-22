@@ -386,32 +386,7 @@ mymap.locate({setView: true, maxZoom: 15});
 //         .openOn(map);
 //     }
 //     map.on('click', onMapClick);
-    
-    
-    {% if building %}
-        var loc2 = "{{building.lon}}";
-        var loc1 = "{{building.lat}}";
-        var id = "{{building.pk}}";
-        var type = "b";
-        var name = "{{building}}";
-    {% elif c %}
-        var loc2 = "{{c.building_lon}}";
-        var loc1 = "{{c.building_lat}}";
-        var id = "{{c.pk}}";
-        var type = "c";
-        var name = "{{c}}";
-    {% endif %}
-   
-    {% if building or c %}
-      var search = "<div>" + name + "</div>" +
-      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-          "<button class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
-              "Save" +
-          "</button>" +
-      "</form>";
-       L.marker([loc1, loc2]).addTo(map).bindPopup(search).openPopup();
-    {% endif %}
-     
+
      // Saved stuff
     {% if saved_courses %}
        {% for s in saved_courses %}
@@ -442,6 +417,30 @@ mymap.locate({setView: true, maxZoom: 15});
         {% endfor %}
     {% endif %}
 
+    // Searched marker
+    {% if building %}
+        var loc2 = "{{building.lon}}";
+        var loc1 = "{{building.lat}}";
+        var id = "{{building.pk}}";
+        var type = "b";
+        var name = "{{building}}";
+    {% elif c %}
+        var loc2 = "{{c.building_lon}}";
+        var loc1 = "{{c.building_lat}}";
+        var id = "{{c.pk}}";
+        var type = "c";
+        var name = "{{c}}";
+    {% endif %}
+    
+    {% if building or c %}
+      var search = "<div>" + name + "</div>" +
+      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
+          "<button class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
+              "Save" +
+          "</button>" +
+      "</form>";
+       L.marker([loc1, loc2]).addTo(map).bindPopup(search).openPopup();
+    {% endif %}
   </script>
 
 </body>
