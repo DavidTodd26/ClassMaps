@@ -290,7 +290,7 @@ success: function(data) {
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
 
-var hotspotIcon = L.icon({
+     var hotspotIcon = L.icon({
        iconUrl: "{% static 'classes/images/hotspot.png' %}",
        iconSize:     [26, 26], // size of the icon
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
@@ -299,8 +299,8 @@ var hotspotIcon = L.icon({
      
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-orange.png' %}",
-       iconAnchor:   [7, 30], // point of the icon which will correspond to marker's location
-       popupAnchor:  [7, 0] // point from which the popup should open relative to the iconAnchor
+       iconAnchor:   [0, 41], // point of the icon which will correspond to marker's location
+       popupAnchor:  [5, -20] // point from which the popup should open relative to the iconAnchor
      });
 
     for (var i = 0; i < printerLocs.length; i++) {
