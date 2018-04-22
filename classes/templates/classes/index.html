@@ -53,10 +53,12 @@
       </div>
     </div>
 </form>
-      <div>Welcome, {{netid}}</div>
+<div style="float: right">
+<div  class="center-div">Welcome, {{netid}}</div>
   <button class="btn btn-success" id="Logout">
       Logout
   </button>
+ </div>
 
 <!-- {% if building %}
 removed the cards
@@ -404,6 +406,20 @@ mymap.locate({setView: true, maxZoom: 15});
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
 
+    function getColor(d) {
+  if (d == 'dormitory') return '#800026';
+  else if (d == 'university') return '#FEB42C';
+  else return '#FED976';
+  /*return d > 1000 ? '#800026' :
+      d > 500  ? '#BD0026' :
+      d > 200  ? '#E31A1C' :
+      d > 100  ? '#FC4E2A' :
+      d > 50   ? '#FD8D3C' :
+      d > 20   ? '#FEB24C' :
+      d > 10   ? '#FED976' :
+            '#FFEDA0';*/
+}
+
 
     function style(feature) {
   return {
@@ -412,8 +428,8 @@ mymap.locate({setView: true, maxZoom: 15});
     color: 'white',
     dashArray: '3',
     fillOpacity: 0.7,
-    //fillColor: getColor(feature.properties.density)
-    fillColor: '#FED976'
+    fillColor: getColor(feature.properties.building)
+    //fillColor: '#FED976'
   };
 }
 
@@ -444,6 +460,7 @@ function onEachFeature(feature, layer) {
 
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
+  e.bindPopup("You are within meters from this point");//.openPopup();
 }
 
 function resetHighlight(e) {
@@ -453,6 +470,30 @@ function resetHighlight(e) {
 
     var geojson;
   geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
+
+  var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+  var div = L.DomUtil.create('div', 'info legend'),
+    grades = ['dormitory', 'university', 'other'],
+    labels = [],
+    from, to;
+
+  for (var i = 0; i < grades.length; i++) {
+    from = grades[i];
+    //to = grades[i + 1];
+
+    labels.push(
+      '<i style="background:' + getColor(from) + '"></i> ' +
+      from + (from ? '&ndash;' + from : '+'));
+  }
+
+  div.innerHTML = labels.join('<br>');
+  return div;
+};
+
+legend.addTo(buildings);
 
     // Displays current user location and accuracy
     /*function onLocationFound(e) {

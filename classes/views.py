@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Section, Building
 from django.db.models import Q
 from itertools import chain
+from datetime import datetime
 from datetime import time
 import re
 from django.shortcuts import redirect
@@ -107,12 +108,9 @@ def search_terms(query):
 
 def searchTime(inputTime, results):
     resultsWithTime = Section.objects.none()
-    convertedTime = time.strptime(inputTime, '%I:%M%p')
-    for result in results:
-        start = result.starttime
-        end = result.endtime
-        if (convertedTime >= start and convertedTime <= end):
-            resultsWithTime = resultsWithTime | result
+    resultFilter = Section.objects.none()
+    convertedTime = datetime.strptime(inputTime, '%I:%M%p').time()
+    resultsWithTime = results.filter(starttime__lte = convertedTime, endtime__gte = convertedTime)
     return resultsWithTime
 
 @login_required
@@ -148,6 +146,7 @@ def search(request):
         buildings2 = buildings
     if (time):
         results2 = searchTime(time, results2)
+        buildings2 = searchTime(time, buildings2)
     context = {
         'q': query,
         't': time,
