@@ -65,11 +65,11 @@ def details(request, id):
 # Filter by course, number, section, day, and time
 def search_terms(query):
     if query == None or len(query) == 0:
-        return (Section.objects.none(), Section.objects.none())
+        return (Section.objects.none(), Building.objects.none())
 
     query = query.split()
     results = Section.objects.all()
-    buildings = Section.objects.none()
+    buildings = Building.objects.all()
 
     for q in query:
         # Day
@@ -91,21 +91,27 @@ def search_terms(query):
             results = results.filter(starttime__lte = t, endtime__gte = t)
         # Building
         elif len(q) > 0:
-            buildings = Section.objects.filter(building__icontains = q)
-            buildings = buildings.values_list('building', flat=True).distinct()
             results = results.filter(building__icontains = q)
         else:
             results = Section.objects.none()
 
+        # Always try to match query for building results
+        buildings = buildings.filter(names__icontains = q)
+        names = []
+        for b in buildings:
+            for name in b.names:
+                if q.upper() in name.upper():
+                    b.names[0] = name
+                    break
     return (results, buildings)
-    
+
 def searchTime(inputTime, results):
     resultsWithTime = Section.objects.none()
     convertedTime = time.strptime(inputTime, '%I:%M%p')
-    for result in results: 
+    for result in results:
         start = result.starttime
         end = result.endtime
-        if (convertedTime >= start and convertedTime <= end):   
+        if (convertedTime >= start and convertedTime <= end):
             resultsWithTime = resultsWithTime | result
     return resultsWithTime
 
