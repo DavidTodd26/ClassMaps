@@ -424,9 +424,14 @@ mymap.locate({setView: true, maxZoom: 15});
 function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature//,
-    //mouseout: resetHighlight,
+    mouseout: resetHighlight,
     //click: zoomToFeature
   });
+}
+
+function resetHighlight(e) {
+  geojson.resetStyle(e.target);
+  //info.update();
 }
 
     var geojson;
