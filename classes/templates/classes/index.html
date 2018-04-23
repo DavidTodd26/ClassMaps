@@ -380,7 +380,7 @@ var offset = 0.0001;
      var text = "<div>{{s}}</div>"+
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
          "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
-             "<i class="fa fa-close"></i>"+"Remove" +
+             "<i class="fa fa-close">"+"</i>"+"Remove" +
          "</button>" +
      "</form>";
      if (key in lonlats) {
@@ -396,7 +396,7 @@ var offset = 0.0001;
      var text = "<div>{{s}}</div>"+
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
          "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
-             "<i class="fa fa-close"></i>"+"Remove" +
+             "<i class="fa fa-close">"+"</i>"+"Remove" +
          "</button>" +
      "</form>";
      if (key in lonlats) {
@@ -433,7 +433,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
       var search = "<div>" + name + "</div>" +
       "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
           "<button class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
-              "<i class="fa fa-save"></i>"+"Save" +
+              "<i class="fa fa-save">"+"</i>"+"Save" +
           "</button>" +
       "</form>";
        L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
