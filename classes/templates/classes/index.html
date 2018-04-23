@@ -84,9 +84,15 @@
   input, select, textarea{
     color: white;
   }
-
   textarea:focus, input:focus {
       color: white;
+  }
+  .astext {
+    background:none;
+    border:none;
+    color: orange;
+    margin:0;
+    padding:0;
   }
 </style>
 </head>
@@ -152,8 +158,8 @@
 <div  class="center-div">
   <p style="color: #ffffff;">Welcome, {{netid}}</p>
   </div>
-  <button class="btn btn-success" id="Logout">
-      Logout
+  <button class="astext" id="Logout">
+      Sign Out
   </button>
  </div>
     </div>
@@ -226,7 +232,7 @@ document.getElementById("Logout").onclick = function () {
     satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite',   attribution: mbAttr});
     // Initializes the map
     var map = L.map('map', {
-      center: [40.348, -74.653],
+      center: [40.347, -74.653],
       zoom: 16,
       layers: [regular, buildings],
       zoomControl: true
