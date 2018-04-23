@@ -71,13 +71,20 @@
   ::placeholder {
     color: white;
     opacity: 1; /* Firefox */
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color: white;
-}
-::-ms-input-placeholder { /* Microsoft Edge */
-   color: white;
-}
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color: white;
+  }
+  ::-ms-input-placeholder { /* Microsoft Edge */
+     color: white;
+  }
+  input, select, textarea{
+    color: #ff0000;
+  }
+
+  textarea:focus, input:focus {
+      color: #ff0000;
+  }
 </style>
 </head>
 
@@ -86,7 +93,7 @@
   <div id="overlay" class="overlay">
     <div style="opacity: 1.0">
     <form method="GET" action="{% url 'classes:search' %}">
-     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%" vspace="0.6%">
+     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%" vspace="10">
 
     <div style="width:30%; float:left;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
