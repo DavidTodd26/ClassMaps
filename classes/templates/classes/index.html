@@ -86,7 +86,7 @@
   <div id="overlay" class="overlay">
     <div style="opacity: 1.0">
     <form method="GET" action="{% url 'classes:search' %}">
-     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%" vspace="0.3%">
+     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%" vspace="0.6%">
 
     <div style="width:30%; float:left;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
@@ -139,7 +139,9 @@
     </div>
 </form>
 <div style="float: right">
-<div  class="center-div">Welcome, {{netid}}</div>
+<div  class="center-div">
+  <p style="color: #ffffff;">Welcome, {{netid}}</p>
+  </div>
   <button class="btn btn-success" id="Logout">
       Logout
   </button>
