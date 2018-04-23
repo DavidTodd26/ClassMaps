@@ -126,33 +126,25 @@ def search(request):
     time = request.GET.get('t', None)
     results, buildings = search_terms(query)
     results2 = Section.objects.none()
-    buildings2 = Section.objects.none()
     if (query2 != None):
         results2 = results2 | results.filter(Q(day__icontains=query2))
-        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query2))
     if (query3 != None):
         results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
-        buildings2 = buildings2 | buildings.filter(Q(day__iregex=r'T(?!h)'))
     if (query4 != None):
         results2 = results2 | results.filter(Q(day__icontains=query4))
-        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query4))
     if (query5 != None):
         results2 = results2 | results.filter(Q(day__icontains=query5))
-        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query5))
     if (query6 != None):
         results2 = results2 | results.filter(Q(day__icontains=query6))
-        buildings2 = buildings2 | buildings.filter(Q(day__icontains=query6))
     if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
         results2 = results
-        buildings2 = buildings
     if (time):
         results2 = searchTime(time, results2)
-        buildings2 = searchTime(time, buildings2)
     context = {
         'q': query,
         't': time,
         'classes': results2,
-        'buildings': buildings2,
+        'buildings': buildings,
         'netid': request.user.username
     }
     return render(request, template, context)
