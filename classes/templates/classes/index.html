@@ -436,6 +436,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
           "</button>" +
       "</form>";
        L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
+       map.setView([lat, parseFloat(lon)+offset],17);
     {% endif %}
   </script>
 
