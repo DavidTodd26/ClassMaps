@@ -174,7 +174,7 @@
     </button>
   </div>
 
- </div> 
+ </div>
  <!-- overlay div ends -->
 
 <script type="text/javascript">
@@ -182,7 +182,7 @@ document.getElementById("Logout").onclick = function () {
     location.href = "https://classmaps.herokuapp.com/accounts/logout";
 };
 </script>
-  <script> 
+  <script>
     // Adds different layer groups
     var printers = L.layerGroup();
     var hotspots = L.layerGroup();
@@ -317,6 +317,7 @@ mymap.locate({setView: true, maxZoom: 15});
   //info.update(layer.feature.properties);
 }
 function onEachFeature(feature, layer) {
+  layer.bindPopup(feature.properties.name);
   layer.on({
     mouseover: highlightFeature,//,
     mouseout: resetHighlight,
