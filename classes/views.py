@@ -74,9 +74,6 @@ def search_terms(query):
     buildings = Building.objects.all()
 
     for q in query:
-        # Day
-        if re.match("^[MTWThF]+$", q):
-            results = results.filter(day__icontains = q)
         # Course
         if len(q) == 3 and q.isalpha():
             results = results.filter(course__icontains = q)
@@ -86,11 +83,6 @@ def search_terms(query):
         # Section
         elif re.match("^[A-Z]\d\d[A-Z]?$", q):
             results = results.filter(section__icontains = q)
-        # Time
-        elif re.match("^\d\d:\d\d$", q):
-            t = q.split(":")
-            t = time(hour = int(t[0]), minute = int(t[1]))
-            results = results.filter(starttime__lte = t, endtime__gte = t)
         # Building
         elif len(q) > 0:
             results = results.filter(building__icontains = q)
@@ -100,10 +92,15 @@ def search_terms(query):
         # Always try to match query for building results
         buildings = buildings.filter(names__icontains = q)
         names = []
+        # Display the primary name and the name that matched to prevent confusion
         for b in buildings:
-            for name in b.names:
+            for i in range(0, len(b.names)):
+                name = b.names[i]
                 if q.upper() in name.upper():
-                    b.names[0] = name
+                    if i != 0:
+                        b.names.append(" ("+name.strip()+")")
+                    else:
+                        b.names.append("")
                     break
     return (results, buildings)
 
