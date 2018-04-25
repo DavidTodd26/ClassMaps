@@ -3,10 +3,11 @@
 
 {% block content %}
 <html>
-<link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.min.css' %}">
+
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -20,20 +21,6 @@
   <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/dist/bootstrap-clockpicker.min.js' %}"></script>
-  <script type="text/javascript">
-    $('.clockpicker').clockpicker({
-      twelvehour: true,
-    })
-    .find('input').change(function(){
-      console.log(this.value);
-    });
-    var input = $('#single-input').clockpicker({
-      placement: 'bottom',
-      align: 'right',
-      autoclose: true,
-      default: 'now'
-    });
-</script>
 
 <head bgcolor="#000000">
   <title>ClassMaps</title>
@@ -176,6 +163,21 @@
 
  </div>
  <!-- overlay div ends -->
+ <script type="text/javascript">
+   $('.clockpicker').clockpicker({
+     twelvehour: true,
+     default: 'now'
+   })
+   .find('input').change(function(){
+     console.log(this.value);
+   });
+   var input = $('#single-input').clockpicker({
+     placement: 'bottom',
+     align: 'right',
+     autoclose: true,
+     default: 'now'
+   });
+</script>
 
 <script type="text/javascript">
 document.getElementById("Logout").onclick = function () {
