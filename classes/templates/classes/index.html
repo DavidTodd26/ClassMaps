@@ -253,7 +253,6 @@ document.getElementById("Logout").onclick = function () {
       layers: [regular, buildings],
       zoomControl: true
     });
-    map.zoomControl.setPosition('bottomright');
     /*$('.pure-button').on('click', function(){
 mymap.locate({setView: true, maxZoom: 15});
 });*/
@@ -281,6 +280,7 @@ mymap.locate({setView: true, maxZoom: 15});
     };
     // Adds overlays and layers to map
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: false}).addTo(map);
+    map.zoomControl.setPosition('bottomright');
     // Limits zoom (we could get rid of this)
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
