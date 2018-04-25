@@ -24,15 +24,6 @@
   <script type="text/javascript" src="{% static 'classes/dist/bootstrap-clockpicker.min.js' %}"></script>
 
 <head bgcolor="#000000">
-<!--  sidebar div  -->
-  <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
-  
   <title>ClassMaps</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -143,7 +134,16 @@
 
 <body bgcolor="#000000">
   <div id="map"></div>
-
+  
+  <!--  sidebar div  -->
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+  
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
 <!--      <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%"> -->
