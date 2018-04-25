@@ -24,6 +24,15 @@
   <script type="text/javascript" src="{% static 'classes/dist/bootstrap-clockpicker.min.js' %}"></script>
 
 <head bgcolor="#000000">
+<!--  sidebar div  -->
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+  
   <title>ClassMaps</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -92,6 +101,43 @@
       padding-right: 5px;
       padding-left: 5px;
     }
+    .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
   </style>
 </head>
 
@@ -100,12 +146,12 @@
 
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
-     <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%">
-
+<!--      <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%"> -->
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <div style="width:30%; float:left;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
-
+    
    <div div style="float:left;">
     <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -166,6 +212,16 @@
 
  </div>
  <!-- overlay div ends -->
+<!--  script for sidebar  -->
+ <script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
  <script type="text/javascript">
    $('.clockpicker').clockpicker({
      twelvehour: true,
