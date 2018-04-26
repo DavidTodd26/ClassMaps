@@ -147,20 +147,17 @@
   
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
-     <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:3.5%; float:left;" hspace="1%" vspace="6">
+     <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:30px; float:left;" vspace="6">
 <!--     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> -->
-    <div style="width:30%; float:left; padding-right: 7px;">
+    <div style="width:30%; float:left; padding-right: 10px;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
-    
-  
-    <div class="dropdown" style="float:left; padding-right: 7px;">
+      
+   <div style="float:left; padding-right: 10px;">
+    <div class="dropdown" style="float:left;">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-calendar"></i>
       </button>
-     </div>
-
-    <div style="float:left; padding-right: 7px;">
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
           Monday
@@ -188,10 +185,10 @@
           <span class="slider"></span>
         </label>
         </div>
-
+    </div>
     </div>
 
-    <div style="width:10%; float:left; padding-right: 7px;">
+    <div style="width:10%; float:left; padding-right: 10px;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="true">
         <input type="text" class="form-control" name="t" placeholder="Set Time">
         <span class="input-group-addon">
@@ -200,7 +197,7 @@
       </div>
     </div>
 
-    <div style="float:left;  padding-right: 7px;">
+    <div style="float:left;  padding-right: 10px;">
       <button class="btn btn-success" type="submit">
         <i class="fa fa-search"></i>Search ClassMaps
       </button>
