@@ -146,8 +146,8 @@
   
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
-<!--      <img src="{% static 'classes/images/toolbar.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%"> -->
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+     <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:5%; float:left;" hspace="0.5%">
+<!--     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> -->
     <div style="width:30%; float:left;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
@@ -201,15 +201,14 @@
         <i class="fa fa-search"></i>Search ClassMaps
       </button>
       </div>
-  </form>
-
-  <div style="float: right; margin: auto;">
+      
+   <div style="float: right; margin: auto;">
     <p style="color: #ffffff;">Welcome, {{netid}}</p>
     <button class="astext" id="Logout">
         Sign Out
     </button>
   </div>
-
+  </form>
  </div>
  <!-- overlay div ends -->
 <!--  script for sidebar  -->
