@@ -314,13 +314,6 @@ document.getElementById("Logout").onclick = function () {
 mymap.locate({setView: true, maxZoom: 15});
 });*/
 
-L.easyButton('<img src="myimage.png">', function (btn, map) {
-    map.locate({
-        setView: true,
-        maxZoom: 18
-    });
-}).addTo(map);
-
     map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
