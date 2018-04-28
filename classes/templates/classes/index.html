@@ -416,7 +416,7 @@ L.easyButton('<img src="https://png.icons8.com/metro/1600/home.png" style="width
 //map.setView(        [40.347, -74.653],      zoom: 16);
 }).setPosition('bottomright').addTo(map);
 
-L.easyButton('<img src="https://cdn1.iconfinder.com/data/icons/disable-sign/300/Blind-eye-dark-512.png" style="width:16px">', function(btn, map){
+L.easyButton('<img src="https://png.icons8.com/metro/50/000000/save.png">', function(btn, map){
     var x = document.getElementById("listOverlay");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -604,7 +604,11 @@ if (!jQuery.isEmptyObject(lonlats)) {
         // modified this line to add parameters
         
         var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
-
+        if (lon == "" && lat == "") {
+          lon = 40.3468844;
+          lat = -74.6558721; 
+          var name = "{{c}} "NO BUILDING" {{c.day}} {{c.starttime}}-{{c.endtime}}";
+        }
     {% endif %}
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
