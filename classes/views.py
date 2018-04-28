@@ -175,6 +175,8 @@ def search(request):
         if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
             results2 = searchTime(time, Section.objects.all())
         time = ", " + time
+    if (time == None):
+        time = ""
     dayString = getDayString(mon, tues, wed, thurs, fri)
     context = {
         'q': query,
