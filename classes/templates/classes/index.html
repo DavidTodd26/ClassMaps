@@ -607,7 +607,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
        if (!lon && !lat) {
           lon = -74.656509; 
           lat = 40.346699;
-          var name = "NO BUILDING\n{{c}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
+          var name = "<div>NO BUILDING<\div><div>{{c}} {{c.day}} {{c.starttime}}-{{c.endtime}}</div>";
         }
     {% endif %}
     {% if building or c %}
