@@ -60,8 +60,17 @@
       pointer-events: auto;
     }
     .dropdown-menu{
-      background-color:	#D3D3D3;
+      background-color:	#f9f9f9;
       width: 40px;
+    }
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
     }
     ::placeholder {
       color: #d3d3d3;
