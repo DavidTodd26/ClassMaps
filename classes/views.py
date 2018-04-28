@@ -150,6 +150,8 @@ def getDayString(mon, tues, wed, thurs, fri):
         days += " Thursday"
     if (fri != None):
         days += " Friday"
+    if (days):
+        days = "," + days
     return days
 
 @login_required
@@ -168,6 +170,7 @@ def search(request):
         results2 = searchTime(time, results2)
         if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
             results2 = searchTime(time, Section.objects.all())
+        time = "," + time
     dayString = getDayString(mon, tues, wed, thurs, fri)
     context = {
         'q': query,

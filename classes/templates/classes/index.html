@@ -402,7 +402,12 @@ L.easyButton('<img src="http://www.free-icons-download.net/images/zoom-to-page-w
   //info.update(layer.feature.properties);
 }
 function onEachFeature(feature, layer) {
-  layer.bindPopup(feature.properties.name);
+  var buildingtext = feature.properties.name +"<br>"+
+         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+             "Classes Here" +
+         "</button>" +
+     "</form>";
+  layer.bindPopup(buildingtext);
   layer.on({
     mouseover: highlightFeature,//,
     mouseout: resetHighlight,
