@@ -48,6 +48,9 @@
         width: 350px;
     }
     .btn-remove {background-color: #f44336;} /* red */
+    .export {
+      padding: 5px
+    }
     .overlay {
       height: auto;
       width: 100%;
@@ -118,11 +121,9 @@
         display: block;
         transition: 0.3s;
     }
-
     .sidenav a:hover {
         color: #f1f1f1;
     }
-
     .sidenav .closebtn {
         position: absolute;
         top: 0;
@@ -250,7 +251,7 @@
    <tfoot>
        <tr>
            <td colspan="5" style="text-align: left;">
-               <input type="button" id="export" value="Export to Calendar" />
+               <input type="button" class="btn btn-lg btn-block" id="export" value="Export to Calendar" />
            </td>
        </tr>
        <tr>
