@@ -50,7 +50,7 @@
 	width: 200px;
 	height: 200px;
 	overflow: visible;
-	position: absolute;
+	position: relative;
 	/* Disable text selection highlighting. Thanks to Hermanya */
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
