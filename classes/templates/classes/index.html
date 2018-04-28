@@ -317,14 +317,7 @@ document.getElementById("Logout").onclick = function () {
 mymap.locate({setView: true, maxZoom: 15});
 });*/
 
-    map.locate({setView: true,watch: true, maxZoom: 16});
-    function onLocationFound(e) {
-    var radius = e.accuracy / 2;
-    L.marker(e.latlng, {icon: myIcon}).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
-    L.circle(e.latlng, radius).addTo(map);
-    }
-    map.on('locationfound', onLocationFound);
+    
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
     // Our different layers
@@ -350,6 +343,15 @@ L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style
         setView: true,
         maxZoom: 18
     });
+
+    //map.locate({setView: true,watch: true, maxZoom: 16});
+    function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+    L.marker(e.latlng, {icon: myIcon}).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    L.circle(e.latlng, radius).addTo(map);
+    }
+    map.on('locationfound', onLocationFound);
 }).setPosition('bottomright').addTo(map);
     // Limits zoom (we could get rid of this)
     map.options.minZoom = 14;
