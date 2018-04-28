@@ -251,6 +251,8 @@
 </div>
 <!--  script for saved list  -->
 <script>
+var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+console.log(width);
 function addRow(name, button) {
     var newRow = $("<tr>");
     var cols = "";
