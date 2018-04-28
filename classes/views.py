@@ -104,31 +104,31 @@ def search_terms(query):
                     break
     return (results, buildings)
 
-def searchDay(results, query, query2, query3, query4, query5, query6):
+def searchDay(results, query, mon, tues, wed, thurs, fri):
     results2 = Section.objects.none()
-    if (query2 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query2))
-    if (query3 != None):
+    if (mon != None):
+        results2 = results2 | results.filter(Q(day__icontains=mon))
+    if (tues != None):
         results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
-    if (query4 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query4))
-    if (query5 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query5))
-    if (query6 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query6))
-    if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
+    if (wed != None):
+        results2 = results2 | results.filter(Q(day__icontains=wed))
+    if (thurs != None):
+        results2 = results2 | results.filter(Q(day__icontains=thurs))
+    if (fri != None):
+        results2 = results2 | results.filter(Q(day__icontains=fri))
+    if (mon == None and tues == None and wed == None and thurs == None and fri == None):
         results2 = results
     if (not query):
-        if (query2 != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=query2))
-        if (query3 != None):
+        if (mon != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains=mon))
+        if (tues != None):
             results2 = results2 | Section.objects.filter(Q(day__iregex=r'T(?!h)'))
-        if (query4 != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=query4))
-        if (query5 != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=query5))
-        if (query6 != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=query6))
+        if (wed != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains=wed))
+        if (thurs != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains=thurs))
+        if (fri != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains=fri))
     return results2
 
 def searchTime(inputTime, results):
@@ -142,17 +142,17 @@ def searchTime(inputTime, results):
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q', None)
-    query2 = request.GET.get('q2', None)
-    query3 = request.GET.get('q3', None)
-    query4 = request.GET.get('q4', None)
-    query5 = request.GET.get('q5', None)
-    query6 = request.GET.get('q6', None)
+    mon = request.GET.get('q2', None)
+    tues = request.GET.get('q3', None)
+    wed = request.GET.get('q4', None)
+    thurs = request.GET.get('q5', None)
+    fri = request.GET.get('q6', None)
     time = request.GET.get('t', None)
     results, buildings = search_terms(query)
-    results2 = searchDay(results, query, query2, query3, query4, query5, query6)
+    results2 = searchDay(results, query, mon, tues, wed, thurs, fri)
     if (time):
         results2 = searchTime(time, results2)
-    if (not query and query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
+    if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
         results2 = searchTime(time, Section.objects.all())
     context = {
         'q': query,
