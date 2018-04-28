@@ -77,6 +77,8 @@ def search_terms(query):
         # Course
         if len(q) == 3 and q.isalpha():
             results = results.filter(course__icontains = q)
+            if (not results):
+                results = Section.objects.filter(building__icontains = q)
         # Number
         elif len(q) == 3 and q.isdigit():
             results = results.filter(number__icontains = q)
