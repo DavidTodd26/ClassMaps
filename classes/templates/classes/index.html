@@ -604,6 +604,11 @@ if (!jQuery.isEmptyObject(lonlats)) {
         // modified this line to add parameters
         
         var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
+       if (!lon && !lat) {
+          lon = 40.3468844;
+          lat = -74.6558721; 
+          var name = "{{c}} "NO BUILDING" {{c.day}} {{c.starttime}}-{{c.endtime}}";
+        }
     {% endif %}
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
