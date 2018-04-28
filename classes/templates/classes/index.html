@@ -409,6 +409,15 @@ L.easyButton('<img src="http://www.free-icons-download.net/images/zoom-to-page-w
     map.setView(new L.LatLng(40.347, -74.653), 16);
 //map.setView(        [40.347, -74.653],      zoom: 16);
 }).setPosition('bottomright').addTo(map);
+
+L.easyButton('<img src="https://cdn1.iconfinder.com/data/icons/disable-sign/300/Blind-eye-dark-512.png" style="width:16px">', function(btn, map){
+    var x = document.getElementById("listOverlay");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}).setPosition('bottomleft').addTo(map);
     // Limits zoom (we could get rid of this)
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
