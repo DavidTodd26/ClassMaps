@@ -114,7 +114,7 @@ def searchTime(inputTime, results):
 @login_required
 def search(request):
     template = 'classes/searches.html'
-    query = request.GET.get('q')
+    query = request.GET.get('q', None)
     query2 = request.GET.get('q2', None)
     query3 = request.GET.get('q3', None)
     query4 = request.GET.get('q4', None)
@@ -135,7 +135,7 @@ def search(request):
         results2 = results2 | results.filter(Q(day__icontains=query6))
     if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
         results2 = results
-    if (not query):
+    if (query == None):
         if (query2 != None):
             results2 = results2 | Section.objects.filter(Q(day__icontains=query2))
         if (query3 != None):
