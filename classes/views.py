@@ -107,28 +107,28 @@ def search_terms(query):
 def searchDay(results, query, mon, tues, wed, thurs, fri):
     results2 = Section.objects.none()
     if (mon != None):
-        results2 = results2 | results.filter(Q(day__icontains=mon))
+        results2 = results2 | results.filter(Q(day__icontains="M"))
     if (tues != None):
         results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
     if (wed != None):
-        results2 = results2 | results.filter(Q(day__icontains=wed))
+        results2 = results2 | results.filter(Q(day__icontains="W"))
     if (thurs != None):
-        results2 = results2 | results.filter(Q(day__icontains=thurs))
+        results2 = results2 | results.filter(Q(day__icontains="Th"))
     if (fri != None):
-        results2 = results2 | results.filter(Q(day__icontains=fri))
+        results2 = results2 | results.filter(Q(day__icontains="F"))
     if (mon == None and tues == None and wed == None and thurs == None and fri == None):
         results2 = results
     if (not query):
         if (mon != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=mon))
+            results2 = results2 | Section.objects.filter(Q(day__icontains="M"))
         if (tues != None):
             results2 = results2 | Section.objects.filter(Q(day__iregex=r'T(?!h)'))
         if (wed != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=wed))
+            results2 = results2 | Section.objects.filter(Q(day__icontains="W"))
         if (thurs != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=thurs))
+            results2 = results2 | Section.objects.filter(Q(day__icontains="Th"))
         if (fri != None):
-            results2 = results2 | Section.objects.filter(Q(day__icontains=fri))
+            results2 = results2 | Section.objects.filter(Q(day__icontains="F"))
     return results2
 
 def searchTime(inputTime, results):
