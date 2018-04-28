@@ -70,7 +70,7 @@
     ::-ms-input-placeholder { /* Microsoft Edge */
        color: #d3d3d3;
     }
-    input, select, textarea{
+    input, select, textarea {
       color: white;
     }
     textarea:focus, input:focus {
@@ -81,29 +81,21 @@
       border:none;
       color: orange;
     }
-    /*
-    .btn {
-      background-color: none;
-      border-radius: 4px;
-      color: white;
-      cursor: pointer;
-    }
-    */
     .fa{
       padding-right: 5px;
       padding-left: 5px;
     }
     .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
     }
 
     .sidenav a {
@@ -130,12 +122,34 @@
       .sidenav {padding-top: 15px;}
       .sidenav a {font-size: 18px;}
     }
+    /* Start saved list css */
+    .listOverlay {
+      position: fixed;
+      width: 25%;
+      height: 50%;
+      top: 1;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 3;
+      cursor: pointer;
+    }
+    .listText {
+      color: white;
+    }
+    .listTitle {
+      color: white;
+      font-size: large;
+      text-align: left;
+    }
+    /* End saved list css */
   </style>
 </head>
 
 <body bgcolor="#000000">
   <div id="map"></div>
-  
+
   <!--  sidebar div  -->
   <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -144,7 +158,7 @@
   <a href="#">Clients</a>
   <a href="#">Contact</a>
 </div>
-  
+
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
      <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:52px; float:left;" hspace="10">
@@ -152,7 +166,7 @@
     <div style="width:30%; float:left; padding-right: 10px;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
-      
+
    <div style="float:left; padding-right: 10px;">
     <div class="dropdown" style="float:left;">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -203,7 +217,7 @@
       </button>
     </div>
   </form>
-  
+
     <div style="float: right; margin: auto;">
     <p style="color: #ffffff;">Welcome, {{netid}}</p>
     <button class="astext" id="Logout">
@@ -212,6 +226,41 @@
   </div>
  </div>
  <!-- overlay div ends -->
+ <div id="listOverlay" class="listOverlay" style="overflow: auto;">
+   <table id="myTable" class="table order-list">
+   <thead>
+       <tr>
+           <td><div class="listTitle">Saved markers</div></td>
+       </tr>
+   </thead>
+   <tfoot>
+       <tr>
+           <td colspan="5" style="text-align: left;">
+               <input type="button" class="btn btn-lg btn-block " id="export" value="Export to Calendar" />
+           </td>
+       </tr>
+       <tr>
+       </tr>
+   </tfoot>
+</table>
+</div>
+<!--  script for saved list  -->
+<script>
+function addRow(name, button) {
+    var newRow = $("<tr>");
+    var cols = "";
+
+    cols += '<td><div class="listText" name="name">'+name+'</div></td>';
+    cols += '<td>'+button+'</td>';
+    newRow.append(cols);
+    $("table.order-list").append(newRow);
+}
+
+$("table.order-list").on("click", ".ibtnDel", function (event) {
+    $(this).closest("tr").remove();
+});
+</script>
+
 <!--  script for sidebar  -->
  <script>
    document.getElementById("mySidenav").style.width = "250px";
@@ -327,14 +376,14 @@ mymap.locate({setView: true, maxZoom: 15});
     // Our different layers
     var baseLayers = {
       "Regular": regular,
-    "Satellite": satellite
+      "Satellite": satellite
     };
     // Our overlays
     var overlays = {
       "Printers": printers,
       "Laundry": laundry,
-    "Hotspots": hotspots,
-    "Buildings": buildings
+      "Hotspots": hotspots,
+      "Buildings": buildings
     };
     // Adds overlays and layers to map
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: false}).addTo(map);
@@ -433,39 +482,59 @@ legend.onAdd = function (buildings) {
 //     map.on('click', onMapClick);
 
 //legend.addTo(buildings);
+/*
+function addRow() {
+    var newRow = $("<tr>");
+    var cols = "";
+
+    cols += '<td><input type="text" class="form-control" name="name"/></td>';
+    cols += '<td><input type="text" class="form-control" name="mail"/></td>';
+    cols += '<td><input type="text" class="form-control" name="phone"/></td>';
+
+    cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+    newRow.append(cols);
+    $("table.order-list").append(newRow);
+}
+*/
 
 lonlats = {};
 var offset = 0.0001;
 {% if saved_buildings %}
    {% for s in saved_buildings %}
      var key = "{{s.lon}} {{s.lat}}"
-     var text = "<div>{{s}}</div>"+
+     var button =
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
          "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
              "Remove" +
          "</button>" +
      "</form>";
+     var text = "<div>{{s}}</div>"+button;
      if (key in lonlats) {
        lonlats[key] += "<br>"+text;
      } else {
        lonlats[key] = text;
      }
+     addRow("{{s.names.0}}", button);
   {% endfor %}
 {% endif %}
 {% if saved_courses %}
    {% for s in saved_courses %}
      var key = "{{s.building_lon}} {{s.building_lat}}";
-     var text = "<div>{{s}}</div>"+
+     var button =
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
          "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
              "Remove" +
          "</button>" +
      "</form>";
+     var text = "<div>{{s}}</div>"+button;
      if (key in lonlats) {
        lonlats[key] += "<br>"+text;
      } else {
        lonlats[key] = text;
      }
+
+     // Testing
+     addRow("{{s}} {{s.building}} {{s.time}}", button);
     {% endfor %}
 {% endif %}
 if (!jQuery.isEmptyObject(lonlats)) {
@@ -476,6 +545,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
     L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
   }
 }
+
     // Searched marker
     {% if building %}
         var lon = "{{building.lon}}";
@@ -494,7 +564,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
       "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
-          "<button class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
+          "<button id=\"addrow\" class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
               "Save" +
           "</button>" +
       "</form>";
