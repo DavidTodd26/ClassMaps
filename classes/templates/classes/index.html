@@ -403,7 +403,7 @@ function onEachFeature(feature, layer) {
   var buildquery = feature.properties.name
   var buildingtext = buildquery +
          "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
-         "<button class=\"btn btn-success\" name=\"q\" value="+buildquery+" type=\"submit\">" +
+         "<button class=\"btn btn-success\" name=\"q\" value=\""+buildquery+"\" type=\"submit\">" +
              "Classes Here" +
          "</button>" +
      "</form>";
