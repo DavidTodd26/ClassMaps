@@ -138,6 +138,20 @@ def searchTime(inputTime, results):
     resultsWithTime = results.filter(starttime__lte = convertedTime, endtime__gte = convertedTime)
     return resultsWithTime
 
+def getDayString(mon, tues, wed, thurs, fri):
+    days = ""
+    if (mon != None):
+        days += " Monday"
+    if (tues != None):
+        days += " Tuesday"
+    if (wed != None):
+        days += " Wednesday"
+    if (thurs != None):
+        days += " Thursday"
+    if (fri != None):
+        days += " Friday"
+    return days
+
 @login_required
 def search(request):
     template = 'classes/searches.html'
@@ -154,9 +168,11 @@ def search(request):
         results2 = searchTime(time, results2)
         if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
             results2 = searchTime(time, Section.objects.all())
+    dayString = getDayString(mon, tues, wed, thurs, fri)
     context = {
         'q': query,
         't': time,
+        'd': dayString,
         'classes': results2,
         'buildings': buildings,
         'netid': request.user.username
