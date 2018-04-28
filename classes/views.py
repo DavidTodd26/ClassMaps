@@ -134,6 +134,10 @@ def searchDay(results, query, mon, tues, wed, thurs, fri):
 def searchTime(inputTime, results):
     resultsWithTime = Section.objects.none()
     resultFilter = Section.objects.none()
+    try:
+        datetime.strptime(inputTime, '%I:%M%p').time()
+    except ValueError:
+        return resultsWithTime
     convertedTime = datetime.strptime(inputTime, '%I:%M%p').time()
     resultsWithTime = results.filter(starttime__lte = convertedTime, endtime__gte = convertedTime)
     return resultsWithTime
