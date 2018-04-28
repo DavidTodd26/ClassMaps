@@ -469,7 +469,7 @@ function onEachFeature(feature, layer) {
   var buildingtext = buildquery +
          "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
          "<button class=\"btn btn-success\" name=\"q\" value=\""+buildquery+"\" type=\"submit\">" +
-             "Classes Here" +
+             "<i class=\"fa fa-search\">"+"</i>"+"Classes Here" +
          "</button>" +
      "</form>";
   layer.bindPopup(buildingtext);
