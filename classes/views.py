@@ -142,18 +142,18 @@ def searchTime(inputTime, results):
 def search(request):
     template = 'classes/searches.html'
     query = request.GET.get('q', None)
-    mon = request.GET.get('q2', None)
-    tues = request.GET.get('q3', None)
-    wed = request.GET.get('q4', None)
-    thurs = request.GET.get('q5', None)
-    fri = request.GET.get('q6', None)
+    mon = request.GET.get('M', None)
+    tues = request.GET.get('T', None)
+    wed = request.GET.get('W', None)
+    thurs = request.GET.get('Th', None)
+    fri = request.GET.get('F', None)
     time = request.GET.get('t', None)
     results, buildings = search_terms(query)
     results2 = searchDay(results, query, mon, tues, wed, thurs, fri)
     if (time):
         results2 = searchTime(time, results2)
-    if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
-        results2 = searchTime(time, Section.objects.all())
+        if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
+            results2 = searchTime(time, Section.objects.all())
     context = {
         'q': query,
         't': time,
