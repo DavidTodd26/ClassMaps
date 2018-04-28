@@ -253,10 +253,6 @@
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 console.log(width);
-if(width < 900){
-    var x = document.getElementById("listOverlay");
-    x.style.display = "block";
-}
 function addRow(name, button) {
     var newRow = $("<tr>");
     var cols = "";
@@ -602,7 +598,13 @@ if (!jQuery.isEmptyObject(lonlats)) {
         var id = "{{c.pk}}";
         var type = "c";
         // modified this line to add parameters
+        
         var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
+        if (lon == "" && lat == "") {
+          lon = 40.3468844;
+          lat = -74.6558721;
+          var name = "{{c}} "NO BUILDING" {{c.day}} {{c.starttime}}-{{c.endtime}}";
+        }
     {% endif %}
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
