@@ -401,7 +401,7 @@ function onEachFeature(feature, layer) {
              "Classes Here" +
          "</button>" +
      "</form>";
-  layer.bindPopup();
+  layer.bindPopup(buildingtext);
   layer.on({
     mouseover: highlightFeature,//,
     mouseout: resetHighlight,
