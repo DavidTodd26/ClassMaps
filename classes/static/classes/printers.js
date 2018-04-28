@@ -61,5 +61,5 @@ var printerLocs = [['40.34614', '-74.660091', '1901 Hall - Ground Floor', '6'],
  ['40.34745173', '-74.66012844', 'Witherspoon Hall - Room 109', '29'],
  ['40.34570028', '-74.65758615', 'Wright Hall - 3rd Floor', '29'],
  ['40.344719', '-74.656574', 'Wu Hall - Mellon Library', '29'],
- ['40.34673', '-74.655259', 'Frist Campus Center - 100 Level<br>Frist Campus Center - B Level', '30'],
+ ['40.34673', '-74.655259', 'Frist Campus Center - 100 Level<br>Frist Campus Center - B Level', '30']];
  //['40.34673', '-74.655259', 'Frist Campus Center - B Level', '30']];
