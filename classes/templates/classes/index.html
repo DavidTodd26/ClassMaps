@@ -605,16 +605,16 @@ if (!jQuery.isEmptyObject(lonlats)) {
         
         var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
        if (!lon && !lat) {
-          lon = 40.3468844;
-          lat = -74.6558721; 
-          var name = "{{c}} "NO BUILDING" {{c.day}} {{c.starttime}}-{{c.endtime}}";
+          lon = -74.6558721; 
+          lat = 40.3468844;
+          var name = "{{c}} NO BUILDING {{c.day}} {{c.starttime}}-{{c.endtime}}";
         }
     {% endif %}
     {% if building or c %}
       var search = "<div>" + name + "</div>" +
       "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
           "<button id=\"addrow\" class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
-              "<i class=\"fa fa-save\">"+"Save"+"</i>"+
+              "Save" +
           "</button>" +
       "</form>";
        L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
