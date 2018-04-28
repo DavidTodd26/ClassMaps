@@ -396,7 +396,12 @@ L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style
   //info.update(layer.feature.properties);
 }
 function onEachFeature(feature, layer) {
-  layer.bindPopup(feature.properties.name);
+  var buildingtext = feature.properties.name +"<br>"+
+         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+             "Classes Here" +
+         "</button>" +
+     "</form>";
+  layer.bindPopup();
   layer.on({
     mouseover: highlightFeature,//,
     mouseout: resetHighlight,
