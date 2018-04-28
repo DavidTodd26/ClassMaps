@@ -257,6 +257,11 @@ if(width < 720){
  var x = document.getElementById("listOverlay");
  x.style.display = "none";
 }
+  
+$('.dropdown-menu').on('click', function(e) {
+  e.stopPropagation();
+});
+  
 function addRow(name, button) {
     var newRow = $("<tr>");
     var cols = "";
