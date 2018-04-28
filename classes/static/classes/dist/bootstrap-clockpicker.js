@@ -116,7 +116,7 @@
 		this.spanHours = popover.find('.clockpicker-span-hours');
 		this.spanMinutes = popover.find('.clockpicker-span-minutes');
 		this.spanAmPm = popover.find('.clockpicker-span-am-pm');
-		this.amOrPm = "PM";
+		this.amOrPm = "AM";
 		
 		// Setup for for 12 hour clock if option is selected
 		if (options.twelvehour) {
