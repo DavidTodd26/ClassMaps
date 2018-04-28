@@ -104,7 +104,7 @@ def search_terms(query):
                     break
     return (results, buildings)
 
-def searchDay(results, query2, query3, query4, query5, query6):
+def searchDay(results, query, query2, query3, query4, query5, query6):
     results2 = Section.objects.none()
     if (query2 != None):
         results2 = results2 | results.filter(Q(day__icontains=query2))
@@ -149,7 +149,7 @@ def search(request):
     query6 = request.GET.get('q6', None)
     time = request.GET.get('t', None)
     results, buildings = search_terms(query)
-    results2 = searchDay(results, query2, query3, query4, query5, query6)
+    results2 = searchDay(results, query, query2, query3, query4, query5, query6)
     if (time):
         results2 = searchTime(time, results2)
     if (not query and query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
