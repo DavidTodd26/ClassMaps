@@ -317,14 +317,6 @@ document.getElementById("Logout").onclick = function () {
 mymap.locate({setView: true, maxZoom: 15});
 });*/
 
-L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style="width:16px">', function (btn, map) {
-
-    map.locate({
-        setView: true,
-        maxZoom: 18
-    });
-}).setPosition('bottomright').addTo(map);
-
     map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
@@ -350,6 +342,15 @@ L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style
     // Adds overlays and layers to map
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: false}).addTo(map);
     map.zoomControl.setPosition('bottomright');
+
+    
+L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style="width:16px">', function (btn, map) {
+
+    map.locate({
+        setView: true,
+        maxZoom: 18
+    });
+}).setPosition('bottomright').addTo(map);
     // Limits zoom (we could get rid of this)
     map.options.minZoom = 14;
     map.options.maxZoom = 18;
