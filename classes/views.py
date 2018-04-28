@@ -148,6 +148,8 @@ def search(request):
             results2 = results2 | Section.objects.filter(Q(day__icontains=query6))
     if (time):
         results2 = searchTime(time, results2)
+    if (not query and query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
+        results2 = searchTime(time, Section.objects.all())
     context = {
         'q': query,
         't': time,
