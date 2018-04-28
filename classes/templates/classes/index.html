@@ -400,9 +400,10 @@ L.easyButton('<img src="http://www.free-icons-download.net/images/zoom-to-page-w
   //info.update(layer.feature.properties);
 }
 function onEachFeature(feature, layer) {
-  var buildingtext = feature.properties.name +
+  var buildquery = feature.properties.name
+  var buildingtext = buildquery +
          "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
-         "<button class=\"btn btn-success\" name=\"q\" value="+feature.properties.name+" type=\"submit\">" +
+         "<button class=\"btn btn-success\" name=\"q\" value="+buildquery+" type=\"submit\">" +
              "Classes Here" +
          "</button>" +
      "</form>";
