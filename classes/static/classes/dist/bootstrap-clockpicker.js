@@ -116,7 +116,7 @@
 		this.spanHours = popover.find('.clockpicker-span-hours');
 		this.spanMinutes = popover.find('.clockpicker-span-minutes');
 		this.spanAmPm = popover.find('.clockpicker-span-am-pm');
-		this.amOrPm = "PM";
+		this.amOrPm = "AM";
 		
 		// Setup for for 12 hour clock if option is selected
 		if (options.twelvehour) {
@@ -367,7 +367,7 @@
 		fromnow: 0,          // set default time to * milliseconds from now (using with default = 'now')
 		placement: 'bottom', // clock popover placement
 		align: 'left',       // popover arrow align
-		donetext: '完成',    // done button text
+		donetext: 'Filter by Time',    // done button text
 		autoclose: false,    // auto close when minute is selected
 		twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
 		vibrate: true        // vibrate the device when dragging clock hand

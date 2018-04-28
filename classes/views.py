@@ -104,42 +104,84 @@ def search_terms(query):
                     break
     return (results, buildings)
 
+def searchDay(results, query, mon, tues, wed, thurs, fri):
+    results2 = Section.objects.none()
+    if (mon != None):
+        results2 = results2 | results.filter(Q(day__icontains="M"))
+    if (tues != None):
+        results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
+    if (wed != None):
+        results2 = results2 | results.filter(Q(day__icontains="W"))
+    if (thurs != None):
+        results2 = results2 | results.filter(Q(day__icontains="Th"))
+    if (fri != None):
+        results2 = results2 | results.filter(Q(day__icontains="F"))
+    if (mon == None and tues == None and wed == None and thurs == None and fri == None):
+        results2 = results
+    if (not query):
+        if (mon != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains="M"))
+        if (tues != None):
+            results2 = results2 | Section.objects.filter(Q(day__iregex=r'T(?!h)'))
+        if (wed != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains="W"))
+        if (thurs != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains="Th"))
+        if (fri != None):
+            results2 = results2 | Section.objects.filter(Q(day__icontains="F"))
+    return results2
+
 def searchTime(inputTime, results):
     resultsWithTime = Section.objects.none()
     resultFilter = Section.objects.none()
+    try:
+        datetime.strptime(inputTime, '%I:%M%p').time()
+    except ValueError:
+        return resultsWithTime
     convertedTime = datetime.strptime(inputTime, '%I:%M%p').time()
     resultsWithTime = results.filter(starttime__lte = convertedTime, endtime__gte = convertedTime)
     return resultsWithTime
 
+def getDayString(mon, tues, wed, thurs, fri):
+    days = ""
+    if (mon != None):
+        days += " Monday"
+    if (tues != None):
+        days += " Tuesday"
+    if (wed != None):
+        days += " Wednesday"
+    if (thurs != None):
+        days += " Thursday"
+    if (fri != None):
+        days += " Friday"
+    if (days):
+        days = ", " + days
+    return days
+
 @login_required
 def search(request):
     template = 'classes/searches.html'
-    query = request.GET.get('q')
-    query2 = request.GET.get('q2', None)
-    query3 = request.GET.get('q3', None)
-    query4 = request.GET.get('q4', None)
-    query5 = request.GET.get('q5', None)
-    query6 = request.GET.get('q6', None)
+    query = request.GET.get('q', None)
+    mon = request.GET.get('M', None)
+    tues = request.GET.get('T', None)
+    wed = request.GET.get('W', None)
+    thurs = request.GET.get('Th', None)
+    fri = request.GET.get('F', None)
     time = request.GET.get('t', None)
     results, buildings = search_terms(query)
-    results2 = Section.objects.none()
-    if (query2 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query2))
-    if (query3 != None):
-        results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
-    if (query4 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query4))
-    if (query5 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query5))
-    if (query6 != None):
-        results2 = results2 | results.filter(Q(day__icontains=query6))
-    if (query2 == None and query3 == None and query4 == None and query5 == None and query6 == None):
-        results2 = results
+    results2 = searchDay(results, query, mon, tues, wed, thurs, fri)
     if (time):
         results2 = searchTime(time, results2)
+        if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
+            results2 = searchTime(time, Section.objects.all())
+        time = ", " + time
+    if (time == None):
+        time = ""
+    dayString = getDayString(mon, tues, wed, thurs, fri)
     context = {
         'q': query,
         't': time,
+        'd': dayString,
         'classes': results2,
         'buildings': buildings,
         'netid': request.user.username
