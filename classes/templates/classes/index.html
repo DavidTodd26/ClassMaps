@@ -253,6 +253,10 @@
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 console.log(width);
+if(width < 700){
+    var x = document.getElementById("listOverlay");
+    x.style.display = "block";
+}
 function addRow(name, button) {
     var newRow = $("<tr>");
     var cols = "";
