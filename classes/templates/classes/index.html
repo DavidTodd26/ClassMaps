@@ -350,7 +350,7 @@ L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
     L.marker(e.latlng, {icon: myIcon}).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+        .bindPopup("You are within " + Math.round(radius) + " meters from this point").openPopup();
     L.circle(e.latlng, radius).addTo(map);
     }
     map.on('locationfound', onLocationFound);
