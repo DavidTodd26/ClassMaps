@@ -618,9 +618,11 @@ if (!jQuery.isEmptyObject(lonlats)) {
   }
   {% if last_lon %}
     {% if last_lat %}
-      lon = "{{last_lon}}"
-      lat = "{{last_lat}}"
-      map.setView([lat, parseFloat(lon)+offset],17);
+      {% if zoom %}
+        lon = "{{last_lon}}"
+        lat = "{{last_lat}}"
+        map.setView([lat, parseFloat(lon)+offset],17);
+      {% endif %}
     {% endif %}
   {% endif %}
 }
