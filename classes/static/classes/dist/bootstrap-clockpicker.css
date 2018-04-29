@@ -6,7 +6,7 @@
 
 .clockpicker .input-group-addon {
 	cursor: pointer;
-	background: none;
+	height: 20px;
 }
 .clockpicker-moving {
 	cursor: move;
