@@ -22,7 +22,7 @@ def index(request):
             match = id[-1]
             id = id[:-1]
             func = 'r'
-
+    zoom = 0
     if id != None:
         if match == 'c':
             match = Section.objects.get(id=int(id))
@@ -32,6 +32,7 @@ def index(request):
             match.saved.append(netid)
             match.searched += 1
             match.save()
+            zoom = 1
         elif func == 'r' and netid in match.saved:
             match.saved.remove(netid)
             match.save()
@@ -39,6 +40,7 @@ def index(request):
         'saved_courses': Section.objects.filter(saved__contains=[netid]),
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
         'netid': netid
+        'zoom': zoom
     }
     return render(request, 'classes/index.html', context)
 
