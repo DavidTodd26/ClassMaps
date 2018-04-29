@@ -595,13 +595,20 @@ var offset = 0.0001;
     {% endfor %}
 {% endif %}
 if (!jQuery.isEmptyObject(lonlats)) {
+  var count = 0;
   for (var key in lonlats) {
     var tokens = key.split(" ");
     var lon = parseFloat(tokens[0])-offset;
     var lat = tokens[1];
     if (lon) {
-      L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
-      map.setView([lat, parseFloat(lon)+offset],17);
+      if (count == 0) {
+        L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]).openPopup();
+        map.setView([lat, parseFloat(lon)+offset],17);
+        count = count + 1;
+      }
+      else {
+        L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
+      }
     }
   }
 }
