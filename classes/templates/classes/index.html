@@ -183,16 +183,6 @@ $(function() {
 
   <div id="map"></div>
 
-  <!--  sidebar div  -->
-
-  <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
-
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
      <a href="http://classmaps.herokuapp.com">
@@ -286,16 +276,17 @@ $(function() {
     <a href="https://classmaps.herokuapp.com/contact.html">Contact</a>
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
   </div>
+  
 <!-- sidenav script  -->
 <script>
-function openNav() {
-    document.getElementById("sideOverlay").style.display = "block";
-}
-
-function closeNav() {
-    document.getElementById("sideOverlay").style.display = "none";
-}
+  function openNav() {
+      document.getElementById("sideOverlay").style.display = "block";
+  }
+  function closeNav() {
+      document.getElementById("sideOverlay").style.display = "none";
+  }
 </script>
+  
 <!--  script for saved list  -->
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
