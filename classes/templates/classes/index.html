@@ -613,14 +613,16 @@ if (!jQuery.isEmptyObject(lonlats)) {
     var lon = parseFloat(tokens[0])-offset;
     var lat = tokens[1];
     if (lon) {
-      {% if zoom %}
         L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]).openPopup();
-        map.setView([lat, parseFloat(lon)+offset],17);
-      {% else %}
-        L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]).openPopup();
-      {% endif %}
     }
   }
+  {% if last_lon %}
+    {% if last_lat %}
+      lon = "{{last_lon}}"
+      lat = "{{last_lat}}"
+      map.setView([lat, parseFloat(lon)+offset],17);
+    {% endif %}
+  {% endif %}
 }
 
     // Searched marker
