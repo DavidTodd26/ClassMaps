@@ -157,7 +157,7 @@ def getDayString(mon, tues, wed, thurs, fri):
     if (fri != None):
         days += " Friday,"
     if (days):
-        days = "on days" + days
+        days = "," + days
     return days[:-1]
 
 @login_required
