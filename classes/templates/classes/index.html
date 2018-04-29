@@ -165,9 +165,10 @@
       padding-left: 20px;
     }
     .ui-autocomplete {
-      width: 20%;
+      width: auto;
       height: auto;
       max-height: 40%;
+      max-width: 40%;
       overflow-y: auto;
       font-size: small;
     }
@@ -179,7 +180,7 @@
 $(function() {
   $("#search").autocomplete({
     //source: "/api/query/",
-    minLength: 2,
+    minLength: 3,
     source: function(request, response) {
         $.getJSON("/api/query/?term=" + request.term, function (data) {
           response(data.slice(0, 10));
