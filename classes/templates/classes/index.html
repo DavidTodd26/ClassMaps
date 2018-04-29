@@ -183,7 +183,6 @@ $(function() {
 
   <div id="map"></div>
 
-<<<<<<< HEAD
   <!--  sidebar div  -->
 
   <div id="mySidenav" class="sidenav">
@@ -194,19 +193,14 @@ $(function() {
   <a href="#">Contact</a>
 </div>
 
-=======
->>>>>>> 07e280e9d221dd06e7e72cfeb3cbd4024706a0c0
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
      <a href="http://classmaps.herokuapp.com">
      <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:52px; float:left;" hspace="10">
      </a>
-<<<<<<< HEAD
 
 <!--     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> -->
 
-=======
->>>>>>> 07e280e9d221dd06e7e72cfeb3cbd4024706a0c0
     <div style="width:30%; float:left; padding-right: 10px;">
         <input id = "search" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
@@ -651,7 +645,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
         var type = "c";
         // modified this line to add parameters
 
-        var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.time}}";
+        var name = "{{c}} {{c.title}} {{c.section}} {{c.building}} {{c.room}} {{c.day}} {{c.time}}";
        if (!lon && !lat) {
           lon = -74.656509;
           lat = 40.346699;
