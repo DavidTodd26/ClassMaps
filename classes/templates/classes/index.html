@@ -390,11 +390,11 @@ $("table.order-list").on("click", ".ibtnDel", function (event) {
     L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);
  }
     // URLS of maps for different layers (note: need to add attributes)
-    var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    mbUrl2 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+    var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="https://mapbox.com">Mapbox</a>',
+    mbUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    mbUrl2 = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
     // Different layers
     var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
     satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite',   attribution: mbAttr});
@@ -446,7 +446,7 @@ L.easyButton('<img src="https://cdn1.iconfinder.com/data/icons/map-location-and-
     map.on('locationfound', onLocationFound);
 }).setPosition('bottomright').addTo(map);
 
-L.easyButton('<img src="http://simpleicon.com/wp-content/uploads/refresh.png" style="width:16px">', function(btn, map){
+L.easyButton('<img src="https://simpleicon.com/wp-content/uploads/refresh.png" style="width:16px">', function(btn, map){
     map.setView(new L.LatLng(40.346825, -74.656595), 16);
 //map.setView(        [40.347, -74.653],      zoom: 16);
 }).setPosition('bottomright').addTo(map);
