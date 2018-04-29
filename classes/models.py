@@ -29,8 +29,7 @@ class Section(models.Model):
         courses = []
         for i in range(0, len(self.course)):
             courses.append(self.course[i]+" "+self.number[i])
-        ret = "/".join(courses)
-        return "/".join(courses)+" "+self.title+" "+self.section
+        return "/".join(courses)
 
 # A building
 class Building(models.Model):

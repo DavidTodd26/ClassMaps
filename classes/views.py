@@ -8,6 +8,32 @@ import re
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
+# Test
+from django.http import HttpResponse
+import json
+
+@login_required
+def query(request):
+    #if request.is_ajax():
+    q = request.GET.get('term', '')
+    courses, buildings = search_terms(q[:20])
+    results = []
+    for building in buildings:
+        building_json = {}
+        building_json['label'] = str(building)
+        building_json['value'] = str(building)
+        results.append(building_json)
+    for course in courses:
+        course_json = {}
+        course_json['label'] = str(course)+" "+course.title+" "+course.section
+        course_json['value'] = str(course)+" "+course.section
+        results.append(course_json)
+    data = json.dumps(results)
+    #else:
+    #    data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
 @login_required
 def index(request):
     netid = request.user.username

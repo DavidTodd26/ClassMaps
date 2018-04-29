@@ -22,9 +22,13 @@
   <script type="text/javascript" src="{% static 'classes/laundry.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/hotspots.js' %}"></script>
 
-  <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/dist/bootstrap-clockpicker.js' %}"></script>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+
 
 <head bgcolor="#000000">
   <title>ClassMaps</title>
@@ -163,10 +167,25 @@
   </style>
 </head>
 
-<body bgcolor="#000000">
+<!-- Autocomplete js -->
+<script>
+$(function() {
+  $("#search").autocomplete({
+    //source: "/api/query/",
+    minLength: 2,
+    source: function(request, response) {
+        $.getJSON("/api/query/?term=" + request.term, function (data) {
+          response(data.slice(0, 10));
+        });
+    }
+  });
+});
+</script>
+
   <div id="map"></div>
 
   <!--  sidebar div  -->
+
   <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="#">About</a>
@@ -180,9 +199,11 @@
      <a href="http://classmaps.herokuapp.com">
      <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:52px; float:left;" hspace="10">
      </a>
+
 <!--     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> -->
+
     <div style="width:30%; float:left; padding-right: 10px;">
-        <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
+        <input id = "search" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
 
     <div style="width:120px; float:left; padding-right: 10px;">
@@ -238,7 +259,9 @@
     </button>
   </div>
  </div>
+
  <!-- overlay div ends -->
+
  <div id="listOverlay" class="listOverlay" style="overflow: auto;">
    <table id="myTable" class="table order-list">
    <thead>
@@ -257,6 +280,7 @@
    </tfoot>
 </table>
 </div>
+
 <!--  script for saved list  -->
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -588,8 +612,7 @@ var offset = 0.0001;
        lonlats[key] = text;
      }
 
-     // Testing
-     addRow("{{s}} {{s.building}} {{s.time}}", button);
+     addRow("<div>{{s}}</div><div>{{s.building}}</div><div>{{s.time}}</div>", button);
     {% endfor %}
 {% endif %}
 if (!jQuery.isEmptyObject(lonlats)) {

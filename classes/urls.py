@@ -11,6 +11,7 @@ urlpatterns = [
     #path('', views.login, name="login"),
     path('', views.index, name="index"),
     path('results/', search, name="search"),
+    re_path('^api/query/', views.query, name='get_drugs'),
     re_path('courses/(?P<id>.*)/', views.details, name="details"),
     re_path('buildings/(?P<id>.*)/', views.details, name="details"),
 ]
