@@ -66,7 +66,7 @@ def index(request):
         'saved_courses': Section.objects.filter(saved__contains=[netid]),
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
         'netid': netid,
-        'zoom': zoom
+        'zoom': zoom,
         'match': match
     }
     return render(request, 'classes/index.html', context)
