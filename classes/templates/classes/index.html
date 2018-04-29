@@ -223,10 +223,8 @@
   </form>
 
   <div style="float: right; margin: auto; padding-right: 10px;">
-    <p style="color: #ffffff;">Welcome, {{netid}}</p>
-    <button class="astext" id="Logout">
-        Sign Out
-    </button>
+<!--     <p style="color: #ffffff;">Welcome, {{netid}}</p> -->
+    
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
   </div>
  </div>
@@ -252,10 +250,14 @@
 <!--  Code for sidebar overlay  -->
    <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
+    <a>Welcome, {{netid}}</a>
     <a href="#">About</a><br>
-    <a href="#">Services</a><br>
-    <a href="#">Clients</a><br>
+    <a href="#">Help</a><br>
+    <a href="#">Feedback</a><br>
     <a href="#">Contact</a><br>
+    <button class="astext" id="Logout">
+        Sign Out
+    </button>
   </div>
 <!-- sidenav script  -->
 <script>
