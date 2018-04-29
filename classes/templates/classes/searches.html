@@ -1,6 +1,13 @@
 {% extends 'classes/layout.html' %}
 
 {% block content %}
+<script>
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if(width < 720){
+        document.getElementById("sideOverlay").style.marginRight = "4px";
+        document.getElementById("sideOverlay").style.marginLeft = "4px";
+    }
+</script>
 <div id="resultList" style="margin-left:10%; margin-right:10%; margin-bottom: 20px;">
     <div style="clear: both">
         <h5 style="color: white; display:inline;">Results for:</h5>
