@@ -102,12 +102,12 @@
     /* Start sidebar css */
     .sideOverlay {
       position: fixed;
-/*       display: none; */
-      width: 300px;
+      display: none;
+      width: 250px;
       height: 100%;
       top: 0;
-      left: 0;
-      right: 1;
+      left: 1;
+      right: 0;
       bottom: 0;
       background-color: #d3d3d3;
       z-index: 3;
@@ -205,6 +205,7 @@
     <button class="astext" id="Logout">
         Sign Out
     </button>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
   </div>
  </div>
  <!-- overlay div ends -->
@@ -228,12 +229,22 @@
 </div>
 <!--  Code for sidebar overlay  -->
    <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
+    <a href="#">About</a><br>
+    <a href="#">Services</a><br>
+    <a href="#">Clients</a><br>
+    <a href="#">Contact</a><br>
   </div>
+<!-- sidenav script  -->
+<script>
+function openNav() {
+    document.getElementById("sideOverlay").style.width = "block";
+}
+
+function closeNav() {
+    document.getElementById("sideOverlay").style.width = "none";
+}
+</script>
 <!--  script for saved list  -->
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
