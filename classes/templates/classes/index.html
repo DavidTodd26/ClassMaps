@@ -238,7 +238,7 @@
   </div>
  </div>
  <!-- overlay div ends -->
- <div id="listOverlay" class="listOverlay" style="overflow: auto;">
+ <div id="listOverlay" class="listOverlay" style="overflow: auto;" onclick="off()">
    <table id="myTable" class="table order-list">
    <thead>
        <tr>
@@ -258,11 +258,15 @@
 </div>
 <!--  script for saved list  -->
 <script>
+function off() {
+   var x = document.getElementById("listOverlay");
+   x.style.display = "none";
+}
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 console.log(width);
-if(width < 720){
+if(width > 720){
  var x = document.getElementById("listOverlay");
- x.style.display = "none";
+ x.style.display = "block";
 }
   
 $('.dropdown-menu').on('click', function(e) {
