@@ -176,7 +176,7 @@ def search(request):
         results2 = searchTime(time, results2)
         if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
             results2 = searchTime(time, Section.objects.all())
-        time = "at" + time
+        time = "at " + time
     if (time == None):
         time = ""
     dayString = getDayString(mon, tues, wed, thurs, fri)
