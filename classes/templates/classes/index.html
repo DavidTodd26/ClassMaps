@@ -102,10 +102,10 @@
     /* Start sidebar css */
     .sideOverlay {
       position: fixed;
-/*       display: none; */
-/*       width: 190px; */
+      display: none;
+/*       width: 190px;
+      height: 100%; */
       width: 0;
-      height: 100%;
       top: 0;
       left: 1;
       right: 0;
@@ -256,12 +256,12 @@
   </div>
 <!-- sidenav script  -->
 <script>
-function openNav() {v
-    document.getElementById("sideOverlay").style.display.width = "190px"; //= "block";
+function openNav() {
+    document.getElementById("sideOverlay").style.width = "190px"; //= "block";
 }
 
 function closeNav() {
-    document.getElementById("sideOverlay").style.width = "190px"; //.display = "none";
+    document.getElementById("sideOverlay").style.width = "0"; //.display = "none";
 }
 </script>
 <!--  script for saved list  -->
