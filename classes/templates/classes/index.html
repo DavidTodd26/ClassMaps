@@ -166,15 +166,6 @@
 <body bgcolor="#000000">
   <div id="map"></div>
 
-  <!--  sidebar div  -->
-  <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
-
   <div id="overlay" class="overlay">
     <form method="GET" action="{% url 'classes:search' %}">
      <a href="http://classmaps.herokuapp.com">
@@ -190,9 +181,6 @@
 <!--         <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
         </span> -->
-        <button type="button" data-toggle="dropdown">
-          <i class="fa fa-clock"></i>
-        </button>
         <input type="text" class="form-control" name="t" placeholder="Set Time" style="color: white;" readonly>
       </div>
     </div>
@@ -239,6 +227,7 @@
     <button class="astext" id="Logout">
         Sign Out
     </button>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
   </div>
  </div>
  <!-- overlay div ends -->
@@ -261,6 +250,14 @@
 </table>
 </div>
 <!--  script for saved list  -->
+<!--  sidebar div  -->
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 console.log(width);
