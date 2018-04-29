@@ -251,6 +251,7 @@
 </div>
 <!--  script for saved list  -->
 <!--  sidebar div  -->
+  <div id="listOverlay2" class="listOverlay" style="overflow: auto;">
   <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="#">About</a>
@@ -258,6 +259,7 @@
   <a href="#">Clients</a>
   <a href="#">Contact</a>
 </div>
+  </div>
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 console.log(width);
@@ -292,9 +294,13 @@ $("table.order-list").on("click", ".ibtnDel", function (event) {
     function openNav() {
         console.log("tried to open nav");
         document.getElementById("mySidenav").style.width = "250px";
+      var x = document.getElementById("listOverlay");
+       x.style.display = "block";
     }
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
+      var x = document.getElementById("listOverlay");
+ x.style.display = "none";
     }
 </script>
  <script type="text/javascript">
