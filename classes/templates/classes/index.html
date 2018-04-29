@@ -102,8 +102,9 @@
     /* Start sidebar css */
     .sideOverlay {
       position: fixed;
-      display: none;
-      width: 200px;
+/*       display: none; */
+/*       width: 190px; */
+      width: 0;
       height: 100%;
       top: 0;
       left: 1;
@@ -118,7 +119,7 @@
     .sideOverlay a {
       padding: 6px 6px 6px 30px;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 17px;
       color: #282828;
       display: block;
       transition: 0.5s;
@@ -255,14 +256,12 @@
   </div>
 <!-- sidenav script  -->
 <script>
-function openNav() {
-    console.log("try to open");
-    document.getElementById("sideOverlay").style.display = "block";
+function openNav() {v
+    document.getElementById("sideOverlay").style.display.width = "190px"; //= "block";
 }
 
 function closeNav() {
-  console.log("try to close");
-    document.getElementById("sideOverlay").style.display = "none";
+    document.getElementById("sideOverlay").style.width = "190px"; //.display = "none";
 }
 </script>
 <!--  script for saved list  -->
