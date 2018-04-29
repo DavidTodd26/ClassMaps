@@ -601,14 +601,8 @@ if (!jQuery.isEmptyObject(lonlats)) {
     var lon = parseFloat(tokens[0])-offset;
     var lat = tokens[1];
     if (lon) {
-      if (count == 0) {
         L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]).openPopup();
         map.setView([lat, parseFloat(lon)+offset],17);
-        count = count + 1;
-      }
-      else {
-        L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
-      }
     }
   }
 }
