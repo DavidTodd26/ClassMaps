@@ -106,6 +106,8 @@ def search_terms(query):
         return (Section.objects.none(), Building.objects.none())
 
     query = query.split()
+    query = "/".join(query).split("/")    # For cross-listed
+
     results = Section.objects.all()
     buildings = Building.objects.all()
 
