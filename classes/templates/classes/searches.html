@@ -2,7 +2,11 @@
 
 {% block content %}
 <div id="resultList" style="margin-left:10%; margin-right:10%; margin-bottom: 20px;">
-    <h4 style="color: white;">Results for: "{{q}}" {{d}} {{t}}</h4>
+    <div style="clear: both">
+        <h4 style="color: white;">Results for: "{{q}}"</h4>
+        <h6 style="color: white;"> {{d}} {{t}}</h6>
+    </div>
+    <hr />
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
