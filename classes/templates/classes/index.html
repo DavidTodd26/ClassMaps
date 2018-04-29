@@ -102,7 +102,7 @@
     /* Start sidebar css */
     .sideOverlay {
       position: fixed;
-/*       display: none; */
+      display: none;
       width: 250px;
       height: 100%;
       top: 0;
@@ -112,6 +112,28 @@
       background-color: #d3d3d3;
       z-index: 3;
       cursor: pointer;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    .sideOverlay a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.5s;
+    }
+
+    .sideOverlay a:hover {
+        color: #f1f1f1;
+    }
+
+    .sideOverlay .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
     }
     /* Start saved list css */
     .listOverlay {
@@ -239,12 +261,12 @@
 <script>
 function openNav() {
     console.log("try to open");
-    document.getElementById("sideOverlay").style.width = "block";
+    document.getElementById("sideOverlay").style.display = "block";
 }
 
 function closeNav() {
   console.log("try to close");
-    document.getElementById("sideOverlay").style.width = "none";
+    document.getElementById("sideOverlay").style.display = "none";
 }
 </script>
 <!--  script for saved list  -->
