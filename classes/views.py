@@ -87,7 +87,7 @@ def search_terms(query):
         elif re.match("^[A-Za-z]\d\d[A-Za-z]?$", q):
             results = results.filter(section__icontains = q)
         # Building
-        elif len(q) > 0:
+        elif len(q) > 3:
             results = results.filter(building__icontains = q)
         else:
             results = Section.objects.none()
