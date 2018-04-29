@@ -147,18 +147,18 @@ def searchTime(inputTime, results):
 def getDayString(mon, tues, wed, thurs, fri):
     days = ""
     if (mon != None):
-        days += " Monday"
+        days += " Monday,"
     if (tues != None):
-        days += " Tuesday"
+        days += " Tuesday,"
     if (wed != None):
-        days += " Wednesday"
+        days += " Wednesday,"
     if (thurs != None):
-        days += " Thursday"
+        days += " Thursday,"
     if (fri != None):
-        days += " Friday"
+        days += " Friday,"
     if (days):
-        days = ", " + days
-    return days
+        days = "on days" + days
+    return days[:-1]
 
 @login_required
 def search(request):
