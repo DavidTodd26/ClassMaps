@@ -184,7 +184,7 @@
     <div style="width:30%; float:left; padding-right: 10px;">
         <input name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
-      
+
     <div style="width:120px; float:left; padding-right: 10px;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
         <input type="text" class="form-control" name="t" placeholder="Set Time" style="color: white;" readonly>
@@ -193,7 +193,7 @@
         </span>
       </div>
     </div>
-      
+
    <div style="float:left;">
     <div class="dropdown" style="float:left;">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -265,11 +265,11 @@ if(width > 720){
  var x = document.getElementById("listOverlay");
  x.style.display = "block";
 }
-  
+
 $('.dropdown-menu').on('click', function(e) {
   e.stopPropagation();
 });
-  
+
 function addRow(name, button) {
     var newRow = $("<tr>");
     var cols = "";
@@ -387,7 +387,7 @@ document.getElementById("Logout").onclick = function () {
 mymap.locate({setView: true, maxZoom: 15});
 });*/
 
-    
+
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
     // Our different layers
@@ -406,7 +406,7 @@ mymap.locate({setView: true, maxZoom: 15});
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: false}).addTo(map);
     map.zoomControl.setPosition('bottomright');
 
-    
+
 L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style="width:16px">', function (btn, map) {
 
     map.locate({
@@ -425,7 +425,7 @@ L.easyButton('<img src="https://image.flaticon.com/icons/svg/24/24211.svg" style
 }).setPosition('bottomright').addTo(map);
 
 L.easyButton('<img src="https://png.icons8.com/metro/1600/home.png" style="width:16px">', function(btn, map){
-    map.setView(new L.LatLng(40.346825, -74.656595), 16); 
+    map.setView(new L.LatLng(40.346825, -74.656595), 16);
 //map.setView(        [40.347, -74.653],      zoom: 16);
 }).setPosition('bottomright').addTo(map);
 
@@ -552,7 +552,6 @@ function addRow() {
     $("table.order-list").append(newRow);
 }
 */
-
 lonlats = {};
 var offset = 0.0001;
 {% if saved_buildings %}
@@ -598,7 +597,9 @@ if (!jQuery.isEmptyObject(lonlats)) {
     var tokens = key.split(" ");
     var lon = parseFloat(tokens[0])-offset;
     var lat = tokens[1];
-    L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
+    if (lon) {
+      L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
+    }
   }
 }
 
@@ -615,10 +616,10 @@ if (!jQuery.isEmptyObject(lonlats)) {
         var id = "{{c.pk}}";
         var type = "c";
         // modified this line to add parameters
-        
+
         var name = "{{c}} {{c.building}} {{c.room}} {{c.day}} {{c.starttime}}-{{c.endtime}}";
        if (!lon && !lat) {
-          lon = -74.656509; 
+          lon = -74.656509;
           lat = 40.346699;
           var name = "<div>NO BUILDING<\div><div>{{c}} {{c.day}} {{c.starttime}}-{{c.endtime}}</div>";
         }
