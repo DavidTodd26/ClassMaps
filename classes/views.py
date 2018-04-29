@@ -36,7 +36,6 @@ def query(request):
 
 @login_required
 def index(request):
-    match = Section.objects.none()
     netid = request.user.username
     id = request.GET.get('s')
     if id != None:
@@ -50,11 +49,19 @@ def index(request):
             id = id[:-1]
             func = 'r'
     zoom = 0
+    lon = 0
+    lat = 0
     if id != None:
         if match == 'c':
             match = Section.objects.get(id=int(id))
+            for m in match:
+                lon = m.building_lon
+                lat = m.building_lat
         else:
             match = Building.objects.get(id=int(id))
+            for m in match:
+                lon = m.lon
+                lat = m.lat
         if func == 's' and not netid in match.saved:
             match.saved.append(netid)
             match.searched += 1
@@ -68,7 +75,8 @@ def index(request):
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
         'netid': netid,
         'zoom': zoom,
-        'match': match
+        'last_lon': lon,
+        'last_lat': lat
     }
     return render(request, 'classes/index.html', context)
 
