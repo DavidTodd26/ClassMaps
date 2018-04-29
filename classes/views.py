@@ -54,14 +54,12 @@ def index(request):
     if id != None:
         if match == 'c':
             match = Section.objects.get(id=int(id))
-            for m in match:
-                lon = m.building_lon
-                lat = m.building_lat
+            lon = match.building_lon
+            lat = match.building_lat
         else:
             match = Building.objects.get(id=int(id))
-            for m in match:
-                lon = m.lon
-                lat = m.lat
+            lon = match.lon
+            lat = match.lat
         if func == 's' and not netid in match.saved:
             match.saved.append(netid)
             match.searched += 1
