@@ -22,6 +22,6 @@ hotspotLocs = [['40.35063', '-74.654932', '1st Floor (near elevator)'],
  ['40.348373', '-74.654762', 'Woodrow Wilson Cafe'],
  ['40.348528', '-74.661928', 'Madison Hall, card checker station (x2)'],
  ['40.344058', '-74.657933', 'Community Hall, Gallery'],
- ['40.34491', '-74.655064', 'Wilcox Hall, card checker station'],
+ ['40.34491', '-74.656164', 'Wilcox Hall, card checker station'],
  ['40.34745173', '-74.66012844', 'Exterior, near Entry 4'],
- ['40.34470028', '-74.65758615', 'North wall, exterior']];
+ ['40.34560028', '-74.65758615', 'North wall, exterior']];
