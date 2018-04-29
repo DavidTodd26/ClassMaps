@@ -288,13 +288,14 @@ $("table.order-list").on("click", ".ibtnDel", function (event) {
 <!--  script for sidebar  -->
  <script>
    document.getElementById("mySidenav").style.width = "250px";
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
+   console.log("got to sidebar function");
+    function openNav() {
+        console.log("tried to open nav");
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
 </script>
  <script type="text/javascript">
    $('.clockpicker').clockpicker({
