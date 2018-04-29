@@ -39,7 +39,7 @@ def index(request):
     context = {
         'saved_courses': Section.objects.filter(saved__contains=[netid]),
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
-        'netid': netid
+        'netid': netid,
         'zoom': zoom
     }
     return render(request, 'classes/index.html', context)
