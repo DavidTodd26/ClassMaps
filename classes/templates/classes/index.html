@@ -429,7 +429,7 @@ mymap.locate({setView: true, maxZoom: 15});
     map.zoomControl.setPosition('bottomright');
 
 
-L.easyButton('<img src="https://cdn1.iconfinder.com/data/icons/map-location-and-navigation-1/96/location_pointer_map_address_navigation_navigation_current_position-512.png" style="width:16px">', function (btn, map) {
+L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="width:16px">', function (btn, map) {
 
     map.locate({
         setView: true,
