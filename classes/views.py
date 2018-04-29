@@ -172,11 +172,11 @@ def search(request):
     fri = request.GET.get('F', None)
     time = request.GET.get('t', None)
     results, buildings = search_terms(query)
-    results2 = searchDay(results, query, mon, tues, wed, thurs, fri)
+    resultsFiltered = searchDay(results, query, mon, tues, wed, thurs, fri)
     if (time):
-        results2 = searchTime(time, results2)
+        resultsFiltered = searchTime(time, resultsFiltered)
         if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
-            results2 = searchTime(time, Section.objects.all())
+            resultsFiltered = searchTime(time, Section.objects.all())
         time = "at " + time
     if (time == None):
         time = ""
@@ -185,7 +185,7 @@ def search(request):
         'q': query,
         't': time,
         'd': dayString,
-        'classes': results2,
+        'classes': resultsFiltered,
         'buildings': buildings,
         'netid': request.user.username
     }
