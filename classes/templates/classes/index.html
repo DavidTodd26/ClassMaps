@@ -102,7 +102,7 @@
     /* Start sidebar css */
     .sideOverlay {
       position: fixed;
-      display: none;
+/*       display: none; */
       width: 250px;
       height: 100%;
       top: 0;
@@ -238,10 +238,12 @@
 <!-- sidenav script  -->
 <script>
 function openNav() {
+    console.log("try to open");
     document.getElementById("sideOverlay").style.width = "block";
 }
 
 function closeNav() {
+  console.log("try to close");
     document.getElementById("sideOverlay").style.width = "none";
 }
 </script>
