@@ -36,6 +36,7 @@ def query(request):
 
 @login_required
 def index(request):
+    match = Section.objects.none()
     netid = request.user.username
     id = request.GET.get('s')
     if id != None:
