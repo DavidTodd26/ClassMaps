@@ -83,7 +83,7 @@ def search_terms(query):
         elif len(q) == 3 and q.isdigit():
             results = results.filter(number__icontains = q)
         # Section
-        elif re.match("^[A-Z]\d\d[A-Z]?$", q):
+        elif re.match("^[A-Za-z]\d\d[A-Za-z]?$", q):
             results = results.filter(section__icontains = q)
         # Building
         elif len(q) > 0:
