@@ -48,7 +48,7 @@ def index(request):
             match = id[-1]
             id = id[:-1]
             func = 'r'
-
+    zoom = 0
     if id != None:
         if match == 'c':
             match = Section.objects.get(id=int(id))
@@ -58,13 +58,15 @@ def index(request):
             match.saved.append(netid)
             match.searched += 1
             match.save()
+            zoom = 1
         elif func == 'r' and netid in match.saved:
             match.saved.remove(netid)
             match.save()
     context = {
         'saved_courses': Section.objects.filter(saved__contains=[netid]),
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
-        'netid': netid
+        'netid': netid,
+        'zoom': zoom
     }
     return render(request, 'classes/index.html', context)
 
@@ -102,17 +104,18 @@ def search_terms(query):
     for q in query:
         # Course
         if len(q) == 3 and q.isalpha():
-            results = results.filter(course__icontains = q)
-            if (not results):
-                results = Section.objects.filter(building__icontains = q)
+            if (results.filter(course__icontains = q)):
+                results = results.filter(course__icontains = q)
+            else:
+                results = results.filter(building__icontains = q)
         # Number
         elif len(q) == 3 and q.isdigit():
             results = results.filter(number__icontains = q)
         # Section
-        elif re.match("^[A-Z]\d\d[A-Z]?$", q):
+        elif re.match("^[A-Za-z]\d\d[A-Za-z]?$", q):
             results = results.filter(section__icontains = q)
         # Building
-        elif len(q) > 0:
+        elif len(q) > 3:
             results = results.filter(building__icontains = q)
         else:
             results = Section.objects.none()
@@ -197,11 +200,11 @@ def search(request):
     fri = request.GET.get('F', None)
     time = request.GET.get('t', None)
     results, buildings = search_terms(query)
-    results2 = searchDay(results, query, mon, tues, wed, thurs, fri)
+    resultsFiltered = searchDay(results, query, mon, tues, wed, thurs, fri)
     if (time):
-        results2 = searchTime(time, results2)
+        resultsFiltered = searchTime(time, resultsFiltered)
         if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
-            results2 = searchTime(time, Section.objects.all())
+            resultsFiltered = searchTime(time, Section.objects.all())
         time = "at " + time
     if (time == None):
         time = ""
@@ -210,7 +213,7 @@ def search(request):
         'q': query,
         't': time,
         'd': dayString,
-        'classes': results2,
+        'classes': resultsFiltered,
         'buildings': buildings,
         'netid': request.user.username
     }
