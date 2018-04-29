@@ -601,6 +601,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
     var lat = tokens[1];
     if (lon) {
       L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
+      map.setView([lat, parseFloat(lon)+offset],17);
     }
   }
 }
