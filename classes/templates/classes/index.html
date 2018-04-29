@@ -99,7 +99,20 @@
       padding-right: 5px;
       padding-left: 5px;
     }
-    
+    /* Start sidebar css */
+    .sideOverlay {
+      position: fixed;
+/*       display: none; */
+      width: 300px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 1;
+      bottom: 0;
+      background-color: #d3d3d3;
+      z-index: 3;
+      cursor: pointer;
+    }
     /* Start saved list css */
     .listOverlay {
       position: fixed;
@@ -213,6 +226,14 @@
    </tfoot>
 </table>
 </div>
+<!--  Code for sidebar overlay  -->
+   <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
 <!--  script for saved list  -->
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
