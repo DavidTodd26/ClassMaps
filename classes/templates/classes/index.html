@@ -109,6 +109,26 @@
       padding-right: 5px;
       padding-left: 5px;
     }
+    /* Start help overlay css */
+    .helpOverlay {
+      position:absolute;
+       top:50%;
+       left:50%;
+       z-index:1002;
+       overflow:auto;
+       width:400px;
+       height:400px;
+       margin-left:-200px;
+       margin-top:-200px;
+      display: none;
+      width: 0;
+      height: 100%;
+      background-color: #d3d3d3;
+      border-radius: 4px;
+      z-index: 3;
+      cursor: pointer;
+      transition: 0.5s;
+    }
     /* Start sidebar css */
     .sideOverlay {
       position: fixed;
@@ -288,14 +308,26 @@ $(function() {
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a>Welcome, {{netid}}</a>
     <a href="https://andsylin.github.io/" target="_blank">About</a>
-    <a href="#">Help</a>
+    <a href="#" onclick="openHelp()">Help</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank">Feedback</a>
     <a href="https://andsylin.github.io/members/" target="_blank">Contact</a>
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
   </div>
-
+  
+<!--  Code for help overlay  -->
+   <div id="helpOverlay" class="helpOverlay" style="overflow: auto;">
+     <h3>Help</h3>
+     <a href="javascript:void(0)" class="closebtn" onclick="closeHelp()">&times;</a>
+     This is the help overlay
+   </div>
 <!-- sidenav script  -->
 <script>
+  function openHelp() {
+      document.getElementById("sideOverlay").style.display = "block";
+  }
+  function closeHelp() {
+      document.getElementById("sideOverlay").style.display = "none";
+  }
   function openNav() {
       document.getElementById("sideOverlay").style.display = "block";
       document.getElementById("sideOverlay").style.width = "190px";
@@ -304,29 +336,27 @@ $(function() {
       document.getElementById("sideOverlay").style.width = "0";
       document.getElementById("sideOverlay").style.display = "none";
   }
-</script>
 
-<!--  script for saved list  -->
-<script>
-var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-console.log(width);
-if(width > 720){
- var x = document.getElementById("listOverlay");
- x.style.display = "block";
-}
+  <!--  script for saved list  -->
+  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  console.log(width);
+  if(width > 720){
+   var x = document.getElementById("listOverlay");
+   x.style.display = "block";
+  }
 
-$('.dropdown-menu').on('click', function(e) {
-  e.stopPropagation();
-});
+  $('.dropdown-menu').on('click', function(e) {
+    e.stopPropagation();
+  });
 
-function addRow(name, button) {
-    var newRow = $("<tr>");
-    var cols = "";
+  function addRow(name, button) {
+      var newRow = $("<tr>");
+      var cols = "";
 
-    cols += '<td><div class="listText" name="name">'+name+'</div></td>';
-    cols += '<td>'+button+'</td>';
-    newRow.append(cols);
-    $("table.order-list").append(newRow);
+      cols += '<td><div class="listText" name="name">'+name+'</div></td>';
+      cols += '<td>'+button+'</td>';
+      newRow.append(cols);
+      $("table.order-list").append(newRow);
 }
 
 $("table.order-list").on("click", ".ibtnDel", function (event) {
