@@ -107,7 +107,7 @@
     .sideOverlay {
       position: fixed;
       display: none;
-      width: 190px;
+      width: 0;
       height: 100%;
       top: 0;
       left: 1;
@@ -292,8 +292,10 @@ $(function() {
 <script>
   function openNav() {
       document.getElementById("sideOverlay").style.display = "block";
+      document.getElementById("sideOverlay").style.width = "190px";
   }
   function closeNav() {
+      document.getElementById("sideOverlay").style.width = "0";
       document.getElementById("sideOverlay").style.display = "none";
   }
 </script>
