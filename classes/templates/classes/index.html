@@ -222,8 +222,6 @@ $(function() {
      <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:52px; float:left;" hspace="10">
      </a>
 
-<!--     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> -->
-
     <div style="width:30%; float:left;">
         <input id = "search" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
@@ -237,8 +235,8 @@ $(function() {
       </div>
     </div>
       
-   <div style="width:30px; float:left; padding-right: 10px;">
-    <input type="text" style="color: white; cursor: pointer;" placeholder="x" onclick="clearForm()" readonly>
+   <div style="width:30px; float:left; padding-right: 10px;" onclick="clearForm()">
+    <input type="text" style="color: white; cursor: pointer;" placeholder="x" readonly>
    </div>
       
    <div style="float:left;">
@@ -323,7 +321,8 @@ $(function() {
    </div>
 <!-- sidenav script  -->
 <script>
-  function clearNav() {
+  function clearForm() {
+    console.log("cleared form");
     document.getElementById("searchbar").reset();
   }
   function openHelp() {
