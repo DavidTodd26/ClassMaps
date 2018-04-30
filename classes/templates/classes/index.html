@@ -217,7 +217,7 @@ $(function() {
   <div id="map"></div>
 <!-- Overlay div begins -->
   <div id="overlay" class="overlay">
-    <form method="GET" action="{% url 'classes:search' %}">
+    <form id="searchbar" method="GET" action="{% url 'classes:search' %}">
      <a href="https://classmaps.herokuapp.com">
      <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:52px; float:left;" hspace="10">
      </a>
@@ -237,8 +237,8 @@ $(function() {
       </div>
     </div>
       
-   <div style="width:auto; float:left; padding-right: 10px;">
-    <input type="text" placeholder="x">
+   <div style="width:10px; float:left; padding-right: 10px;">
+    <input type="text" style="color: white; cursor: pointer;" placeholder="x" onclick="clearForm()" readonly>
    </div>
       
    <div style="float:left;">
@@ -323,6 +323,9 @@ $(function() {
    </div>
 <!-- sidenav script  -->
 <script>
+  function clearNav() {
+    document.getElementById("searchbar").reset();
+  }
   function openHelp() {
       document.getElementById("helpOverlay").style.display = "block";
      document.getElementById("sideOverlay").style.width = "0";
