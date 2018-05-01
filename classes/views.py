@@ -117,7 +117,8 @@ def search_terms(query):
             matches = results.filter(listings__icontains = "/"+q) | \
                       results.filter(listings__icontains = " "+q) | \
                       results.filter(section__istartswith = q) | \
-                      results.filter(building__istartswith = q)
+                      results.filter(building__istartswith = q) | \
+                      results.filter(building__icontains = " "+q)
 
             # Handle concat dept/number (e.g. cos333)
             if len(q) >= 4:
