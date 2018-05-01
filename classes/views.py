@@ -14,13 +14,12 @@ import json
 
 @login_required
 def query(request):
-    #if request.is_ajax():
     q = request.GET.get('term', '')
     courses, buildings = search_terms(q[:20])
     results = []
     for building in buildings:
         building_json = {}
-        building_json['label'] = str(building)
+        building_json['label'] = str(building)+building.names[-1]
         building_json['value'] = str(building)
         results.append(building_json)
     for course in courses:
@@ -29,8 +28,6 @@ def query(request):
         course_json['value'] = str(course)+" "+course.section
         results.append(course_json)
     data = json.dumps(results)
-    #else:
-    #    data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
@@ -100,50 +97,52 @@ def details(request, id):
 
     return render(request, 'classes/index.html', context)
 
-# Filter by course, number, section, day, and time
+# Filter by course, number, building, and section
 def search_terms(query):
     if query == None or len(query) == 0:
         return (Section.objects.none(), Building.objects.none())
 
-    query = query.split()
-    query = "/".join(query).split("/")    # For cross-listed
+    queryset = query.split(",")           # Fields separated by ',' are OR'ed
 
-    results = Section.objects.all()
-    buildings = Building.objects.all()
+    courses = Section.objects.none()
+    buildings = Building.objects.none()
 
-    for q in query:
-        # Course
-        if len(q) == 3 and q.isalpha():
-            if (results.filter(course__icontains = q)):
-                results = results.filter(course__icontains = q)
-            else:
-                results = results.filter(building__icontains = q)
-        # Number
-        elif len(q) == 3 and q.isdigit():
-            results = results.filter(number__icontains = q)
-        # Section
-        elif re.match("^[A-Za-z]\d\d[A-Za-z]?$", q):
-            results = results.filter(section__icontains = q)
-        # Building
-        elif len(q) > 3:
-            results = results.filter(building__icontains = q)
-        else:
-            results = Section.objects.none()
+    for query in queryset:
+        query = query.split()
+        query = "/".join(query).split("/")    # For cross-listed
 
-        # Always try to match query for building results
-        buildings = buildings.filter(names__icontains = q)
-        names = []
-        # Display the primary name and the name that matched to prevent confusion
-        for b in buildings:
-            for i in range(0, len(b.names)):
-                name = b.names[i]
-                if q.upper() in name.upper():
-                    if i != 0:
-                        b.names.append(" ("+name.strip()+")")
-                    else:
-                        b.names.append("")
-                    break
-    return (results, buildings)
+        results = Section.objects.all()
+        builds = Building.objects.all()
+        for q in query:
+            matches = results.filter(listings__icontains = "/"+q) | \
+                      results.filter(listings__icontains = " "+q) | \
+                      results.filter(section__istartswith = q) | \
+                      results.filter(building__istartswith = q)
+
+            # Handle concat dept/number (e.g. cos333)
+            if len(q) >= 4:
+                matches = matches | \
+                          results.filter(listings__icontains = "/"+q[0:3]) & \
+                          results.filter(listings__icontains = " "+q[3:])
+
+            results = matches
+
+            # Always try to match query for building results
+            builds = builds.filter(names__icontains = q)
+            names = []
+            # Display the primary name and the name that matched to prevent confusion
+            for b in builds:
+                for i in range(0, len(b.names)):
+                    name = b.names[i]
+                    if q.upper() in name.upper():
+                        if i != 0:
+                            b.names.append(" ("+name.strip()+")")
+                        else:
+                            b.names.append("")
+                        break
+        courses = set(chain(courses, results))
+        buildings = set(chain(buildings, builds))
+    return (courses, buildings)
 
 def searchDay(results, query, mon, tues, wed, thurs, fri):
     results2 = Section.objects.none()
