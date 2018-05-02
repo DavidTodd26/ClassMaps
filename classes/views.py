@@ -219,6 +219,11 @@ def search(request):
     if (time == None):
         time = ""
     dayString = getDayString(mon, tues, wed, thurs, fri)
+
+    # Add queried names
+    for b in buildings:
+        b.names.append(names[b.names[0]])
+        
     context = {
         'q': query,
         't': time,

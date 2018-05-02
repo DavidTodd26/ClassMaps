@@ -9,7 +9,7 @@
         document.getElementById("resultList").style.marginLeft = "4px";
     }
 </script>
-<div id="resultList" style="margin-left:5%; margin-right:5%; margin-bottom: 20px;">
+<div id="resultList" style="margin-left:10%; margin-right:10%; margin-bottom: 20px;">
     <div style="clear: both">
         <h5 style="color: white; display:inline;">Results for:</h5>
         <h6 style="color: white; display:inline;">" {{q}} {{d}} {{t}}"</h6>
@@ -18,7 +18,7 @@
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
-          <li class="collection-item"><a href="/buildings/{{b}}">{{b}}</a></li>
+          <li class="collection-item"><a href="/buildings/{{b}}">{{b}} {{b.names|last}}</a></li>
         {% endfor %}
     {% endif %}
     {% if classes %}
