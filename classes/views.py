@@ -15,11 +15,11 @@ import json
 @login_required
 def query(request):
     q = request.GET.get('term', '')
-    courses, buildings = search_terms(q[:20])
+    courses, buildings, names = search_terms(q[:20])
     results = []
     for building in buildings:
         building_json = {}
-        building_json['label'] = str(building)+building.names[-1]
+        building_json['label'] = str(building)+names[building.names[0]]
         building_json['value'] = str(building)
         results.append(building_json)
     for course in courses:
@@ -106,6 +106,7 @@ def search_terms(query):
 
     courses = Section.objects.none()
     buildings = Building.objects.none()
+    names = {}  # Map canonical building name to name actually searched
 
     for query in queryset:
         query = query.split()
@@ -130,20 +131,19 @@ def search_terms(query):
 
             # Always try to match query for building results
             builds = builds.filter(names__icontains = q)
-            names = []
             # Display the primary name and the name that matched to prevent confusion
             for b in builds:
                 for i in range(0, len(b.names)):
                     name = b.names[i]
                     if q.upper() in name.upper():
                         if i != 0:
-                            b.names.append(" ("+name.strip()+")")
+                            names[b.names[0]] = " ("+name.strip()+")"
                         else:
-                            b.names.append("")
+                            names[b.names[0]] = ""
                         break
-        courses = set(chain(courses, results))
-        buildings = set(chain(buildings, builds))
-    return (courses, buildings)
+        courses = courses | results
+        buildings = buildings | builds
+    return (courses, buildings, names)
 
 def searchDay(results, query, mon, tues, wed, thurs, fri):
     results2 = Section.objects.none()
@@ -209,7 +209,7 @@ def search(request):
     thurs = request.GET.get('Th', None)
     fri = request.GET.get('F', None)
     time = request.GET.get('t', None)
-    results, buildings = search_terms(query)
+    results, buildings, names = search_terms(query)
     resultsFiltered = searchDay(results, query, mon, tues, wed, thurs, fri)
     if (time):
         resultsFiltered = searchTime(time, resultsFiltered)

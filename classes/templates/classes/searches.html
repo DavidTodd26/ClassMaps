@@ -18,7 +18,7 @@
 <ul class ="collection">
     {% if buildings %}
         {% for b in buildings %}
-          <li class="collection-item"><a href="/buildings/{{b}}">{{b}} {{b.names|last}}</a></li>
+          <li class="collection-item"><a href="/buildings/{{b}}">{{b}}</a></li>
         {% endfor %}
     {% endif %}
     {% if classes %}
