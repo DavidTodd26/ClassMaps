@@ -47,8 +47,8 @@
           z-index: 1;
           position: relative;
       }
-    ::-webkit-scrollbar { 
-        display: none; 
+    ::-webkit-scrollbar {
+        display: none;
     }
     .slidecontainer {
         margin: 0 auto;
@@ -144,7 +144,7 @@
       transition: 0.5s;
       padding-top: 60px;
     }
-    
+
     .sideOverlay a {
       padding: 6px 6px 6px 30px;
       text-decoration: none;
@@ -207,13 +207,41 @@
 $(function() {
   $("#search").autocomplete({
     minLength: 3,
+    /*
     source: function(request, response) {
         $.getJSON("/api/query/?term=" + request.term, function (data) {
           response(data.slice(0, 10));
         });
     }
+    */
+    source: function(request, response) {
+        $.ajax({
+          url: "/api/query/",
+          dataType: "json",
+          data: {
+            q: request.term,
+            t: $('#clock').val(),
+            M: convertBool($('#M').is(":checked")),
+            T: convertBool($('#T').is(":checked")),
+            W: convertBool($('#W').is(":checked")),
+            Th: convertBool($('#Th').is(":checked")),
+            F: convertBool($('#F').is(":checked")),
+          },
+          success: function(data) {
+            response(data.slice(0, 10));
+          }
+        });
+      },
   });
 });
+
+// Convert to match main query format
+function convertBool(b) {
+  if (b) {
+    return b;
+  }
+  return null;
+}
 </script>
 
   <div id="map"></div>
@@ -235,14 +263,14 @@ $(function() {
 <!--         <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
         </span> -->
-        <input type="text" class="form-control" name="t" placeholder="Set Time" style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
+        <input id="clock" type="text" class="form-control" name="t" placeholder="Set Time" style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
     </div>
-      
+
    <div style="width:25px; float:left; padding-right: 10px;" onclick="clearForm()">
     <input type="text" style="color: white; cursor: pointer;" placeholder="&times;" readonly>
    </div>
-      
+
    <div style="float:left;">
     <div class="dropdown" style="float:left; padding-right: 10px; ">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -251,23 +279,23 @@ $(function() {
       </button>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
-          <input name = "M" value = "M" type="checkbox">
+          <input id = "M" name = "M" value = "M" type="checkbox">
           <span class="slider"> Monday </span>
         </label><br>
         <label class="switch">
-          <input name = "T" value = "T" type="checkbox">
+          <input id = "T" name = "T" value = "T" type="checkbox">
           <span class="slider"> Tuesday </span>
         </label><br>
         <label class="switch">
-          <input name = "W" value = "W" type="checkbox">
+          <input id = "W" name = "W" value = "W" type="checkbox">
           <span class="slider"> Wednesday </span>
         </label><br>
         <label class="switch">
-          <input name = "Th" value = "Th" type="checkbox">
+          <input id = "Th" name = "Th" value = "Th" type="checkbox">
           <span class="slider"> Thursday </span>
         </label><br>
         <label class="switch">
-          <input name = "F" value = "F" type="checkbox">
+          <input id = "F" name = "F" value = "F" type="checkbox">
           <span class="slider"> Friday </span>
         </label>
         </div>
@@ -316,7 +344,7 @@ $(function() {
     <a href="https://andsylin.github.io/members/" target="_blank">Contact</a>
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
   </div>
-  
+
 <!--  Code for help overlay  -->
    <div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
      <h3>Help</h3>
@@ -373,7 +401,7 @@ $(function() {
 $("table.order-list").on("click", ".ibtnDel", function (event) {
     $(this).closest("tr").remove();
 });
-  
+
    $('.clockpicker').clockpicker({
      twelvehour: true,
      default: 'now'
@@ -387,7 +415,7 @@ $("table.order-list").on("click", ".ibtnDel", function (event) {
      autoclose: true,
      default: 'now'
    });
-  
+
     // Adds different layer groups
     var printers = L.layerGroup();
     var hotspots = L.layerGroup();

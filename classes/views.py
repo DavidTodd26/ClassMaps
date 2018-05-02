@@ -14,8 +14,7 @@ import json
 
 @login_required
 def query(request):
-    q = request.GET.get('term', '')
-    courses, buildings, names = search_terms(q[:20])
+    query, time, dayString, courses, buildings, names = parse_terms(request)
     results = []
     for building in buildings:
         building_json = {}
@@ -100,7 +99,7 @@ def details(request, id):
 # Filter by course, number, building, and section
 def search_terms(query):
     if query == None or len(query) == 0:
-        return (Section.objects.none(), Building.objects.none())
+        return (Section.objects.none(), Building.objects.none(), {})
 
     queryset = query.split(",")           # Fields separated by ',' are OR'ed
 
@@ -146,29 +145,30 @@ def search_terms(query):
     return (courses, buildings, names)
 
 def searchDay(results, query, mon, tues, wed, thurs, fri):
+    print(mon, tues, wed, thurs, fri)
     results2 = Section.objects.none()
-    if (mon != None):
+    if mon:
         results2 = results2 | results.filter(Q(day__icontains="M"))
-    if (tues != None):
+    if tues:
         results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
-    if (wed != None):
+    if wed:
         results2 = results2 | results.filter(Q(day__icontains="W"))
-    if (thurs != None):
+    if thurs:
         results2 = results2 | results.filter(Q(day__icontains="Th"))
-    if (fri != None):
+    if fri:
         results2 = results2 | results.filter(Q(day__icontains="F"))
     if (mon == None and tues == None and wed == None and thurs == None and fri == None):
         results2 = results
-    if (not query):
-        if (mon != None):
+    if not query:
+        if mon:
             results2 = results2 | Section.objects.filter(Q(day__icontains="M"))
-        if (tues != None):
+        if tues:
             results2 = results2 | Section.objects.filter(Q(day__iregex=r'T(?!h)'))
-        if (wed != None):
+        if wed:
             results2 = results2 | Section.objects.filter(Q(day__icontains="W"))
-        if (thurs != None):
+        if thurs:
             results2 = results2 | Section.objects.filter(Q(day__icontains="Th"))
-        if (fri != None):
+        if fri:
             results2 = results2 | Section.objects.filter(Q(day__icontains="F"))
     return results2
 
@@ -185,23 +185,21 @@ def searchTime(inputTime, results):
 
 def getDayString(mon, tues, wed, thurs, fri):
     days = ""
-    if (mon != None):
+    if mon:
         days += " Monday,"
-    if (tues != None):
+    if tues:
         days += " Tuesday,"
-    if (wed != None):
+    if wed:
         days += " Wednesday,"
-    if (thurs != None):
+    if thurs:
         days += " Thursday,"
-    if (fri != None):
+    if fri:
         days += " Friday,"
-    if (days):
+    if days:
         days = "on" + days
     return days[:-1]
 
-@login_required
-def search(request):
-    template = 'classes/searches.html'
+def parse_terms(request):
     query = request.GET.get('q', None)
     mon = request.GET.get('M', None)
     tues = request.GET.get('T', None)
@@ -211,19 +209,26 @@ def search(request):
     time = request.GET.get('t', None)
     results, buildings, names = search_terms(query)
     resultsFiltered = searchDay(results, query, mon, tues, wed, thurs, fri)
-    if (time):
+    if time:
         resultsFiltered = searchTime(time, resultsFiltered)
-        if (not query and mon == None and tues == None and wed == None and thurs == None and fri == None):
+        if not query and not mon and not tues and not wed and not thurs and not fri:
             resultsFiltered = searchTime(time, Section.objects.all())
         time = "at " + time
-    if (time == None):
+    else:
         time = ""
     dayString = getDayString(mon, tues, wed, thurs, fri)
+
+    return(query, time, dayString, resultsFiltered, buildings, names)
+
+@login_required
+def search(request):
+    template = 'classes/searches.html'
+    query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
 
     # Add queried names
     for b in buildings:
         b.names.append(names[b.names[0]])
-        
+
     context = {
         'q': query,
         't': time,
