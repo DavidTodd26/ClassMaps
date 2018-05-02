@@ -347,11 +347,13 @@ $(function() {
   }
 
   <!--  script for saved list  -->
+  var collapse = true;
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   console.log(width);
   if(width > 720){
    var x = document.getElementById("listOverlay");
    x.style.display = "block";
+    collapse = false;
   }
 
   $('.dropdown-menu').on('click', function(e) {
@@ -371,9 +373,9 @@ $(function() {
 $("table.order-list").on("click", ".ibtnDel", function (event) {
     $(this).closest("tr").remove();
 });
-</script>
+// </script>
 
-<script type="text/javascript">
+// <script type="text/javascript">
    $('.clockpicker').clockpicker({
      twelvehour: true,
      default: 'now'
@@ -387,9 +389,9 @@ $("table.order-list").on("click", ".ibtnDel", function (event) {
      autoclose: true,
      default: 'now'
    });
-</script>
+// </script>
 
-  <script>
+//   <script>
     // Adds different layer groups
     var printers = L.layerGroup();
     var hotspots = L.layerGroup();
@@ -475,7 +477,7 @@ mymap.locate({setView: true, maxZoom: 15});
       "Buildings": buildings
     };
     // Adds overlays and layers to map
-    L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: false}).addTo(map);
+    L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
     map.zoomControl.setPosition('bottomright');
 
 
