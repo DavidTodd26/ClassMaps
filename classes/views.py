@@ -122,11 +122,9 @@ def search_terms(query):
 
             # Handle concat dept/number (e.g. cos333)
             if len(q) >= 4:
-                print(matches)
                 matches = matches | \
                           (results.filter(listings__icontains = "/"+q[0:3]) & \
                           results.filter(listings__icontains = " "+q[3:]))
-                print(matches)
 
             results = matches
 
