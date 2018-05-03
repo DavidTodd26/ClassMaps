@@ -122,9 +122,11 @@ def search_terms(query):
 
             # Handle concat dept/number (e.g. cos333)
             if len(q) >= 4:
+                print(matches)
                 matches = matches | \
-                          results.filter(listings__icontains = "/"+q[0:3]) & \
-                          results.filter(listings__icontains = " "+q[3:])
+                          (results.filter(listings__icontains = "/"+q[0:3]) & \
+                          results.filter(listings__icontains = " "+q[3:]))
+                print(matches)
 
             results = matches
 
@@ -145,7 +147,6 @@ def search_terms(query):
     return (courses, buildings, names)
 
 def searchDay(results, query, mon, tues, wed, thurs, fri):
-    print(mon, tues, wed, thurs, fri)
     results2 = Section.objects.none()
     if mon:
         results2 = results2 | results.filter(Q(day__icontains="M"))
@@ -157,7 +158,7 @@ def searchDay(results, query, mon, tues, wed, thurs, fri):
         results2 = results2 | results.filter(Q(day__icontains="Th"))
     if fri:
         results2 = results2 | results.filter(Q(day__icontains="F"))
-    if (mon == None and tues == None and wed == None and thurs == None and fri == None):
+    if not mon and not tues and not wed and not thurs and not fri:
         results2 = results
     if not query:
         if mon:
