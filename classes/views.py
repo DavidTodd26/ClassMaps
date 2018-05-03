@@ -7,8 +7,6 @@ from datetime import time
 import re
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-
-# Test
 from django.http import HttpResponse
 import json
 
@@ -110,23 +108,25 @@ def search_terms(query):
     for query in queryset:
         query = query.split()
         query = "/".join(query).split("/")    # For cross-listed
+        concat = Q()
 
         results = Section.objects.all()
         builds = Building.objects.all()
         for q in query:
-            matches = results.filter(listings__icontains = "/"+q) | \
-                      results.filter(listings__icontains = " "+q) | \
-                      results.filter(section__istartswith = q) | \
-                      results.filter(building__istartswith = q) | \
-                      results.filter(building__icontains = " "+q)
+            matches = Q(listings__icontains = "/"+q) | \
+                      Q(listings__icontains = " "+q) | \
+                      Q(section__istartswith = q) | \
+                      Q(building__istartswith = q) | \
+                      Q(building__icontains = " "+q)
 
             # Handle concat dept/number (e.g. cos333)
             if len(q) >= 4:
                 matches = matches | \
-                          (results.filter(listings__icontains = "/"+q[0:3]) & \
-                          results.filter(listings__icontains = " "+q[3:]))
+                          (Q(listings__icontains = "/"+q[0:3]) & \
+                          Q(listings__icontains = " "+q[3:]))
 
-            results = matches
+            #results = matches
+            concat = concat & matches
 
             # Always try to match query for building results
             builds = builds.filter(names__icontains = q)
@@ -140,7 +140,8 @@ def search_terms(query):
                         else:
                             names[b.names[0]] = ""
                         break
-        courses = courses | results
+        #courses = courses | results
+        courses = Section.objects.filter(concat)
         buildings = buildings | builds
     return (courses, buildings, names)
 
