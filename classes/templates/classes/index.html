@@ -330,7 +330,7 @@ function convertBool(b) {
    <table id="myTable" class="table order-list">
    <thead>
        <tr>
-           <td><div class="listTitle"><i class="fa fa-save"></i>Saved Markers</div></td>
+           <td><div class="listTitle"><i class="fa fa-star">Favorites</i>ss</div></td>
        </tr>
    </thead>
    <tfoot>
@@ -537,7 +537,7 @@ L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:
 //map.setView(        [40.347, -74.653],      zoom: 16);
 }).setPosition('bottomright').addTo(map);
 
-L.easyButton('<img src="https://png.icons8.com/metro/50/000000/save.png" style="width:16px">', function(btn, map){
+L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16px">', function(btn, map){
     var x = document.getElementById("listOverlay");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -745,7 +745,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
       var search = "<div>" + name + "</div>" +
       "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +"<br>"+
           "<button id=\"addrow\" class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
-              "<i class=\"fa fa-save\">"+"</i>"+"Save" +
+              "<i class=\"fa fa-star\">"+"</i>"+"Favorite" +
           "</button>" +
       "</form>";
        L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
