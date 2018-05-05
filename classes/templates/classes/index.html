@@ -219,7 +219,7 @@
     }
     /* Search result overlay */
     .resultsContainer {
-      padding-top: 50px;
+      padding-top: 60px;
     }
     .resultsOverlay {
       height: auto;
@@ -415,7 +415,6 @@ function convertBool(b) {
 <!--  Code search result overlay -->
 <div id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeResults()">&times;CLOSE</a>
     <div class="container match-group" style="margin: 0;">
       <div id="buildings" class="row text-center" style="margin: 0;">
       </div>
@@ -459,6 +458,7 @@ function addBuildingRow(id, text) {
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
+  addBuildingRow("buildings", "<a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
 {% endif %}
 
 {% if buildings %}
