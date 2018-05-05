@@ -29,18 +29,18 @@ waterLocs = [[40.344889, -74.657054, 'Kitchen next to seminar room'], //1915
  [40.34986, -74.663202, 'Office of Community and Regional Affairs (Sink)'], // 22 chambers street 
  [40.348955, -74.656217, 'Floors G (outside G23A), 1 (outside 126), and 2 (outside 219) (3)'], //  dickinson hall
  [40.347809, -74.658623, 'Kitchen 001A (Sink)'], // whig
- [40.349267, -74.651734, 'Multiple Locations (Sinks)	(3)'], // carl fields house
+ [40.349267, -74.651734, 'Multiple Locations (Sinks) (3)'], // carl fields house
  [40.346749, -74.653537, 'G Floor, Kitchen'], // center for jewish life
  [40.349391, -74.657198, 'Floors A, B, C, 2, and 3 near the elevators/bathrooms (5)'], // firestone library
- [40.346743, -74.654904, 'G Floor, Cafeteria	'], // frist campus center
- [40.348574, -74.659262, 'Second Floor Kitchenette (Sink) and Copy Room; third floor hallway	(3)'], // nassau hall
+ [40.346743, -74.654904, 'G Floor, Cafeteria'], // frist campus center
+ [40.348574, -74.659262, 'Second Floor Kitchenette (Sink) and Copy Room; third floor hallway (3)'], // nassau hall
  [40.343392, -74.658858, 'A Level & Floors 1-7 (Fountain) (8)'], // new south
  [40.34794, -74.657859, 'Multiple Locations (Fountains)	(2)'], // murray dodge
- [40.342877, -74.657801, "Main floor next to women's bathroom"] // Baker Rink	
- [40.344333, -74.648344, 'Main floor near South Entrance; A floor (outside of rooms A1 and A8) (3)'] // Caldwell Field House	
- [40.343928, -74.647429, "Main floor near women's bathroom"] // Denunzio Pool	
- [40.345817, -74.658894, "Stephen's fitness center main floor; near workout equipment; entrance; mezzanine rooms	(5)"] // Dillon Gym	
- [40.343678, -74.648537, 'Gym area entrances; lobby wings on east and west sides	(4)'] // Jadwin Gym	
- [40.339477, -74.650746, 'Multiple Locations (Fountains)	(2)'] // Shea Rowing Center	
+ [40.342877, -74.657801, "Main floor next to women's bathroom"], // Baker Rink	
+ [40.344333, -74.648344, 'Main floor near South Entrance; A floor (outside of rooms A1 and A8) (3)'], // Caldwell Field House	
+ [40.343928, -74.647429, "Main floor near women's bathroom"], // Denunzio Pool	
+ [40.345817, -74.658894, "Stephen's fitness center main floor; near workout equipment; entrance; mezzanine rooms (5)"], // Dillon Gym	
+ [40.343678, -74.648537, 'Gym area entrances; lobby wings on east and west sides (4)'], // Jadwin Gym	
+ [40.339477, -74.650746, 'Multiple Locations (Fountains) (2)'], // Shea Rowing Center	
  
  [40.344251, -74.655882, 'First and second Floor kitchens (2)']]; //yoseloff
