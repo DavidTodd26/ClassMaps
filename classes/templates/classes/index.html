@@ -22,6 +22,7 @@
   <script type="text/javascript" src="{% static 'classes/laundry.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/hotspots.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/water.js' %}"></script>
+  <script type="text/javascript" src="{% static 'classes/kitchens.js' %}"></script>
 
   <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
@@ -75,14 +76,13 @@
     .overlay {
       height: auto;
       width: 100%;
-      min-height: 75px;
+      min-height: 65px;
       max-height: 85px;
       margin-left: -100%;
       position: relative;
       float: right;
       z-index: 1;
       padding-top: 1%;
-      padding-bottom: 0.5%;
       padding-right: 40px;
       padding-left: 10px;
       background-color:rgba(0,0,0,0.6); // Sets to 50% transparent;
@@ -96,6 +96,7 @@
     /* Show the dropdown menu on hover */
     .dropdown:hover .dropdown-content {
         display: block;
+        z-index: 7;
     }
     /* Change the background color of the dropdown button when the dropdown content is shown */
     .dropdown:hover .dropbtn {
@@ -222,16 +223,17 @@
       width: 100%;
       margin-left: -100%;
       position: relative;
-      float: right;
-      z-index: 6;
+      float: left;
+      z-index: 0;
       padding-top: 1%;
       padding-bottom: 0.5%;
-      background-color:0; // Sets to 50% transparent;
+      background-color: 0;
       pointer-events: auto;
     }
     /* Horizontal Scroll */
     .match-group > .row {
-      overflow-x: auto;
+      float: left;
+      overflow-x: visible;
       white-space: nowrap;
       padding-left: 10px;
       padding-right: 10px;
@@ -270,6 +272,13 @@
 
 <!-- Autocomplete js -->
 <script>
+  function selectClass(){
+  window.location.href = 'https://classmaps.herokuapp.com/courses/{{c.pk}}';
+}
+function selectBuilding(){
+  window.location.href = 'https://classmaps.herokuapp.com/buildings/{{b}}';
+}
+  
 $(function() {
   $("#search").autocomplete({
     minLength: 3,
@@ -435,7 +444,12 @@ function truncate(line) {
 
 function addCourseRow(id, text) {
 //   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
-  $("#"+id).append("<div class=\"card\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div class=\"card\" onclick=\"selectClass()\">"+"<div class=\"container\">"+
+    "<p>"+text+"</p>"+"</div>"+"</div>");
+}
+function addBuildingRow(id, text) {
+//   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
+  $("#"+id).append("<div class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 
@@ -447,9 +461,9 @@ function addCourseRow(id, text) {
 {% if buildings %}
     {% for b in buildings %}
       if ("{{b.names|last}}") {
-        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}}<br>{{b.names|last}}");
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}}<br>{{b.names|last}}");
       } else {
-        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}} {{b.names|last}}");
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}} {{b.names|last}}");
       }
     {% endfor %}
 {% endif %}
@@ -475,7 +489,7 @@ function addCourseRow(id, text) {
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
 
       <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
-        <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: blue;" href="/">homepage</a></p>
+        <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: #00aaee;" href="/">homepage</a></p>
         <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
         <p>On Android, click on the <img src="{% static 'classes/images/3dot.png' %}"/> button on the top right of Chrome</p>
         <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/></p>
@@ -562,6 +576,7 @@ toggle between hiding and showing the dropdown content */
     var waterspots = L.layerGroup();
     var laundry = L.layerGroup();
     var buildings = L.layerGroup();
+    var kitchenspots = L.layerGroup();
 
      var printerIcon = L.icon({
        iconUrl: "{% static 'classes/images/printer.png' %}",
@@ -587,6 +602,12 @@ toggle between hiding and showing the dropdown content */
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
+     var kitchenIcon = L.icon({
+       iconUrl: "{% static 'classes/images/kitch.png' %}",
+       iconSize:     [26, 26], // size of the icon
+       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+     });
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
        iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
@@ -600,9 +621,9 @@ toggle between hiding and showing the dropdown content */
      });
     for (var i = 0; i < printerLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
-    if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
  }
  for (var i = 0; i < laundryLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
@@ -617,6 +638,12 @@ toggle between hiding and showing the dropdown content */
   //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindPopup(waterLocs[i][2]).addTo(waterspots);
  }
+
+ for (var i = 0; i < kitchens.length; i++) {
+  //if (hi[i][3] == '6' || hi[i][3] == '29')
+    L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);
+ }
+
     // URLS of maps for different layers (note: need to add attributes)
     var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -659,6 +686,7 @@ map.on('drag', function() {
       "&nbspLaundry": laundry,
       "&nbspHotspots": hotspots,
       "&nbspWater": waterspots,
+      "&nbspKitchens": kitchenspots, 
       "&nbspBuildings": buildings
     };
     // Adds overlays and layers to map
@@ -681,12 +709,12 @@ L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="wid
     L.circle(e.latlng, radius).addTo(map);
     }
     map.on('locationfound', onLocationFound);
-}).setPosition('bottomright').addTo(map);
+}, 'Current location').setPosition('bottomright').addTo(map);
 
 L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:16px">', function(btn, map){
     map.setView(new L.LatLng(40.346825, -74.656595), 16);
 //map.setView(        [40.347, -74.653],      zoom: 16);
-}).setPosition('bottomright').addTo(map);
+}, 'Reset map').setPosition('bottomright').addTo(map);
 
 L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16px">', function(btn, map){
     var x = document.getElementById("listOverlay");
@@ -695,7 +723,7 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
     } else {
         x.style.display = "none";
     }
-}).setPosition('bottomright').addTo(map);
+}, 'Toggle favorites').setPosition('bottomright').addTo(map);
     // Limits zoom (we could get rid of this)
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
