@@ -268,22 +268,16 @@ function convertBool(b) {
    </div>
     <div style="width:74px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
-<!--         <span class="input-group-addon">
-          <span class="glyphicon glyphicon-time"></span>
-        </span> -->
         <input id="clock" type="text" class="form-control" name="t" placeholder="Set Time" style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
     </div>
 
-   <div style="width:25px; float:left; padding-right: 10px;" onclick="clearForm()">
-    <input type="text" style="color: white; cursor: pointer;" placeholder="&times;" readonly>
-   </div>
-
    <div style="float:left;">
-    <div class="dropdown" style="float:left; padding-right: 10px; ">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown" style="float:left; ">
+<!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
-      </button>
+      </button> -->
+      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" name="t" placeholder="Set Dates" style="color: white; cursor: pointer;" readonly>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
           <input id = "M" name = "M" value = "M" type="checkbox">
@@ -308,6 +302,11 @@ function convertBool(b) {
         </div>
       </div>
     </div>
+      
+   <div style="width:25px; float:left; padding-right: 10px;" onclick="clearForm()">
+    <input type="text" style="color: white; cursor: pointer;" placeholder="&times;" readonly>
+   </div>
+      
     <div style="float:left; padding-right: 10px;">
       <button class="btn btn-success" type="submit">
         <i class="fa fa-search"></i>Search ClassMaps
