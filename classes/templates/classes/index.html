@@ -407,11 +407,10 @@ function convertBool(b) {
 
       </div>
     </div>
-
+<!-- 
     <div class="container match-group">
       <div id="courses" class="row text-center">
-
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -458,7 +457,7 @@ function addCourseRow(id, text) {
     {% for c in classes %}
 //       var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
     var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+"{{c.title}}";
-      addCourseRow("courses", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
+      addCourseRow("buildings", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
 
