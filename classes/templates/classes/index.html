@@ -155,7 +155,6 @@
       transition: 0.5s;
       padding-top: 60px;
     }
-
     .sideOverlay a {
       padding: 6px 6px 6px 30px;
       text-decoration: none;
@@ -290,7 +289,7 @@ function convertBool(b) {
 
 <!-- Overlay div begins -->
   <div id="overlay" class="overlay">
-    <form id="searchbar" method="GET" action="{% url 'classes:search' %}">
+    <form id="searchbar" name="myform" method="GET" action="{% url 'classes:search' %}">
      <a href="https://classmaps.herokuapp.com">
      <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:52px; float:left; margin-right:10px">
      </a>
@@ -303,23 +302,16 @@ function convertBool(b) {
    </div>
     <div style="width:74px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
-<!--         <span class="input-group-addon">
-          <span class="glyphicon glyphicon-time"></span>
-        </span> -->
         <input id="clock" type="text" class="form-control" name="t" placeholder="Set Time" style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
     </div>
 
-   <div style="width:25px; float:left; padding-right: 10px;" onclick="clearForm()">
-    <input type="text" style="color: white; cursor: pointer;" placeholder="&times;" readonly>
-   </div>
-
-   <div style="float:left;">
-    <div class="dropdown" style="float:left; padding-right: 10px; ">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<!--         <i class="fa fa-calendar"></i> -->
+   <div style="float:left; width:80px;">
+    <div class="dropdown" style="float:left; ">
+<!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
-      </button>
+      </button> -->
+      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" name="t" placeholder="Set Dates" style="color: white; cursor: pointer;" readonly>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
           <input id = "M" name = "M" value = "M" type="checkbox">
@@ -342,18 +334,24 @@ function convertBool(b) {
           <span class="slider"> Friday </span>
         </label>
         </div>
+      </div>
     </div>
-    </div>
-
+      
+   <div style="width:25px; float:left; padding-right: 10px;" onclick="clearForm()">
+    <input type="text" style="color: white; cursor: pointer;" placeholder="&times;" readonly>
+   </div>
+      
     <div style="float:left; padding-right: 10px;">
-      <button class="btn btn-success" type="submit">
+      <button class="btn btn-success" type="submit" style="display:none">
         <i class="fa fa-search"></i>Search ClassMaps
       </button>
     </div>
   </form>
 
+
   <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
     <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
+      </div>
   </div>
  </div>
 
@@ -443,6 +441,13 @@ function addCourseRow(id, text) {
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank">Feedback</a>
     <a href="https://andsylin.github.io/members/" target="_blank">Contact</a>
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
+     
+      <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
+        <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: blue;" href="/">homepage</a></p>
+        <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
+        <p>On Android, click on the <img src="{% static 'classes/images/3dot.png' %}"/> button on the top right of Chrome</p>
+        <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/></p>
+      </footer>
   </div>
 
 <!--  Code for help overlay  -->
@@ -453,6 +458,9 @@ function addCourseRow(id, text) {
    </div>
 <!-- sidenav script  -->
 <script>
+  
+  /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
   function clearForm() {
     console.log("cleared form");
     document.getElementById("searchbar").reset();
