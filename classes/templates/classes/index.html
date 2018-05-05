@@ -637,6 +637,14 @@ toggle between hiding and showing the dropdown content */
 mymap.locate({setView: true, maxZoom: 15});
 });*/
 
+var southWest = L.latLng(40.32, -74.67),
+northEast = L.latLng(40.356, -74.6);
+var bounds = L.latLngBounds(southWest, northEast);
+
+map.setMaxBounds(bounds);
+map.on('drag', function() {
+  map.panInsideBounds(bounds, { animate: false });
+});
 
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
