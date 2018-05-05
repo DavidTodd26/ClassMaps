@@ -18,5 +18,14 @@ waterLocs = [[40.344889, -74.657054, 'Kitchen next to seminar room'], //1915
  [40.344177, -74.657695, '0 Floor, across E020, next to bathrooms'], // Community Hall
  [40.343425, -74.658242, 'Second floor in S208 study, third floor in S308 study, fourth floor in S408 study (3)'], // Lauritzen / South Baker	
  [40.343997, -74.658301, 'First floor next to Whitman College office, C1 entry across from stairs level 30, C1 entry across from stairs level 40	'], // North B / North C	
+ [40.345461, -74.657487, 'Basement, near lounge; ground floor between OIT and restrooms; first floor by room 82; second floor by room 41; third floor by room 313 and in the corridor leading to Wright hall; four floor by restrooms (7)'], // Patton/Wright	
+ [40.344304, -74.654406, 'Sinks - Rooms 109, 129, 167A, 209, 319	(5)'], // scully
+ [40.345932, -74.657431, 'Basement Kitchen 313 (Sink)	'], // cuyler
+ [40.346796, -74.660197, 'Kitchen A2 (Sink)'], // little
+ [40.345462, -74.659387, '1st Floor, Kitchen 111 (Sink)'], // pyne
+ [40.346476, -74.660406, 'Kitchen 004A (Sink)'], // laughlin
+ [40.345793, -74.660605, 'G Floor, Kitchen 107 (Sink)'], // henry
+ [40.346677, -74.661254, 'G Floor, Kitchen 100 (Sink)'], // lockhart
+ //[, ''], // 
 
  [40.344251, -74.655882, 'First and second Floor kitchens (2)']]; //yoseloff
