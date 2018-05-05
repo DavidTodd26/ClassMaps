@@ -512,6 +512,9 @@ toggle between hiding and showing the dropdown content */
     console.log("cleared form");
     document.getElementById("searchbar").reset();
   }
+  function closeFavorites() {
+      document.getElementById("listOverlay").style.display = "none";
+  }
   function openHelp() {
       document.getElementById("helpOverlay").style.display = "block";
      document.getElementById("sideOverlay").style.width = "0";
