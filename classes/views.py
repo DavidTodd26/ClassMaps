@@ -267,3 +267,10 @@ def search(request):
         context['buildings'] = buildings
 
     return render(request, template, context)
+
+@login_required
+def about(request):
+    context = {
+        
+    }
+    return render(request, 'classes/about.html', context)

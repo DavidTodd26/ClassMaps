@@ -15,4 +15,5 @@ urlpatterns = [
     re_path('^api/enroll/', views.enroll, name='enroll'),
     re_path('courses/(?P<id>.*)/', views.details, name="details"),
     re_path('buildings/(?P<id>.*)/', views.details, name="details"),
+    path('about/', views.about),
 ]
