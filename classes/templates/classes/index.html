@@ -586,7 +586,7 @@ toggle between hiding and showing the dropdown content */
 
  for (var i = 0; i < waterLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
-    L.marker(waterLocs[i][0], {title: waterLocs[i][1], icon: waterIcon}).bindPopup(waterLocs[i][1]).addTo(waterspots);
+    L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindPopup(waterLocs[i][2]).addTo(waterspots);
  }
     // URLS of maps for different layers (note: need to add attributes)
     var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
