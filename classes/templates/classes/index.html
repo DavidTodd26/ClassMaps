@@ -440,15 +440,7 @@ function convertBool(b) {
 
 <!-- Script for matches -->
 <script>
-function truncate(line) {
-  var maxLength = 20;
-  if (line.length <= maxLength) {
-    return line;
-  }
-  return $.trim(line.substring(0, maxLength))+"...";
-}
-  function truncateTitle(line) {
-  var maxLength = 15;
+function truncate(line, maxLength) {
   if (line.length <= maxLength) {
     return line;
   }
@@ -473,23 +465,23 @@ function addBuildingRow(id, text) {
 
 {% if buildings %}
     {% for b in buildings %}
-      if ("{{b.names|last}}") {
-      if ("{{b.names|last}}") {
-        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}}<br>{{b.names|last}}");
+      alias = "{{b.names|last}}";
+      if (alias) {
+        var formatted = truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">"+formatted);
       } else {
-        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}} {{b.names|last}}");
+        var formatted = truncate("{{b}}", 20);
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">"+formatted);
       }
     {% endfor %}
 {% endif %}
 
 {% if classes %}
     {% for c in classes %}
-      var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
+      var formatted = truncate("{{c}} {{c.section}}", 15)+"<br>"+truncate("{{c.title}}", 20);
       addCourseRow("buildings", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
-
-//addCourseRow("4");
 </script>
 
 <!--  Code for sidebar overlay  -->
@@ -829,7 +821,9 @@ function resetHighlight(e) {
         var tokens = layer.feature.properties.name.split(",");
         var totalEnroll = 0;
         for (i = 0; i < tokens.length; i++) {
-          totalEnroll += data[tokens[i]];
+          if (tokens[i] in data) {
+            totalEnroll += data[tokens[i]];
+          }
         }
         var color = totalEnroll > 5000 ? '#800026' :
           totalEnroll > 2500  ? '#BD0026' :
