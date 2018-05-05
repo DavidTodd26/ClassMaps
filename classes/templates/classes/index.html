@@ -255,7 +255,8 @@
       width: 170px;
       border-radius: 5px;
       margin-right: 6px;
-      height: 180px:
+      padding-top:30px;
+      padding-bottom:30px;
     }
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -454,8 +455,7 @@ function addCourseRow(id, text) {
 
 {% if classes %}
     {% for c in classes %}
-//       var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
-    var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+"{{c.title}}";
+      var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
       addCourseRow("buildings", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
