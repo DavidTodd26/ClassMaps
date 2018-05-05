@@ -590,6 +590,12 @@ toggle between hiding and showing the dropdown content */
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
+     var kitchenIcon = L.icon({
+       iconUrl: "{% static 'classes/images/kitch.png' %}",
+       iconSize:     [26, 26], // size of the icon
+       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+     });
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
        iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
@@ -623,7 +629,7 @@ toggle between hiding and showing the dropdown content */
 
  for (var i = 0; i < kitchens.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
-    L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: waterIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);
+    L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);
  }
 
     // URLS of maps for different layers (note: need to add attributes)
