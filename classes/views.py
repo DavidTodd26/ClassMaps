@@ -159,7 +159,7 @@ def search_terms(query):
 
             concat = concat & matches
 
-        courses = Section.objects.filter(concat)
+        courses = courses | Section.objects.filter(concat)
         buildings = buildings | builds
     return (courses, buildings, names)
 
@@ -271,6 +271,6 @@ def search(request):
 @login_required
 def about(request):
     context = {
-        
+
     }
     return render(request, 'classes/about.html', context)
