@@ -275,4 +275,4 @@ def about(request):
     context = {
         
     }
-    return(render(request, 'classes/about.html, context)
+    return render(request, 'classes/about.html, context)
