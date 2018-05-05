@@ -272,6 +272,13 @@
 
 <!-- Autocomplete js -->
 <script>
+  function selectClass(){
+  window.location.href = 'https://classmaps.herokuapp.com/courses/{{c.pk}}';
+}
+function selectBuilding(){
+  window.location.href = 'https://classmaps.herokuapp.com/buildings/{{b}}';
+}
+  
 $(function() {
   $("#search").autocomplete({
     minLength: 3,
@@ -437,7 +444,12 @@ function truncate(line) {
 
 function addCourseRow(id, text) {
 //   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
-  $("#"+id).append("<div class=\"card\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div class=\"card\" onclick=\"selectClass()\">"+"<div class=\"container\">"+
+    "<p>"+text+"</p>"+"</div>"+"</div>");
+}
+function addBuildingRow(id, text) {
+//   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
+  $("#"+id).append("<div class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 
@@ -449,9 +461,9 @@ function addCourseRow(id, text) {
 {% if buildings %}
     {% for b in buildings %}
       if ("{{b.names|last}}") {
-        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}}<br>{{b.names|last}}");
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}}<br>{{b.names|last}}");
       } else {
-        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}} {{b.names|last}}");
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}} {{b.names|last}}");
       }
     {% endfor %}
 {% endif %}
