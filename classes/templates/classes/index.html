@@ -40,7 +40,7 @@
 
   gtag('config', 'UA-118677193-1');
 </script>
-  
+
   <title>ClassMaps</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -217,13 +217,6 @@
 $(function() {
   $("#search").autocomplete({
     minLength: 3,
-    /*
-    source: function(request, response) {
-        $.getJSON("/api/query/?term=" + request.term, function (data) {
-          response(data.slice(0, 10));
-        });
-    }
-    */
     source: function(request, response) {
         $.ajax({
           url: "/api/query/",
@@ -238,10 +231,16 @@ $(function() {
             F: convertBool($('#F').is(":checked")),
           },
           success: function(data) {
-            response(data.slice(0, 10));
+            response(data);
           }
         });
       },
+      select: function(event, ui) {
+        if(ui.item){
+            $(event.target).val(ui.item.value);
+        }
+        $(event.target.form).submit();
+      }
   });
 });
 
@@ -313,9 +312,7 @@ function convertBool(b) {
     </div>
 
     <div style="float:left; padding-right: 10px;">
-      <button class="btn btn-success" type="submit">
-        <i class="fa fa-search"></i>Search ClassMaps
-      </button>
+      <button type="submit"></button>
     </div>
   </form>
 
@@ -384,7 +381,7 @@ function convertBool(b) {
       document.getElementById("sideOverlay").style.display = "none";
   }
 
-  <!--  script for saved list  -->
+  //  script for saved list
   var collapse = true;
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   console.log(width);
