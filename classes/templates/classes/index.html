@@ -23,6 +23,7 @@
   <script type="text/javascript" src="{% static 'classes/hotspots.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/water.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/kitchens.js' %}"></script>
+  <script type="text/javascript" src="{% static 'classes/dining.js' %}"></script>
 
   <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
@@ -580,6 +581,7 @@ toggle between hiding and showing the dropdown content */
     var laundry = L.layerGroup();
     var buildings = L.layerGroup();
     var kitchenspots = L.layerGroup();
+    var diningspots = L.layerGroup();
 
      var printerIcon = L.icon({
        iconUrl: "{% static 'classes/images/printer.png' %}",
@@ -646,6 +648,11 @@ toggle between hiding and showing the dropdown content */
   //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);
  }
+  
+  for (var i = 0; i < dining.length; i++) {
+  //if (hi[i][3] == '6' || hi[i][3] == '29')
+    L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: kitchenIcon}).bindPopup(dining[i][2]).addTo(diningspots);
+ }
 
     // URLS of maps for different layers (note: need to add attributes)
     var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -690,6 +697,7 @@ map.on('drag', function() {
       "&nbspHotspots": hotspots,
       "&nbspWater": waterspots,
       "&nbspKitchens": kitchenspots,
+      "&nbspDining": diningspots,
       "&nbspBuildings": buildings
     };
     // Adds overlays and layers to map
