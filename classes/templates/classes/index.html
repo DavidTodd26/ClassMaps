@@ -564,7 +564,7 @@ toggle between hiding and showing the dropdown content */
     var waterspots = L.layerGroup();
     var laundry = L.layerGroup();
     var buildings = L.layerGroup();
-    var kitchens = L.layerGroup();
+    var kitchenspots = L.layerGroup();
 
      var printerIcon = L.icon({
        iconUrl: "{% static 'classes/images/printer.png' %}",
@@ -620,6 +620,12 @@ toggle between hiding and showing the dropdown content */
   //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindPopup(waterLocs[i][2]).addTo(waterspots);
  }
+
+ for (var i = 0; i < kitchens.length; i++) {
+  //if (hi[i][3] == '6' || hi[i][3] == '29')
+    L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: waterIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);
+ }
+
     // URLS of maps for different layers (note: need to add attributes)
     var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -662,6 +668,7 @@ map.on('drag', function() {
       "&nbspLaundry": laundry,
       "&nbspHotspots": hotspots,
       "&nbspWater": waterspots,
+      "&nbspKitchens": kitchens, 
       "&nbspBuildings": buildings
     };
     // Adds overlays and layers to map
