@@ -424,6 +424,13 @@ function truncate(line) {
   }
   return $.trim(line.substring(0, maxLength))+"...";
 }
+  function truncateTitle(line) {
+  var maxLength = 15;
+  if (line.length <= maxLength) {
+    return line;
+  }
+  return $.trim(line.substring(0, maxLength))+"...";
+}
 
 function addCourseRow(id, text) {
 //   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
@@ -448,7 +455,7 @@ function addCourseRow(id, text) {
 
 {% if classes %}
     {% for c in classes %}
-      var formatted = truncate("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
+      var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
       addCourseRow("courses", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
