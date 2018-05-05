@@ -7,4 +7,16 @@ waterLocs = [[40.344889, -74.657054, 'Kitchen next to seminar room'], //1915
  [40.345498, -74.655801, 'First floor kitchen sink'], //dodge osborne
  [40.344349, -74.655071, 'First (109A), second (205 and 207) and third floor (307) kitchens (3)'], //wilf
  [40.344734, -74.656289, 'Second Floor, one next to Butler College Office, one next to Wilson College Office (2)'], //wu-wilcox
- [40.344186, -74.655796, 'First and second Floor kitchens (2)']]; //yoseloff
+ [40.348626, -74.662117, 'Add-on wall unit next to dining hall entrance'], // madison
+ [40.347479, -74.660848, 'By the elevators on the ground, first, and second floors; in the first floor lounge (Sink) (4)'], // buyers
+ [40.347475, -74.661293, 'Basement, in the kitchen (Sink) and by entryway 9; second floor by the elevator and by entryway 9; third floor by the elevator (6)'], // blair
+ [40.347949, -74.661819, 'Kitchen 011 (Sink)'], // joline
+ [40.347442, -74.659947, 'G Floor, Kitchen 015 (Sink)'], // witherspoon
+ [40.347001, -74.659217, 'Kitchen 008 (Sink)'], // edwards
+ [40.34819, -74.662076, 'Main floor in corridor between Mathey College office and common room'], // hamilton
+ [40.341872, -74.660793, 'G floor, outside dining room'], // Forbes Main Inn
+ [40.344177, -74.657695, '0 Floor, across E020, next to bathrooms'], // Community Hall
+ [40.343425, -74.658242, 'Second floor in S208 study, third floor in S308 study, fourth floor in S408 study (3)'], // Lauritzen / South Baker	
+ [40.343997, -74.658301, 'First floor next to Whitman College office, C1 entry across from stairs level 30, C1 entry across from stairs level 40	'], // North B / North C	
+
+ [40.344251, -74.655882, 'First and second Floor kitchens (2)']]; //yoseloff
