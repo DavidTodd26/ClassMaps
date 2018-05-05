@@ -671,7 +671,7 @@ L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="wid
     map.locate({
         setView: true,
         maxZoom: 18
-    });
+    }, 'hello');
 
     //map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
