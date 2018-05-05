@@ -411,7 +411,10 @@ function convertBool(b) {
    </tfoot>
 </table>
 </div>
-<!-- Controls for horizontal scroll -->
+
+<!--  Code search result overlay -->
+<div id="resultsContainer" class="resultsContainer" style="display: none;">
+  <!-- Controls for horizontal scroll -->
 <div style="float: left; padding-left: 5px; position: fixed; top: 70px; right: 0;">
     <i style="font-size:24px" class="fa">&#xf104;</i>
 </div>
@@ -421,8 +424,7 @@ function convertBool(b) {
 <div style="float: right; padding-right: 5px; position: fixed; top: 60px; right: 0;">
      <a href="javascript:void(0)" class="closebtn" onclick="closeResults()">&times;CLOSE</a>
 </div>
-<!--  Code search result overlay -->
-<div id="resultsContainer" class="resultsContainer" style="display: none;">
+  
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
     <div class="container match-group" style="margin: 0;">
       <div id="buildings" class="row text-center" style="margin: 0;">
