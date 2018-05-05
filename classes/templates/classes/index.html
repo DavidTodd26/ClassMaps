@@ -317,11 +317,19 @@ function convertBool(b) {
     </div>
   </form>
 
-  <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
-    <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
-      </button>
+  <div class="dropdown" style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
+<!--     <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span> -->
+    <span id = "menutoggle" style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="false">&#9776;</span>
+        <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="menutoggle">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a style="pointer-events: none;"> Welcome, {{netid}}</a>
+        <a href="https://andsylin.github.io/" target="_blank">About</a>
+        <a onclick="openHelp()">Help</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank">Feedback</a>
+        <a href="https://andsylin.github.io/members/" target="_blank">Contact</a>
+        <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
+      </div>
   </div>
  </div>
 
