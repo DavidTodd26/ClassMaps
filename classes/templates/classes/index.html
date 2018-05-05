@@ -21,6 +21,7 @@
   <script type="text/javascript" src="{% static 'classes/printers.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/laundry.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/hotspots.js' %}"></script>
+  <script type="text/javascript" src="{% static 'classes/water.js' %}"></script>
 
   <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
@@ -572,6 +573,11 @@ toggle between hiding and showing the dropdown content */
  for (var i = 0; i < hotspotLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);
+ }
+
+ for (var i = 0; i < waterLocs.length; i++) {
+  //if (hi[i][3] == '6' || hi[i][3] == '29')
+    L.marker(waterLocs[i][0], {title: waterLocs[i][1], icon: hotspotIcon}).bindPopup(waterLocs[i][1]).addTo(waterspots);
  }
     // URLS of maps for different layers (note: need to add attributes)
     var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
