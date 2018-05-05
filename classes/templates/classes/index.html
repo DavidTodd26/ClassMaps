@@ -601,9 +601,9 @@ toggle between hiding and showing the dropdown content */
      });
     for (var i = 0; i < printerLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
-    if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+    if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
  }
  for (var i = 0; i < laundryLocs.length; i++) {
   //if (hi[i][3] == '6' || hi[i][3] == '29')
