@@ -671,7 +671,7 @@ L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="wid
     map.locate({
         setView: true,
         maxZoom: 18
-    }, 'hello');
+    });
 
     //map.locate({setView: true,watch: true, maxZoom: 16});
     function onLocationFound(e) {
@@ -681,7 +681,7 @@ L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="wid
     L.circle(e.latlng, radius).addTo(map);
     }
     map.on('locationfound', onLocationFound);
-}).setPosition('bottomright').addTo(map);
+}, 'hellooo').setPosition('bottomright').addTo(map);
 
 L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:16px">', function(btn, map){
     map.setView(new L.LatLng(40.346825, -74.656595), 16);
