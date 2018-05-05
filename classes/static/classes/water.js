@@ -26,6 +26,15 @@ waterLocs = [[40.344889, -74.657054, 'Kitchen next to seminar room'], //1915
  [40.346476, -74.660406, 'Kitchen 004A (Sink)'], // laughlin
  [40.345793, -74.660605, 'G Floor, Kitchen 107 (Sink)'], // henry
  [40.346677, -74.661254, 'G Floor, Kitchen 100 (Sink)'], // lockhart
- //[, ''], // 
-
+ [40.34986, -74.663202, 'Office of Community and Regional Affairs (Sink)'], // 22 chambers street 
+ [40.348955, -74.656217, 'Floors G (outside G23A), 1 (outside 126), and 2 (outside 219) (3)'], //  dickinson hall
+ [40.347809, -74.658623, 'Kitchen 001A (Sink)'], // whig
+ [40.349267, -74.651734, 'Multiple Locations (Sinks)	(3)'], // carl fields house
+ [40.346749, -74.653537, 'G Floor, Kitchen'], // center for jewish life
+ [40.349391, -74.657198, 'Floors A, B, C, 2, and 3 near the elevators/bathrooms (5)'], // firestone library
+ [40.346743, -74.654904, 'G Floor, Cafeteria	'], // frist campus center
+ [40.348574, -74.659262, 'Second Floor Kitchenette (Sink) and Copy Room; third floor hallway	(3)'], // nassau hall
+ [40.343392, -74.658858, 'A Level & Floors 1-7 (Fountain) (8)'], // new south
+ [40.34794, -74.657859, 'Multiple Locations (Fountains)	(2)'], // murray dodge
+ 
  [40.344251, -74.655882, 'First and second Floor kitchens (2)']]; //yoseloff
