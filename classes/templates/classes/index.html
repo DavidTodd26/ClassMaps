@@ -31,6 +31,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
 
 
+
 <head bgcolor="#000000">
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118677193-1"></script>
@@ -254,9 +255,9 @@
       transition: 0.3s;
       width: 170px;
       border-radius: 5px;
-      padding-top: 30px;
-      padding-bottom: 30px;
       margin-right: 6px;
+      padding-top:30px;
+      padding-bottom:30px;
     }
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -402,8 +403,8 @@ function convertBool(b) {
 <!--  Code search result overlay -->
 <div id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
-    <div class="container match-group">
-      <div id="buildings" class="row text-center">
+    <div class="container match-group" style="margin: 0;">
+      <div id="buildings" class="row text-center" style="margin: 0;">
 
       </div>
     </div>
@@ -455,8 +456,7 @@ function addCourseRow(id, text) {
 
 {% if classes %}
     {% for c in classes %}
-//       var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
-    var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+"{{c.title}}";
+      var formatted = truncateTitle("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
       addCourseRow("buildings", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
@@ -697,44 +697,70 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
     }
 }).setPosition('bottomright').addTo(map);
     // Limits zoom (we could get rid of this)
-    map.options.minZoom = 14;
-    map.options.maxZoom = 18;
-    function getColor(d) {
-  if (d == 'dormitory') return '#800026';
-  else if (d == 'university') return '#FEB42C';
-  else return '#FED976';
-  /*return d > 1000 ? '#800026' :
-      d > 500  ? '#BD0026' :
-      d > 200  ? '#E31A1C' :
-      d > 100  ? '#FC4E2A' :
-      d > 50   ? '#FD8D3C' :
-      d > 20   ? '#FEB24C' :
-      d > 10   ? '#FED976' :
-            '#FFEDA0';*/
-}
-    function style(feature) {
-  return {
-    weight: 2,
-    opacity: 1,
-    color: 'white',
-    dashArray: '3',
-    fillOpacity: 0.7,
-    fillColor: getColor(feature.properties.building)
-    //fillColor: '#FED976'
-  };
-}
-      function highlightFeature(e) {
-  var layer = e.target;
-  layer.setStyle({
-    weight: 5,
-    color: '#666',
-    dashArray: '',
-    fillOpacity: 0.7
-  });
-  //if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-  //  layer.bringToFront();
-  //}
-  //info.update(layer.feature.properties);
+  map.options.minZoom = 14;
+  map.options.maxZoom = 18;
+
+  function getColor(name, layer) {
+    function getData() {
+      return $.ajax({
+        url: "/api/query/",
+        dataType: "json",
+        data: {
+          q: name,
+          t: $('#clock').val(),
+        },
+        success: function(data) {
+          return data;
+        }
+      });
+    }
+
+    getData().success(function (data) {
+      var totalEnroll = 0;
+      $.each(data, function() {
+        $.each(this, function(i, val) {
+          if (i === "enroll") {
+            totalEnroll += parseInt(val);
+          }
+        });
+      });
+      var color = totalEnroll > 5000 ? '#800026' :
+        totalEnroll > 2500  ? '#BD0026' :
+        totalEnroll > 1000  ? '#E31A1C' :
+        totalEnroll > 500  ? '#FC4E2A' :
+        totalEnroll > 100   ? '#FD8D3C' :
+        totalEnroll > 50   ? '#FEB24C' :
+        totalEnroll > 0   ? '#FED976' :
+              '#FFF';
+
+      layer.setStyle({
+        fillColor: color,
+      });
+    });
+
+    //alert(data)
+/*
+    if (d == 'dormitory') return '#800026';
+    else if (d == 'university') return '#FEB42C';
+    else return '#FED976';
+*/
+  }
+  function style(feature) {
+    return {
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.7,
+    };
+  }
+  function highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 5,
+      color: '#666',
+      dashArray: '',
+    });
 }
 function onEachFeature(feature, layer) {
   var buildquery = feature.properties.name
@@ -750,14 +776,19 @@ function onEachFeature(feature, layer) {
     mouseout: resetHighlight,
     click: zoomToFeature
   });
+  getColor(feature.properties.name, layer);
 }
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
   e.bindPopup("You are within meters from this point");//.openPopup();
 }
 function resetHighlight(e) {
-  geojson.resetStyle(e.target);
-  //info.update();
+  var layer = e.target;
+  layer.setStyle({
+    weight: 1,
+    color: 'white',
+    dashArray: '3',
+  });
 }
     var geojson;
   geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
