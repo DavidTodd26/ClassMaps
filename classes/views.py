@@ -38,12 +38,6 @@ def enroll(request):
                 builds[course.building] += int(course.enroll)
             else:
                 builds[course.building] = int(course.enroll)
-    #results = []
-    #for b in builds:
-    #    build_json = {}
-    #    build_json['label'] = b
-    #    build_json['value'] = builds[b]
-    #    results.append(build_json)
     data = json.dumps(builds)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
@@ -133,21 +127,6 @@ def search_terms(query):
         results = Section.objects.all()
         builds = Building.objects.all()
         for q in query:
-            matches = Q(listings__icontains = "/"+q) | \
-                      Q(listings__icontains = " "+q) | \
-                      Q(section__istartswith = q) | \
-                      Q(building__istartswith = q) | \
-                      Q(building__icontains = " "+q)
-
-            # Handle concat dept/number (e.g. cos333)
-            if len(q) >= 4:
-                matches = matches | \
-                          (Q(listings__icontains = "/"+q[0:3]) & \
-                          Q(listings__icontains = " "+q[3:]))
-
-            #results = matches
-            concat = concat & matches
-
             # Always try to match query for building results
             builds = builds.filter(names__icontains = q)
             # Display the primary name and the name that matched to prevent confusion
@@ -160,7 +139,26 @@ def search_terms(query):
                         else:
                             names[b.names[0]] = ""
                         break
-        #courses = courses | results
+
+            # Match courses
+            matches = Q(listings__icontains = "/"+q) | \
+                      Q(listings__icontains = " "+q) | \
+                      Q(section__istartswith = q)
+
+            # Handle building - look for match in canonical name and aliases
+            for b in builds:
+                matches = matches | \
+                    Q(building__istartswith = b.names[0]) | \
+                    Q(building__icontains = " "+b.names[0])
+
+            # Handle concat dept/number (e.g. cos333)
+            if len(q) >= 4:
+                matches = matches | \
+                          (Q(listings__icontains = "/"+q[0:3]) & \
+                          Q(listings__icontains = " "+q[3:]))
+
+            concat = concat & matches
+
         courses = Section.objects.filter(concat)
         buildings = buildings | builds
     return (courses, buildings, names)
