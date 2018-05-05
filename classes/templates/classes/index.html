@@ -252,7 +252,7 @@
     .card {
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       transition: 0.3s;
-      width: 40%;
+      width: 230px;
       border-radius: 5px;
     }
 
@@ -448,7 +448,7 @@ function addCourseRow(id, text) {
 {% if classes %}
     {% for c in classes %}
       var formatted = truncate("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
-      addCourseRow("courses", "<a href=\"/courses/{{c.pk}}\" style=\"color: white;\">"+formatted);
+      addCourseRow("courses", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
 
