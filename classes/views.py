@@ -222,19 +222,30 @@ def parse_terms(request):
 
 @login_required
 def search(request):
-    template = 'classes/searches.html'
+    template = 'classes/index.html'
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
 
-    # Add queried names
-    for b in buildings:
-        b.names.append(names[b.names[0]])
+    netid = request.user.username
 
     context = {
         'q': query,
         't': time,
         'd': dayString,
-        'classes': resultsFiltered,
-        'buildings': buildings,
-        'netid': request.user.username
+        'saved_courses': Section.objects.filter(saved__contains=[netid]),
+        'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+        'netid': netid
     }
+
+    # If there's exactly one match, we can put it directly on the map
+    if len(resultsFiltered) == 1 and len(buildings) == 0:
+        context['c'] = resultsFiltered[0]
+    elif len(resultsFiltered) == 0 and len(buildings) == 1:
+        context['building'] = buildings[0]
+    else:
+        # Add queried names
+        for b in buildings:
+            b.names.append(names[b.names[0]])
+        context['classes'] = resultsFiltered
+        context['buildings'] = buildings
+
     return render(request, template, context)

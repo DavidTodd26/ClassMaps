@@ -71,6 +71,8 @@
     .overlay {
       height: auto;
       width: 100%;
+      min-height: 75px;
+      max-height: 85px;
       margin-left: -100%;
       position: relative;
       float: right;
@@ -91,7 +93,6 @@
     .dropdown:hover .dropdown-content {
         display: block;
     }
-
     /* Change the background color of the dropdown button when the dropdown content is shown */
     .dropdown:hover .dropbtn {
         background-color: #3e8e41;
@@ -209,6 +210,38 @@
       overflow-y: auto;
       font-size: small;
     }
+    /* Search result overlay */
+    .resultsContainer {
+      padding-top: 85px;
+    }
+    .resultsOverlay {
+      height: auto;
+      width: 100%;
+      margin-left: -100%;
+      position: relative;
+      float: right;
+      z-index: 2;
+      padding-top: 1%;
+      padding-bottom: 0.5%;
+      background-color:rgba(0,0,0,0.6); // Sets to 50% transparent;
+      pointer-events: auto;
+    }
+    /* Horizontal Scroll */
+    .match-group > .row {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-left: 0.5%;
+      padding-right: 0.5%;
+    }
+    .match-group > .row > .col-xs-4 {
+      display: inline-block;
+      float: none;
+    }
+    .col-xs-4 {
+      width: 270px;
+      color: white;
+      font-size: small;
+    }
   </style>
 </head>
 
@@ -218,29 +251,29 @@ $(function() {
   $("#search").autocomplete({
     minLength: 3,
     source: function(request, response) {
-        $.ajax({
-          url: "/api/query/",
-          dataType: "json",
-          data: {
-            q: request.term,
-            t: $('#clock').val(),
-            M: convertBool($('#M').is(":checked")),
-            T: convertBool($('#T').is(":checked")),
-            W: convertBool($('#W').is(":checked")),
-            Th: convertBool($('#Th').is(":checked")),
-            F: convertBool($('#F').is(":checked")),
-          },
-          success: function(data) {
-            response(data);
-          }
-        });
-      },
-      select: function(event, ui) {
-        if(ui.item){
-            $(event.target).val(ui.item.value);
+      $.ajax({
+        url: "/api/query/",
+        dataType: "json",
+        data: {
+          q: request.term,
+          t: $('#clock').val(),
+          M: convertBool($('#M').is(":checked")),
+          T: convertBool($('#T').is(":checked")),
+          W: convertBool($('#W').is(":checked")),
+          Th: convertBool($('#Th').is(":checked")),
+          F: convertBool($('#F').is(":checked")),
+        },
+        success: function(data) {
+          response(data);
         }
-        $(event.target.form).submit();
+      });
+    },
+    select: function(event, ui) {
+      if (ui.item) {
+        $(event.target).val(ui.item.value);
       }
+      $(event.target.form).submit();
+    }
   });
 });
 
@@ -254,6 +287,7 @@ function convertBool(b) {
 </script>
 
   <div id="map"></div>
+
 <!-- Overlay div begins -->
   <div id="overlay" class="overlay">
     <form id="searchbar" method="GET" action="{% url 'classes:search' %}">
@@ -343,6 +377,63 @@ function convertBool(b) {
    </tfoot>
 </table>
 </div>
+
+<!--  Code search result overlay -->
+<div id="resultsContainer" class="resultsContainer" style="display: none;">
+  <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
+    <div class="container match-group">
+      <div id="buildings" class="row text-center">
+
+      </div>
+    </div>
+
+    <div class="container match-group">
+      <div id="courses" class="row text-center">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script for matches -->
+<script>
+function truncate(line) {
+  var maxLength = 30;
+  if (line.length <= maxLength) {
+    return line;
+  }
+  return $.trim(line.substring(0, maxLength))+"...";
+}
+
+function addCourseRow(id, text) {
+  $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
+}
+
+{% if buildings or classes %}
+  var matchesBlock = document.getElementById("resultsContainer");
+  matchesBlock.style.display = "block";
+{% endif %}
+
+{% if buildings %}
+    {% for b in buildings %}
+      if ("{{b.names|last}}") {
+        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: white;\">{{b}}<br>{{b.names|last}}");
+      } else {
+        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: white;\">{{b}} {{b.names|last}}");
+      }
+    {% endfor %}
+{% endif %}
+
+{% if classes %}
+    {% for c in classes %}
+      var formatted = truncate("{{c}} {{c.section}}")+"<br>"+truncate("{{c.title}}");
+      addCourseRow("courses", "<a href=\"/courses/{{c.pk}}\" style=\"color: white;\">"+formatted);
+    {% endfor %}
+{% endif %}
+
+//addCourseRow("4");
+</script>
+
 <!--  Code for sidebar overlay  -->
    <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -405,11 +496,11 @@ function convertBool(b) {
       cols += '<td>'+button+'</td>';
       newRow.append(cols);
       $("table.order-list").append(newRow);
-}
+  }
 
-$("table.order-list").on("click", ".ibtnDel", function (event) {
-    $(this).closest("tr").remove();
-});
+  $("table.order-list").on("click", ".ibtnDel", function (event) {
+      $(this).closest("tr").remove();
+  });
 
    $('.clockpicker').clockpicker({
      twelvehour: true,
