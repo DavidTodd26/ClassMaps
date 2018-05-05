@@ -56,7 +56,7 @@
           height: 100%;
           width: 100%;
           float: left;
-          
+
         : 1;
           position: relative;
           z-index: 0;
@@ -408,7 +408,7 @@ function convertBool(b) {
 
       </div>
     </div>
-<!-- 
+<!--
     <div class="container match-group">
       <div id="courses" class="row text-center">
       </div> -->
@@ -700,51 +700,6 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
 
-  function getColor(name, layer) {
-    function getData() {
-      return $.ajax({
-        url: "/api/query/",
-        dataType: "json",
-        data: {
-          q: name,
-          t: $('#clock').val(),
-        },
-        success: function(data) {
-          return data;
-        }
-      });
-    }
-
-    getData().success(function (data) {
-      var totalEnroll = 0;
-      $.each(data, function() {
-        $.each(this, function(i, val) {
-          if (i === "enroll") {
-            totalEnroll += parseInt(val);
-          }
-        });
-      });
-      var color = totalEnroll > 5000 ? '#800026' :
-        totalEnroll > 2500  ? '#BD0026' :
-        totalEnroll > 1000  ? '#E31A1C' :
-        totalEnroll > 500  ? '#FC4E2A' :
-        totalEnroll > 100   ? '#FD8D3C' :
-        totalEnroll > 50   ? '#FEB24C' :
-        totalEnroll > 0   ? '#FED976' :
-              '#FFF';
-
-      layer.setStyle({
-        fillColor: color,
-      });
-    });
-
-    //alert(data)
-/*
-    if (d == 'dormitory') return '#800026';
-    else if (d == 'university') return '#FEB42C';
-    else return '#FED976';
-*/
-  }
   function style(feature) {
     return {
       weight: 2,
@@ -776,7 +731,6 @@ function onEachFeature(feature, layer) {
     mouseout: resetHighlight,
     click: zoomToFeature
   });
-  getColor(feature.properties.name, layer);
 }
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
@@ -792,6 +746,45 @@ function resetHighlight(e) {
 }
     var geojson;
   geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
+
+  function updateColor(geojson) {
+    function getData() {
+      return $.ajax({
+        url: "/api/enroll/",
+        dataType: "json",
+        data: {
+          t: $('#clock').val(),
+          M: convertBool($('#M').is(":checked")),
+          T: convertBool($('#T').is(":checked")),
+          W: convertBool($('#W').is(":checked")),
+          Th: convertBool($('#Th').is(":checked")),
+          F: convertBool($('#F').is(":checked")),
+        },
+        success: function(data) {
+          return data;
+        }
+      });
+    }
+
+    getData().success(function (data) {
+      geojson.eachLayer(function(layer) {
+        var val = data[layer.feature.properties.name];
+        var color = val > 5000 ? '#800026' :
+          val > 2500  ? '#BD0026' :
+          val > 1000  ? '#E31A1C' :
+          val > 500  ? '#FC4E2A' :
+          val > 100   ? '#FD8D3C' :
+          val > 50   ? '#FEB24C' :
+          val > 0   ? '#FED976' :
+                '#FFF';
+
+        layer.setStyle({
+          fillColor: color,
+        });
+      });
+    });
+  }
+  updateColor(geojson);
  /* var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (buildings) {
   var div = L.DomUtil.create('div', 'info legend'),
