@@ -412,9 +412,9 @@ function convertBool(b) {
 <!--  Code search result overlay -->
 <div id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeResults()">&times;CLOSE</a>
     <div class="container match-group" style="margin: 0;">
       <div id="buildings" class="row text-center" style="margin: 0;">
-
       </div>
     </div>
 <!--
@@ -482,10 +482,10 @@ function addBuildingRow(id, text) {
    <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a style="pointer-events: none;"> Welcome, {{netid}}</a>
-    <a href="https://andsylin.github.io/" target="_blank">About</a>
+    <a href="https://classmaps.herokuapp.com/about/#team" target="_blank">About</a>
     <a onclick="openHelp()">Help</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank">Feedback</a>
-    <a href="https://andsylin.github.io/members/" target="_blank">Contact</a>
+    <a href="https://classmaps.herokuapp.com/about/#team" target="_blank">Contact</a>
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
 
       <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
@@ -518,6 +518,9 @@ toggle between hiding and showing the dropdown content */
   }
   function closeHelp() {
       document.getElementById("helpOverlay").style.display = "none";
+  }
+  function closeResults() {
+      document.getElementById("resultsOverlay").style.display = "none";
   }
   function openNav() {
       document.getElementById("sideOverlay").style.display = "block";
