@@ -320,23 +320,23 @@ function convertBool(b) {
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
           <input id = "M" name = "M" value = "M" type="checkbox">
-          <span class="slider"> Monday </span>
+          <span class="slider"> &nbspMonday </span>
         </label><br>
         <label class="switch">
           <input id = "T" name = "T" value = "T" type="checkbox">
-          <span class="slider"> Tuesday </span>
+          <span class="slider"> &nbspTuesday </span>
         </label><br>
         <label class="switch">
           <input id = "W" name = "W" value = "W" type="checkbox">
-          <span class="slider"> Wednesday </span>
+          <span class="slider"> &nbspWednesday </span>
         </label><br>
         <label class="switch">
           <input id = "Th" name = "Th" value = "Th" type="checkbox">
-          <span class="slider"> Thursday </span>
+          <span class="slider"> &nbspThursday </span>
         </label><br>
         <label class="switch">
           <input id = "F" name = "F" value = "F" type="checkbox">
-          <span class="slider"> Friday </span>
+          <span class="slider"> &nbspFriday </span>
         </label>
         </div>
       </div>
@@ -621,10 +621,10 @@ mymap.locate({setView: true, maxZoom: 15});
     // Our overlays
     var overlays = {
       "&nbspPrinters": printers,
-      " Laundry": laundry,
-      " Hotspots": hotspots,
-      " Water": waterspots,
-      " Buildings": buildings
+      "&nbspLaundry": laundry,
+      "&nbspHotspots": hotspots,
+      "&nbspWater": waterspots,
+      "&nbspBuildings": buildings
     };
     // Adds overlays and layers to map
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
