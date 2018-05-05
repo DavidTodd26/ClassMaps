@@ -475,9 +475,9 @@ function addBuildingRow(id, text) {
     {% for b in buildings %}
       if ("{{b.names|last}}") {
       if ("{{b.names|last}}") {
-        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">"+truncate({{b}})+"<br>"+truncate({{b.names|last}})");
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}}<br>{{b.names|last}}");
       } else {
-        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">"+truncate({{b}})");
+        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}} {{b.names|last}}");
       }
     {% endfor %}
 {% endif %}
