@@ -64,4 +64,6 @@ waterLocs = [[40.344889, -74.657054, 'Kitchen next to seminar room'], //1915
  [40.349563, -74.652622, 'First Floor (124), Basement Floor (002) (4)'], // Sherrerd Hall	
  [40.349232, -74.65384, 'Lower level in vending area'], // Wallace Hall	
  [40.347171, -74.655737, 'First floor South Wing; second and third floors in North Wings (4)'], // Woolworth
+ [40.349159, -74.655303, 'Basement'], // JRR Building
+ [40.342718, -74.65932, 'Basement'], // New music Building
  [40.344251, -74.655882, 'First and second Floor kitchens (2)']]; //yoseloff
