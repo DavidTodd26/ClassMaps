@@ -42,5 +42,26 @@ waterLocs = [[40.344889, -74.657054, 'Kitchen next to seminar room'], //1915
  [40.345817, -74.658894, "Stephen's fitness center main floor; near workout equipment; entrance; mezzanine rooms (5)"], // Dillon Gym	
  [40.343678, -74.648537, 'Gym area entrances; lobby wings on east and west sides (4)'], // Jadwin Gym	
  [40.339477, -74.650746, 'Multiple Locations (Fountains) (2)'], // Shea Rowing Center	
- 
+ [40.347668, -74.644783, 'Sinks in classrooms: 101, 112, 113, B09, B08 (5)'], // 171 Broadmead (U-Now)	
+ [40.350187, -74.656542, 'Multiple Locations (Fountains) (3)'], // Aaron Burr Hall	
+ [40.350306, -74.652218, 'Multiple Locations (Sinks) (2)'], // Computer Science	
+ [40.348659, -74.654143, 'Fisher Hall: Ground Floor Corridor, A Level Circulation, First Floor Corridor, Second Floor Corridor, Third Floor Corridor (5)'], // Corwin / Fisher / Bendheim	
+ [40.350351, -74.650919, 'A-Wing: First Floor (A126 Corridor), Second Floor (A214 Corridor), Third Floor (A308 Corridor), Fourth Floor (A413 Corridor)'], // E-Quad A-Wing
+ [40.350899, -74.651236, 'B-Wing: First Floor (B116 Corridor), Second Floor (B212 Corridor), Third Floor (B316 Corridor), Fourth Floor (B417 Corridor)'], // E-Quad B-Wing
+ [40.35067, -74.65151, 'C-Wing: Second Floor, Cafe, Second Floor (C200 Corridor), Third Floor (C319 Corridor)'], // E-Quad C-Wing
+ [40.350919, -74.650694, 'D-Wing: Second Floor (D221 Corridor), Third Floor (D321 Corridor), Fourth Floor (D417 Corridor)'], // E-Quad D-Wing
+ [40.349975, -74.651204, 'E-Wing: First Floor (E115 Corridor), Second Floor (E219 Corridor), Third Floor (E319 Corridor), Fourth Floor (E423 Corridor)'], // E-Quad E-Wing
+ [40.350915, -74.650372, 'J-Wing: First Floor (J111 Corridor), Second Floor (J215 Corridor), Third Floor, Fourth Floor (J409 Corridor)'], // E-Quad J-Wing
+ [40.345685, -74.652797, 'Sink'], // Fine Hall	
+ [40.344354, -74.650962, 'Ground Floor by vending machines'], // Frick Chemistry Lab	
+ [40.34596, -74.654396, 'First floor by room 156; mezzanine across from stairs; next to elevators on second and third floors; A floor across from room 18, next to room A57 and room 09B (5)'], // Guyot
+ [40.347469, -74.658118, "100-level next to women's room; 200-level next to 202A Copier Room and across from 234 FAC Office; 300-level next to 303 Group Study Room and across from room 334; basement floor next to restrooms (6)"], // Lewis Library	
+ [40.346078, -74.653076, 'First floor, next to library entrance; basement floor, across from the restrooms (2)'], // McCormick
+ [40.346082, -74.655338, 'Main floor next to restrooms (3)'], // McCosh
+ [40.343237, -74.652502, 'Stand-alone Elkay stations (7)'], // Neuroscience Institute	
+ [40.347267, -74.612645, 'Main Floor (Fountain)'], // Print & Mail Services	
+ [40.34849, -74.654579, 'Third floor room 316 kitchen sink; Room 404A kitchen sink (2)'], // Robertson	
+ [40.349563, -74.652622, 'First Floor (124), Basement Floor (002) (4)'], // Sherrerd Hall	
+ [40.349232, -74.65384, 'Lower level in vending area'], // Wallace Hall	
+ [40.347171, -74.655737, 'First floor South Wing; second and third floors in North Wings	(4)'], // Woolworth
  [40.344251, -74.655882, 'First and second Floor kitchens (2)']]; //yoseloff
