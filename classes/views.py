@@ -180,7 +180,7 @@ def searchTime(inputTime, results):
     except ValueError:
         return resultsWithTime
     convertedTime = datetime.strptime(inputTime, '%I:%M%p').time()
-    resultsWithTime = results.filter(starttime__gte = convertedTime, endtime__lte = convertedTime)
+    resultsWithTime = results.filter(starttime__lte = convertedTime, endtime__gte = convertedTime)
     return resultsWithTime
 
 def getDayString(mon, tues, wed, thurs, fri):
