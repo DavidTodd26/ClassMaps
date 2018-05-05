@@ -77,7 +77,7 @@
       margin-left: -100%;
       position: relative;
       float: right;
-      z-index: 2;
+      z-index: 10;
       padding-top: 1%;
       padding-bottom: 0.5%;
       padding-right: 40px;
@@ -307,12 +307,12 @@ function convertBool(b) {
       </div>
     </div>
 
-   <div style="float:left; width:80px;">
+   <div style="float:left; width:30px;">
     <div class="dropdown" style="float:left; ">
 <!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
       </button> -->
-      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" name="t" placeholder="Set Dates" style="color: white; cursor: pointer;" readonly>
+      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" name="t" placeholder="&#xe109;" style="color: white; cursor: pointer;" readonly>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
           <input id = "M" name = "M" value = "M" type="checkbox">
@@ -337,11 +337,11 @@ function convertBool(b) {
         </div>
       </div>
     </div>
-      
+
    <div style="width:25px; float:left; padding-right: 10px;" onclick="clearForm()">
     <input type="text" style="color: white; cursor: pointer;" placeholder="&times;" readonly>
    </div>
-      
+
     <div style="float:left; padding-right: 10px;">
       <button class="btn btn-success" type="submit" style="display:none">
         <i class="fa fa-search"></i>Search ClassMaps
@@ -442,7 +442,7 @@ function addCourseRow(id, text) {
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank">Feedback</a>
     <a href="https://andsylin.github.io/members/" target="_blank">Contact</a>
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
-     
+
       <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
         <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: blue;" href="/">homepage</a></p>
         <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
@@ -459,8 +459,8 @@ function addCourseRow(id, text) {
    </div>
 <!-- sidenav script  -->
 <script>
-  
-  /* When the user clicks on the button, 
+
+  /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
   function clearForm() {
     console.log("cleared form");
