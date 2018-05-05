@@ -29,6 +29,26 @@ def query(request):
     return HttpResponse(data, mimetype)
 
 @login_required
+def enroll(request):
+    query, time, dayString, courses, buildings, names = parse_terms(request)
+    builds = {}
+    for course in courses:
+        if course.enroll:
+            if course.building in builds:
+                builds[course.building] += int(course.enroll)
+            else:
+                builds[course.building] = int(course.enroll)
+    #results = []
+    #for b in builds:
+    #    build_json = {}
+    #    build_json['label'] = b
+    #    build_json['value'] = builds[b]
+    #    results.append(build_json)
+    data = json.dumps(builds)
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+@login_required
 def index(request):
     netid = request.user.username
     id = request.GET.get('s')
@@ -96,8 +116,8 @@ def details(request, id):
 
 # Filter by course, number, building, and section
 def search_terms(query):
-    if query == None or len(query) == 0:
-        return (Section.objects.none(), Building.objects.none(), {})
+    if query == None:
+        return (Section.objects.all(), Building.objects.all(), {})
 
     queryset = query.split(",")           # Fields separated by ',' are OR'ed
 
