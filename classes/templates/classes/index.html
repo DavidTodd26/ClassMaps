@@ -275,12 +275,12 @@
 
 <!-- Autocomplete js -->
 <script>
-  function selectClass(){
-  window.location.href = 'https://classmaps.herokuapp.com/courses/{{c.pk}}';
-}
-function selectBuilding(){
-  window.location.href = 'https://classmaps.herokuapp.com/buildings/{{b}}';
-}
+//   function selectClass(){
+//   window.location.href = 'https://classmaps.herokuapp.com/courses/{{c.pk}}';
+// }
+// function selectBuilding(){
+//   window.location.href = 'https://classmaps.herokuapp.com/buildings/{{b}}';
+// }
 
 $(function() {
   $("#search").autocomplete({
@@ -378,11 +378,17 @@ function convertBool(b) {
    </div>
 
     <div style="float:left; padding-right: 10px;">
-      <button class="btn btn-success" type="submit">
+      <button class="btn btn-success" type="submit" style="display:none">
         <i class="fa fa-search"></i>Search ClassMaps
       </button>
     </div>
   </form>
+
+  <script>
+  function submit() {
+      document.getElementById("myform").submit();
+  }
+  </script>
 
 
   <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
@@ -414,17 +420,6 @@ function convertBool(b) {
 
 <!--  Code search result overlay -->
 <div id="resultsContainer" class="resultsContainer" style="display: none;">
-  <!-- Controls for horizontal scroll -->
-<div style="float: left; padding-left: 5px; position: fixed; top: 70px; right: 0;">
-    <i style="font-size:24px" class="fa">&#xf104;</i>
-</div>
-<div style="float: right; padding-right: 5px; position: fixed; top: 70px; right: 0;">
-    <i style="font-size:24px" class="fa">&#xf105;</i>
-</div>
-<div style="float: right; padding-right: 5px; position: fixed; top: 60px; right: 0;">
-     <a href="javascript:void(0)" class="closebtn" onclick="closeResults()">&times;CLOSE</a>
-</div>
-
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
     <div class="container match-group" style="margin: 0;">
       <div id="buildings" class="row text-center" style="margin: 0;">
@@ -461,6 +456,7 @@ function addBuildingRow(id, text) {
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
+  addBuildingRow("buildings", "<a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
 {% endif %}
 
 {% if buildings %}
