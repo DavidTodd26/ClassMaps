@@ -413,8 +413,8 @@ function convertBool(b) {
 <div id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
     <div class="container match-group" style="margin: 0;">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeResults()">&times;CLOSE</a>
       <div id="buildings" class="row text-center" style="margin: 0;">
-
       </div>
     </div>
 <!--
@@ -518,6 +518,9 @@ toggle between hiding and showing the dropdown content */
   }
   function closeHelp() {
       document.getElementById("helpOverlay").style.display = "none";
+  }
+  function closeResults() {
+      document.getElementById("resultsOverlay").style.display = "none";
   }
   function openNav() {
       document.getElementById("sideOverlay").style.display = "block";
