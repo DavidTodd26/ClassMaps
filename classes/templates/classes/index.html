@@ -438,9 +438,9 @@ function addCourseRow(id, text) {
 {% if buildings %}
     {% for b in buildings %}
       if ("{{b.names|last}}") {
-        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: white;\">{{b}}<br>{{b.names|last}}");
+        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}}<br>{{b.names|last}}");
       } else {
-        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: white;\">{{b}} {{b.names|last}}");
+        addCourseRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">{{b}} {{b.names|last}}");
       }
     {% endfor %}
 {% endif %}
