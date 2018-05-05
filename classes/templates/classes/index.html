@@ -30,6 +30,8 @@
   <script type="text/javascript" src="{% static 'classes/dist/bootstrap-clockpicker.js' %}"></script>
 
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
 
 
@@ -409,11 +411,19 @@ function convertBool(b) {
    </tfoot>
 </table>
 </div>
-
+<!-- Controls for horizontal scroll -->
+<div style="float: left; padding-left: 5px; position: fixed; top: 70px; right: 0;">
+    <i style="font-size:24px" class="fa">&#xf104;</i>
+</div>
+<div style="float: right; padding-right: 5px; position: fixed; top: 70px; right: 0;">
+    <i style="font-size:24px" class="fa">&#xf105;</i>
+</div>
+<div style="float: right; padding-right: 5px; position: fixed; top: 60px; right: 0;">
+     <a href="javascript:void(0)" class="closebtn" onclick="closeResults()">&times;CLOSE</a>
+</div>
 <!--  Code search result overlay -->
 <div id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeResults()">&times;CLOSE</a>
     <div class="container match-group" style="margin: 0;">
       <div id="buildings" class="row text-center" style="margin: 0;">
       </div>
