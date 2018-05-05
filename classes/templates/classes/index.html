@@ -162,6 +162,13 @@
       display: block;
       transition: 0.5s;
     }
+    .a2 {
+      padding: 0;
+      text-decoration: none;
+      font-size: 10px;
+      color: black;
+      transition: 0;
+    }
     .sideOverlay a:hover {
         color: #f1f1f1;
     }
@@ -351,8 +358,8 @@ function convertBool(b) {
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank">Feedback</a>
     <a href="https://andsylin.github.io/members/" target="_blank">Contact</a>
     <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
-      <footer style="font-size: 14px; position: absolute; bottom: 0; right: 0;">
-        <p>To add the site to your phone's homescreen, open the <a href="/">homepage</a></p>
+      <footer style="font-size: 10px; padding: 10px; position: absolute; bottom: 0; right: 0;">
+        <p>To add the site to your phone's homescreen, open the <a id="a2" href="/">homepage</a></p>
         <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
         <p>On Android, click on the <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span> button on the top right of Chrome</p>
         <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/favicon-32x32.png' %}"/></p>
