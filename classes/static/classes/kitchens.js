@@ -1,0 +1,11 @@
+kitchens = [['40.344719', '-74.65694', '1915 Room'],
+ ['40.347445', '-74.661497', 'Blair Kitchen'],
+ ['40.34549', '-74.655848', 'Dodge-Osborn Kitchen - Ground Floor'],
+ ['40.34714524', '-74.65927882', 'Edwards Kitchen - Basement'],
+ ['40.342214', '-74.661144', 'Forbes Kitchen - Room 238'],
+ ['40.341498', '-74.660568', 'Forbes Kitchen - Room A143'],
+ ['40.341498', '-74.660568', 'Forbes Kitchen - Room A243'],
+ ['40.34811', '-74.66219', 'Hamilton Kitchen - Ground Floor, entry 5'],
+ ['40.348599', '-74.661556', 'Holder Lounge - Basement, entry 5'],
+ ['40.347803', '-74.662118', 'Joline Kitchen - Ground Floor, entry 6'],
+ ['40.34745173', '-74.66012844', 'Witherspoon Kitchen - Basement']];
