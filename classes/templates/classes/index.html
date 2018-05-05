@@ -278,7 +278,7 @@
 function selectBuilding(){
   window.location.href = 'https://classmaps.herokuapp.com/buildings/{{b}}';
 }
-  
+
 $(function() {
   $("#search").autocomplete({
     minLength: 3,
@@ -686,7 +686,7 @@ map.on('drag', function() {
       "&nbspLaundry": laundry,
       "&nbspHotspots": hotspots,
       "&nbspWater": waterspots,
-      "&nbspKitchens": kitchenspots, 
+      "&nbspKitchens": kitchenspots,
       "&nbspBuildings": buildings
     };
     // Adds overlays and layers to map
@@ -812,7 +812,34 @@ function resetHighlight(e) {
       });
     });
   }
+
+  // Set on page load
   updateColor(geojson);
+
+  // Reset whenever a time/day field is updated
+  $("#clock").change(function(){
+    updateColor(geojson);
+  });
+
+  $("#M").change(function(){
+    updateColor(geojson);
+  });
+
+  $("#T").change(function(){
+    updateColor(geojson);
+  });
+
+  $("#W").change(function(){
+    updateColor(geojson);
+  });
+
+  $("#Th").change(function(){
+    updateColor(geojson);
+  });
+
+  $("#F").change(function(){
+    updateColor(geojson);
+  });
  /* var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (buildings) {
   var div = L.DomUtil.create('div', 'info legend'),
