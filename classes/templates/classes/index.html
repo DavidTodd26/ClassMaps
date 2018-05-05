@@ -219,7 +219,7 @@
     }
     /* Search result overlay */
     .resultsContainer {
-      padding-top: 60px;
+      padding-top: 50px;
     }
     .resultsOverlay {
       height: auto;
@@ -378,24 +378,17 @@ function convertBool(b) {
    </div>
 
     <div style="float:left; padding-right: 10px;">
-      <button class="btn btn-success" type="submit" style="display:none">
-        <i class="fa fa-search"></i>Search ClassMaps
+      <button type="submit" style="display:none">
+        <i class="fa fa-search"></i>Search ClassMaps  
       </button>
     </div>
   </form>
-
-  <script>
-  function submit() {
-      document.getElementById("myform").submit();
-  }
-  </script>
 
 
   <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
     <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
       </div>
   </div>
- </div>
 
  <!-- overlay div ends -->
 
@@ -403,7 +396,12 @@ function convertBool(b) {
    <table id="myTable" class="table order-list">
    <thead>
        <tr>
-           <td><div class="listTitle"><i class="fa fa-star"></i>Favorites</div></td>
+           <td>
+             <div class="listTitle" style="float: left;"><i class="fa fa-star"></i>Favorites</div>
+         </td>
+         <div style="float: right;">
+           <a href="javascript:void(0)" style="color: white" class="closebtn" onclick="closeFavorites()">&times;hide</a>
+         </div>
        </tr>
    </thead>
    <tfoot>
@@ -512,6 +510,9 @@ toggle between hiding and showing the dropdown content */
   function clearForm() {
     console.log("cleared form");
     document.getElementById("searchbar").reset();
+  }
+  function closeFavorites() {
+      document.getElementById("listOverlay").style.display = "none";
   }
   function openHelp() {
       document.getElementById("helpOverlay").style.display = "block";
