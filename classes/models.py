@@ -29,7 +29,7 @@ class Section(models.Model):
 
 # A building
 class Building(models.Model):
-    names = ArrayField(models.CharField(max_length=200, blank=True, null=True), blank=True, null=True)
+    names = models.CharField(max_length=1000, blank=True, null=True)
     building_id = models.CharField(max_length=200, blank=True, null=True)
     lat = models.CharField(max_length=200, blank=True, null=True)
     lon = models.CharField(max_length=200, blank=True, null=True)
@@ -37,4 +37,4 @@ class Building(models.Model):
     searched = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.names[0]
+        return self.names.split("/")[0]

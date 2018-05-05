@@ -14,9 +14,10 @@ import json
 def query(request):
     query, time, dayString, courses, buildings, names = parse_terms(request)
     results = []
+    print(names)
     for building in buildings:
         building_json = {}
-        building_json['label'] = str(building)+names[building.names[0]]
+        building_json['label'] = str(building)+names[building.names.split("/")[0]]
         building_json['value'] = str(building)
         results.append(building_json)
     for course in courses:
@@ -128,16 +129,19 @@ def search_terms(query):
         builds = Building.objects.all()
         for q in query:
             # Always try to match query for building results
-            builds = builds.filter(names__icontains = q)
+            builds = builds.filter(names__icontains = " "+q) | \
+                     builds.filter(names__icontains = "/"+q) | \
+                     builds.filter(names__istartswith = q)
             # Display the primary name and the name that matched to prevent confusion
             for b in builds:
-                for i in range(0, len(b.names)):
-                    name = b.names[i]
+                aliases = b.names.split("/")
+                for i in range(0, len(aliases)):
+                    name = aliases[i]
                     if q.upper() in name.upper():
                         if i != 0:
-                            names[b.names[0]] = " ("+name.strip()+")"
+                            names[aliases[0]] = " ("+name.strip()+")"
                         else:
-                            names[b.names[0]] = ""
+                            names[aliases[0]] = ""
                         break
 
             # Match courses
@@ -148,8 +152,8 @@ def search_terms(query):
             # Handle building - look for match in canonical name and aliases
             for b in builds:
                 matches = matches | \
-                    Q(building__istartswith = b.names[0]) | \
-                    Q(building__icontains = " "+b.names[0])
+                    Q(building__istartswith = b.names.split("/")[0]) | \
+                    Q(building__icontains = " "+b.names.split("/")[0])
 
             # Handle concat dept/number (e.g. cos333)
             if len(q) >= 4:
@@ -262,7 +266,8 @@ def search(request):
     else:
         # Add queried names
         for b in buildings:
-            b.names.append(names[b.names[0]])
+            name = b.names.split("/")[0]
+            b.names = name + "/" + names[name]
         context['classes'] = resultsFiltered
         context['buildings'] = buildings
 

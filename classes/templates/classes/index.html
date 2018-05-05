@@ -461,7 +461,7 @@ function addBuildingRow(id, text) {
 
 {% if buildings %}
     {% for b in buildings %}
-      alias = "{{b.names|last}}";
+      alias = "{{b.names}}".split("/")[1];
       if (alias) {
         var formatted = truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
         addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">"+formatted);
@@ -474,7 +474,7 @@ function addBuildingRow(id, text) {
 
 {% if classes %}
     {% for c in classes %}
-      var formatted = truncate("{{c}} {{c.section}}", 15)+"<br>"+truncate("{{c.title}}", 20);
+      var formatted = truncate("{{c}} {{c.section}}", 15)+"<br>{{c.section}} {{c.time}}<br>"+truncate("{{c.title}}", 20);
       addCourseRow("buildings", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
