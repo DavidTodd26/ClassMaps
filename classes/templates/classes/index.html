@@ -77,7 +77,7 @@
       font-size: 12px;
       padding: 3px;
       float: right;
-    } 
+    }
     .export {
       padding: 5px
     }
@@ -508,7 +508,7 @@ function addResultRow(id, text) {
 
 {% if classes %}
     {% for c in classes %}
-      var formatted = truncate("{{c}}", 15)+"<br>{{c.section}} {{c.time}}<br>"+truncate("{{c.title}}", 20);
+      var formatted = "{{c}}".split("/")[0]+"{{c.section}}<br>{{c.day}} {{c.time}}<br>"+truncate("{{c.title}}", 20);
       addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
