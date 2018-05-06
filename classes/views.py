@@ -125,6 +125,9 @@ def search_terms(query):
     if query == None:
         return (Section.objects.all(), Building.objects.all(), {})
 
+    if query == "":
+        return (Section.objects.all(), Building.objects.none(), {})
+
     queryset = query.split(",")           # Fields separated by ',' are OR'ed
 
     courses = Section.objects.none()
@@ -177,6 +180,7 @@ def search_terms(query):
 
         courses = courses | Section.objects.filter(concat)
         buildings = buildings | builds
+
     return (courses, buildings, names)
 
 def searchDay(results, query, mon, tues, wed, thurs, fri):
