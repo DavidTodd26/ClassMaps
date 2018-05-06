@@ -500,7 +500,7 @@ function addResultRow(id, text) {
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
   addResultRow("buildings", "Results for: \"{{q}}\"<br>{{d}}<br>{{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
-{% else if not building and not class %}
+{% elif not building and not class %}
 //   if(document.getElementById("search").value != null){
 //   }  
   matchesBlock.style.display = "block";
