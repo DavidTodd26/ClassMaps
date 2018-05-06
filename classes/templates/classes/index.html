@@ -340,13 +340,13 @@ function convertBool(b) {
     <div style="width:10px; float:left;">
       <input style="color: white;" placeholder="" readonly>
    </div>
-    <div style="width:45px; float:left;">
+    <div style="width:48px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
         <input id="clock" type="text" class="form-control" name="t" placeholder="Time |" style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
     </div>
 
-   <div style="float:left; width:auto;">
+   <div style="float:left; width:50px;">
     <div class="dropdown" style="float:left; ">
 <!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
@@ -446,23 +446,21 @@ function dateCheck(){
   var f = document.getElementById("F").checked;
   if(m || t || w || th || f){
     var output= "";
-    if(m)
-      output += "M";
-    if(t)
-      output += "T";
-    if(w)
-      output += "W";
-    if(th)
-      output += "Th";
-    if(f)
-      output += "F";
+    if(m) output += "M";
+    if(t) output += "T";
+    if(w) output += "W";
+    if(th) output += "Th";
+    if(f) output += "F";
     console.log(output);
     document.getElementById("dropdownMenuButton").placeholder=output;
+    document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
   }
   else{
     document.getElementById("dropdownMenuButton").placeholder="Date";
+    document.getElementById("dropdownMenuButton").width="50px";
   }
 }
+  
 function truncate(line, maxLength) {
   if (line.length <= maxLength) {
     return line;
