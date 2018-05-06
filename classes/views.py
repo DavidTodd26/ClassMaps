@@ -49,13 +49,13 @@ def enroll(request):
 @login_required
 def index(request):
     netid = request.user.username
-    id = request.GET.get('s')
+    id = request.POST.get('s')
     if id != None:
         func = 's'
         match = id[-1]
         id = id[:-1]
     else:
-        id = request.GET.get('r')
+        id = request.POST.get('r')
         if id != None:
             match = id[-1]
             id = id[:-1]
@@ -97,9 +97,9 @@ def details(request, id, isCourse):
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
         'netid': netid
     }
-    if isCourse:
+    if isCourse and id.isdigit() and Section.objects.filter(id=int(id)).exists():
         context['course'] = Section.objects.get(id=int(id))
-    else:
+    elif id.isdigit() and Building.objects.filter(id=int(id)).exists():
         context['building'] = Building.objects.get(id=int(id))
 
     return render(request, 'classes/index.html', context)
