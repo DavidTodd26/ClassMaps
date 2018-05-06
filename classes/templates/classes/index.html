@@ -330,7 +330,7 @@ function convertBool(b) {
      <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:52px; float:left; margin-right:10px">
      </a>
 
-    <div style="width:32%; float:left;">
+    <div style="width:30%; float:left;">
         <input id = "search" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
     <div style="width:10px; float:left;">
@@ -373,13 +373,18 @@ function convertBool(b) {
       </div>
     </div>
 
-   <div style="width:25px; float:left; padding-right: 10px;" onclick="clearForm()">
-    <input type="text" style="color: white; cursor: pointer;" placeholder="&times;" readonly>
+   <div style="width:25px; float:left; margin-right: 5px;" onclick="clearForm()">
+    <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="&times;" readonly>
    </div>
 
     <div style="float:left; padding-right: 10px;">
+<<<<<<< HEAD
       <button type="submit" style="display:none">
         <i class="fa fa-search"></i>Search ClassMaps
+=======
+      <button type="submit" style="display:block">
+        <i class="fa fa-search"></i>Search ClassMaps  
+>>>>>>> ac8c58f8306aedfb57852b903d7cf39dcdb4ddb5
       </button>
     </div>
   </form>
@@ -400,7 +405,7 @@ function convertBool(b) {
              <div class="listTitle" style="float: left;"><i class="fa fa-star"></i>Favorites</div>
          </td>
          <div style="float: right;">
-           <a href="javascript:void(0)" style="color: white" class="closebtn" onclick="closeFavorites()">&times;hide</a>
+           <a href="javascript:void(0)" style="color: white" class="closebtn" onclick="closeFavorites()">&times;</a>
          </div>
        </tr>
    </thead>
@@ -447,14 +452,14 @@ function addCourseRow(id, text) {
 }
 function addBuildingRow(id, text) {
 //   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
-  $("#"+id).append("<div class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div style=\"background-color: #d3d3de; padding-top: 40px;padding-bottom: 40px;\" class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addBuildingRow("buildings", "<a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addCourseRow("buildings", "Results:<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
 {% endif %}
 
 {% if buildings %}
@@ -492,7 +497,7 @@ function addBuildingRow(id, text) {
         <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: #00aaee;" href="/">homepage</a></p>
         <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
         <p>On Android, click on the <img src="{% static 'classes/images/3dot.png' %}"/> button on the top right of Chrome</p>
-        <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/></p>
+        <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/> ClassMaps</p>
       </footer>
   </div>
 
@@ -707,7 +712,7 @@ map.on('drag', function() {
       "&nbspWater": waterspots,
       "&nbspKitchens": kitchenspots,
       "&nbspDining": diningspots,
-      "&nbspBuildings": buildings
+      "&nbspHeatmap": buildings
     };
     // Adds overlays and layers to map
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
