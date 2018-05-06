@@ -444,12 +444,20 @@ function dateCheck(){
   var w = document.getElementById("W").checked;
   var th = document.getElementById("Th").checked;
   var f = document.getElementById("F").checked;
-  console.log(m);
-  console.log(t);
-  console.log(w);
   if(m || t || w || th || f){
-    document.getElementById("dropdownMenuButton").placeholder="selected";
-    console.log("got here");
+    var output= "";
+    if(m)
+      output += "M";
+    if(t)
+      output += "T";
+    if(w)
+      output += "W";
+    if(th)
+      output += "Th";
+    if(f)
+      output += "F";
+    console.log(output);
+    document.getElementById("dropdownMenuButton").placeholder=output;
   }
 }
 function truncate(line, maxLength) {
