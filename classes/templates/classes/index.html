@@ -212,8 +212,11 @@
       z-index: 4;
       cursor: pointer;
     }
-    .listOverlay btn-remove{
+    .btn-remove2{
       float: right;
+      background-color: #f44336; /* red */
+      font-size: 12px;
+      padding: 3px;
     }
     .listText {
       color: white;
@@ -242,7 +245,7 @@
       max-height: 40%;
       max-width: 40%;
       overflow-y: auto;
-      font-size: small;
+      font-size: 12px;
     }
     /* Search result overlay */
     .resultsContainer {
@@ -500,11 +503,23 @@ function addResultRow(id, text) {
   $("#"+id).append("<div \" style=\"padding-top: 7px; padding-bottom: 20px;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
+function addImageRow(id, text) {
+  $("#"+id).append("<div \" style=\"padding-top: 5px; width: 400px; padding-bottom: 0;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+    "<p>"+text+"</p>"+"</div>"+"</div>");
+}
 
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
   addResultRow("buildings", "Results for: \"{{q}}\"<br>{{d}}<br>{{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+{% elif not building and not class %}
+//   if(document.getElementById("search").value != null){
+//   }  
+  console.log("no results");
+  var matchesBlock = document.getElementById("resultsContainer");
+  matchesBlock.style.display = "block";
+  addResultRow("buildings", "Results for: \"{{q}}\"<br>{{d}}<br>{{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addImageRow("buildings", "<img src=\"{% static \'classes/images/calvinandhobbes.png\'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
 {% endif %}
 
 {% if buildings %}
@@ -997,7 +1012,7 @@ var offset = 0.0001;
      var key = "{{s.lon}} {{s.lat}}"
      var button =
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
+         "<button class=\"btn btn-remove2\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
              "<i class=\"fa fa-close\">"+"</i>"+"Remove"+
          "</button>" +
      "</form>";
@@ -1015,7 +1030,7 @@ var offset = 0.0001;
      var key = "{{s.building_lon}} {{s.building_lat}}";
      var button =
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+         "<button class=\"btn btn-remove2\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
              "<i class=\"fa fa-close\">"+"</i>"+"Remove" +
          "</button>" +
      "</form>";
