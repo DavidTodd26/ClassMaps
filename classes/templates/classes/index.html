@@ -212,8 +212,11 @@
       z-index: 4;
       cursor: pointer;
     }
-    .listOverlay btn-remove{
+    .btn-remove2{
       float: right;
+      background-color: #f44336; /* red */
+      font-size: 12px;
+      padding: 3px;
     }
     .listText {
       color: white;
@@ -985,7 +988,7 @@ var offset = 0.0001;
      var key = "{{s.lon}} {{s.lat}}"
      var button =
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
+         "<button class=\"btn btn-remove2\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
              "<i class=\"fa fa-close\">"+"</i>"+"Remove"+
          "</button>" +
      "</form>";
@@ -1003,7 +1006,7 @@ var offset = 0.0001;
      var key = "{{s.building_lon}} {{s.building_lat}}";
      var button =
      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
+         "<button class=\"btn btn-remove2\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
              "<i class=\"fa fa-close\">"+"</i>"+"Remove" +
          "</button>" +
      "</form>";
