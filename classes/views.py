@@ -67,7 +67,7 @@ def update_result(netid, isSave, isCourse, id):
         match.searched += 1
         match.save()
         zoom = 1
-    elif netid in match.saved:
+    elif not isSave and netid in match.saved:
         match.saved.remove(netid)
         match.save()
 
