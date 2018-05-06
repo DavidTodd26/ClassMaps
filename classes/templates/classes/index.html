@@ -72,7 +72,12 @@
         margin: 0 auto;
         width: 350px;
     }
-    .btn-remove {background-color: #f44336;} /* red */
+    .btn-remove {
+      background-color: #f44336; /* red */
+      font-size: 12px;
+      padding: 3px;
+      float: right;
+    } 
     .export {
       padding: 5px
     }
@@ -206,10 +211,11 @@
     }
     .listText {
       color: white;
+      font-size: 12px;
     }
     .listTitle {
       color: white;
-      font-size: large;
+      font-size: 17;
       text-align: left;
     }
     /* End saved list css */
@@ -252,24 +258,20 @@
       display: inline-block;
       float: none;
     }
-    .col-xs-4 {
-      width: 190px;
-      font-size: small;
-      background-color: #d3d3d3;
-      color: black;
-      padding-left: 10px;
-      padding-right: 10px;
-     padding-top: 40px;
-      padding-bottom: 40px;
-    }
     .card {
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       transition: 0.3s;
-      width: 170px;
+      width: 140px;
       border-radius: 5px;
       margin-right: 6px;
-      padding-top:30px;
-      padding-bottom:30px;
+      padding-top:25px;
+      padding-bottom:20px;
+    }
+    .container a{
+      font-size: 12px;
+    }
+    .container p{
+      font-size: 12px;
     }
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -334,7 +336,7 @@ function convertBool(b) {
   <div id="overlay" class="overlay">
     <form id="searchbar" name="myform" method="GET" action="{% url 'classes:search' %}">
      <a href="https://classmaps.herokuapp.com">
-     <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:47px; float:left; margin-right:10px">
+     <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:42px; float:left; margin-right:10px">
      </a>
 
     <div style="width:30%; float:left;">
@@ -393,7 +395,6 @@ function convertBool(b) {
     </div>
   </form>
 
-
   <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
     <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
       </div>
@@ -408,7 +409,7 @@ function convertBool(b) {
            <td>
              <div class="listTitle" style="float: left;"><i class="fa fa-star"></i>Favorites</div>
          </td>
-         <div style="float: right;">
+         <div style="float: right; padding-right: 3px;">
            <a href="javascript:void(0)" style="color: white" class="closebtn" onclick="closeFavorites()">&times;</a>
          </div>
        </tr>
@@ -457,12 +458,12 @@ function dateCheck(){
     if(th) output += "th";
     if(f) output += "f";
     console.log(output);
-    document.getElementById("dropdownMenuButton").placeholder=output;
-    document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
+    document.getElementById("dropdownMenuButton").value=output;
+    //document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
   }
   else{
-    document.getElementById("dropdownMenuButton").placeholder="   Date";
-    document.getElementById("dropdownMenuButton").width="50px";
+    document.getElementById("dropdownMenuButton").value=null;
+    //document.getElementById("dropdownMenuButton").width="50px";
   }
 }
 
@@ -482,7 +483,7 @@ function addBuildingRow(id, text) {
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 function addResultRow(id, text) {
-  $("#"+id).append("<div \" style=\"padding-top: 10px; padding-bottom: 30px;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div \" style=\"padding-top: 7px; padding-bottom: 20px;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 
@@ -496,11 +497,11 @@ function addResultRow(id, text) {
     {% for b in buildings %}
       alias = "{{b.names}}".split("/")[1];
       if (alias) {
-        var formatted = truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
-        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
+        var formatted = "Building:<br>"+truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
+        addBuildingRow("buildings", "<a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       } else {
-        var formatted = truncate("{{b}}", 20);
-        addBuildingRow("buildings", "<br>Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
+        var formatted = "Building:<br>"+truncate("{{b}}", 20);
+        addBuildingRow("buildings", "<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       }
     {% endfor %}
 {% endif %}
@@ -545,6 +546,7 @@ toggle between hiding and showing the dropdown content */
   function clearForm() {
     console.log("cleared form");
     document.getElementById("searchbar").reset();
+    document.getElementById("search").value=null;
     updateColor(geojson);
   }
   function closeFavorites() {

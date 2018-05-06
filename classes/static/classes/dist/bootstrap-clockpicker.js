@@ -153,7 +153,7 @@
 				
 			$('<button type="button" class="btn btn-sm btn-default clockpicker-button pm-button">' + "PM" + '</button>')
 				.on("click", function() {
-					self.amOrPm = 'PM';
+					self.amOrPm = 'pm';
 					$('.clockpicker-span-am-pm').empty().append('pm');
 				}).appendTo(this.amPmBlock);
 				
