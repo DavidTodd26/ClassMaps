@@ -257,7 +257,7 @@
     }
     .resultsOverlay {
       height: auto;
-      width: 100%;
+      width: auto;
       margin-left: -100%;
       position: relative;
       float: left;
@@ -504,7 +504,7 @@ function addBuildingRow(id, text) {
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 function addResultRow(id, text) {
-  $("#"+id).append("<div \" style=\"padding-top: 7px; padding-bottom: 20px;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div \" style=\"padding-top: 7px; padding-bottom: 10px;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 function addImageRow(id, text) {
