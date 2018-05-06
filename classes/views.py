@@ -271,9 +271,7 @@ def search(request):
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
         'netid': netid
     }
-
-    if len(resultsFiltered) == 0 and len(buildings) == 0:
-        context['no_matches'] = True
+    context['num_matches'] = len(resultsFiltered) + len(buildings)
     # If one match, we can put it directly on the map
     elif len(resultsFiltered) == 1 and len(buildings) == 0:
         context['course'] = resultsFiltered[0]
