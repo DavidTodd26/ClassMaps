@@ -77,6 +77,10 @@
       font-size: 12px;
       padding: 3px;
     }
+    .btn-success{
+      font-size: 12px;
+      padding: 3px;
+    }
     .export {
       padding: 5px
     }
@@ -207,6 +211,9 @@
       background-color: rgba(0,0,0,0.6);
       z-index: 4;
       cursor: pointer;
+    }
+    .listOverlay btn-remove{
+      float: right;
     }
     .listText {
       color: white;
@@ -590,7 +597,7 @@ toggle between hiding and showing the dropdown content */
       var cols = "";
 
       cols += '<td><div class="listText" name="name">'+name+'</div></td>';
-      cols += '<td style="float: right;">'+button+'</td>';
+      cols += '<td>'+button+'</td>';
       newRow.append(cols);
       $("table.order-list").append(newRow);
   }
