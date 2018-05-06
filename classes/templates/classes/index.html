@@ -465,7 +465,7 @@ function dateCheck(){
     document.getElementById("dropdownMenuButton").width="50px";
   }
 }
-  
+
 function truncate(line, maxLength) {
   if (line.length <= maxLength) {
     return line;
@@ -794,6 +794,9 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
   }
   function highlightFeature(e) {
     var layer = e.target;
+    if (layer.getPopup().isOpen()) {
+      layer.closeToolTip();
+    }
     layer.setStyle({
       weight: 5,
       color: '#666',
@@ -809,7 +812,6 @@ function onEachFeature(feature, layer) {
          "</button>" +
      "</form>";
   layer.bindPopup(buildingtext);
-  layer.bindTooltip(feature.properties.name);
   layer.on({
     mouseover: highlightFeature,//,
     mouseout: resetHighlight,
@@ -818,7 +820,6 @@ function onEachFeature(feature, layer) {
 }
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
-  e.bindPopup("You are within meters from this point");//.openPopup();
 }
 function resetHighlight(e) {
   var layer = e.target;
@@ -852,7 +853,8 @@ function resetHighlight(e) {
 
     getData().success(function (data) {
       geojson.eachLayer(function(layer) {
-        var tokens = layer.feature.properties.name.split(", ");
+        var name = layer.feature.properties.name
+        var tokens = name.split(", ");
         var totalEnroll = 0;
         for (i = 0; i < tokens.length; i++) {
           if (tokens[i] in data) {
@@ -868,9 +870,25 @@ function resetHighlight(e) {
           totalEnroll > 0   ? '#FED976' :
                 '#FFF';
 
-        layer.setStyle({
-          fillColor: color,
-        });
+        if (totalEnroll == 0 && layer.feature.properties.building === "dormitory") {
+          layer.setStyle({
+            fillColor: "#ADD8E6",
+          });
+          layer.bindTooltip(name);
+          layer.bindPopup(name);
+        } else {
+          layer.setStyle({
+            fillColor: color,
+          });
+          layer.bindTooltip(name+"<br>Students here: "+totalEnroll);
+          var buttontext =
+                 "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
+                 "<button class=\"btn btn-success\" name=\"q\" value=\""+name+"\" type=\"submit\">" +
+                     "<i class=\"fa fa-search\">"+"</i>"+"Classes Here" +
+                 "</button>" +
+             "</form>";
+          layer.bindPopup(name+"<br>Students here: "+totalEnroll+"<br>"+buttontext);
+        }
       });
     });
   }
