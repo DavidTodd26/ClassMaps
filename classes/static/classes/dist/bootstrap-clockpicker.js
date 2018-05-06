@@ -116,7 +116,7 @@
 		this.spanHours = popover.find('.clockpicker-span-hours');
 		this.spanMinutes = popover.find('.clockpicker-span-minutes');
 		this.spanAmPm = popover.find('.clockpicker-span-am-pm');
-		this.amOrPm = "AM";
+		this.amOrPm = "am";
 		
 		// Setup for for 12 hour clock if option is selected
 		if (options.twelvehour) {
@@ -146,15 +146,15 @@
 	
 			$('<button type="button" class="btn btn-sm btn-default clockpicker-button am-button">' + "AM" + '</button>')
 				.on("click", function() {
-					self.amOrPm = "AM";
-					$('.clockpicker-span-am-pm').empty().append('AM');
+					self.amOrPm = "am";
+					$('.clockpicker-span-am-pm').empty().append('am');
 				}).appendTo(this.amPmBlock);
 				
 				
 			$('<button type="button" class="btn btn-sm btn-default clockpicker-button pm-button">' + "PM" + '</button>')
 				.on("click", function() {
 					self.amOrPm = 'PM';
-					$('.clockpicker-span-am-pm').empty().append('PM');
+					$('.clockpicker-span-am-pm').empty().append('pm');
 				}).appendTo(this.amPmBlock);
 				
 		}
