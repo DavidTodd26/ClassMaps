@@ -299,7 +299,7 @@ $(function() {
           F: convertBool($('#F').is(":checked")),
         },
         success: function(data) {
-          response(data);
+          response(data)
         }
       });
     },
@@ -307,7 +307,7 @@ $(function() {
       if (ui.item) {
         $(event.target).val(ui.item.value);
       }
-      $(event.target.form).submit();
+      window.location.href = "https://classmaps.herokuapp.com/"+ui.item.type+"/"+ui.item.id;
     }
   });
 });
@@ -379,7 +379,7 @@ function convertBool(b) {
 
     <div style="float:left; padding-right: 10px;">
       <button type="submit" style="display:none">
-        <i class="fa fa-search"></i>Search ClassMaps  
+        <i class="fa fa-search"></i>Search ClassMaps
       </button>
     </div>
   </form>
@@ -462,18 +462,18 @@ function addBuildingRow(id, text) {
       alias = "{{b.names}}".split("/")[1];
       if (alias) {
         var formatted = truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
-        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">"+formatted);
+        addBuildingRow("buildings", "<a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       } else {
         var formatted = truncate("{{b}}", 20);
-        addBuildingRow("buildings", "<a href=\"/buildings/{{b}}\" style=\"color: black;\">"+formatted);
+        addBuildingRow("buildings", "<a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       }
     {% endfor %}
 {% endif %}
 
 {% if classes %}
     {% for c in classes %}
-      var formatted = truncate("{{c}} {{c.section}}", 15)+"<br>{{c.section}} {{c.time}}<br>"+truncate("{{c.title}}", 20);
-      addCourseRow("buildings", "<a href=\"/courses/{{c.pk}}\" style=\"color: black;\">"+formatted);
+      var formatted = truncate("{{c}}", 15)+"<br>{{c.section}} {{c.time}}<br>"+truncate("{{c.title}}", 20);
+      addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
 </script>
@@ -510,6 +510,7 @@ toggle between hiding and showing the dropdown content */
   function clearForm() {
     console.log("cleared form");
     document.getElementById("searchbar").reset();
+    updateColor(geojson);
   }
   function closeFavorites() {
       document.getElementById("listOverlay").style.display = "none";

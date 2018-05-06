@@ -14,16 +14,19 @@ import json
 def query(request):
     query, time, dayString, courses, buildings, names = parse_terms(request)
     results = []
-    print(names)
     for building in buildings:
         building_json = {}
         building_json['label'] = str(building)+names[building.names.split("/")[0]]
         building_json['value'] = str(building)
+        building_json['type'] = "building"
+        building_json['id'] = building.id
         results.append(building_json)
     for course in courses:
         course_json = {}
         course_json['label'] = str(course)+" "+course.title+" "+course.section
         course_json['value'] = str(course)+" "+course.section
+        course_json['type'] = "course"
+        course_json['id'] = course.id
         results.append(course_json)
     data = json.dumps(results)
     mimetype = 'application/json'
@@ -132,7 +135,8 @@ def search_terms(query):
             builds = builds.filter(names__icontains = " "+q) | \
                      builds.filter(names__icontains = "/"+q) | \
                      builds.filter(names__istartswith = q)
-            # Display the primary name and the name that matched to prevent confusion
+
+            # Display the canonical name and the name that matched to prevent confusion
             for b in builds:
                 aliases = b.names.split("/")
                 for i in range(0, len(aliases)):
