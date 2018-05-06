@@ -223,7 +223,7 @@ def getDayString(mon, tues, wed, thurs, fri):
     if fri:
         days += " Friday,"
     if days:
-        days = "on" + days
+        days = "<br>on" + days
     return days[:-1]
 
 def parse_terms(request):
@@ -240,7 +240,7 @@ def parse_terms(request):
         resultsFiltered = searchTime(time, resultsFiltered)
         if not query and not mon and not tues and not wed and not thurs and not fri:
             resultsFiltered = searchTime(time, Section.objects.all())
-        time = "at " + time
+        time = "<br>at " + time
     else:
         time = ""
     dayString = getDayString(mon, tues, wed, thurs, fri)
