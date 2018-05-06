@@ -340,7 +340,7 @@ function convertBool(b) {
     <div style="width:10px; float:left;">
       <input style="color: white;" placeholder="" readonly>
    </div>
-    <div style="width:55px; float:left;">
+    <div style="width:60px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
         <input id="clock" type="text" class="form-control" name="t" placeholder="Time" style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
@@ -353,7 +353,7 @@ function convertBool(b) {
 <!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
       </button> -->
-      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder=" Date" style="color: white; cursor: pointer;" readonly>
+      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="color: white; cursor: pointer;" readonly>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
           <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
@@ -458,7 +458,7 @@ function dateCheck(){
     document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
   }
   else{
-    document.getElementById("dropdownMenuButton").placeholder="Date";
+    document.getElementById("dropdownMenuButton").placeholder="   Date";
     document.getElementById("dropdownMenuButton").width="50px";
   }
 }
