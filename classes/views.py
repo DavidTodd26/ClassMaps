@@ -274,8 +274,10 @@ def search(request):
         'netid': netid
     }
 
-    # If there's exactly one match, we can put it directly on the map
-    if len(resultsFiltered) == 1 and len(buildings) == 0:
+    if len(resultsFiltered) == 0 and len(buildings) == 0:
+        context['no_matches'] = True
+    # If one match, we can put it directly on the map
+    elif len(resultsFiltered) == 1 and len(buildings) == 0:
         context['course'] = resultsFiltered[0]
     elif len(resultsFiltered) == 0 and len(buildings) == 1:
         context['building'] = buildings[0]

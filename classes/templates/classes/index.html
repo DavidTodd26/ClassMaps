@@ -218,6 +218,14 @@
     .listText {
       color: white;
       font-size: 12px;
+      background:none;
+      border:none;
+      margin:0;
+      padding:0;
+      outline: none;
+    }
+    .listText:focus {
+      background: none;
     }
     .listTitle {
       color: white;
@@ -503,7 +511,7 @@ function addResultRow(id, text) {
     {% for b in buildings %}
       alias = "{{b.names}}".split("/")[1];
       if (alias) {
-        var formatted = "Building:<br>"+truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
+        var formatted = "Building:<br>"+truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length-1),15)+")";
         addBuildingRow("buildings", "<a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       } else {
         var formatted = "Building:<br>"+truncate("{{b}}", 20);
@@ -592,14 +600,18 @@ toggle between hiding and showing the dropdown content */
     e.stopPropagation();
   });
 
-  function addRow(name, button) {
+  function addRow(name, lon, lat, button) {
       var newRow = $("<tr>");
       var cols = "";
 
-      cols += '<td><div class="listText" name="name">'+name+'</div></td>';
+      cols += '<td><button class="listText" onclick="goToCoords('+lon+','+lat+');">'+name+'</button></td>';
       cols += '<td>'+button+'</td>';
       newRow.append(cols);
       $("table.order-list").append(newRow);
+  }
+
+  function goToCoords(lon, lat) {
+    map.setView(new L.LatLng(lat, lon), 20);
   }
 
   $("table.order-list").on("click", ".ibtnDel", function (event) {
@@ -995,7 +1007,7 @@ var offset = 0.0001;
      } else {
        lonlats[key] = text;
      }
-     addRow("{{s.names}}".split("/")[0], button);
+     addRow("{{s.names}}".split("/")[0], "{{s.lon}}", "{{s.lat}}", button);
   {% endfor %}
 {% endif %}
 {% if saved_courses %}
@@ -1013,8 +1025,7 @@ var offset = 0.0001;
      } else {
        lonlats[key] = text;
      }
-
-     addRow("<div>{{s}}</div><div>{{s.building}}</div><div>{{s.time}}</div>", button);
+     addRow("<div>{{s}}</div><div>{{s.building}}</div><div>{{s.time}}</div>", "{{s.building_lon}}", "{{s.building_lat}}", button);
     {% endfor %}
 {% endif %}
 if (!jQuery.isEmptyObject(lonlats)) {
