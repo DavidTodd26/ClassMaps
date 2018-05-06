@@ -7,7 +7,8 @@ from datetime import time
 import re
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 import json
 
 @login_required
@@ -46,40 +47,45 @@ def enroll(request):
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
-@login_required
-def index(request):
-    netid = request.user.username
-    id = request.POST.get('s')
-    if id != None:
-        func = 's'
-        match = id[-1]
-        id = id[:-1]
-    else:
-        id = request.POST.get('r')
-        if id != None:
-            match = id[-1]
-            id = id[:-1]
-            func = 'r'
+def update_result(netid, isSave, isCourse, id):
     zoom = 0
     lon = 0
     lat = 0
-    if id != None:
-        if match == 'c':
-            match = Section.objects.get(id=int(id))
-            lon = match.building_lon
-            lat = match.building_lat
-        else:
-            match = Building.objects.get(id=int(id))
-            lon = match.lon
-            lat = match.lat
-        if func == 's' and not netid in match.saved:
-            match.saved.append(netid)
-            match.searched += 1
-            match.save()
-            zoom = 1
-        elif func == 'r' and netid in match.saved:
-            match.saved.remove(netid)
-            match.save()
+    if isCourse and id.isdigit() and Section.objects.filter(id=int(id)).exists():
+        match = Section.objects.get(id=int(id))
+        lon = match.building_lon
+        lat = match.building_lat
+    elif id.isdigit() and Section.objects.filter(id=int(id)).exists():
+        match = Building.objects.get(id=int(id))
+        lon = match.lon
+        lat = match.lat
+    else:
+        return (lon, lat, zoom)
+
+    if isSave and not netid in match.saved:
+        match.saved.append(netid)
+        match.searched += 1
+        match.save()
+        zoom = 1
+    elif netid in match.saved:
+        match.saved.remove(netid)
+        match.save()
+
+    return (lon, lat, zoom)
+
+@login_required
+def index(request):
+    netid = request.user.username
+    save_id = request.GET.get('s')
+    remove_id = request.GET.get('r')
+    context = {}
+    if save_id:
+        lon, lat, zoom = update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
+    elif remove_id:
+        lon, lat, zoom = update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
+    else:
+        lon, lat, zoom = 0, 0, 0
+
     context = {
         'saved_courses': Section.objects.filter(saved__contains=[netid]),
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
@@ -88,6 +94,7 @@ def index(request):
         'last_lon': lon,
         'last_lat': lat
     }
+
     return render(request, 'classes/index.html', context)
 
 def details(request, id, isCourse):
