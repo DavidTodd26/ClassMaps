@@ -630,7 +630,15 @@ toggle between hiding and showing the dropdown content */
   }
 
   function goToCoords(lon, lat) {
-    map.setView(new L.LatLng(lat, lon), 20);
+    map.eachLayer(function (layer) {
+      if (layer.dragging) {
+        coords = layer.getLatLng()
+        if (coords.lat === parseFloat(lat) && coords.lng === parseFloat(lon)-offset) {
+          layer.openPopup()
+          map.setView(new L.LatLng(lat, lon), 20);
+        }
+      }
+    });
   }
 
   $("table.order-list").on("click", ".ibtnDel", function (event) {
