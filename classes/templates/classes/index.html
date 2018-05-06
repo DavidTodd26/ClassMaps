@@ -447,14 +447,14 @@ function addCourseRow(id, text) {
 }
 function addBuildingRow(id, text) {
 //   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
-  $("#"+id).append("<div style=\"background-color: #d3d3de; padding-top: 40px;\" class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div style=\"background-color: #d3d3de; padding-top: 40px;padding-bottom: 40px;\" class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addBuildingRow("buildings", "Results:<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addCourseRow("buildings", "Results:<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
 {% endif %}
 
 {% if buildings %}
