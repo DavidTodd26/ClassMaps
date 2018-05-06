@@ -795,7 +795,7 @@ function resetHighlight(e) {
   });
 }
     var geojson;
-  geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
+  geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature, title: 'testing'}).addTo(buildings);
 
   function updateColor(geojson) {
     function getData() {
