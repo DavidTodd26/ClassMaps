@@ -515,14 +515,14 @@ function addImageRow(id, text) {
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addResultRow("buildings", "Results for:<br>\"{{q}}\"<br>{{d}}{{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addResultRow("buildings", "Results for:<br>\"{{q}}\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
 {% elif no_matches %}
 //   if(document.getElementById("search").value != null){
 //   }
   console.log("no results");
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addResultRow("buildings", "Results for:<br>\"{{q}}\"<br>{{d}}{{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addResultRow("buildings", "Results for:<br>\"{{q}}\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
   addImageRow("buildings", "<img src=\"{% static 'classes/images/calvinandhobbes.png'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
 {% endif %}
 
