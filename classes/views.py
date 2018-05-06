@@ -213,15 +213,15 @@ def searchTime(inputTime, results):
 def getDayString(mon, tues, wed, thurs, fri):
     days = ""
     if mon:
-        days += " Monday,"
+        days += " Mon,"
     if tues:
-        days += " Tuesday,"
+        days += " Tue,"
     if wed:
-        days += " Wednesday,"
+        days += " Wed,"
     if thurs:
-        days += " Thursday,"
+        days += " Thu,"
     if fri:
-        days += " Friday,"
+        days += " Fri,"
     if days:
         days = "on" + days
     return days[:-1]
