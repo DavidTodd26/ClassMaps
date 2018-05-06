@@ -541,6 +541,7 @@ toggle between hiding and showing the dropdown content */
   function clearForm() {
     console.log("cleared form");
     document.getElementById("searchbar").reset();
+    document.getElementById("search").value=null;
     updateColor(geojson);
   }
   function closeFavorites() {
