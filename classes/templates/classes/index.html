@@ -346,7 +346,7 @@ function convertBool(b) {
       </div>
     </div>
 
-   <div style="float:left; width:50px;">
+   <div style="float:left; width:65px;">
     <div class="dropdown" style="float:left; ">
 <!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
@@ -446,11 +446,11 @@ function dateCheck(){
   var f = document.getElementById("F").checked;
   if(m || t || w || th || f){
     var output= "";
-    if(m) output += "M";
-    if(t) output += "T";
-    if(w) output += "W";
-    if(th) output += "Th";
-    if(f) output += "F";
+    if(m) output += "m";
+    if(t) output += "t";
+    if(w) output += "w";
+    if(th) output += "th";
+    if(f) output += "f";
     console.log(output);
     document.getElementById("dropdownMenuButton").placeholder=output;
     document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
