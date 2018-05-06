@@ -224,17 +224,15 @@ def searchTime(inputTime, results):
 def getDayString(mon, tues, wed, thurs, fri):
     days = ""
     if mon:
-        days += " M,"
+        days += "M"
     if tues:
-        days += " T,"
+        days += "T"
     if wed:
-        days += " W,"
+        days += "W"
     if thurs:
-        days += " Th,"
+        days += "Th"
     if fri:
-        days += " F,"
-    if days:
-        days = "on" + days
+        days += "F"
     return days[:-1]
 
 def parse_terms(request):
@@ -273,11 +271,9 @@ def search(request):
         'saved_buildings': Building.objects.filter(saved__contains=[netid]),
         'netid': netid
     }
-
-    if len(resultsFiltered) == 0 and len(buildings) == 0:
-        context['no_matches'] = True
+    context['num_matches'] = len(resultsFiltered) + len(buildings)
     # If one match, we can put it directly on the map
-    elif len(resultsFiltered) == 1 and len(buildings) == 0:
+    if len(resultsFiltered) == 1 and len(buildings) == 0:
         context['course'] = resultsFiltered[0]
     elif len(resultsFiltered) == 0 and len(buildings) == 1:
         context['building'] = buildings[0]
