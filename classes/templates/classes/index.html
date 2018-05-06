@@ -351,26 +351,26 @@ function convertBool(b) {
 <!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
       </button> -->
-      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder=&#xe109; style="color: white; cursor: pointer;" readonly>
+      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="Date" style="color: white; cursor: pointer;" readonly>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
-          <input id = "M" name = "M" value = "M" type="checkbox">
+          <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspMonday </span>
         </label><br>
         <label class="switch">
-          <input id = "T" name = "T" value = "T" type="checkbox">
+          <input id = "T" name = "T" value = "T" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspTuesday </span>
         </label><br>
         <label class="switch">
-          <input id = "W" name = "W" value = "W" type="checkbox">
+          <input id = "W" name = "W" value = "W" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspWednesday </span>
         </label><br>
         <label class="switch">
-          <input id = "Th" name = "Th" value = "Th" type="checkbox">
+          <input id = "Th" name = "Th" value = "Th" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspThursday </span>
         </label><br>
         <label class="switch">
-          <input id = "F" name = "F" value = "F" type="checkbox">
+          <input id = "F" name = "F" value = "F" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspFriday </span>
         </label>
         </div>
@@ -437,6 +437,21 @@ function convertBool(b) {
 
 <!-- Script for matches -->
 <script>
+//check if checkboxes checked
+function dateCheck(){
+  var m = document.getElementById("M").checked;
+  var t = document.getElementById("T").checked;
+  var w = document.getElementById("W").checked;
+  var th = document.getElementById("Th").checked;
+  var f = document.getElementById("F").checked;
+  console.log(m);
+  console.log(t);
+  console.log(w);
+  if(m || t || w || th || f){
+    document.getElementById("dropdownMenuButton")[0].placeholder=&#x2705;;
+    console.log("got here");
+  }
+}
 function truncate(line, maxLength) {
   if (line.length <= maxLength) {
     return line;
