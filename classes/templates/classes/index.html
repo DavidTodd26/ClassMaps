@@ -463,7 +463,7 @@ function addBuildingRow(id, text) {
         addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       } else {
         var formatted = truncate("{{b}}", 20);
-        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted+<br>);
+        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted+"<br>");
       }
     {% endfor %}
 {% endif %}
