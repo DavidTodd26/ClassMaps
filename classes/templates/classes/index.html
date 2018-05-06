@@ -107,15 +107,15 @@
     }
     ::placeholder {
       color: #d3d3d3;
-      font-size: 18px;
+      font-size: 15px;
       opacity: 1; /* Firefox */
     }
     :-ms-input-placeholder { /* Internet Explorer 10-11 */
-       font-size: 18px;
+       font-size: 15px;
        color: #d3d3d3;
     }
     ::-ms-input-placeholder { /* Microsoft Edge */
-       font-size: 18px;
+       font-size: 15px;
        color: #d3d3d3;
     }
     input, select, textarea {
@@ -338,25 +338,25 @@ function convertBool(b) {
      </a>
 
     <div style="width:30%; float:left;">
-        <input id = "search" style="font-size:18px;" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
+        <input id = "search" style="font-size:15px;" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
     <div style="width:10px; float:left;">
       <input style="color: white;" placeholder="" readonly>
    </div>
     <div style="width:60px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
-        <input id="clock" type="text" class="form-control" name="t" placeholder="Time" style="font-size: 18px; color: white; cursor: pointer;" onfocus="this.blur()" readonly>
+        <input id="clock" type="text" class="form-control" name="t" placeholder="Time" style="font-size: 15px; color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
     </div>
    <div style="width:5px; float:left;">
-    <input type="text" style="color: white; cursor: pointer; font-size:18px;" placeholder="|" readonly>
+    <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="|" readonly>
    </div>
    <div style="float:left; width:55px;">
     <div class="dropdown" style="float:left;">
 <!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
       </button> -->
-      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="font-size: 18px; color: white; cursor: pointer;" readonly>
+      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="font-size: 15px; color: white; cursor: pointer;" readonly>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
           <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
