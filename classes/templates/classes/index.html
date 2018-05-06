@@ -181,6 +181,10 @@
         font-size: 34px;
         margin-left: 50px;
     }
+    /*  Hover over inputs  */
+    .overlay input:hover{
+      color: white;
+    }
     /* Start saved list css */
     .listOverlay {
       margin: 10px;
@@ -336,13 +340,13 @@ function convertBool(b) {
     <div style="width:10px; float:left;">
       <input style="color: white;" placeholder="" readonly>
    </div>
-    <div style="width:74px; float:left;">
+    <div style="width:45px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
-        <input id="clock" type="text" class="form-control" name="t" placeholder="Set Time," style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
+        <input id="clock" type="text" class="form-control" name="t" placeholder="Time |" style="color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
     </div>
 
-   <div style="float:left; width:50px;">
+   <div style="float:left; width:auto;">
     <div class="dropdown" style="float:left; ">
 <!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
@@ -350,30 +354,30 @@ function convertBool(b) {
       <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="Date" style="color: white; cursor: pointer;" readonly>
     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <label class="switch">
-          <input id = "M" name = "M" value = "M" type="checkbox">
+          <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspMonday </span>
         </label><br>
         <label class="switch">
-          <input id = "T" name = "T" value = "T" type="checkbox">
+          <input id = "T" name = "T" value = "T" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspTuesday </span>
         </label><br>
         <label class="switch">
-          <input id = "W" name = "W" value = "W" type="checkbox">
+          <input id = "W" name = "W" value = "W" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspWednesday </span>
         </label><br>
         <label class="switch">
-          <input id = "Th" name = "Th" value = "Th" type="checkbox">
+          <input id = "Th" name = "Th" value = "Th" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspThursday </span>
         </label><br>
         <label class="switch">
-          <input id = "F" name = "F" value = "F" type="checkbox">
+          <input id = "F" name = "F" value = "F" type="checkbox" onclick="dateCheck()">
           <span class="slider"> &nbspFriday </span>
         </label>
         </div>
       </div>
     </div>
 
-   <div style="width:25px; float:left; margin-right: 5px;" onclick="clearForm()">
+   <div style="width:25px; float:left; margin-right: 5px;" onclick="clearForm();dateCheck();">
     <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="&times;" readonly>
    </div>
 
@@ -433,6 +437,32 @@ function convertBool(b) {
 
 <!-- Script for matches -->
 <script>
+//check if checkboxes checked
+function dateCheck(){
+  var m = document.getElementById("M").checked;
+  var t = document.getElementById("T").checked;
+  var w = document.getElementById("W").checked;
+  var th = document.getElementById("Th").checked;
+  var f = document.getElementById("F").checked;
+  if(m || t || w || th || f){
+    var output= "";
+    if(m)
+      output += "M";
+    if(t)
+      output += "T";
+    if(w)
+      output += "W";
+    if(th)
+      output += "Th";
+    if(f)
+      output += "F";
+    console.log(output);
+    document.getElementById("dropdownMenuButton").placeholder=output;
+  }
+  else{
+    document.getElementById("dropdownMenuButton").placeholder="Date";
+  }
+}
 function truncate(line, maxLength) {
   if (line.length <= maxLength) {
     return line;
@@ -818,7 +848,7 @@ function resetHighlight(e) {
 
     getData().success(function (data) {
       geojson.eachLayer(function(layer) {
-        var tokens = layer.feature.properties.name.split(",");
+        var tokens = layer.feature.properties.name.split(", ");
         var totalEnroll = 0;
         for (i = 0; i < tokens.length; i++) {
           if (tokens[i] in data) {
