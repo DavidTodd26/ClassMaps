@@ -985,21 +985,22 @@ if (!jQuery.isEmptyObject(lonlats)) {
         var id = "{{building.pk}}";
         var type = "b";
         var name = "{{building}}";
-    {% elif c %}
-        var lon = "{{c.building_lon}}";
-        var lat = "{{c.building_lat}}";
-        var id = "{{c.pk}}";
+    {% elif course %}
+        var lon = "{{course.building_lon}}";
+        var lat = "{{course.building_lat}}";
+        var id = "{{course.pk}}";
         var type = "c";
         // modified this line to add parameters
 
-        var name = "{{c}} {{c.title}} {{c.section}} {{c.building}} {{c.room}} {{c.day}} {{c.time}}";
+        var name = "{{course}} {{course.title}} {{course.section}} {{course.building}} " +
+                   "{{course.room}} {{course.day}} {{course.time}}";
        if (!lon && !lat) {
           lon = -74.656509;
           lat = 40.346699;
-          var name = "<div>NO BUILDING<\div><div>{{c}} {{c.day}} {{c.starttime}}-{{c.endtime}}</div>";
+          var name = "<div>NO BUILDING<\div><div>{{course}} {{course.day}} {{course.time}}</div>";
         }
     {% endif %}
-    {% if building or c %}
+    {% if building or course %}
       var search = "<div>" + name + "</div>" +
       "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
           "<button id=\"addrow\" class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
