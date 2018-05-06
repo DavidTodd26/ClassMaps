@@ -507,7 +507,7 @@ function addResultRow(id, text) {
 
 {% if classes %}
     {% for c in classes %}
-      var formatted = "{{c}}".split("/")[0]+" {{c.section}}<br>{{c.day}} {{c.time}}<br>"+truncate("{{c.title}}", 20);
+      var formatted = "{{c}}".split("/")[0]+" {{c.section}}<br>"+"{{c.day}}".lower()+" {{c.time}}<br>"+truncate("{{c.title}}", 20);
       addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
