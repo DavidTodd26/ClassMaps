@@ -447,7 +447,7 @@ function addCourseRow(id, text) {
 }
 function addBuildingRow(id, text) {
 //   $("#"+id).append("<div class=\"col-xs-4\">"+text+"</div>");
-  $("#"+id).append("<div style=\"background-color: #d3d3d3; padding-top: 50px;\" class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div \" class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 
@@ -462,10 +462,10 @@ function addBuildingRow(id, text) {
       alias = "{{b.names}}".split("/")[1];
       if (alias) {
         var formatted = truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
-        addBuildingRow("buildings", "<a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
+        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       } else {
         var formatted = truncate("{{b}}", 20);
-        addBuildingRow("buildings", "<a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
+        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       }
     {% endfor %}
 {% endif %}
