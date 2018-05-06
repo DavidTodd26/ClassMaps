@@ -445,14 +445,18 @@ function addCourseRow(id, text) {
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 function addBuildingRow(id, text) {
-  $("#"+id).append("<div \" class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div \" style=\"padding-top: auto; padding-bottom: auto;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+    "<p>"+text+"</p>"+"</div>"+"</div>");
+}
+function addResultRow(id, text) {
+  $("#"+id).append("<div \" style=\"padding-top: 10px; padding-bottom: 30px;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addCourseRow("buildings", "Results for:<br>\"{{q}}\"{{d}}{{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addResultRow("buildings", "Results for: \"{{q}}\"<br>{{d}}<br>{{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
 {% endif %}
 
 {% if buildings %}
@@ -463,7 +467,7 @@ function addBuildingRow(id, text) {
         addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       } else {
         var formatted = truncate("{{b}}", 20);
-        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
+        addBuildingRow("buildings", "<br>Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black;\">"+formatted);
       }
     {% endfor %}
 {% endif %}

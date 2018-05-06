@@ -213,17 +213,17 @@ def searchTime(inputTime, results):
 def getDayString(mon, tues, wed, thurs, fri):
     days = ""
     if mon:
-        days += " Monday,"
+        days += " Mon,"
     if tues:
-        days += " Tuesday,"
+        days += " Tue,"
     if wed:
-        days += " Wednesday,"
+        days += " Wed,"
     if thurs:
-        days += " Thursday,"
+        days += " Thu,"
     if fri:
-        days += " Friday,"
+        days += " Fri,"
     if days:
-        days = "<br>on" + days
+        days = "on" + days
     return days[:-1]
 
 def parse_terms(request):
@@ -240,7 +240,7 @@ def parse_terms(request):
         resultsFiltered = searchTime(time, resultsFiltered)
         if not query and not mon and not tues and not wed and not thurs and not fri:
             resultsFiltered = searchTime(time, Section.objects.all())
-        time = "<br>at " + time
+        time = "at " + time
     else:
         time = ""
     dayString = getDayString(mon, tues, wed, thurs, fri)
