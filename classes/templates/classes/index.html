@@ -492,10 +492,10 @@ function addResultRow(id, text) {
       alias = "{{b.names}}".split("/")[1];
       if (alias) {
         var formatted = truncate("{{b}}", 20)+"<br>("+truncate(alias.substring(2,alias.length),15)+")";
-        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black; font-size: 15px;\">"+formatted);
+        addBuildingRow("buildings", "Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black; font-size: 5px;\">"+formatted);
       } else {
         var formatted = truncate("{{b}}", 20);
-        addBuildingRow("buildings", "<br>Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black; font-size: 15px;\">"+formatted);
+        addBuildingRow("buildings", "<br>Building:<br><a href=\"/building/{{b.pk}}\" style=\"color: black; font-size: 5px;\">"+formatted);
       }
     {% endfor %}
 {% endif %}
@@ -503,7 +503,7 @@ function addResultRow(id, text) {
 {% if classes %}
     {% for c in classes %}
       var formatted = truncate("{{c}}", 15)+"<br>{{c.section}} {{c.time}}<br>"+truncate("{{c.title}}", 20);
-      addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black; font-size: 15px;\">"+formatted);
+      addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black; font-size: 5px;\">"+formatted);
     {% endfor %}
 {% endif %}
 </script>
