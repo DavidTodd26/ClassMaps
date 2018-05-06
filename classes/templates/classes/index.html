@@ -804,7 +804,7 @@ function onEachFeature(feature, layer) {
          "</button>" +
      "</form>";
   layer.bindPopup(buildingtext);
-  layer.bindTooltip('hello');
+  layer.bindTooltip(feature.properties.name);
   layer.on({
     mouseover: highlightFeature,//,
     mouseout: resetHighlight,
