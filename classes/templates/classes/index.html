@@ -457,12 +457,12 @@ function dateCheck(){
     if(th) output += "th";
     if(f) output += "f";
     console.log(output);
-    document.getElementById("dropdownMenuButton").placeholder=output;
-    document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
+    document.getElementById("dropdownMenuButton").value=output;
+    //document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
   }
   else{
-    document.getElementById("dropdownMenuButton").placeholder="   Date";
-    document.getElementById("dropdownMenuButton").width="50px";
+    //document.getElementById("dropdownMenuButton").placeholder="   Date";
+    //document.getElementById("dropdownMenuButton").width="50px";
   }
 }
   
