@@ -234,7 +234,7 @@ def getDayString(mon, tues, wed, thurs, fri):
     if fri:
         days += " F"
     if days:
-#         days = "on" + days
+         days = "" + days
     return days[:-1]
 
 def parse_terms(request):
