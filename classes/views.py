@@ -276,7 +276,7 @@ def search(request):
 
     # If there's exactly one match, we can put it directly on the map
     if len(resultsFiltered) == 1 and len(buildings) == 0:
-        context['c'] = resultsFiltered[0]
+        context['course'] = resultsFiltered[0]
     elif len(resultsFiltered) == 0 and len(buildings) == 1:
         context['building'] = buildings[0]
     else:
