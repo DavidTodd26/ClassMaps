@@ -823,7 +823,7 @@ function resetHighlight(e) {
   });
 }
     var geojson;
-  geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).bindLabel('Look revealing label!').addTo(buildings);
+  geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
 
   function updateColor(geojson) {
     function getData() {
