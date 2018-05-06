@@ -90,27 +90,28 @@ def index(request):
     }
     return render(request, 'classes/index.html', context)
 
-@login_required
-def details(request, id):
+def details(request, id, isCourse):
     netid = request.user.username
-    if id.isdigit():
-        course = Section.objects.get(id=int(id))
-        context = {
-            'c': course,
-            'saved_courses': Section.objects.filter(saved__contains=[netid]),
-            'saved_buildings': Building.objects.filter(saved__contains=[netid]),
-            'netid': netid
-        }
+    context = {
+        'saved_courses': Section.objects.filter(saved__contains=[netid]),
+        'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+        'netid': netid
+    }
+    if isCourse:
+        context['course'] = Section.objects.get(id=int(id))
     else:
-        building = Building.objects.get(names__contains=[id])
-        context = {
-            'building': building,
-            'saved_courses': Section.objects.filter(saved__contains=[netid]),
-            'saved_buildings': Building.objects.filter(saved__contains=[netid]),
-            'netid': netid
-        }
+        context['building'] = Building.objects.get(id=int(id))
 
     return render(request, 'classes/index.html', context)
+
+
+@login_required
+def course_details(request, id):
+    return details(request, id, isCourse=True)
+
+@login_required
+def building_details(request, id):
+    return details(request, id, isCourse=False)
 
 # Filter by course, number, building, and section
 def search_terms(query):

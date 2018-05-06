@@ -13,7 +13,7 @@ urlpatterns = [
     path('results/', search, name="search"),
     re_path('^api/query/', views.query, name='query'),
     re_path('^api/enroll/', views.enroll, name='enroll'),
-    re_path('course/(?P<id>.*)/', views.details, name="details"),
-    re_path('building/(?P<id>.*)/', views.details, name="details"),
+    re_path('course/(?P<id>.*)/', views.course_details, name="course"),
+    re_path('building/(?P<id>.*)/', views.building_details, name="building"),
     path('about/', views.about),
 ]
