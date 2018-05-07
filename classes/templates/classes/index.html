@@ -150,7 +150,7 @@
       left: 1;
       right: 0;
       bottom: 0;
-      background-color: rgba(211,211,211,0.4);
+      background-color: rgba(211,211,211,0.65);
       z-index: 10;
       cursor: pointer;
       transition: 0.5s;
@@ -423,12 +423,11 @@ function convertBool(b) {
    <div style="width:25px; float:left; margin-right: 5px;" onclick="clearForm();dateCheck();">
     <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="&times;" readonly>
    </div>
-
-    <div style="float:left; padding-right: 10px;">
-      <button type="submit" style="display:none">
-        <i class="fa fa-search"></i>Search ClassMaps
-      </button>
-    </div>
+<!-- 
+    <div style="float:left;">
+      <input type="submit" style="display:none">
+      </input>
+    </div> -->
   </form>
 
   <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
@@ -540,7 +539,11 @@ function addImageRow(id, text) {
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
   addResultRow("buildings", "No matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  console.log(width);
+  if(width > 720){
   addImageRow("buildings", "<img src=\"{% static 'classes/images/calvinandhobbes.png'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
+  }
 {% endif %}
 
 {% if buildings %}
