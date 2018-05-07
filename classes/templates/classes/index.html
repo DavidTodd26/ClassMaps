@@ -525,8 +525,12 @@ function addImageRow(id, text) {
   $("#"+id).append("<div \" style=\"padding-top: 5px; width: 390px; padding-bottom: 0;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
+var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+console.log(width);
 {% if num_matches < 9 %}
-  document.getElementById("resultsOverlay").style.width = "auto";
+  if(width > 720){
+    document.getElementById("resultsOverlay").style.width = "auto";
+  }
 {% endif %}
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
@@ -539,8 +543,6 @@ function addImageRow(id, text) {
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
   addResultRow("buildings", "No matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;&nbspCLOSE</a>");
-  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  console.log(width);
   if(width > 720){
   addImageRow("buildings", "<img src=\"{% static 'classes/images/calvinandhobbes.png'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
   }
