@@ -233,7 +233,7 @@ def getDayString(mon, tues, wed, thurs, fri):
         days += "Th"
     if fri:
         days += "F"
-    return days[:-1]
+    return days
 
 def parse_terms(request):
     query = request.GET.get('q', None)
