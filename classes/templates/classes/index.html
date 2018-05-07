@@ -88,7 +88,6 @@
       height: auto;
       width: 100%;
       height: 55px;
-/*       max-height: 85px; */
       margin-left: -100%;
       position: relative;
       float: right;
@@ -155,7 +154,8 @@
       z-index: 10;
       cursor: pointer;
       transition: 0.5s;
-      padding: 20%;
+      text-align: center;
+      padding-top: 60px;
     }
     /* Start sidebar css */
     .sideOverlay {
@@ -209,7 +209,7 @@
       right: 0;
       bottom: 0;
       background-color: rgba(0,0,0,0.6);
-      z-index: 4;
+      z-index: 1;
       cursor: pointer;
     }
     .btn-remove2{
@@ -246,10 +246,25 @@
     .ui-autocomplete {
       width: auto;
       height: auto;
-      max-height: 40%;
+      max-height: 55%;
       max-width: 40%;
       overflow-y: auto;
-      font-size: 12px;
+      font-size: 11px;
+      z-index: 8;
+    }
+    @media only screen and (max-width: 600px) {
+      .ui-autocomplete {
+        width: 67%;
+        height: auto;
+        max-height: 80%;
+        max-width: 67%;
+        overflow-y: auto;
+        font-size: 11px;
+        z-index: 8;
+      }
+      .helpimage{
+        width: 300px;
+      }
     }
     /* Search result overlay */
     .resultsContainer {
@@ -508,7 +523,7 @@ function addResultRow(id, text) {
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 function addImageRow(id, text) {
-  $("#"+id).append("<div \" style=\"padding-top: 5px; width: 400px; padding-bottom: 0;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
+  $("#"+id).append("<div \" style=\"padding-top: 5px; width: 390px; padding-bottom: 0;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
 {% if num_matches < 9 %}
@@ -517,14 +532,14 @@ function addImageRow(id, text) {
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addResultRow("buildings", "Results for:<br>\"{{q}}\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addResultRow("buildings", "{{num_matches}} matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;&nbspCLOSE</a>");
 {% elif num_matches == 0 %}
 //   if(document.getElementById("search").value != null){
 //   }
   console.log("no results");
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addResultRow("buildings", "Results for:<br>\"{{q}}\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addResultRow("buildings", "No matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
   addImageRow("buildings", "<img src=\"{% static 'classes/images/calvinandhobbes.png'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
 {% endif %}
 
@@ -543,7 +558,7 @@ function addImageRow(id, text) {
 
 {% if classes %}
     {% for c in classes %}
-      var formatted = "{{c}}".split("/")[0]+" {{c.section}}<br>{{c.day}} {{c.time}} <br>"+truncate("{{c.title}}", 20);
+      var formatted = "{{c}}".split("/")[0]+" {{c.section}}<br>{{c.day}} {{c.time}} <br>"+truncate("{{c.title}}", 19);
       addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
@@ -553,11 +568,11 @@ function addImageRow(id, text) {
    <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a style="pointer-events: none;"> Welcome, {{netid}}</a>
-    <a href="https://classmaps.herokuapp.com/about" target="_blank">About</a>
-    <a onclick="openHelp()">Help</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank">Feedback</a>
-    <a href="https://classmaps.herokuapp.com/about/#team" target="_blank">Contact</a>
-    <a href="https://classmaps.herokuapp.com/accounts/logout">Sign Out</a>
+    <a href="https://classmaps.herokuapp.com/about" target="_blank"><i class="fa fa-info-circle"></i> &nbsp&nbspAbout</a>
+    <a onclick="openHelp()"><i class="fa fa-question-circle"></i> &nbsp&nbspHelp</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank"><i class="fa fa-comment"></i> &nbspFeedback</a>
+    <a href="https://classmaps.herokuapp.com/about/#team" target="_blank"><i class="fa fa-address-card"></i> &nbspContact</a>
+    <a href="https://classmaps.herokuapp.com/accounts/logout"><i class="fa fa-sign-out"></i> &nbsp&nbspSign Out</a>
 
       <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
         <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: #00aaee;" href="/">homepage</a></p>
@@ -570,8 +585,9 @@ function addImageRow(id, text) {
 <!--  Code for help overlay  -->
    <div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
      <h3>Help</h3>
-     <a href="javascript:void(0)" class="closebtn" onclick="closeHelp()">&times;CLOSE</a>
-     This is the help overlay. (This part has yet to be completed, sorry.)
+<!--      <a href="javascript:void(0)" class="closebtn" onclick="closeHelp()">&times;CLOSE</a>
+     This is the help overlay. (This part has yet to be completed, sorry.) -->
+     <img id="helpimage" src="{% static 'classes/images/helpoverlay.png'%}" style="width:450px;">
    </div>
 <!-- sidenav script  -->
 <script>
@@ -615,6 +631,11 @@ toggle between hiding and showing the dropdown content */
    var x = document.getElementById("listOverlay");
    x.style.display = "block";
     collapse = false;
+  }
+  else{
+//     document.getElementById("ui-autocomplete").style.maxWidth="60%";
+//     document.getElementById("ui-autocomplete").style.maxHeight="70%";
+     console.log("mobile styling");
   }
 
   $('.dropdown-menu').on('click', function(e) {
@@ -706,6 +727,12 @@ toggle between hiding and showing the dropdown content */
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
+    var saladIcon = L.icon({
+       iconUrl: "{% static 'classes/images/caesar.png' %}",
+       iconSize:     [26, 26], // size of the icon
+       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+     });
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
        iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
@@ -775,6 +802,11 @@ map.setMaxBounds(bounds);
 map.on('drag', function() {
   map.panInsideBounds(bounds, { animate: false });
 });
+var temp = "{{netid}}";
+if(temp === "jywei"){
+L.marker([40.349152, -74.655383], {icon: saladIcon}).addTo(map)
+    .bindPopup("Julius Caesar Salad Building - Jerry");
+}
 
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
