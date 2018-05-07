@@ -262,6 +262,9 @@
         font-size: 11px;
         z-index: 8;
       }
+      .helpimage{
+        width: 300px;
+      }
     }
     /* Search result overlay */
     .resultsContainer {
@@ -584,7 +587,7 @@ function addImageRow(id, text) {
      <h3>Help</h3>
 <!--      <a href="javascript:void(0)" class="closebtn" onclick="closeHelp()">&times;CLOSE</a>
      This is the help overlay. (This part has yet to be completed, sorry.) -->
-     <img src="{% static 'classes/images/helpoverlay.png'%}" style="width:700px;">
+     <img id="helpimage" src="{% static 'classes/images/helpoverlay.png'%}" style="width:600px;">
    </div>
 <!-- sidenav script  -->
 <script>
