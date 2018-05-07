@@ -727,6 +727,12 @@ toggle between hiding and showing the dropdown content */
        iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
      });
+    var saladIcon = L.icon({
+       iconUrl: "{% static 'classes/images/caesar.png' %}",
+       iconSize:     [26, 26], // size of the icon
+       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
+       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+     });
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
        iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
@@ -796,6 +802,9 @@ map.setMaxBounds(bounds);
 map.on('drag', function() {
   map.panInsideBounds(bounds, { animate: false });
 });
+
+L.marker([40.349152, -74.655383], {icon: saladIcon}).addTo(map)
+    .bindPopup("Julius Caesar Saland Building");
 
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
