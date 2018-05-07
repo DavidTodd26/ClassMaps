@@ -617,6 +617,10 @@ toggle between hiding and showing the dropdown content */
    x.style.display = "block";
     collapse = false;
   }
+  else{
+    document.getElementById("ui-autocomplete").width="60%";
+    document.getElementById("ui-autocomplete").height="70%";
+  }
 
   $('.dropdown-menu').on('click', function(e) {
     e.stopPropagation();
