@@ -802,9 +802,10 @@ map.setMaxBounds(bounds);
 map.on('drag', function() {
   map.panInsideBounds(bounds, { animate: false });
 });
-
+if({{netid}} == "atong"){
 L.marker([40.349152, -74.655383], {icon: saladIcon}).addTo(map)
     .bindPopup("Julius Caesar Salad Building - Jerry");
+}
 
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
