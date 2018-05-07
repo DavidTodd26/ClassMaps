@@ -538,7 +538,7 @@ function addImageRow(id, text) {
   console.log("no results");
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
-  addResultRow("buildings", "No matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;CLOSE</a>");
+  addResultRow("buildings", "No matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;&nbspCLOSE</a>");
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   console.log(width);
   if(width > 720){
