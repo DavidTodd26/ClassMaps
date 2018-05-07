@@ -814,7 +814,7 @@ map.on('drag', function() {
     map.zoomControl.setPosition('bottomright');
 
 
-L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="width:16px">', function (btn, map) {
+L.easyadfoijpdsfoijapsdofjapsdiofjaposdjfButton('<img src="{% static 'classes/images/currentloc.png' %}" style="width:16px">', function (btn, map) {
 
     map.locate({
         setView: true,
@@ -866,7 +866,7 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
       weight: 5,
       color: '#666',
       dashArray: '',
-    })
+    });
 }
 function onEachFeature(feature, layer) {
   var buildquery = feature.properties.name
