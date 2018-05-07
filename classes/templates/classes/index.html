@@ -592,6 +592,13 @@ function addImageRow(id, text) {
 <!-- sidenav script  -->
 <script>
 
+$("#search").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        $("#searchbar").submit();
+    }
+});
+
   /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
   function clearForm() {
@@ -1031,56 +1038,7 @@ function resetHighlight(e) {
   $("#F").change(function(){
     updateColor(geojson);
   });
- /* var legend = L.control({position: 'bottomright'});
-legend.onAdd = function (buildings) {
-  var div = L.DomUtil.create('div', 'info legend'),
-    grades = ['dormitory', 'university', 'other'],
-    labels = [],
-    from, to;
-  for (var i = 0; i < grades.length; i++) {
-    from = grades[i];
-    //to = grades[i + 1];
-    labels.push(
-      '<i style="background:' + getColor(from) + '"></i> ' +
-      from + (from ? '&ndash;' + from : '+'));
-  }
-  div.innerHTML = labels.join('<br>');
-  return div;
-};
-<<<<<<< HEAD
-//legend.addTo(buildings);
-    // Displays current user location and accuracy
-    /*function onLocationFound(e) {
-      var radius = e.accuracy / 2;
-      L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup();
-      L.circle(e.latlng, radius).addTo(map);
-    }
-    map.on('locationfound', onLocationFound);*/
-//     // Displays coordinates upon mouse click
-//     var popup = L.popup();
-//     function onMapClick(e) {
-//       popup
-//         .setLatLng(e.latlng)
-//         .setContent("You clicked the map at " + e.latlng.toString())
-//         .openOn(map);
-//     }
-//     map.on('click', onMapClick);
 
-//legend.addTo(buildings);
-/*
-function addRow() {
-    var newRow = $("<tr>");
-    var cols = "";
-
-    cols += '<td><input type="text" class="form-control" name="name"/></td>';
-    cols += '<td><input type="text" class="form-control" name="mail"/></td>';
-    cols += '<td><input type="text" class="form-control" name="phone"/></td>';
-
-    cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
-    newRow.append(cols);
-    $("table.order-list").append(newRow);
-}
-*/
 lonlats = {};
 var offset = 0.0001;
 {% if saved_buildings %}
