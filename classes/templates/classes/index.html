@@ -531,6 +531,11 @@ console.log(width);
   if(width > 720){
     document.getElementById("resultsOverlay").style.width = "auto";
   }
+  else{
+    {% if num_matches < 3 %}
+      document.getElementById("resultsOverlay").style.width = "auto";
+    {% endif %}
+  }
 {% endif %}
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
