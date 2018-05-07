@@ -869,6 +869,9 @@ function onEachFeature(feature, layer) {
 }
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
+  if (layer.getToolTip().isOpen()) {
+    layer.closeToolTip();
+  }
 }
 function resetHighlight(e) {
   var layer = e.target;
@@ -880,6 +883,15 @@ function resetHighlight(e) {
 }
     var geojson;
   geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
+
+  // Add key if new or add value if key present
+  function addDict(dict, key, val) {
+    if (key in dict) {
+      dict[key] += val;
+    } else {
+      dict[key] = val;
+    }
+  }
 
   function updateColor(geojson) {
     function getData() {
@@ -901,13 +913,29 @@ function resetHighlight(e) {
     }
 
     getData().success(function (data) {
+      // Parse response
+      students = {}
+      courses = {}
+      $.each(data,function(building,v) {
+        $.each(v, function(type, num) {
+            if (type === "students") {
+              addDict(students, building, num);
+            } else {
+              addDict(courses, building, num);
+            }
+        });
+      });
+
+      // Update layers
       geojson.eachLayer(function(layer) {
         var name = layer.feature.properties.name
         var tokens = name.split(", ");
         var totalEnroll = 0;
+        var totalCourse = 0;
         for (i = 0; i < tokens.length; i++) {
-          if (tokens[i] in data) {
-            totalEnroll += data[tokens[i]];
+          if (tokens[i] in students) {
+            totalEnroll += students[tokens[i]];
+            totalCourse += courses[tokens[i]]
           }
         }
         var color = totalEnroll > 5000 ? '#800026' :
@@ -929,14 +957,16 @@ function resetHighlight(e) {
           layer.setStyle({
             fillColor: color,
           });
-          layer.bindTooltip(name+"<br>Students here: "+totalEnroll);
+          layer.bindTooltip(name+"<br>Students here: "+totalEnroll+"<br>Courses here: "+
+                            totalCourse+"<br>");
           var buttontext =
                  "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
                  "<button class=\"btn btn-success\" name=\"q\" value=\""+name+"\" type=\"submit\">" +
                      "<i class=\"fa fa-search\">"+"</i>"+"Classes Here" +
                  "</button>" +
              "</form>";
-          layer.bindPopup(name+"<br>Students here: "+totalEnroll+"<br>"+buttontext);
+          layer.bindPopup(name+"<br>Students here: "+totalEnroll+"<br>Courses here: "+
+                          totalCourse+"<br>"+buttontext);
         }
       });
     });
