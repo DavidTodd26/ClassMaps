@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 import json
 
-#@login_required
+@login_required
 def query(request):
     query, time, dayString, courses, buildings, names = parse_terms(request)
     results = []
@@ -33,7 +33,7 @@ def query(request):
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
-#@login_required
+@login_required
 def enroll(request):
     query, time, dayString, courses, buildings, names = parse_terms(request)
     builds = {}
@@ -76,7 +76,7 @@ def update_result(netid, isSave, isCourse, id):
 
     return (lon, lat, zoom)
 
-#@login_required
+@login_required
 def index(request):
     netid = request.user.username
     save_id = request.GET.get('s')
@@ -115,11 +115,11 @@ def details(request, id, isCourse):
     return render(request, 'classes/index.html', context)
 
 
-#@login_required
+@login_required
 def course_details(request, id):
     return details(request, id, isCourse=True)
 
-#@login_required
+@login_required
 def building_details(request, id):
     return details(request, id, isCourse=False)
 
@@ -259,7 +259,7 @@ def parse_terms(request):
 
     return(query, time, dayString, resultsFiltered, buildings, names)
 
-#@login_required
+@login_required
 def search(request):
     template = 'classes/index.html'
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
@@ -290,7 +290,7 @@ def search(request):
 
     return render(request, template, context)
 
-#@login_required
+@login_required
 def about(request):
     context = {
 
