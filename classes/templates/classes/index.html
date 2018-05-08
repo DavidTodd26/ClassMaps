@@ -423,7 +423,7 @@ function convertBool(b) {
    <div style="width:25px; float:left; margin-right: 5px;" onclick="clearForm();dateCheck();">
     <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="&times;" readonly>
    </div>
-<!-- 
+<!--
     <div style="float:left;">
       <input type="submit" style="display:none">
       </input>
@@ -595,6 +595,7 @@ function addImageRow(id, text) {
 <!-- sidenav script  -->
 <script>
 
+// Submit form when user presses 'enter'
 $("#search").keypress(function(event) {
     if (event.which == 13) {
         event.preventDefault();
@@ -656,7 +657,7 @@ toggle between hiding and showing the dropdown content */
       var newRow = $("<tr>");
       var cols = "";
 
-      cols += '<td><button class="listText" onclick="goToCoords('+lon+','+lat+');">'+name+'</button></td>';
+      cols += '<td><button class="listText" onclick="goToCoords('+lon+','+lat+')">'+name+'</button></td>';
       cols += '<td>'+button+'</td>';
       newRow.append(cols);
       $("table.order-list").append(newRow);
@@ -895,6 +896,7 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
     });
 }
 function onEachFeature(feature, layer) {
+  /*
   var buildquery = feature.properties.name
   var buildingtext = buildquery +
          "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
@@ -902,7 +904,8 @@ function onEachFeature(feature, layer) {
              "<i class=\"fa fa-search\">"+"</i>"+"Classes Here" +
          "</button>" +
      "</form>";
-  layer.bindPopup(buildingtext);
+     */
+  layer.bindPopup();
   layer.on({
     mouseover: highlightFeature,//,
     mouseout: resetHighlight,
@@ -1002,11 +1005,8 @@ function resetHighlight(e) {
           layer.bindTooltip(name+"<br>Students here: "+totalEnroll+"<br>Courses here: "+
                             totalCourse+"<br>");
           var buttontext =
-                 "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
-                 "<button class=\"btn btn-success\" name=\"q\" value=\""+name+"\" type=\"submit\">" +
-                     "<i class=\"fa fa-search\">"+"</i>"+"Classes Here" +
-                 "</button>" +
-             "</form>";
+             '<button class="btn btn-success" id="build" value="'+name+'" onclick="searchBuilding(\''+name+'\')">Classes Here</button>'
+
           layer.bindPopup(name+"<br>Students here: "+totalEnroll+"<br>Courses here: "+
                           totalCourse+"<br>"+buttontext);
         }
@@ -1017,28 +1017,34 @@ function resetHighlight(e) {
   // Set on page load
   updateColor(geojson);
 
+  // Search when a building is clicked on
+  function searchBuilding(name) {
+    $("#search").val(name);
+    $("#searchbar").submit();
+  }
+
   // Reset whenever a time/day field is updated
-  $("#clock").change(function(){
+  $("#clock").change(function() {
     updateColor(geojson);
   });
 
-  $("#M").change(function(){
+  $("#M").change(function() {
     updateColor(geojson);
   });
 
-  $("#T").change(function(){
+  $("#T").change(function() {
     updateColor(geojson);
   });
 
-  $("#W").change(function(){
+  $("#W").change(function() {
     updateColor(geojson);
   });
 
-  $("#Th").change(function(){
+  $("#Th").change(function() {
     updateColor(geojson);
   });
 
-  $("#F").change(function(){
+  $("#F").change(function() {
     updateColor(geojson);
   });
 
