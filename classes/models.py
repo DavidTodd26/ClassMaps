@@ -3,13 +3,32 @@ from django.contrib.postgres.fields import ArrayField
 from datetime import datetime
 import re
 
-# A section of a course
+# Natural keys for buildings
+class BuildingManager(models.Manager):
+    def get_by_natural_key(self, building_id):
+        return self.get(building_id=building_id)
+
+class Building(models.Model):
+    objects = BuildingManager()
+
+    names = models.CharField(max_length=1000, blank=True, null=True)
+    building_id = models.IntegerField(default=-1)
+    lat = models.CharField(max_length=200, blank=True, null=True)
+    lon = models.CharField(max_length=200, blank=True, null=True)
+    searched = models.IntegerField(default=0)
+
+    def natural_key(self):
+        return self.building_id
+
+    def __str__(self):
+        return self.names.split("/")[0]
+
+# A section of a course, such as a precept or lecture
 class Section(models.Model):
-    building = models.CharField(max_length=200, blank=True, null=True)
-    building_id = models.CharField(max_length=200, blank=True, null=True)
-    building_lat = models.CharField(max_length=200, blank=True, null=True)
-    building_lon = models.CharField(max_length=200, blank=True, null=True)
-    profs = ArrayField(models.CharField(max_length=100, blank=True, null=True), blank=True, null=True)
+    course_id = models.CharField(max_length=10, blank=True, null=True)
+    building = models.ForeignKey(Building, blank=True, null=True, on_delete=models.CASCADE)
+    # Storing the name here speeds up the search in the heatmap
+    building_name = models.CharField(max_length=100, blank=True, null=True)
     room = models.CharField(max_length=200, blank=True, null=True)
     area = models.CharField(max_length=200, blank=True, null=True)
     section = models.CharField(max_length=200, blank=True, null=True)
@@ -21,20 +40,12 @@ class Section(models.Model):
     time = models.CharField(max_length=200, blank=True, null=True)
     enroll = models.CharField(max_length=200, blank=True, null=True)
     capacity = models.CharField(max_length=200, blank=True, null=True)
-    saved = ArrayField(models.CharField(max_length=20, blank=True, null=True), default=list())
     searched = models.IntegerField(default=0)
 
     def __str__(self):
         return self.listings[1:]
 
-# A building
-class Building(models.Model):
-    names = models.CharField(max_length=1000, blank=True, null=True)
-    building_id = models.CharField(max_length=200, blank=True, null=True)
-    lat = models.CharField(max_length=200, blank=True, null=True)
-    lon = models.CharField(max_length=200, blank=True, null=True)
-    saved = ArrayField(models.CharField(max_length=20, blank=True, null=True), default=list())
-    searched = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.names.split("/")[0]
+class User(models.Model):
+    netid = models.CharField(max_length=20, blank=True, null=True)
+    courses = ArrayField(models.CharField(max_length=10, blank=True, null=True), default=list())
+    buildings = ArrayField(models.CharField(max_length=10, blank=True, null=True), default=list())

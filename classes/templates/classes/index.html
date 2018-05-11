@@ -356,7 +356,7 @@ $(function() {
       if (ui.item) {
         $(event.target).val(ui.item.value);
       }
-      window.location.href = "https://classmaps.herokuapp.com/"+ui.item.type+"/"+ui.item.id;
+      window.location.href = "{% url 'classes:index' %}"+ui.item.type+"/"+ui.item.id
     }
   });
 });
@@ -453,15 +453,15 @@ function convertBool(b) {
          </div>
        </tr>
    </thead>
+   <!--
    <tfoot>
        <tr>
            <td colspan="5" style="text-align: left;">
-<!--                <input type="button" class="btn btn-lg btn-block" id="export" value="Export to Calendar" /> -->
+               <input type="button" class="btn btn-lg btn-block" id="export" value="Export to Calendar" />
            </td>
        </tr>
-       <tr>
-       </tr>
    </tfoot>
+-->
 </table>
 </div>
 
@@ -663,7 +663,7 @@ toggle between hiding and showing the dropdown content */
   $('.dropdown-menu').on('click', function(e) {
     e.stopPropagation();
   });
-
+/*
   function addRow(name, lon, lat, button) {
       var newRow = $("<tr>");
       var cols = "";
@@ -685,10 +685,12 @@ toggle between hiding and showing the dropdown content */
       }
     });
   }
-
+*/
+/*
   $("table.order-list").on("click", ".ibtnDel", function (event) {
       $(this).closest("tr").remove();
   });
+  */
 
    $('.clockpicker').clockpicker({
      twelvehour: true,
@@ -829,6 +831,9 @@ if(temp === "jywei"){
 L.marker([40.349152, -74.655383], {icon: saladIcon}).addTo(map)
     .bindPopup("Julius Caesar Salad Building - Jerry");
 }
+
+var searchLayer = L.layerGroup().addTo(map);
+var saveLayer = L.layerGroup().addTo(map);
 
     // Bookmarks
     //var control = new L.Control.Bookmarks().addTo(map);
@@ -972,7 +977,7 @@ function resetHighlight(e) {
       // Parse response
       students = {}
       courses = {}
-      $.each(data,function(building,v) {
+      $.each(data, function(building, v) {
         $.each(v, function(type, num) {
             if (type === "students") {
               addDict(students, building, num);
@@ -1059,13 +1064,119 @@ function resetHighlight(e) {
     updateColor(geojson);
   });
 
+  function removeButton(id, type) {
+    return "<button id=\"remove\" class=\"btn btn-remove\" name=\"r\" type=\"submit\"onclick=\"remove(\'"+id+type+"\')\">" +
+        "<i class=\"fa fa-close\">"+"</i>"+"Remove" +
+    "</button>"
+  }
+
+  function addRow(name, lon, lat, id, button) {
+      var newRow = $('<tr id="'+id+'">');
+      var cols = "";
+
+      cols += '<td><button class="listText" onclick="goToCoords('+lon+','+lat+')">'+name+'</button></td>';
+      cols += '<td>'+button+'</td>';
+
+      newRow.append(cols);
+      $("table.order-list").append(newRow);
+  }
+
+  function goToCoords(lon, lat) {
+    map.eachLayer(function (layer) {
+      if (layer.dragging) {
+        coords = layer.getLatLng()
+        if (coords.lat === parseFloat(lat) && coords.lng === parseFloat(lon)-offset) {
+          layer.openPopup()
+          map.setView(new L.LatLng(lat, lon), 20);
+        }
+      }
+    });
+  }
+
+  function save(id) {
+    $.ajax({
+       type: "POST",
+       url: "{% url 'classes:save' %}",
+       dataType: 'json',
+       data: {
+         s: id,
+         csrfmiddlewaretoken: '{{ csrf_token }}'
+       },
+       success: function (data) {
+         $("#myTable").find("tr:gt(0)").remove();
+         searchLayer.clearLayers();
+         updateSaved()
+       }
+    });
+  }
+
+  function remove(id) {
+    $.ajax({
+       type: "POST",
+       url: "{% url 'classes:remove' %}",
+       dataType: 'json',
+       data: {
+         r: id,
+         csrfmiddlewaretoken: '{{ csrf_token }}'
+       },
+       success: function (data) {
+         $("#myTable").find("tr:gt(0)").remove();
+         updateSaved()
+       }
+    });
+  }
+
+  function updateSaved() {
+    $.ajax({
+      url: '/api/saved/',
+      dataType: 'json',
+      success: function (data) {
+        saveLayer.clearLayers();
+        lonlats = {};
+        $.each(data, function(i, val) {
+          $.each(val, function() {
+            if (i === "buildings") {
+              addRow(this['name'], this['lon'], this['lat'], this['id']+"b", removeButton(this['id'], "b"));
+              var text = "<div>"+this['name']+"</div>"+removeButton(this['id'], "b");
+            } else if (i === "courses") {
+              addRow("<div>"+this['listing']+"</div><div>"+this['building_name']+"</div><div>"+this['time']+"</div>",
+                     this['lon'], this['lat'], this['id']+"c", removeButton(this['id'], "c"));
+              var text = "<div>"+this['listing']+"</div>"+removeButton(this['id'], "c");
+            }
+            var key = this['lon']+" "+this['lat'];
+            if (key in lonlats) {
+              lonlats[key] += "<br>"+text;
+            } else {
+              lonlats[key] = text;
+            }
+          });
+        });
+        if (!jQuery.isEmptyObject(lonlats)) {
+          var count = 0;
+          for (var key in lonlats) {
+            var tokens = key.split(" ");
+            var lon = parseFloat(tokens[0])-offset;
+            var lat = tokens[1];
+            if (lon) {
+                L.marker([lat, lon], {icon: savedIcon}).addTo(saveLayer).bindPopup(lonlats[key]);
+            }
+          }
+        }
+      }
+    });
+  }
+
+  updateSaved()
+
 lonlats = {};
 var offset = 0.0001;
+/*
 {% if saved_buildings %}
    {% for s in saved_buildings %}
      var key = "{{s.lon}} {{s.lat}}"
      var button =
-     "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
+     "<form method=\"post\" action=\"{% url 'classes:remove' %}\">" +
+     "{% csrf_token %}" +
          "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
              "<i class=\"fa fa-close\">"+"</i>"+"Remove"+
          "</button>" +
@@ -1081,9 +1192,10 @@ var offset = 0.0001;
 {% endif %}
 {% if saved_courses %}
    {% for s in saved_courses %}
-     var key = "{{s.building_lon}} {{s.building_lat}}";
+     var key = "{{s.building.lon}} {{s.building.lat}}";
      var button =
-     "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
+     "<form method=\"post\" action=\"{% url 'classes:remove' %}\">" +
+     "{% csrf_token %}" +
          "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
              "<i class=\"fa fa-close\">"+"</i>"+"Remove" +
          "</button>" +
@@ -1094,7 +1206,7 @@ var offset = 0.0001;
      } else {
        lonlats[key] = text;
      }
-     addRow("<div>{{s}}</div><div>{{s.building}}</div><div>{{s.time}}</div>", "{{s.building_lon}}", "{{s.building_lat}}", button);
+     addRow("<div>{{s}}</div><div>{{s.building}}</div><div>{{s.time}}</div>", "{{s.building.lon}}", "{{s.building.lat}}", button);
     {% endfor %}
 {% endif %}
 if (!jQuery.isEmptyObject(lonlats)) {
@@ -1117,7 +1229,7 @@ if (!jQuery.isEmptyObject(lonlats)) {
     {% endif %}
   {% endif %}
 }
-
+*/
     // Searched marker
     {% if building %}
         var lon = "{{building.lon}}";
@@ -1126,14 +1238,14 @@ if (!jQuery.isEmptyObject(lonlats)) {
         var type = "b";
         var name = "{{building}}";
     {% elif course %}
-        var lon = "{{course.building_lon}}";
-        var lat = "{{course.building_lat}}";
+        var lon = "{{course.building.lon}}";
+        var lat = "{{course.building.lat}}";
         var id = "{{course.pk}}";
         var type = "c";
         // modified this line to add parameters
 
-        var name = "{{course}} {{course.title}} {{course.section}} {{course.building}} " +
-                   "{{course.room}} {{course.day}} {{course.time}}";
+        var name = "{{course}} {{course.title}} {{course.section}}"+"{{course.building.name}}".split("/")[0] +
+                   " {{course.room}} {{course.day}} {{course.time}}";
        if (!lon && !lat) {
           lon = -74.656509;
           lat = 40.346699;
@@ -1142,12 +1254,18 @@ if (!jQuery.isEmptyObject(lonlats)) {
     {% endif %}
     {% if building or course %}
       var search = "<div>" + name + "</div>" +
-      "<form method=\"GET\" action=\"{% url 'classes:index' %}\">" +
-          "<button id=\"addrow\" class=\"btn btn-success\" name=\"s\" value=\""+id+type+"\" type=\"submit\">" +
+      /*
+      "<form method=\"post\" action=\"{% url 'classes:save' %}\">" +
+      "{% csrf_token %}" +
+      */
+          "<button id=\"addrow\" class=\"btn btn-success\" name=\"s\" onclick=\"save(\'"+id+type+"\')\" type=\"submit\">" +
               "<i class=\"fa fa-star\">"+"</i>"+"Favorite" +
-          "</button>" +
-      "</form>";
-       L.marker([lat, parseFloat(lon)+offset]).addTo(map).bindPopup(search).openPopup();
+          "</button>" //+
+      //"</form>";
+      //someMarker.addTo(someLayerGroup);
+       L.marker([lat, parseFloat(lon)+offset]).addTo(searchLayer).bindPopup(search).openPopup();
+       //markerLayer.addLayer(searched);
+       //markerLayer.clearLayers();
        map.setView([lat, parseFloat(lon)+offset],17);
     {% endif %}
   </script>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Section, Building
+from .models import Section, Building, User
 from django.db.models import Q
 from itertools import chain
 from datetime import datetime
@@ -7,8 +7,9 @@ from datetime import time
 import re
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
+from django.core import serializers
 import json
 
 @login_required
@@ -39,72 +40,147 @@ def enroll(request):
     builds = {}
     for course in courses:
         if course.enroll:
-            if course.building in builds:
-                builds[course.building]['courses'] += 1
-                builds[course.building]['students'] += int(course.enroll)
+            name = course.building_name
+            if name in builds:
+                builds[name]['courses'] += 1
+                builds[name]['students'] += int(course.enroll)
             else:
-                builds[course.building] = {}
-                builds[course.building]['courses'] = 1
-                builds[course.building]['students'] = int(course.enroll)
+                builds[name] = {}
+                builds[name]['courses'] = 1
+                builds[name]['students'] = int(course.enroll)
     data = json.dumps(builds)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
+def saved_locations(request):
+    netid = request.user.username
+    user = User.objects.get(netid=netid)
+
+    courses = Section.objects.filter(id__in=user.courses)
+    saved_courses = []
+    for c in courses:
+        courses_json = {}
+        courses_json['id'] = c.pk #c.course_id
+        courses_json['listing'] = str(c)
+        courses_json['building_name'] = c.building_name
+        courses_json['room'] = c.room
+        courses_json['time'] = c.time
+        courses_json['lon'] = c.building.lon
+        courses_json['lat'] = c.building.lat
+        saved_courses.append(courses_json)
+
+    buildings = Building.objects.filter(id__in=user.buildings)
+    saved_buildings = []
+    for b in buildings:
+        buildings_json = {}
+        buildings_json['id'] = b.pk #b.building_id
+        buildings_json['name'] = str(b)
+        buildings_json['lon'] = b.lon
+        buildings_json['lat'] = b.lat
+        saved_buildings.append(buildings_json)
+
+    data = {
+        'courses': saved_courses,
+        'buildings': saved_buildings
+    }
+    return JsonResponse(data)
+
 def update_result(netid, isSave, isCourse, id):
+    # Default map conditions
     zoom = 0
     lon = 0
     lat = 0
+
+    user = User.objects.get(netid=netid)
+
     if isCourse and id.isdigit() and Section.objects.filter(id=int(id)).exists():
         match = Section.objects.get(id=int(id))
-        lon = match.building_lon
-        lat = match.building_lat
+        key = str(match.pk)
+        lon = match.building.lon
+        lat = match.building.lat
+        if isSave and not key in user.courses:
+            user.courses.append(key)
+            match.searched += 1
+            match.save()
+            zoom = 1
+        elif not isSave and key in user.courses:
+            user.courses.remove(key)
     elif id.isdigit() and Section.objects.filter(id=int(id)).exists():
         match = Building.objects.get(id=int(id))
+        key = str(match.pk)
         lon = match.lon
         lat = match.lat
+        if isSave and not key in user.buildings:
+            user.buildings.append(key)
+            match.searched += 1
+            match.save()
+            zoom = 1
+        elif not isSave and key in user.buildings:
+            user.buildings.remove(key)
     else:
         return (lon, lat, zoom)
 
-    if isSave and not netid in match.saved:
-        match.saved.append(netid)
-        match.searched += 1
-        match.save()
-        zoom = 1
-    elif not isSave and netid in match.saved:
-        match.saved.remove(netid)
-        match.save()
+    user.save()
 
     return (lon, lat, zoom)
+
+# Create user if not present already
+def create_user(netid):
+    if not User.objects.filter(netid=netid).exists():
+        User.objects.create(netid=netid)
+
+@login_required
+def remove(request):
+    remove_id = request.POST.get('r')
+    print(remove_id)
+    if remove_id:
+        netid = request.user.username
+        lon, lat, zoom = update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
+    return HttpResponseRedirect(reverse('classes:saved_locations'))
+
+@login_required
+def save(request):
+    save_id = request.POST.get('s')
+    if save_id:
+        netid = request.user.username
+        lon, lat, zoom = update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
+    return HttpResponseRedirect(reverse('classes:saved_locations'))
 
 @login_required
 def index(request):
     netid = request.user.username
-    save_id = request.GET.get('s')
-    remove_id = request.GET.get('r')
-    context = {}
-    if save_id:
-        lon, lat, zoom = update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
-    elif remove_id:
-        lon, lat, zoom = update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
-    else:
-        lon, lat, zoom = 0, 0, 0
+    #save_id = request.POST.get('s')
+    #remove_id = request.POST.get('r')
 
+    create_user(netid)
+
+    #context = {}
+    #if save_id:
+    #    lon, lat, zoom = update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
+    #elif remove_id:
+    #    lon, lat, zoom = update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
+    #else:
+    #    lon, lat, zoom = 0, 0, 0
+
+    user = User.objects.get(netid=netid)
     context = {
-        'saved_courses': Section.objects.filter(saved__contains=[netid]),
-        'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+        'saved_courses': Section.objects.filter(id__in=user.courses),
+        'saved_buildings': Building.objects.filter(id__in=user.buildings),
         'netid': netid,
-        'zoom': zoom,
-        'last_lon': lon,
-        'last_lat': lat
+        #'zoom': zoom,
+        #'last_lon': lon,
+        #'last_lat': lat
     }
 
     return render(request, 'classes/index.html', context)
 
 def details(request, id, isCourse):
     netid = request.user.username
+    create_user(netid)
+    user = User.objects.get(netid=netid)
     context = {
-        'saved_courses': Section.objects.filter(saved__contains=[netid]),
-        'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+        'saved_courses': Section.objects.filter(id__in=user.courses),
+        'saved_buildings': Building.objects.filter(id__in=user.buildings),
         'netid': netid
     }
     if isCourse and id.isdigit() and Section.objects.filter(id=int(id)).exists():
@@ -168,10 +244,10 @@ def search_terms(query):
                       Q(section__istartswith = q)
 
             # Handle building - look for match in canonical name and aliases
-            for b in builds:
-                matches = matches | \
-                    Q(building__istartswith = b.names.split("/")[0]) | \
-                    Q(building__icontains = " "+b.names.split("/")[0])
+            matches = matches | \
+                    Q(building__names__icontains = " "+q) | \
+                    Q(building__names__icontains = "/"+q) | \
+                    Q(building__names__istartswith = q)
 
             # Handle concat dept/number (e.g. cos333)
             if len(q) >= 4:
@@ -265,13 +341,15 @@ def search(request):
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
 
     netid = request.user.username
+    create_user(netid)
+    user = User.objects.get(netid=netid)
 
     context = {
         'q': query,
         't': time,
         'd': dayString,
-        'saved_courses': Section.objects.filter(saved__contains=[netid]),
-        'saved_buildings': Building.objects.filter(saved__contains=[netid]),
+        'saved_courses': Section.objects.filter(id__in=user.courses),
+        'saved_buildings': Building.objects.filter(id__in=user.buildings),
         'netid': netid
     }
     context['num_matches'] = len(resultsFiltered) + len(buildings)
