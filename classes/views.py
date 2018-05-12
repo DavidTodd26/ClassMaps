@@ -194,7 +194,9 @@ def search_terms(query):
             try:
                 re.compile(query[i])
             except re.error:
-                return (Section.objects.none(), Building.objects.none(), {})
+                concat = Q(pk__in = [])
+                builds = Building.objects.none()
+                continue
 
             # Last search term might be incomplete
             if i == len(query)-1:
@@ -310,8 +312,6 @@ def parse_terms(request):
 def search(request):
     template = 'classes/index.html'
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
-    print(names)
-    print(buildings)
 
     netid = request.user.username
     create_user(netid)
