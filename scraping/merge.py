@@ -15,7 +15,7 @@ def format_time(time):
 
 # Format time range and remove 0 padding of hours
 def format_range(start, end):
-    timerange = start[0:5]+start[8:]+"-"+end[0:5]+end[8:]
+    timerange = start[0:5]+"-"+end[0:5]+end[9:]
     times = timerange.split("-")
     for i in range(0, 2):
         tokens = times[i].split(":")

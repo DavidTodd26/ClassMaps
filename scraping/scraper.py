@@ -40,7 +40,7 @@ COURSE_URL = URL_PREFIX + "course_details.xml?courseid={courseid}&term={term}"
 
 COURSE_URL_REGEX = re.compile(r'courseid=(?P<id>\d+)')
 PROF_URL_REGEX = re.compile(r'dirinfo\.xml\?uid=(?P<id>\d+)')
-LISTING_REGEX = re.compile(r'(?P<dept>[A-Z]{3})\s+(?P<num>\d{3})')
+LISTING_REGEX = re.compile(r'(?P<dept>[A-Z]{3})\s+(?P<num>\d{3}[A-Z]?)')
 
 def get_course_list(search_page):
   "Grep through the document for a list of course ids."
