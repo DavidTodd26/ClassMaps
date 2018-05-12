@@ -117,7 +117,6 @@ def create_user(netid):
 @login_required
 def remove(request):
     remove_id = request.POST.get('r')
-    print(remove_id)
     if remove_id:
         netid = request.user.username
         update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
@@ -191,6 +190,12 @@ def search_terms(query):
         results = Section.objects.all()
         builds = Building.objects.all()
         for i in range(0, len(query)):
+            # Handle invalid regex
+            try:
+                re.compile(query[i])
+            except re.error:
+                return (Section.objects.none(), Building.objects.none(), {})
+
             # Last search term might be incomplete
             if i == len(query)-1:
                 q = query[i]
@@ -199,15 +204,13 @@ def search_terms(query):
 
             # Always try to match query for building results
             builds = builds.filter(names__iregex = "(^| |/)"+q)
-            for b in builds:
-                print(b.names)
 
             # Display the canonical name and the name that matched to prevent confusion
             for b in builds:
                 aliases = b.names.split("/")
                 for j in range(0, len(aliases)):
                     name = aliases[j]
-                    if query[i].upper() in name.upper():
+                    if re.search(query[i], name, re.IGNORECASE):
                         if j != 0:
                             names[aliases[0]] = " ("+name.strip()+")"
                         else:
@@ -307,6 +310,8 @@ def parse_terms(request):
 def search(request):
     template = 'classes/index.html'
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
+    print(names)
+    print(buildings)
 
     netid = request.user.username
     create_user(netid)
