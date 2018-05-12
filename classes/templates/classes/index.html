@@ -663,36 +663,8 @@ toggle between hiding and showing the dropdown content */
   $('.dropdown-menu').on('click', function(e) {
     e.stopPropagation();
   });
-/*
-  function addRow(name, lon, lat, button) {
-      var newRow = $("<tr>");
-      var cols = "";
 
-      cols += '<td><button class="listText" onclick="goToCoords('+lon+','+lat+')">'+name+'</button></td>';
-      cols += '<td>'+button+'</td>';
-      newRow.append(cols);
-      $("table.order-list").append(newRow);
-  }
-
-  function goToCoords(lon, lat) {
-    map.eachLayer(function (layer) {
-      if (layer.dragging) {
-        coords = layer.getLatLng()
-        if (coords.lat === parseFloat(lat) && coords.lng === parseFloat(lon)-offset) {
-          layer.openPopup()
-          map.setView(new L.LatLng(lat, lon), 20);
-        }
-      }
-    });
-  }
-*/
-/*
-  $("table.order-list").on("click", ".ibtnDel", function (event) {
-      $(this).closest("tr").remove();
-  });
-  */
-
-   $('.clockpicker').clockpicker({
+$('.clockpicker').clockpicker({
      twelvehour: true,
      default: 'now'
    })
@@ -809,9 +781,6 @@ toggle between hiding and showing the dropdown content */
       layers: [regular, buildings],
       zoomControl: true
     });
-    /*$('.pure-button').on('click', function(){
-mymap.locate({setView: true, maxZoom: 15});
-});*/
 
 var southWest = L.latLng(40.323212, -74.718103), //40.32, -74.67),
 northEast = L.latLng(40.368481, -74.596444) //40.356, -74.6);
