@@ -851,15 +851,9 @@ var saveLayer = L.layerGroup().addTo(map);
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
     map.zoomControl.setPosition('bottomright');
 
-
+// Button to locate current location
 L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="width:16px">', function (btn, map) {
-
-    map.locate({
-        setView: true,
-        maxZoom: 18
-    });
-
-    //map.locate({setView: true,watch: true, maxZoom: 16});
+    map.locate({setView: true, maxZoom: 18});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
     L.marker(e.latlng, {icon: myIcon}).addTo(map)
@@ -869,12 +863,13 @@ L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="wid
     map.on('locationfound', onLocationFound);
 }, 'Current location').setPosition('bottomright').addTo(map);
 
-L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:16px">', function(btn, map){
+// Button to reset map to default view
+L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:16px">', function(btn, map) {
     map.setView(new L.LatLng(40.346825, -74.656595), 16);
-//map.setView(        [40.347, -74.653],      zoom: 16);
 }, 'Reset map').setPosition('bottomright').addTo(map);
 
-L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16px">', function(btn, map){
+// Button to toggle favorites bar on/off
+L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16px">', function(btn, map) {
     var x = document.getElementById("listOverlay");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -882,6 +877,7 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
         x.style.display = "none";
     }
 }, 'Toggle favorites').setPosition('bottomright').addTo(map);
+
     // Limits zoom (we could get rid of this)
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
