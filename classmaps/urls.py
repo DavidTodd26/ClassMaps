@@ -13,20 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, re_path, include
-import django_cas_ng.views
+from django.urls import path, include
 
 urlpatterns = [
-    re_path('^accounts/login$', django_cas_ng.views.login, name='cas_ng_login'),
-    re_path('^accounts/logout$', django_cas_ng.views.logout, name='cas_ng_logout'),
-    re_path('^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback'),
     path('', include('classes.urls')),
-    path('test/', include('classes.urls')),
-    path('admin/', admin.site.urls),
-    path('buildings/', include('classes.urls')),
-    path('courses/', include('classes.urls')),
 ]
-
-# re_path(r'^accounts/login$', django_cas_ng.views.login, name='cas_ng_login'),
-# re_path(r'^accounts/logout$', django_cas_ng.views.logout, name='cas_ng_logout'),
