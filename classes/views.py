@@ -235,32 +235,22 @@ def search_terms(query):
 
     return (courses, buildings, names)
 
-def searchDay(results, query, mon, tues, wed, thurs, fri):
-    results2 = Section.objects.none()
+def search_day(results, query, mon, tues, wed, thurs, fri):
+    day_results = Section.objects.none()
     if mon:
-        results2 = results2 | results.filter(Q(day__icontains="M"))
+        day_results = day_results | results.filter(Q(day__icontains="M"))
     if tues:
-        results2 = results2 | results.filter(Q(day__iregex=r'T(?!h)'))
+        day_results = day_results | results.filter(Q(day__iregex=r'T(?!h)'))
     if wed:
-        results2 = results2 | results.filter(Q(day__icontains="W"))
+        day_results = day_results | results.filter(Q(day__icontains="W"))
     if thurs:
-        results2 = results2 | results.filter(Q(day__icontains="Th"))
+        day_results = day_results | results.filter(Q(day__icontains="Th"))
     if fri:
-        results2 = results2 | results.filter(Q(day__icontains="F"))
+        day_results = day_results | results.filter(Q(day__icontains="F"))
     if not mon and not tues and not wed and not thurs and not fri:
-        results2 = results
-    if not query:
-        if mon:
-            results2 = results2 | Section.objects.filter(Q(day__icontains="M"))
-        if tues:
-            results2 = results2 | Section.objects.filter(Q(day__iregex=r'T(?!h)'))
-        if wed:
-            results2 = results2 | Section.objects.filter(Q(day__icontains="W"))
-        if thurs:
-            results2 = results2 | Section.objects.filter(Q(day__icontains="Th"))
-        if fri:
-            results2 = results2 | Section.objects.filter(Q(day__icontains="F"))
-    return results2
+        day_results = results
+
+    return day_results
 
 def search_time(inputTime, results):
     resultsWithTime = Section.objects.none()
@@ -296,7 +286,7 @@ def parse_terms(request):
     fri = request.GET.get('F', None)
     time = request.GET.get('t', None)
     results, buildings, names = search_terms(query)
-    resultsFiltered = searchDay(results, query, mon, tues, wed, thurs, fri)
+    resultsFiltered = search_day(results, query, mon, tues, wed, thurs, fri)
     if time:
         resultsFiltered = search_time(time, resultsFiltered)
         if not query and not mon and not tues and not wed and not thurs and not fri:
