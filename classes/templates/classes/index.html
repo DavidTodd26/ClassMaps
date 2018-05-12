@@ -687,6 +687,7 @@ $('.clockpicker').clockpicker({
     var kitchenspots = L.layerGroup();
     var diningspots = L.layerGroup();
 
+    // Create custom icons for resource overlays
      var printerIcon = L.icon({
        iconUrl: "{% static 'classes/images/printer.png' %}",
        iconSize:     [28, 28], // size of the icon
@@ -695,39 +696,39 @@ $('.clockpicker').clockpicker({
      });
      var laundryIcon = L.icon({
        iconUrl: "{% static 'classes/images/washing-machine.png' %}",
-       iconSize:     [28, 28], // size of the icon
-       iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
      var hotspotIcon = L.icon({
        iconUrl: "{% static 'classes/images/hotspot.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [26, 26], 
+       iconAnchor:   [13, 13], 
+       popupAnchor:  [0, 0] 
      });
      var waterIcon = L.icon({
        iconUrl: "{% static 'classes/images/watericon.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
      var kitchenIcon = L.icon({
        iconUrl: "{% static 'classes/images/kitch.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
     var diningIcon = L.icon({
        iconUrl: "{% static 'classes/images/dining.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
     var saladIcon = L.icon({
        iconUrl: "{% static 'classes/images/caesar.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
