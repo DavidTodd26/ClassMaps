@@ -771,7 +771,7 @@ $("#search").keypress(function(event) {
       }
   }, 'Toggle favorites').setPosition('bottomright').addTo(map);
 
-    // Limits zoom (we could get rid of this)
+  // Limits zoom
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
 
@@ -818,7 +818,9 @@ $("#search").keypress(function(event) {
     });
   }
   var geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
+// ------------------------------------------------------------------------------------------------------------------------------------------------ 
 
+// David's stuff?
   // Add key if new or add value if key present
   function addDict(dict, key, val) {
     if (key in dict) {
@@ -1044,8 +1046,8 @@ $("#search").keypress(function(event) {
 
 lonlats = {};
 var offset = 0.0001;
-
-    // Searched marker
+// ------------------------------------------------------------------------------------------------------------------------------------------------ 
+    // Searched marker result on map
     {% if building %}
         var lon = "{{building.lon}}";
         var lat = "{{building.lat}}";
