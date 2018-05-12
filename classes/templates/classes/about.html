@@ -5,13 +5,28 @@
 <html lang="en">
 
   <head>
+     <!-- add favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'classes/images/icons/apple-icon-57x57.png'%}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'classes/images/icons/apple-icon-60x60.png'%}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'classes/images/icons/apple-icon-72x72.png'%}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'classes/images/icons/apple-icon-76x76.png'%}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'classes/images/icons/apple-icon-114x114.png'%}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'classes/images/icons/apple-icon-120x120.png'%}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'classes/images/icons/apple-icon-144x144.png'%}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'classes/images/icons/apple-icon-152x152.png'%}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'classes/images/icons/apple-icon-180x180.png'%}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'classes/images/icons/android-icon-192x192.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'classes/images/icons/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'classes/images/icons/favicon-96x96.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'classes/images/icons/favicon-16x16.png'%}">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'classes/images/icons/ms-icon-144x144.png' %}">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>About ClassMaps</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'classes/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -33,11 +48,12 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="https://classmaps.herokuapp.com/">ClassMaps</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">ClassMaps</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
@@ -49,6 +65,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#team">Team</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#docs">Docs</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -59,6 +78,7 @@
       <div class="container">
         <div class="intro-text">
           <div class="intro-heading text-uppercase">ClassMaps</div>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://classmaps.herokuapp.com/">Login</a>
         </div>
       </div>
     </header>
@@ -87,7 +107,7 @@
               <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Saving</h4>
-            <p class="text-muted">Users can save all of their classes so that they will always have the location of their classes on hand. </p>
+            <p class="text-muted">Users can save all of their classes so that they will always have the location of their classes on hand using their Princeton Account</p>
           </div>
           <div class="col-md-4">
             <span class="fa-stack fa-4x">
@@ -99,6 +119,19 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Elevator Pitch</h2>
+            <h3 class="text">Why ClassMaps?</h3>
+          </div>
+        </div>
+        <p class = "text-muted"> ClassMaps is a web application that gives Princeton students and easy way to find the location of their classes, as well as other resources and places on campus. The current methods of doing this are limited and decentralized. Normally, students have to go through a two step process of searching for a class on course offerings, and then looking up the location on Google or Princeton map, but ClassMaps bridges those two steps into a singular process. ClassMaps will give Princeton students a platform to quickly see where and when classes of interest meet. </p>
+        <p class = "text-muted"> Unlike previous course offering projects which are used primarily during course selection, we envision ClassMaps to be used even after sporadically to find event locations, resources, and other precepts. However, we primarily target ClassMaps at underclassmen, and for use during the first couple weeks of classes when people need to remember where their classes are. </p>
+      </div>
+
     </section>
 
     <!-- Timeline -->
@@ -187,7 +220,7 @@
                     <h4>Week of April 30th</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted">Implemented a heatmap to indicate the number of students in each building, refined search results page to display as an overlay, substantially improved UI based on user feedback </p>
+                    <p class="text-muted">Implemented a heatmap to indicate the number of students in each building, refined search results page to display as an overlay, substantially improved UI based on user feedback.</p>
                   </div>
                 </div>
               </li>
@@ -200,7 +233,7 @@
                     <h4>Week of May 7th</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted">Presented our project, </p>
+                    <p class="text-muted">Presented our project, finished up our documentation. In talks with USG TigerApps and OIT for future plans.</p>
                   </div>
                 </div>
               </li>
@@ -327,6 +360,15 @@
           </div>
         </div>
       </div>
+    </section>
+
+        <!-- Documentation -->
+    <section class="bg-light" id="docs">
+      <div class="col-lg-12 text-center">
+        <h2 class="text"><a href="https://andsylin.github.io/images/desdoc.pdf">Design Document</a></h2>
+        <h2 class="text"><a href="https://andsylin.github.io/images/desdoc.pdf">Final Report</a></h2>
+        <h2 class="text"><a href="https://andsylin.github.io/images/desdoc.pdf">Product Guide</a></h2>
+      </div>     
     </section>
 
     <!-- Bootstrap core JavaScript -->
