@@ -306,12 +306,6 @@
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
 </head>
-<!-- Autocomplete js -->
-<script>
-
-</script>
-
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
   <!-- THE MAP -->
   <div id="map"></div>
 
@@ -384,7 +378,7 @@
 </table>
 </div>
 
-<!--  Code search result overlay -->
+<!--  Search result overlay -->
 <div id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
     <div class="container match-group" style="margin: 0;">
@@ -394,7 +388,7 @@
   </div>
 </div>
 
-
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
 <script>
 // Autocomplete javascript
 $(function() {
@@ -431,8 +425,7 @@ function convertBool(b) {
   return null;
 }
 
-// Script for Matches
-//check if checkboxes checked
+//check if checkboxes checked, set search bar text
 function dateCheck(){
   var m = document.getElementById("M").checked;
   var t = document.getElementById("T").checked;
@@ -446,20 +439,17 @@ function dateCheck(){
     if(w) output += "w";
     if(th) output += "th";
     if(f) output += "f";
-    console.log(output);
     document.getElementById("dropdownMenuButton").value=output;
-    //document.getElementById("dropdownMenuButton").width = ((output.length + 1) * 8) + 'px';
   }
   else{
     document.getElementById("dropdownMenuButton").value=null;
-    //document.getElementById("dropdownMenuButton").width="50px";
   }
 }
+// ------------------------------------------------------------------------------------------------------------------------------------------------ 
+// Code for matching results
 
 function truncate(line, maxLength) {
-  if (line.length <= maxLength) {
-    return line;
-  }
+  if (line.length <= maxLength) { return line; }
   return $.trim(line.substring(0, maxLength))+"...";
 }
 
@@ -479,8 +469,8 @@ function addImageRow(id, text) {
   $("#"+id).append("<div \" style=\"padding-top: 5px; width: 390px; padding-bottom: 0;\"class=\"card\" onclick=\"selectBuilding()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
 }
+// check screen size for mobile
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-console.log(width);
 {% if num_matches < 9 %}
   if(width > 720){
     document.getElementById("resultsOverlay").style.width = "auto";
@@ -496,14 +486,11 @@ console.log(width);
   matchesBlock.style.display = "block";
   addResultRow("buildings", "{{num_matches}} matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;&nbspCLOSE</a>");
 {% elif num_matches == 0 %}
-//   if(document.getElementById("search").value != null){
-//   }
-  console.log("no results");
   var matchesBlock = document.getElementById("resultsContainer");
   matchesBlock.style.display = "block";
   addResultRow("buildings", "No matches for:<br>\""+truncate("{{q}}",19)+"\"<br>{{d}} {{t}}<br><a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeResults()\">&times;&nbspCLOSE</a>");
-  if(width > 720){
-  addImageRow("buildings", "<img src=\"{% static 'classes/images/calvinandhobbes.png'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
+  if(width > 720){ // don't add image on mobile
+    addImageRow("buildings", "<img src=\"{% static 'classes/images/calvinandhobbes.png'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
   }
 {% endif %}
 
