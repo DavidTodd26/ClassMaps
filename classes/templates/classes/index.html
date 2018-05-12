@@ -663,36 +663,8 @@ toggle between hiding and showing the dropdown content */
   $('.dropdown-menu').on('click', function(e) {
     e.stopPropagation();
   });
-/*
-  function addRow(name, lon, lat, button) {
-      var newRow = $("<tr>");
-      var cols = "";
 
-      cols += '<td><button class="listText" onclick="goToCoords('+lon+','+lat+')">'+name+'</button></td>';
-      cols += '<td>'+button+'</td>';
-      newRow.append(cols);
-      $("table.order-list").append(newRow);
-  }
-
-  function goToCoords(lon, lat) {
-    map.eachLayer(function (layer) {
-      if (layer.dragging) {
-        coords = layer.getLatLng()
-        if (coords.lat === parseFloat(lat) && coords.lng === parseFloat(lon)-offset) {
-          layer.openPopup()
-          map.setView(new L.LatLng(lat, lon), 20);
-        }
-      }
-    });
-  }
-*/
-/*
-  $("table.order-list").on("click", ".ibtnDel", function (event) {
-      $(this).closest("tr").remove();
-  });
-  */
-
-   $('.clockpicker').clockpicker({
+$('.clockpicker').clockpicker({
      twelvehour: true,
      default: 'now'
    })
@@ -715,6 +687,7 @@ toggle between hiding and showing the dropdown content */
     var kitchenspots = L.layerGroup();
     var diningspots = L.layerGroup();
 
+    // Create custom icons for resource overlays
      var printerIcon = L.icon({
        iconUrl: "{% static 'classes/images/printer.png' %}",
        iconSize:     [28, 28], // size of the icon
@@ -723,39 +696,39 @@ toggle between hiding and showing the dropdown content */
      });
      var laundryIcon = L.icon({
        iconUrl: "{% static 'classes/images/washing-machine.png' %}",
-       iconSize:     [28, 28], // size of the icon
-       iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
      var hotspotIcon = L.icon({
        iconUrl: "{% static 'classes/images/hotspot.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [26, 26], 
+       iconAnchor:   [13, 13], 
+       popupAnchor:  [0, 0] 
      });
      var waterIcon = L.icon({
        iconUrl: "{% static 'classes/images/watericon.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
      var kitchenIcon = L.icon({
        iconUrl: "{% static 'classes/images/kitch.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
     var diningIcon = L.icon({
        iconUrl: "{% static 'classes/images/dining.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
     var saladIcon = L.icon({
        iconUrl: "{% static 'classes/images/caesar.png' %}",
-       iconSize:     [26, 26], // size of the icon
-       iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+       iconSize:     [28, 28], 
+       iconAnchor:   [14, 14], 
+       popupAnchor:  [0, 0] 
      });
      var savedIcon = L.icon({
        iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
@@ -768,64 +741,57 @@ toggle between hiding and showing the dropdown content */
        iconAnchor:   [18, 18], // point of the icon which will correspond to marker's location
        popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
      });
-    for (var i = 0; i < printerLocs.length; i++) {
-  //if (hi[i][3] == '6' || hi[i][3] == '29')
-    if (printerLocs[i][3] == '6') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '29') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
-    if (printerLocs[i][3] == '28') L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
+
+// Put the locations for each resource to its corresponding layer
+  for (var i = 0; i < printerLocs.length; i++) {
+    L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
  }
  for (var i = 0; i < laundryLocs.length; i++) {
-  //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);
  }
  for (var i = 0; i < hotspotLocs.length; i++) {
-  //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);
  }
-
  for (var i = 0; i < waterLocs.length; i++) {
-  //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindPopup(waterLocs[i][2]).addTo(waterspots);
  }
-
  for (var i = 0; i < kitchens.length; i++) {
-  //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);
  }
-
   for (var i = 0; i < dining.length; i++) {
-  //if (hi[i][3] == '6' || hi[i][3] == '29')
     L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon}).bindPopup(dining[i][2]).addTo(diningspots);
  }
 
-    // URLS of maps for different layers (note: need to add attributes)
+    // URLs of different map layers and their attributions
     var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="https://mapbox.com">Mapbox</a>',
     mbUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     mbUrl2 = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-    // Different layers
+
+    // Different map layers
     var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-    satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite',   attribution: mbAttr});
-    // Initializes the map
+    satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite', attribution: mbAttr});
+
+    // Initializes the map with default layers
     var map = L.map('map', {
       center: [40.346825, -74.656595],
       zoom: 16,
       layers: [regular, buildings],
       zoomControl: true
     });
-    /*$('.pure-button').on('click', function(){
-mymap.locate({setView: true, maxZoom: 15});
-});*/
 
-var southWest = L.latLng(40.323212, -74.718103), //40.32, -74.67),
-northEast = L.latLng(40.368481, -74.596444) //40.356, -74.6);
+// Provides bounds and limits the user to only within those coordinates
+var southWest = L.latLng(40.323212, -74.718103),
+northEast = L.latLng(40.368481, -74.596444);
 var bounds = L.latLngBounds(southWest, northEast);
 
 map.setMaxBounds(bounds);
 map.on('drag', function() {
   map.panInsideBounds(bounds, { animate: false });
 });
+
+// Gives Jerry the Julius Caesar Salad Building
 var temp = "{{netid}}";
 if(temp === "jywei"){
 L.marker([40.349152, -74.655383], {icon: saladIcon}).addTo(map)
@@ -835,8 +801,6 @@ L.marker([40.349152, -74.655383], {icon: saladIcon}).addTo(map)
 var searchLayer = L.layerGroup().addTo(map);
 var saveLayer = L.layerGroup().addTo(map);
 
-    // Bookmarks
-    //var control = new L.Control.Bookmarks().addTo(map);
     // Our different layers
     var baseLayers = {
       "&nbspRegular": regular,
@@ -856,15 +820,9 @@ var saveLayer = L.layerGroup().addTo(map);
     L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
     map.zoomControl.setPosition('bottomright');
 
-
+// Button to locate current location
 L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="width:16px">', function (btn, map) {
-
-    map.locate({
-        setView: true,
-        maxZoom: 18
-    });
-
-    //map.locate({setView: true,watch: true, maxZoom: 16});
+    map.locate({setView: true, maxZoom: 18});
     function onLocationFound(e) {
     var radius = e.accuracy / 2;
     L.marker(e.latlng, {icon: myIcon}).addTo(map)
@@ -874,12 +832,13 @@ L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="wid
     map.on('locationfound', onLocationFound);
 }, 'Current location').setPosition('bottomright').addTo(map);
 
-L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:16px">', function(btn, map){
+// Button to reset map to default view
+L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:16px">', function(btn, map) {
     map.setView(new L.LatLng(40.346825, -74.656595), 16);
-//map.setView(        [40.347, -74.653],      zoom: 16);
 }, 'Reset map').setPosition('bottomright').addTo(map);
 
-L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16px">', function(btn, map){
+// Button to toggle favorites bar on/off
+L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16px">', function(btn, map) {
     var x = document.getElementById("listOverlay");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -887,6 +846,7 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
         x.style.display = "none";
     }
 }, 'Toggle favorites').setPosition('bottomright').addTo(map);
+
     // Limits zoom (we could get rid of this)
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
