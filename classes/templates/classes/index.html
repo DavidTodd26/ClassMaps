@@ -354,10 +354,11 @@ function convertBool(b) {
   <!-- Search bar overlay -->
   <div id="overlay" class="overlay">
     <form id="searchbar" name="myform" method="GET" action="{% url 'classes:search' %}">
-     <a href="https://classmaps.herokuapp.com">
+      <!-- logo/home button -->
+     <a href="https://classmaps.herokuapp.com"> 
        <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:42px; float:left; margin-right:10px">
      </a>
-
+     <!-- search input -->
      <div style="width:30%; float:left;">
       <input id = "search" style="font-size:15px;" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
@@ -369,28 +370,24 @@ function convertBool(b) {
     <div style="width:5px; float:left;">
       <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="|" readonly>
     </div>
+    <!-- date selection -->
     <div style="float:left; width:55px;">
       <div class="dropdown" style="float:left;">
         <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="font-size: 15px; color: white; cursor: pointer;" readonly>
         <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <label class="switch">
-            <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
+          <label class="switch"> <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
             <span class="slider"> &nbspMonday </span>
           </label><br>
-          <label class="switch">
-            <input id = "T" name = "T" value = "T" type="checkbox" onclick="dateCheck()">
+          <label class="switch"> <input id = "T" name = "T" value = "T" type="checkbox" onclick="dateCheck()">
             <span class="slider"> &nbspTuesday </span>
           </label><br>
-          <label class="switch">
-            <input id = "W" name = "W" value = "W" type="checkbox" onclick="dateCheck()">
+          <label class="switch"> <input id = "W" name = "W" value = "W" type="checkbox" onclick="dateCheck()">
             <span class="slider"> &nbspWednesday </span>
           </label><br>
-          <label class="switch">
-            <input id = "Th" name = "Th" value = "Th" type="checkbox" onclick="dateCheck()">
+          <label class="switch"> <input id = "Th" name = "Th" value = "Th" type="checkbox" onclick="dateCheck()">
             <span class="slider"> &nbspThursday </span>
           </label><br>
-          <label class="switch">
-            <input id = "F" name = "F" value = "F" type="checkbox" onclick="dateCheck()">
+          <label class="switch"> <input id = "F" name = "F" value = "F" type="checkbox" onclick="dateCheck()">
             <span class="slider"> &nbspFriday </span>
           </label>
         </div>
@@ -407,30 +404,19 @@ function convertBool(b) {
     <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
       </div>
   </div>
-
  <!-- overlay div ends -->
 
+<!-- favorites bar -->
  <div id="listOverlay" class="listOverlay" style="overflow: auto;">
    <table id="myTable" class="table order-list">
    <thead>
        <tr>
-           <td>
-             <div class="listTitle" style="float: left;"><i class="fa fa-star"></i>Favorites</div>
-         </td>
+          <td> <div class="listTitle" style="float: left;"><i class="fa fa-star"></i>Favorites</div> </td>
          <div style="float: right; padding-right: 3px;">
            <a href="javascript:void(0)" style="color: white" class="closebtn" onclick="closeFavorites()">&times;</a>
          </div>
        </tr>
    </thead>
-   <!--
-   <tfoot>
-       <tr>
-           <td colspan="5" style="text-align: left;">
-               <input type="button" class="btn btn-lg btn-block" id="export" value="Export to Calendar" />
-           </td>
-       </tr>
-   </tfoot>
--->
 </table>
 </div>
 
@@ -441,10 +427,6 @@ function convertBool(b) {
       <div id="buildings" class="row text-center" style="margin: 0;">
       </div>
     </div>
-<!--
-    <div class="container match-group">
-      <div id="courses" class="row text-center">
-      </div> -->
     </div>
   </div>
 </div>
