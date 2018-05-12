@@ -308,43 +308,7 @@
 </head>
 <!-- Autocomplete js -->
 <script>
-$(function() {
-  $("#search").autocomplete({
-    minLength: 3,
-    source: function(request, response) {
-      $.ajax({
-        url: "/api/query/",
-        dataType: "json",
-        data: {
-          q: request.term,
-          t: $('#clock').val(),
-          M: convertBool($('#M').is(":checked")),
-          T: convertBool($('#T').is(":checked")),
-          W: convertBool($('#W').is(":checked")),
-          Th: convertBool($('#Th').is(":checked")),
-          F: convertBool($('#F').is(":checked")),
-        },
-        success: function(data) {
-          response(data)
-        }
-      });
-    },
-    select: function(event, ui) {
-      if (ui.item) {
-        $(event.target).val(ui.item.value);
-      }
-      window.location.href = "{% url 'classes:index' %}"+ui.item.type+"/"+ui.item.id
-    }
-  });
-});
 
-// Convert to match main query format
-function convertBool(b) {
-  if (b) {
-    return b;
-  }
-  return null;
-}
 </script>
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
@@ -427,12 +391,47 @@ function convertBool(b) {
       <div id="buildings" class="row text-center" style="margin: 0;">
       </div>
     </div>
-    </div>
   </div>
 </div>
 
-<!-- Script for matches -->
+
 <script>
+// Autocomplete javascript
+$(function() {
+  $("#search").autocomplete({
+    minLength: 3,
+    source: function(request, response) {
+      $.ajax({
+        url: "/api/query/",
+        dataType: "json",
+        data: {
+          q: request.term,
+          t: $('#clock').val(),
+          M: convertBool($('#M').is(":checked")),
+          T: convertBool($('#T').is(":checked")),
+          W: convertBool($('#W').is(":checked")),
+          Th: convertBool($('#Th').is(":checked")),
+          F: convertBool($('#F').is(":checked")),
+        },
+        success: function(data) {
+          response(data)
+        }
+      });
+    },
+    select: function(event, ui) {
+      if (ui.item) { $(event.target).val(ui.item.value); }
+      window.location.href = "{% url 'classes:index' %}"+ui.item.type+"/"+ui.item.id
+    }
+  });
+});
+
+// Convert to match main query format
+function convertBool(b) {
+  if (b) { return b; }
+  return null;
+}
+
+// Script for Matches
 //check if checkboxes checked
 function dateCheck(){
   var m = document.getElementById("M").checked;
@@ -605,17 +604,12 @@ toggle between hiding and showing the dropdown content */
    x.style.display = "block";
     collapse = false;
   }
-  else{
-//     document.getElementById("ui-autocomplete").style.maxWidth="60%";
-//     document.getElementById("ui-autocomplete").style.maxHeight="70%";
-     console.log("mobile styling");
-  }
 
   $('.dropdown-menu').on('click', function(e) {
     e.stopPropagation();
   });
 
-$('.clockpicker').clockpicker({
+  $('.clockpicker').clockpicker({
      twelvehour: true,
      default: 'now'
    })
