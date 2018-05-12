@@ -25,7 +25,7 @@ def query(request):
         results.append(building_json)
     for course in courses:
         course_json = {}
-        course_json['label'] = str(course)+" "+course.title+" "+course.section
+        course_json['label'] = str(course)+" "+course.title+" "+course.section+" "+course.time
         course_json['value'] = str(course)+" "+course.section
         course_json['type'] = "course"
         course_json['id'] = course.id
@@ -86,43 +86,28 @@ def saved_locations(request):
     return JsonResponse(data)
 
 def update_result(netid, isSave, isCourse, id):
-    # Default map conditions
-    zoom = 0
-    lon = 0
-    lat = 0
-
     user = User.objects.get(netid=netid)
 
     if isCourse and id.isdigit() and Section.objects.filter(id=int(id)).exists():
         match = Section.objects.get(id=int(id))
         key = str(match.pk)
-        lon = match.building.lon
-        lat = match.building.lat
         if isSave and not key in user.courses:
             user.courses.append(key)
             match.searched += 1
             match.save()
-            zoom = 1
         elif not isSave and key in user.courses:
             user.courses.remove(key)
     elif id.isdigit() and Section.objects.filter(id=int(id)).exists():
         match = Building.objects.get(id=int(id))
         key = str(match.pk)
-        lon = match.lon
-        lat = match.lat
         if isSave and not key in user.buildings:
             user.buildings.append(key)
             match.searched += 1
             match.save()
-            zoom = 1
         elif not isSave and key in user.buildings:
             user.buildings.remove(key)
-    else:
-        return (lon, lat, zoom)
 
     user.save()
-
-    return (lon, lat, zoom)
 
 # Create user if not present already
 def create_user(netid):
@@ -135,7 +120,7 @@ def remove(request):
     print(remove_id)
     if remove_id:
         netid = request.user.username
-        lon, lat, zoom = update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
+        update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
     return HttpResponseRedirect(reverse('classes:saved_locations'))
 
 @login_required
@@ -143,33 +128,18 @@ def save(request):
     save_id = request.POST.get('s')
     if save_id:
         netid = request.user.username
-        lon, lat, zoom = update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
+        update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
     return HttpResponseRedirect(reverse('classes:saved_locations'))
 
 @login_required
 def index(request):
     netid = request.user.username
-    #save_id = request.POST.get('s')
-    #remove_id = request.POST.get('r')
-
     create_user(netid)
-
-    #context = {}
-    #if save_id:
-    #    lon, lat, zoom = update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
-    #elif remove_id:
-    #    lon, lat, zoom = update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
-    #else:
-    #    lon, lat, zoom = 0, 0, 0
-
     user = User.objects.get(netid=netid)
     context = {
         'saved_courses': Section.objects.filter(id__in=user.courses),
         'saved_buildings': Building.objects.filter(id__in=user.buildings),
         'netid': netid,
-        #'zoom': zoom,
-        #'last_lon': lon,
-        #'last_lat': lat
     }
 
     return render(request, 'classes/index.html', context)
@@ -220,37 +190,35 @@ def search_terms(query):
 
         results = Section.objects.all()
         builds = Building.objects.all()
-        for q in query:
+        for i in range(0, len(query)):
+            # Last search term might be incomplete
+            if i == len(query)-1:
+                q = query[i]
+            else:
+                q = query[i]+"($| |/)"
+
             # Always try to match query for building results
-            builds = builds.filter(names__icontains = " "+q) | \
-                     builds.filter(names__icontains = "/"+q) | \
-                     builds.filter(names__istartswith = q)
+            builds = builds.filter(names__iregex = "(^| |/)"+q)
+            for b in builds:
+                print(b.names)
 
             # Display the canonical name and the name that matched to prevent confusion
             for b in builds:
                 aliases = b.names.split("/")
-                for i in range(0, len(aliases)):
-                    name = aliases[i]
-                    if q.upper() in name.upper():
-                        if i != 0:
+                for j in range(0, len(aliases)):
+                    name = aliases[j]
+                    if query[i].upper() in name.upper():
+                        if j != 0:
                             names[aliases[0]] = " ("+name.strip()+")"
                         else:
                             names[aliases[0]] = ""
                         break
 
-            # Match courses
-            matches = Q(listings__icontains = "/"+q) | \
-                      Q(listings__icontains = " "+q) | \
-                      Q(section__istartswith = q)
-
-            # Handle building - look for match in canonical name and aliases
-            matches = matches | \
-                    Q(building__names__icontains = " "+q) | \
-                    Q(building__names__icontains = "/"+q) | \
-                    Q(building__names__istartswith = q)
+            # Match courses by listings and building
+            matches = Q(listings__iregex = "(^| |/)"+q) | Q(building__names__iregex = "(^| |/)"+q)
 
             # Handle concat dept/number (e.g. cos333)
-            if len(q) >= 4:
+            if len(query[i]) >= 4:
                 matches = matches | \
                           (Q(listings__icontains = "/"+q[0:3]) & \
                           Q(listings__icontains = " "+q[3:]))

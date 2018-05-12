@@ -912,18 +912,9 @@ L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16p
     });
 }
 function onEachFeature(feature, layer) {
-  /*
-  var buildquery = feature.properties.name
-  var buildingtext = buildquery +
-         "<form method=\"GET\" action=\"{% url 'classes:search' %}\">" +"<br>"+
-         "<button class=\"btn btn-success\" name=\"q\" value=\""+buildquery+"\" type=\"submit\">" +
-             "<i class=\"fa fa-search\">"+"</i>"+"Classes Here" +
-         "</button>" +
-     "</form>";
-     */
   layer.bindPopup();
   layer.on({
-    mouseover: highlightFeature,//,
+    mouseover: highlightFeature,
     mouseout: resetHighlight,
     click: zoomToFeature
   });
@@ -1138,13 +1129,13 @@ function resetHighlight(e) {
               addRow(this['name'], this['lon'], this['lat'], this['id']+"b", removeButton(this['id'], "b"));
               var text = "<div>"+this['name']+"</div>"+removeButton(this['id'], "b");
             } else if (i === "courses") {
-              addRow("<div>"+this['listing']+"</div><div>"+this['building_name']+"</div><div>"+this['time']+"</div>",
-                     this['lon'], this['lat'], this['id']+"c", removeButton(this['id'], "c"));
-              var text = "<div>"+this['listing']+"</div>"+removeButton(this['id'], "c");
+              var text = "<div>"+this['listing']+"</div><div>"+this['building_name']+" "+this['room']+"</div><div>"+this['time']+"</div>";
+              addRow(text, this['lon'], this['lat'], this['id']+"c", removeButton(this['id'], "c"));
+              text += "<br>"+removeButton(this['id'], "c");
             }
             var key = this['lon']+" "+this['lat'];
             if (key in lonlats) {
-              lonlats[key] += "<br>"+text;
+              lonlats[key] += "<hr style=\"border-color: black;\">"+text;
             } else {
               lonlats[key] = text;
             }
@@ -1157,7 +1148,8 @@ function resetHighlight(e) {
             var lon = parseFloat(tokens[0])-offset;
             var lat = tokens[1];
             if (lon) {
-                L.marker([lat, lon], {icon: savedIcon}).addTo(saveLayer).bindPopup(lonlats[key]);
+                L.marker([lat, lon], {icon: savedIcon}).addTo(saveLayer)
+                 .bindPopup("<div style=\"max-height: 175px; overflow: scroll;\">"+lonlats[key]+"</div>");
             }
           }
         }
@@ -1169,66 +1161,7 @@ function resetHighlight(e) {
 
 lonlats = {};
 var offset = 0.0001;
-/*
-{% if saved_buildings %}
-   {% for s in saved_buildings %}
-     var key = "{{s.lon}} {{s.lat}}"
-     var button =
-     "<form method=\"post\" action=\"{% url 'classes:remove' %}\">" +
-     "{% csrf_token %}" +
-         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}b\" type=\"submit\">" +
-             "<i class=\"fa fa-close\">"+"</i>"+"Remove"+
-         "</button>" +
-     "</form>";
-     var text = "<div>{{s}}</div>"+button;
-     if (key in lonlats) {
-       lonlats[key] += "<br>"+text;
-     } else {
-       lonlats[key] = text;
-     }
-     addRow("{{s.names}}".split("/")[0], "{{s.lon}}", "{{s.lat}}", button);
-  {% endfor %}
-{% endif %}
-{% if saved_courses %}
-   {% for s in saved_courses %}
-     var key = "{{s.building.lon}} {{s.building.lat}}";
-     var button =
-     "<form method=\"post\" action=\"{% url 'classes:remove' %}\">" +
-     "{% csrf_token %}" +
-         "<button class=\"btn btn-remove\" name=\"r\" value=\"{{s.pk}}c\" type=\"submit\">" +
-             "<i class=\"fa fa-close\">"+"</i>"+"Remove" +
-         "</button>" +
-     "</form>";
-     var text = "<div>{{s}}</div>"+button;
-     if (key in lonlats) {
-       lonlats[key] += "<br>"+text;
-     } else {
-       lonlats[key] = text;
-     }
-     addRow("<div>{{s}}</div><div>{{s.building}}</div><div>{{s.time}}</div>", "{{s.building.lon}}", "{{s.building.lat}}", button);
-    {% endfor %}
-{% endif %}
-if (!jQuery.isEmptyObject(lonlats)) {
-  var count = 0;
-  for (var key in lonlats) {
-    var tokens = key.split(" ");
-    var lon = parseFloat(tokens[0])-offset;
-    var lat = tokens[1];
-    if (lon) {
-        L.marker([lat, lon], {icon: savedIcon}).addTo(map).bindPopup(lonlats[key]);
-    }
-  }
-  {% if last_lon %}
-    {% if last_lat %}
-      {% if zoom %}
-        lon = "{{last_lon}}"
-        lat = "{{last_lat}}"
-        map.setView([lat, parseFloat(lon)+offset],17);
-      {% endif %}
-    {% endif %}
-  {% endif %}
-}
-*/
+
     // Searched marker
     {% if building %}
         var lon = "{{building.lon}}";
@@ -1241,30 +1174,22 @@ if (!jQuery.isEmptyObject(lonlats)) {
         var lat = "{{course.building.lat}}";
         var id = "{{course.pk}}";
         var type = "c";
-        // modified this line to add parameters
 
-        var name = "{{course}} {{course.title}} {{course.section}}"+"{{course.building.name}}".split("/")[0] +
-                   " {{course.room}} {{course.day}} {{course.time}}";
+        var name = "<div>{{course}} {{course.section}}</div>"+
+                   "<div>"+truncate("{{course.title}}", 50)+"</div>"+
+                   "<div>"+"{{course.building.names}}".split("/")[0]+" {{course.room}}</div>"+
+                   "<div>{{course.day}} {{course.time}}</div>";
        if (!lon && !lat) {
           lon = -74.656509;
           lat = 40.346699;
-          var name = "<div>NO BUILDING<\div><div>{{course}} {{course.day}} {{course.time}}</div>";
         }
     {% endif %}
     {% if building or course %}
       var search = "<div>" + name + "</div>" +
-      /*
-      "<form method=\"post\" action=\"{% url 'classes:save' %}\">" +
-      "{% csrf_token %}" +
-      */
           "<button id=\"addrow\" class=\"btn btn-success\" name=\"s\" onclick=\"save(\'"+id+type+"\')\" type=\"submit\">" +
               "<i class=\"fa fa-star\">"+"</i>"+"Favorite" +
-          "</button>" //+
-      //"</form>";
-      //someMarker.addTo(someLayerGroup);
+          "</button>";
        L.marker([lat, parseFloat(lon)+offset]).addTo(searchLayer).bindPopup(search).openPopup();
-       //markerLayer.addLayer(searched);
-       //markerLayer.clearLayers();
        map.setView([lat, parseFloat(lon)+offset],17);
     {% endif %}
   </script>
