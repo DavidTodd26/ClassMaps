@@ -303,12 +303,11 @@
         padding: 2px 8px;
     }
   </style>
-</head>
 
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
+</head>
 <!-- Autocomplete js -->
 <script>
-
-
 $(function() {
   $("#search").autocomplete({
     minLength: 3,
@@ -348,68 +347,60 @@ function convertBool(b) {
 }
 </script>
 
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
+  <!-- THE MAP -->
   <div id="map"></div>
 
-<!-- Overlay div begins -->
+  <!-- Search bar overlay -->
   <div id="overlay" class="overlay">
     <form id="searchbar" name="myform" method="GET" action="{% url 'classes:search' %}">
      <a href="https://classmaps.herokuapp.com">
-     <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:42px; float:left; margin-right:10px">
+       <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:42px; float:left; margin-right:10px">
      </a>
 
-    <div style="width:30%; float:left;">
-        <input id = "search" style="font-size:15px;" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
+     <div style="width:30%; float:left;">
+      <input id = "search" style="font-size:15px;" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
-<!--     <div style="width:10px; float:left;">
-      <input style="color: white;" placeholder="" readonly>
-   </div> -->
     <div style="width:60px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
         <input id="clock" type="text" class="form-control" name="t" placeholder="  Time" style="font-size: 15px; color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
     </div>
-   <div style="width:5px; float:left;">
-    <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="|" readonly>
-   </div>
-   <div style="float:left; width:55px;">
-    <div class="dropdown" style="float:left;">
-<!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="{% static 'classes/images/weekicon.png'%}" alt="Day of Week" style="width:20px;">
-      </button> -->
-      <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="font-size: 15px; color: white; cursor: pointer;" readonly>
-    <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <label class="switch">
-          <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
-          <span class="slider"> &nbspMonday </span>
-        </label><br>
-        <label class="switch">
-          <input id = "T" name = "T" value = "T" type="checkbox" onclick="dateCheck()">
-          <span class="slider"> &nbspTuesday </span>
-        </label><br>
-        <label class="switch">
-          <input id = "W" name = "W" value = "W" type="checkbox" onclick="dateCheck()">
-          <span class="slider"> &nbspWednesday </span>
-        </label><br>
-        <label class="switch">
-          <input id = "Th" name = "Th" value = "Th" type="checkbox" onclick="dateCheck()">
-          <span class="slider"> &nbspThursday </span>
-        </label><br>
-        <label class="switch">
-          <input id = "F" name = "F" value = "F" type="checkbox" onclick="dateCheck()">
-          <span class="slider"> &nbspFriday </span>
-        </label>
+    <div style="width:5px; float:left;">
+      <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="|" readonly>
+    </div>
+    <div style="float:left; width:55px;">
+      <div class="dropdown" style="float:left;">
+        <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="font-size: 15px; color: white; cursor: pointer;" readonly>
+        <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <label class="switch">
+            <input id = "M" name = "M" value = "M" type="checkbox" onclick="dateCheck()">
+            <span class="slider"> &nbspMonday </span>
+          </label><br>
+          <label class="switch">
+            <input id = "T" name = "T" value = "T" type="checkbox" onclick="dateCheck()">
+            <span class="slider"> &nbspTuesday </span>
+          </label><br>
+          <label class="switch">
+            <input id = "W" name = "W" value = "W" type="checkbox" onclick="dateCheck()">
+            <span class="slider"> &nbspWednesday </span>
+          </label><br>
+          <label class="switch">
+            <input id = "Th" name = "Th" value = "Th" type="checkbox" onclick="dateCheck()">
+            <span class="slider"> &nbspThursday </span>
+          </label><br>
+          <label class="switch">
+            <input id = "F" name = "F" value = "F" type="checkbox" onclick="dateCheck()">
+            <span class="slider"> &nbspFriday </span>
+          </label>
         </div>
       </div>
     </div>
 
-   <div style="width:20px; float:left;" onclick="clearForm();dateCheck();">
+    <div style="width:20px; float:left;" onclick="clearForm();dateCheck();">
       <input type="text" style="color: white; cursor: pointer; font-size:20px;" placeholder="&times;" readonly>
-   </div>
-<!--
-    <div style="float:left;">
-      <input type="submit" style="display:none">
-      </input>
-    </div> -->
+    </div>
+
   </form>
 
   <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
