@@ -212,7 +212,7 @@ def search_terms(query):
                 aliases = b.names.split("/")
                 for j in range(0, len(aliases)):
                     name = aliases[j]
-                    if re.search(query[i], name, re.IGNORECASE):
+                    if re.search("(^| |/)"+q, name, re.IGNORECASE):
                         if j != 0:
                             names[aliases[0]] = " ("+name.strip()+")"
                         else:
@@ -262,7 +262,7 @@ def searchDay(results, query, mon, tues, wed, thurs, fri):
             results2 = results2 | Section.objects.filter(Q(day__icontains="F"))
     return results2
 
-def searchTime(inputTime, results):
+def search_time(inputTime, results):
     resultsWithTime = Section.objects.none()
     resultFilter = Section.objects.none()
     try:
@@ -273,7 +273,7 @@ def searchTime(inputTime, results):
     resultsWithTime = results.filter(starttime__lte = convertedTime, endtime__gte = convertedTime)
     return resultsWithTime
 
-def getDayString(mon, tues, wed, thurs, fri):
+def get_day_string(mon, tues, wed, thurs, fri):
     days = ""
     if mon:
         days += "M"
@@ -298,13 +298,13 @@ def parse_terms(request):
     results, buildings, names = search_terms(query)
     resultsFiltered = searchDay(results, query, mon, tues, wed, thurs, fri)
     if time:
-        resultsFiltered = searchTime(time, resultsFiltered)
+        resultsFiltered = search_time(time, resultsFiltered)
         if not query and not mon and not tues and not wed and not thurs and not fri:
-            resultsFiltered = searchTime(time, Section.objects.all())
+            resultsFiltered = search_time(time, Section.objects.all())
         time = "at " + time
     else:
         time = ""
-    dayString = getDayString(mon, tues, wed, thurs, fri)
+    dayString = get_day_string(mon, tues, wed, thurs, fri)
 
     return(query, time, dayString, resultsFiltered, buildings, names)
 
@@ -312,6 +312,7 @@ def parse_terms(request):
 def search(request):
     template = 'classes/index.html'
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
+    print(names)
 
     netid = request.user.username
     create_user(netid)
