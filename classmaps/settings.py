@@ -25,7 +25,7 @@ SECRET_KEY = '2w*$)(mt^!1vn_i1k050$mi#1s)ge%l87b(u1i$yq5*(dfum29'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://classmaps.herokuapp.com/']
 
 
 # Application definition
@@ -134,7 +134,6 @@ CAS_REDIRECT_URL = 'https://classmaps.herokuapp.com/'
 LOGIN_URL = 'https://classmaps.herokuapp.com/accounts/login'
 CAS_VERSION = '3'
 
-# CAS_PROXY_CALLBACK = re_path(r'^accounts/callback$', django_cas_ng.views.callback, name='cas_ng_proxy_callback')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
