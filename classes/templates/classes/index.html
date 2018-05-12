@@ -387,6 +387,29 @@
     </div>
   </div>
 </div>
+<!--  Code for sidebar overlay  -->
+   <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a style="pointer-events: none;"> Welcome, {{netid}}</a>
+    <a href="https://classmaps.herokuapp.com/about" target="_blank"><i class="fa fa-info-circle"></i> &nbsp&nbspAbout</a>
+    <a onclick="openHelp()"><i class="fa fa-question-circle"></i> &nbsp&nbspHelp</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank"><i class="fa fa-comment"></i> &nbspFeedback</a>
+    <a href="https://classmaps.herokuapp.com/about/#team" target="_blank"><i class="fa fa-address-card"></i> &nbspContact</a>
+    <a href="https://classmaps.herokuapp.com/accounts/logout"><i class="fa fa-sign-out"></i> &nbsp&nbspSign Out</a>
+
+      <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
+        <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: #00aaee;" href="/">homepage</a></p>
+        <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
+        <p>On Android, click on the <img src="{% static 'classes/images/3dot.png' %}"/> button on the top right of Chrome</p>
+        <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/> ClassMaps</p>
+      </footer>
+  </div>
+
+<!--  Code for help overlay  -->
+<div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
+  <h3>Help</h3>
+  <img id="helpimage" src="{% static 'classes/images/helpoverlay.png'%}" style="width:490px;">
+</div>
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
 <script>
@@ -513,35 +536,6 @@ var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
-</script>
-
-<!--  Code for sidebar overlay  -->
-   <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a style="pointer-events: none;"> Welcome, {{netid}}</a>
-    <a href="https://classmaps.herokuapp.com/about" target="_blank"><i class="fa fa-info-circle"></i> &nbsp&nbspAbout</a>
-    <a onclick="openHelp()"><i class="fa fa-question-circle"></i> &nbsp&nbspHelp</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank"><i class="fa fa-comment"></i> &nbspFeedback</a>
-    <a href="https://classmaps.herokuapp.com/about/#team" target="_blank"><i class="fa fa-address-card"></i> &nbspContact</a>
-    <a href="https://classmaps.herokuapp.com/accounts/logout"><i class="fa fa-sign-out"></i> &nbsp&nbspSign Out</a>
-
-      <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
-        <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: #00aaee;" href="/">homepage</a></p>
-        <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
-        <p>On Android, click on the <img src="{% static 'classes/images/3dot.png' %}"/> button on the top right of Chrome</p>
-        <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/> ClassMaps</p>
-      </footer>
-  </div>
-
-<!--  Code for help overlay  -->
-   <div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
-     <h3>Help</h3>
-<!--      <a href="javascript:void(0)" class="closebtn" onclick="closeHelp()">&times;CLOSE</a>
-     This is the help overlay. (This part has yet to be completed, sorry.) -->
-     <img id="helpimage" src="{% static 'classes/images/helpoverlay.png'%}" style="width:490px;">
-   </div>
-<!-- sidenav script  -->
-<script>
 
 // Submit form when user presses 'enter'
 $("#search").keypress(function(event) {
