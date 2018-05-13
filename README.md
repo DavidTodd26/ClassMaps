@@ -1,4 +1,7 @@
 # ClassMaps
+Live site:
+http://classmaps.herokuapp.com/
+
 ![alt text](https://raw.githubusercontent.com/DavidTodd26/ClassMaps/master/classes/homescreen.png)
 
 "ClassMaps is a web application that gives Princeton students and easy way to find the location of their classes, as well as other resources and places on campus. The current methods of doing this are limited and decentralized. Normally, students have to go through a two step process of searching for a class on course offerings, and then looking up the location on Google or Princeton map, but ClassMaps bridges those two steps into a singular process. ClassMaps will give Princeton students a platform to quickly see where and when classes of interest meet. 
@@ -9,6 +12,3 @@ Unlike previous course offering projects which are used primarily during course 
 
 More info:
 https://classmaps.herokuapp.com/about/
-
-Live site:
-http://classmaps.herokuapp.com/
