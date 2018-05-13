@@ -1022,6 +1022,12 @@ $("#search").keypress(function(event) {
         $.each(data, function(i, val) {
           $.each(val, function() {
             // Update the saved table
+            if (!this['building_name']) {
+              this['building_name'] = "NO BUILDING";
+            }
+            if (!this['time']) {
+              this['time'] = "NO TIME";
+            }
             if (i === "buildings") {
               addRow(this['name'], this['lon'], this['lat'], this['id']+"b", removeButton(this['id'], "b"));
               var text = "<div>"+this['name']+"</div>"+removeButton(this['id'], "b");
