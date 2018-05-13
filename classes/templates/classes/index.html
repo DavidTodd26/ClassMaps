@@ -300,7 +300,7 @@
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
     .container {
-        padding: 2px 8px;
+        padding: 0;
     }
   </style>
 
@@ -498,8 +498,8 @@ var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
 var temp = Math.floor(width/150);
 console.log(temp);
-console.log("{{num_matches}}");
-var num = "{{num_matches}}";
+var num = Number("{{num_matches}}") + 1;
+console.log(num);
 if(num < temp){
   console.log("autowidth")
     document.getElementById("resultsOverlay").style.width = "auto";
