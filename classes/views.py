@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 import json
 
-@login_required
+#@login_required
 def query(request):
     # Format matches to a search query as a JSON file
     query, time, dayString, courses, buildings, names = parse_terms(request)
@@ -35,7 +35,7 @@ def query(request):
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
-@login_required
+#@login_required
 def enroll(request):
     # Return the number of classes and enrollment for each building at the time queried
     query, time, dayString, courses, buildings, names = parse_terms(request)
@@ -118,7 +118,7 @@ def create_user(netid):
     if not User.objects.filter(netid=netid).exists():
         User.objects.create(netid=netid)
 
-@login_required
+#@login_required
 def remove(request):
     remove_id = request.POST.get('r')
     if remove_id:
@@ -126,7 +126,7 @@ def remove(request):
         update_result(netid, False, (remove_id[-1] == 'c'), remove_id[:-1])
     return HttpResponseRedirect(reverse('classes:saved_locations'))
 
-@login_required
+#@login_required
 def save(request):
     save_id = request.POST.get('s')
     if save_id:
@@ -134,7 +134,7 @@ def save(request):
         update_result(netid, True, (save_id[-1] == 'c'), save_id[:-1])
     return HttpResponseRedirect(reverse('classes:saved_locations'))
 
-@login_required
+#@login_required
 def index(request):
     netid = request.user.username
     create_user(netid)
@@ -161,11 +161,11 @@ def details(request, id, isCourse):
     return render(request, 'classes/index.html', context)
 
 
-@login_required
+#@login_required
 def course_details(request, id):
     return details(request, id, isCourse=True)
 
-@login_required
+#@login_required
 def building_details(request, id):
     return details(request, id, isCourse=False)
 
@@ -221,9 +221,12 @@ def search_terms(query):
             # Match courses by listings and building
             matches = Q(listings__iregex = "(^| |/)"+q)
 
-            # Many aliases are addresses, which aren't often searched intentionally
-            # For a single number, don't try to match these
-            if len(q) > 1 or q.isalpha():
+            # Many aliases are addresses that aren't often searched intentionally
+            # For queries with a number, make sure it matches the entire building word
+            if re.search("\d", q):
+                matches = matches | \
+                          Q(building__names__iregex = "(^| |/)"+q+"$")
+            else:
                 matches = matches | \
                           Q(building__names__iregex = "(^| |/)"+q)
 
@@ -307,7 +310,7 @@ def parse_terms(request):
 
     return(query, time, dayString, resultsFiltered, buildings, names)
 
-@login_required
+#@login_required
 def search(request):
     template = 'classes/index.html'
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
@@ -342,7 +345,7 @@ def search(request):
 
     return render(request, template, context)
 
-@login_required
+#@login_required
 def about(request):
     context = {}
     return render(request, 'classes/about.html', context)
