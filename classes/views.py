@@ -1,21 +1,17 @@
 from django.shortcuts import render
 from .models import Section, Building, User
 from django.db.models import Q
-from itertools import chain
 from datetime import datetime
 from datetime import time
 import re
-from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
-from django.core import serializers
 import json
 
 @login_required
 def query(request):
     query, time, dayString, courses, buildings, names = parse_terms(request)
-    print(buildings)
     results = []
     for building in buildings:
         building_json = {}
@@ -222,7 +218,13 @@ def search_terms(query):
                         break
 
             # Match courses by listings and building
-            matches = Q(listings__iregex = "(^| |/)"+q) | Q(building__names__iregex = "(^| |/)"+q)
+            matches = Q(listings__iregex = "(^| |/)"+q)
+
+            # Many aliases are addresses, which aren't often searched intentionally
+            # For a single number, don't try to match these
+            if len(q) > 1 or q.isalpha():
+                matches = matches | \
+                          Q(building__names__iregex = "(^| |/)"+q)
 
             # Handle concat dept/number (e.g. cos333)
             if len(query[i]) >= 4:
@@ -304,7 +306,6 @@ def parse_terms(request):
 def search(request):
     template = 'classes/index.html'
     query, time, dayString, resultsFiltered, buildings, names = parse_terms(request)
-    print(names)
 
     netid = request.user.username
     create_user(netid)
