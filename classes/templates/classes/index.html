@@ -4,18 +4,18 @@
 {% block content %}
 
 <html>
-<link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.css' %}">
 
-<!-- Add icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
   <!-- overlay data files -->
   <script type="text/javascript" src="{% static 'classes/buildings.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/printers.js' %}"></script>
@@ -40,18 +40,18 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
   <!-- css section -->
   <style>
-      html, body {
-       height: 100%;
-      }
-      #map {
-          height: 100%;
-          width: 100%;
-          float: left;
+    html, body {
+     height: 100%;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+        float: left;
 
-        : 1;
-          position: relative;
-          z-index: 0;
-      }
+      : 1;
+        position: relative;
+        z-index: 0;
+    }
     ::-webkit-scrollbar {
         display: none;
     }
@@ -238,7 +238,7 @@
       z-index: 8;
     }
     /* adjust autocomplete width on mobile */
-    @media only screen and (max-width: 600px) { 
+    @media only screen and (max-width: 600px) {
       .ui-autocomplete {
         width: 67%;
         height: auto;
@@ -314,7 +314,7 @@
   <div id="overlay" class="overlay">
     <form id="searchbar" name="myform" method="GET" action="{% url 'classes:search' %}">
       <!-- logo/home button -->
-     <a href="https://classmaps.herokuapp.com"> 
+     <a href="{% url 'classes:index' %}">
        <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:42px; float:left; margin-right:10px">
      </a>
      <!-- search input -->
@@ -389,22 +389,22 @@
   </div>
 </div>
 <!--  Code for sidebar overlay  -->
-   <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a style="pointer-events: none;"> Welcome, {{netid}}</a>
-    <a href="https://classmaps.herokuapp.com/about" target="_blank"><i class="fa fa-info-circle"></i> &nbsp&nbspAbout</a>
-    <a onclick="openHelp()"><i class="fa fa-question-circle"></i> &nbsp&nbspHelp</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank"><i class="fa fa-comment"></i> &nbspFeedback</a>
-    <a href="https://classmaps.herokuapp.com/about/#team" target="_blank"><i class="fa fa-address-card"></i> &nbspContact</a>
-    <a href="https://classmaps.herokuapp.com/accounts/logout"><i class="fa fa-sign-out"></i> &nbsp&nbspSign Out</a>
+ <div id="sideOverlay" class="sideOverlay" style="overflow: auto;">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="pointer-events: none;"> Welcome, {{netid}}</a>
+  <a href="{% url 'classes:about' %}" target="_blank"><i class="fa fa-info-circle"></i> &nbsp&nbspAbout</a>
+  <a onclick="openHelp()"><i class="fa fa-question-circle"></i> &nbsp&nbspHelp</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOX9jOp3gI_k9EWZPRFgFlG76HYGUtcY1nLl1pCTybvus0nQ/viewform?usp=sf_link" target="_blank"><i class="fa fa-comment"></i> &nbspFeedback</a>
+  <a href="{% url 'classes:about' %}"+"/#team" target="_blank"><i class="fa fa-address-card"></i> &nbspContact</a>
+  <a href="{% url 'classes:cas_ng_logout' %}"><i class="fa fa-sign-out"></i> &nbsp&nbspSign Out</a>
 
-      <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
-        <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: #00aaee;" href="/">homepage</a></p>
-        <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
-        <p>On Android, click on the <img src="{% static 'classes/images/3dot.png' %}"/> button on the top right of Chrome</p>
-        <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/> ClassMaps</p>
-      </footer>
-  </div>
+    <footer style="font-size: 12px; padding: 10px; position: absolute; bottom: 0; right: 0;">
+      <p>To add the site to your phone's homescreen, open the <a style="padding: 0; font-size: 12px; color: #00aaee;" href="/">homepage</a></p>
+      <p>On iPhone, click the <img height="24" src="{% static 'classes/images/action.png' %}"> button on the bottom of Safari</p>
+      <p>On Android, click on the <img src="{% static 'classes/images/3dot.png' %}"/> button on the top right of Chrome</p>
+      <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/> ClassMaps</p>
+    </footer>
+</div>
 
 <!--  Code for help overlay  -->
 <div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
@@ -469,7 +469,7 @@ function dateCheck(){
     document.getElementById("dropdownMenuButton").value=null;
   }
 }
-// ------------------------------------------------------------------------------------------------------------------------------------------------ 
+// ------------------------------------------------------------------------------------------------------------------------------------------------
 // Code for matching results
 
 function truncate(line, maxLength) {
@@ -497,23 +497,12 @@ function addImageRow(id, text) {
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
 var temp = Math.floor(width/150);
-console.log(temp);
 var num = Number("{{num_matches}}") + 1;
-console.log(num);
 if(num < temp){
-  console.log("autowidth")
     document.getElementById("resultsOverlay").style.width = "auto";
 }
 {% if num_matches < temp %}
-  //if(width > 720){
-    console.log("autowidth")
     document.getElementById("resultsOverlay").style.width = "auto";
-  //}
-  // else{
-  //   {% if num_matches < 3 %}
-  //     document.getElementById("resultsOverlay").style.width = "auto";
-  //   {% endif %}
-  //}
 {% endif %}
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
@@ -528,6 +517,7 @@ if(num < temp){
   }
 {% endif %}
 
+// Add search matches
 {% if buildings %}
     {% for b in buildings %}
       alias = "{{b.names}}".split("/")[1];
@@ -555,8 +545,8 @@ $("#search").keypress(function(event) {
         $("#searchbar").submit();
     }
 });
-// ------------------------------------------------------------------------------------------------------------------------------------------------ 
-// functions to open and close overlays 
+// ------------------------------------------------------------------------------------------------------------------------------------------------
+// functions to open and close overlays
   function clearForm() {
     console.log("cleared form");
     document.getElementById("searchbar").reset();
@@ -586,7 +576,7 @@ $("#search").keypress(function(event) {
       document.getElementById("sideOverlay").style.display = "none";
   }
 
-// ------------------------------------------------------------------------------------------------------------------------------------------------ 
+// ------------------------------------------------------------------------------------------------------------------------------------------------
   // detect mobile?
   var collapse = true;
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -618,102 +608,102 @@ $("#search").keypress(function(event) {
 // ------------------------------------------------------------------------------------------------------------------------------------------------
   //MAP CONTROLS
 
-    // Adds different layer groups
-    var printers = L.layerGroup();
-    var hotspots = L.layerGroup();
-    var waterspots = L.layerGroup();
-    var laundry = L.layerGroup();
-    var buildings = L.layerGroup();
-    var kitchenspots = L.layerGroup();
-    var diningspots = L.layerGroup();
+  // Adds different layer groups
+  var printers = L.layerGroup();
+  var hotspots = L.layerGroup();
+  var waterspots = L.layerGroup();
+  var laundry = L.layerGroup();
+  var buildings = L.layerGroup();
+  var kitchenspots = L.layerGroup();
+  var diningspots = L.layerGroup();
 
-    // Create custom icons for resource overlays
-     var printerIcon = L.icon({
-       iconUrl: "{% static 'classes/images/printer.png' %}",
-       iconSize:     [28, 28], // size of the icon
-       iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
-     });
-     var laundryIcon = L.icon({
-       iconUrl: "{% static 'classes/images/washing-machine.png' %}",
-       iconSize:     [28, 28], 
-       iconAnchor:   [14, 14], 
-       popupAnchor:  [0, 0] 
-     });
-     var hotspotIcon = L.icon({
-       iconUrl: "{% static 'classes/images/hotspot.png' %}",
-       iconSize:     [26, 26], 
-       iconAnchor:   [13, 13], 
-       popupAnchor:  [0, 0] 
-     });
-     var waterIcon = L.icon({
-       iconUrl: "{% static 'classes/images/watericon.png' %}",
-       iconSize:     [28, 28], 
-       iconAnchor:   [14, 14], 
-       popupAnchor:  [0, 0] 
-     });
-     var kitchenIcon = L.icon({
-       iconUrl: "{% static 'classes/images/kitch.png' %}",
-       iconSize:     [28, 28], 
-       iconAnchor:   [14, 14], 
-       popupAnchor:  [0, 0] 
-     });
-    var diningIcon = L.icon({
-       iconUrl: "{% static 'classes/images/dining.png' %}",
-       iconSize:     [28, 28], 
-       iconAnchor:   [14, 14], 
-       popupAnchor:  [0, 0] 
-     });
-    var saladIcon = L.icon({
-       iconUrl: "{% static 'classes/images/caesar.png' %}",
-       iconSize:     [28, 28], 
-       iconAnchor:   [14, 14], 
-       popupAnchor:  [0, 0] 
-     });
-     var savedIcon = L.icon({
-       iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
-       iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
-     });
-     var myIcon = L.icon({
-       iconUrl: "{% static 'classes/images/youarehere.png' %}",
-       iconSize:     [35, 35], // size of the icon
-       iconAnchor:   [18, 18], // point of the icon which will correspond to marker's location
-       popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
-     });
+  // Create custom icons for resource overlays
+   var printerIcon = L.icon({
+     iconUrl: "{% static 'classes/images/printer.png' %}",
+     iconSize:     [28, 28], // size of the icon
+     iconAnchor:   [14, 14], // point of the icon which will correspond to marker's location
+     popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+   });
+   var laundryIcon = L.icon({
+     iconUrl: "{% static 'classes/images/washing-machine.png' %}",
+     iconSize:     [28, 28],
+     iconAnchor:   [14, 14],
+     popupAnchor:  [0, 0]
+   });
+   var hotspotIcon = L.icon({
+     iconUrl: "{% static 'classes/images/hotspot.png' %}",
+     iconSize:     [26, 26],
+     iconAnchor:   [13, 13],
+     popupAnchor:  [0, 0]
+   });
+   var waterIcon = L.icon({
+     iconUrl: "{% static 'classes/images/watericon.png' %}",
+     iconSize:     [28, 28],
+     iconAnchor:   [14, 14],
+     popupAnchor:  [0, 0]
+   });
+   var kitchenIcon = L.icon({
+     iconUrl: "{% static 'classes/images/kitch.png' %}",
+     iconSize:     [28, 28],
+     iconAnchor:   [14, 14],
+     popupAnchor:  [0, 0]
+   });
+  var diningIcon = L.icon({
+     iconUrl: "{% static 'classes/images/dining.png' %}",
+     iconSize:     [28, 28],
+     iconAnchor:   [14, 14],
+     popupAnchor:  [0, 0]
+   });
+  var saladIcon = L.icon({
+     iconUrl: "{% static 'classes/images/caesar.png' %}",
+     iconSize:     [28, 28],
+     iconAnchor:   [14, 14],
+     popupAnchor:  [0, 0]
+   });
+   var savedIcon = L.icon({
+     iconUrl: "{% static 'classes/images/marker-icon-green.png' %}",
+     iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
+     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
+   });
+   var myIcon = L.icon({
+     iconUrl: "{% static 'classes/images/youarehere.png' %}",
+     iconSize:     [35, 35], // size of the icon
+     iconAnchor:   [18, 18], // point of the icon which will correspond to marker's location
+     popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
+   });
 
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
     L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);}
- for (var i = 0; i < laundryLocs.length; i++) {
+  for (var i = 0; i < laundryLocs.length; i++) {
     L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);}
- for (var i = 0; i < hotspotLocs.length; i++) {
+  for (var i = 0; i < hotspotLocs.length; i++) {
     L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);}
- for (var i = 0; i < waterLocs.length; i++) {
+  for (var i = 0; i < waterLocs.length; i++) {
     L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindPopup(waterLocs[i][2]).addTo(waterspots);}
- for (var i = 0; i < kitchens.length; i++) {
+  for (var i = 0; i < kitchens.length; i++) {
     L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);}
   for (var i = 0; i < dining.length; i++) {
     L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon}).bindPopup(dining[i][2]).addTo(diningspots);}
 
-    // URLs of different map layers and their attributions
-    var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="https://mapbox.com">Mapbox</a>',
-    mbUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    mbUrl2 = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+  // URLs of different map layers and their attributions
+  var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    'Imagery © <a href="https://mapbox.com">Mapbox</a>',
+  mbUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  mbUrl2 = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
-    // Different map layers
-    var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-    satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite', attribution: mbAttr});
+  // Different map layers
+  var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+  satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite', attribution: mbAttr});
 
-    // Initializes the map with default layers
-    var map = L.map('map', {
-      center: [40.346825, -74.656595],
-      zoom: 16,
-      layers: [regular, buildings],
-      zoomControl: true
-    });
+  // Initializes the map with default layers
+  var map = L.map('map', {
+    center: [40.346825, -74.656595],
+    zoom: 16,
+    layers: [regular, buildings],
+    zoomControl: true
+  });
 
   // Provides bounds and limits the user to only within those coordinates
   var southWest = L.latLng(40.323212, -74.718103),
@@ -735,24 +725,24 @@ $("#search").keypress(function(event) {
   var searchLayer = L.layerGroup().addTo(map);
   var saveLayer = L.layerGroup().addTo(map);
 
-    // Our different layers
-    var baseLayers = {
-      "&nbspRegular": regular,
-      "&nbspSatellite": satellite
-    };
-    // Our overlays
-    var overlays = {
-      "&nbspPrinters": printers,
-      "&nbspLaundry": laundry,
-      "&nbspHotspots": hotspots,
-      "&nbspWater": waterspots,
-      "&nbspKitchens": kitchenspots,
-      "&nbspDining": diningspots,
-      "&nbspHeatmap": buildings
-    };
-    // Adds overlays and layers to map
-    L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
-    map.zoomControl.setPosition('bottomright');
+  // Our different layers
+  var baseLayers = {
+    "&nbspRegular": regular,
+    "&nbspSatellite": satellite
+  };
+  // Our overlays
+  var overlays = {
+    "&nbspPrinters": printers,
+    "&nbspLaundry": laundry,
+    "&nbspHotspots": hotspots,
+    "&nbspWater": waterspots,
+    "&nbspKitchens": kitchenspots,
+    "&nbspDining": diningspots,
+    "&nbspHeatmap": buildings
+  };
+  // Adds overlays and layers to map
+  L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
+  map.zoomControl.setPosition('bottomright');
 
   // Button to locate current location
   L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="width:16px">', function (btn, map) {
@@ -785,6 +775,7 @@ $("#search").keypress(function(event) {
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
 
+  // Styling for building outlines
   function style(feature) {
     return {
       weight: 2,
@@ -828,9 +819,8 @@ $("#search").keypress(function(event) {
     });
   }
   var geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
-// ------------------------------------------------------------------------------------------------------------------------------------------------ 
+// ------------------------------------------------------------------------------------------------------------------------------------------------
 
-// David's stuff?
   // Add key if new or add value if key present
   function addDict(dict, key, val) {
     if (key in dict) {
@@ -840,6 +830,7 @@ $("#search").keypress(function(event) {
     }
   }
 
+  // Updates building outline color and popup text
   function updateColor(geojson) {
     function getData() {
       return $.ajax({
@@ -879,12 +870,14 @@ $("#search").keypress(function(event) {
         var tokens = name.split(", ");
         var totalEnroll = 0;
         var totalCourse = 0;
+        // Find total enrollment and courses
         for (i = 0; i < tokens.length; i++) {
           if (tokens[i] in students) {
             totalEnroll += students[tokens[i]];
             totalCourse += courses[tokens[i]]
           }
         }
+        // Map to a colorscale
         var color = totalEnroll > 5000 ? '#800026' :
           totalEnroll > 2500  ? '#BD0026' :
           totalEnroll > 1000  ? '#E31A1C' :
@@ -894,12 +887,14 @@ $("#search").keypress(function(event) {
           totalEnroll > 0   ? '#FED976' :
                 '#FFF';
 
+        // Handle dorms
         if (totalEnroll == 0 && layer.feature.properties.building === "dormitory") {
           layer.setStyle({
             fillColor: "#ADD8E6",
           });
           layer.bindTooltip(name);
           layer.bindPopup(name);
+        // Handle buildings with classes
         } else {
           layer.setStyle({
             fillColor: color,
@@ -924,7 +919,7 @@ $("#search").keypress(function(event) {
     $("#searchbar").submit();
   }
 
-  // Reset whenever a time/day field is updated
+  // Recompute whenever a time/day field is updated
   $("#clock").change(function() {
     updateColor(geojson);
   });
@@ -949,12 +944,14 @@ $("#search").keypress(function(event) {
     updateColor(geojson);
   });
 
+  // Generate a button to remove a location from user's saved list
   function removeButton(id, type) {
     return "<button id=\"remove\" class=\"btn btn-remove\" name=\"r\" type=\"submit\"onclick=\"remove(\'"+id+type+"\')\">" +
         "<i class=\"fa fa-close\">"+"</i>"+"Remove" +
     "</button>"
   }
 
+  // Add a row to the saved table
   function addRow(name, lon, lat, id, button) {
       var newRow = $('<tr id="'+id+'">');
       var cols = "";
@@ -966,9 +963,10 @@ $("#search").keypress(function(event) {
       $("table.order-list").append(newRow);
   }
 
+  // Go to the coords of a saved location
   function goToCoords(lon, lat) {
     map.eachLayer(function (layer) {
-      if (layer.dragging) {
+      if (layer.dragging) {  // Check if this layer is a marker
         coords = layer.getLatLng()
         if (coords.lat === parseFloat(lat) && coords.lng === parseFloat(lon)-offset) {
           layer.openPopup()
@@ -978,6 +976,7 @@ $("#search").keypress(function(event) {
     });
   }
 
+  // Save a location
   function save(id) {
     $.ajax({
        type: "POST",
@@ -995,6 +994,7 @@ $("#search").keypress(function(event) {
     });
   }
 
+  // Remove a saved location
   function remove(id) {
     $.ajax({
        type: "POST",
@@ -1011,15 +1011,17 @@ $("#search").keypress(function(event) {
     });
   }
 
+  // Update saved locations
   function updateSaved() {
     $.ajax({
       url: '/api/saved/',
       dataType: 'json',
       success: function (data) {
         saveLayer.clearLayers();
-        lonlats = {};
+        lonlats = {};   // Some locations may be in the same spot, so we need to combine the text
         $.each(data, function(i, val) {
           $.each(val, function() {
+            // Update the saved table
             if (i === "buildings") {
               addRow(this['name'], this['lon'], this['lat'], this['id']+"b", removeButton(this['id'], "b"));
               var text = "<div>"+this['name']+"</div>"+removeButton(this['id'], "b");
@@ -1028,6 +1030,7 @@ $("#search").keypress(function(event) {
               addRow(text, this['lon'], this['lat'], this['id']+"c", removeButton(this['id'], "c"));
               text += "<br>"+removeButton(this['id'], "c");
             }
+            // Combine text for the saved markers
             var key = this['lon']+" "+this['lat'];
             if (key in lonlats) {
               lonlats[key] += "<hr style=\"border-color: black;\">"+text;
@@ -1036,6 +1039,7 @@ $("#search").keypress(function(event) {
             }
           });
         });
+        // Create the saved markers
         if (!jQuery.isEmptyObject(lonlats)) {
           var count = 0;
           for (var key in lonlats) {
@@ -1052,12 +1056,13 @@ $("#search").keypress(function(event) {
     });
   }
 
-  updateSaved()
+  // Offset to prevent searched and saved markers from completely overlapping
+  var offset = 0.0001;
 
-lonlats = {};
-var offset = 0.0001;
-// ------------------------------------------------------------------------------------------------------------------------------------------------ 
+  updateSaved()
+// ------------------------------------------------------------------------------------------------------------------------------------------------
     // Searched marker result on map
+    // Classes with no building are mapped to a dummy location, so no need to worry
     {% if building %}
         var lon = "{{building.lon}}";
         var lat = "{{building.lat}}";
@@ -1071,13 +1076,9 @@ var offset = 0.0001;
         var type = "c";
 
         var name = "<div>{{course}} {{course.section}}</div>"+
-                   "<div>"+truncate("{{course.title}}", 50)+"</div>"+
+                   "<div>"+truncate("{{course.title}}", 40)+"</div>"+
                    "<div>"+"{{course.building.names}}".split("/")[0]+" {{course.room}}</div>"+
                    "<div>{{course.day}} {{course.time}}</div>";
-       if (!lon && !lat) {
-          lon = -74.656509;
-          lat = 40.346699;
-        }
     {% endif %}
     {% if building or course %}
       var search = "<div>" + name + "</div>" +
