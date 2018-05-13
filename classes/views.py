@@ -291,7 +291,6 @@ def get_day_string(mon, tues, wed, thurs, fri):
 # Get the query parameters and search appropriately
 def parse_terms(request):
     query = request.GET.get('q', None)
-    print(query)
     mon = request.GET.get('M', None)
     tues = request.GET.get('T', None)
     wed = request.GET.get('W', None)
