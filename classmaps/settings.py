@@ -90,13 +90,13 @@ WSGI_APPLICATION = 'classmaps.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-#DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ps_classes',
-    }
-}
+DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'ps_classes',
+#    }
+#}
 
 
 # Password validation
