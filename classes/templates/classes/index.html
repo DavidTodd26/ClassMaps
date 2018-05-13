@@ -498,7 +498,7 @@ var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
 var temp = Math.floor(width/150);
 console.log(temp);
-var num = "{{num_matches}}" + 1;
+var num = Number("{{num_matches}}") + 1;
 console.log(num);
 if(num < temp){
   console.log("autowidth")
