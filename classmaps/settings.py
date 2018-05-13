@@ -91,13 +91,6 @@ WSGI_APPLICATION = 'classmaps.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'ps_classes',
-#    }
-#}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -144,6 +137,3 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATICFILES_DIRS = [
      os.path.join(BASE_DIR, 'classes/static'),
 ]
-
-#import django_heroku
-#django_heroku.settings(locals())
