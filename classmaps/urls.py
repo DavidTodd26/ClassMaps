@@ -17,4 +17,4 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('classes.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
