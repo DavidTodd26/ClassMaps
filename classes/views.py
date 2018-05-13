@@ -15,10 +15,14 @@ import json
 @login_required
 def query(request):
     query, time, dayString, courses, buildings, names = parse_terms(request)
+    print(buildings)
     results = []
     for building in buildings:
         building_json = {}
-        building_json['label'] = str(building)+names[building.names.split("/")[0]]
+        building_json['label'] = str(building)
+        # Include alias
+        if building.names.split("/")[0] in names:
+            building_json['label'] += names[building.names.split("/")[0]]
         building_json['value'] = str(building)
         building_json['type'] = "building"
         building_json['id'] = building.id
@@ -215,8 +219,6 @@ def search_terms(query):
                     if re.search("(^| |/)"+q, name, re.IGNORECASE):
                         if j != 0:
                             names[aliases[0]] = " ("+name.strip()+")"
-                        else:
-                            names[aliases[0]] = ""
                         break
 
             # Match courses by listings and building
@@ -326,7 +328,9 @@ def search(request):
         # Add queried names
         for b in buildings:
             name = b.names.split("/")[0]
-            b.names = name + "/" + names[name]
+            b.names = name
+            if name in names:
+                b.names += "/" + names[name]
         context['classes'] = resultsFiltered
         context['buildings'] = buildings
 
@@ -334,7 +338,5 @@ def search(request):
 
 @login_required
 def about(request):
-    context = {
-
-    }
+    context = {}
     return render(request, 'classes/about.html', context)
