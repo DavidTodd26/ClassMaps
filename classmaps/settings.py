@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2w*$)(mt^!1vn_i1k050$mi#1s)ge%l87b(u1i$yq5*(dfum29'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['classmaps.herokuapp.com', '*']
+ALLOWED_HOSTS = ['classmaps.herokuapp.com']
 
 
 # Application definition
@@ -144,5 +144,5 @@ STATICFILES_DIRS = [
      os.path.join(BASE_DIR, 'classes/static'),
 ]
 
-#import django_heroku
-#django_heroku.settings(locals())
+import django_heroku
+django_heroku.settings(locals())
