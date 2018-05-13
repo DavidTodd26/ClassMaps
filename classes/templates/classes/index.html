@@ -495,15 +495,16 @@ function addImageRow(id, text) {
 }
 // check screen size for mobile
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-{% if num_matches < 9 %}
-  if(width > 720){
+console.log(width/9);
+{% if num_matches < (width/9) %}
+  //if(width > 720){
     document.getElementById("resultsOverlay").style.width = "auto";
-  }
-  else{
-    {% if num_matches < 3 %}
-      document.getElementById("resultsOverlay").style.width = "auto";
-    {% endif %}
-  }
+  //}
+  // else{
+  //   {% if num_matches < 3 %}
+  //     document.getElementById("resultsOverlay").style.width = "auto";
+  //   {% endif %}
+  //}
 {% endif %}
 {% if buildings or classes %}
   var matchesBlock = document.getElementById("resultsContainer");
