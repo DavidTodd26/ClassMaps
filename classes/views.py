@@ -11,6 +11,7 @@ import json
 
 @login_required
 def query(request):
+    # Format matches to a search query as a JSON file
     query, time, dayString, courses, buildings, names = parse_terms(request)
     results = []
     for building in buildings:
@@ -36,6 +37,7 @@ def query(request):
 
 @login_required
 def enroll(request):
+    # Return the number of classes and enrollment for each building at the time queried
     query, time, dayString, courses, buildings, names = parse_terms(request)
     builds = {}
     for course in courses:
@@ -52,6 +54,7 @@ def enroll(request):
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
+# Return a user's saved locations in a JSON format
 def saved_locations(request):
     netid = request.user.username
     user = User.objects.get(netid=netid)
@@ -85,6 +88,7 @@ def saved_locations(request):
     }
     return JsonResponse(data)
 
+# Update the database if a user saves or removes a location
 def update_result(netid, isSave, isCourse, id):
     user = User.objects.get(netid=netid)
 
@@ -136,20 +140,17 @@ def index(request):
     create_user(netid)
     user = User.objects.get(netid=netid)
     context = {
-        'saved_courses': Section.objects.filter(id__in=user.courses),
-        'saved_buildings': Building.objects.filter(id__in=user.buildings),
         'netid': netid,
     }
 
     return render(request, 'classes/index.html', context)
 
+# Return matches to a query
 def details(request, id, isCourse):
     netid = request.user.username
     create_user(netid)
     user = User.objects.get(netid=netid)
     context = {
-        'saved_courses': Section.objects.filter(id__in=user.courses),
-        'saved_buildings': Building.objects.filter(id__in=user.buildings),
         'netid': netid
     }
     if isCourse and id.isdigit() and Section.objects.filter(id=int(id)).exists():
@@ -239,6 +240,7 @@ def search_terms(query):
 
     return (courses, buildings, names)
 
+# Filter by day
 def search_day(results, query, mon, tues, wed, thurs, fri):
     day_results = Section.objects.none()
     if mon:
@@ -256,6 +258,7 @@ def search_day(results, query, mon, tues, wed, thurs, fri):
 
     return day_results
 
+# Filter by time
 def search_time(inputTime, results):
     resultsWithTime = Section.objects.none()
     resultFilter = Section.objects.none()
@@ -267,6 +270,7 @@ def search_time(inputTime, results):
     resultsWithTime = results.filter(starttime__lte = convertedTime, endtime__gte = convertedTime)
     return resultsWithTime
 
+# Format the days searched to display
 def get_day_string(mon, tues, wed, thurs, fri):
     days = ""
     if mon:
@@ -281,6 +285,7 @@ def get_day_string(mon, tues, wed, thurs, fri):
         days += "F"
     return days
 
+# Get the query parameters and search appropriately
 def parse_terms(request):
     query = request.GET.get('q', None)
     mon = request.GET.get('M', None)
