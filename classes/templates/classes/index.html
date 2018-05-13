@@ -495,8 +495,10 @@ function addImageRow(id, text) {
 }
 // check screen size for mobile
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-console.log(width/9);
-{% if num_matches < (width/9) %}
+
+var temp = width/9;
+console.log(temp);
+{% if num_matches < temp %}
   //if(width > 720){
     document.getElementById("resultsOverlay").style.width = "auto";
   //}
