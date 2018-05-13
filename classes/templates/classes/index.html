@@ -499,6 +499,11 @@ var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var temp = Math.floor(width/150);
 console.log(temp);
 console.log("{{num_matches}}");
+var num = "{{num_matches}}";
+if(num < temp){
+  console.log("autowidth")
+    document.getElementById("resultsOverlay").style.width = "auto";
+}
 {% if num_matches < temp %}
   //if(width > 720){
     console.log("autowidth")
