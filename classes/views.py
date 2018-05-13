@@ -225,7 +225,7 @@ def search_terms(query):
             # For queries with a number, make sure it matches the entire building word
             if re.search("\d", q):
                 matches = matches | \
-                          Q(building__names__iregex = "(^| |/)"+q+"$")
+                          Q(building__names__iregex = "(^| |/)"+q+"($| |/)")
             else:
                 matches = matches | \
                           Q(building__names__iregex = "(^| |/)"+q)
