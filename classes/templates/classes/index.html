@@ -5,6 +5,7 @@
 
 <html>
   <link rel="stylesheet" type="text/css" href="{% static 'classes/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'classes/introjs.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/bootstrap.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'classes/assets/css/github.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'classes/dist/bootstrap-clockpicker.css' %}">
@@ -28,7 +29,9 @@
   <script type="text/javascript" src="{% static 'classes/assets/js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/assets/js/bootstrap.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'classes/dist/bootstrap-clockpicker.js' %}"></script>
-
+  <!--  javascript file for intro guide  -->
+  <script type="text/javascript" src="{% static 'classes/intro.js' %}"></script>
+  
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -307,6 +310,7 @@
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
 </head>
 <body>
+  <a href='http://example.com/' data-intro='Hello step one!'></a>
   <!-- THE MAP -->
   <div id="map"></div>
 
