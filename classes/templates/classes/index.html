@@ -313,17 +313,17 @@
   <div id="map"></div>
 
   <!-- Search bar overlay -->
-  <div data-step="1" data-intro="This is the search bar!" id="overlay" class="overlay">
+  <div id="overlay" class="overlay">
     <form id="searchbar" name="myform" method="GET" action="{% url 'classes:search' %}">
       <!-- logo/home button -->
      <a href="https://classmaps.herokuapp.com">
        <img src="{% static 'classes/images/lightlogo.png'%}" alt="ClassMaps" style="width:42px; float:left; margin-right:10px">
      </a>
      <!-- search input -->
-     <div style="width:30%; float:left;">
+     <div data-step="1" data-intro="This is the search bar. Search for buildings or classes: Ex. COS 333, Frist Center" style="width:30%; float:left;">
       <input id = "search" maxlength="500" style="font-size:15px;" name = "q" value="{{request.GET.q}}" placeholder="Enter a course or building...">
     </div>
-    <div style="width:60px; float:left;">
+    <div data-step="2" data-intro="This is the time filter. Click this to open up the selector, and push submit when done. It will defaults to AM if neither is selected." style="width:60px; float:left;">
       <div class="input-group clockpicker pull-center" data-placement="bottom" data-align="top" data-autoclose="false">
         <input id="clock" type="text" class="form-control" name="t" placeholder="  Time" style="font-size: 15px; color: white; cursor: pointer;" onfocus="this.blur()" readonly>
       </div>
@@ -332,7 +332,7 @@
       <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="|" readonly>
     </div>
     <!-- date selection -->
-    <div style="float:left; width:55px;">
+    <div data-step="3" data-intro="You can also filter by date. Selecting multiple dates will \"or\" the results." style="float:left; width:55px;">
       <div class="dropdown" style="float:left;">
         <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="font-size: 15px; color: white; cursor: pointer;" readonly>
         <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -361,14 +361,14 @@
 
   </form>
 
-  <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
+  <div data-step="4" data-intro="This is the help bar. Open it to learn more about the project, contact us, or give feedback! We'd love to hear your thoughts on our project."  style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
     <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
       </div>
   </div>
  <!-- overlay div ends -->
 
 <!-- favorites bar -->
- <div id="listOverlay" class="listOverlay" style="overflow: auto;">
+ <div data-step="5" data-intro="This is the favorites list. You can add items by saving search results from the map. Select a saved item to position the map to that location." id="listOverlay" class="listOverlay" style="overflow: auto;">
    <table id="myTable" class="table order-list">
    <thead>
        <tr>
@@ -411,7 +411,6 @@
 <!--  Code for help overlay  -->
 <div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
   <h3>Help</h3>
-  <a href='http://google.com/' data-intro='Hello step one!'></a>
   <img id="helpimage" src="{% static 'classes/images/helpoverlay.png'%}" style="width:490px;">
 </div>
 
