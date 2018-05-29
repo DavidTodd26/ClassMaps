@@ -310,9 +310,7 @@
 <body>
   
   <!-- THE MAP -->
-  <div data-step="6" data-intro="The map has building outlines that give more information when you hover over or click on them. 
-                                 The colors represent a heatmap of the campus, based on student enrollment in courses summed across
-                                 the entire week. It can be filtered by the time and date filters also." id="map"></div>
+  <div id="map"></div>
 
   <!-- Search bar overlay -->
   <div id="overlay" class="overlay">
@@ -411,7 +409,9 @@
 </div>
 
 <!--  Code for help overlay  -->
-<div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
+<div data-step="6" data-intro="The map has building outlines that give more information when you hover over or click on them. 
+                                 The colors represent a heatmap of the campus, based on student enrollment in courses summed across
+                                 the entire week. It can be filtered by the time and date filters also." id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
   <h3>Help</h3>
   <img id="helpimage" src="{% static 'classes/images/helpoverlay.png'%}" style="width:490px;">
 </div>
