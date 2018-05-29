@@ -310,7 +310,9 @@
 <body>
   
   <!-- THE MAP -->
-  <div id="map"></div>
+  <div data-step="6" data-intro="The map has building outlines that give more information when you hover over or click on them. 
+                                 The colors represent a heatmap of the campus, based on student enrollment in courses summed across
+                                 the entire week. It can be filtered by the time and date filters also." id="map"></div>
 
   <!-- Search bar overlay -->
   <div id="overlay" class="overlay">
@@ -332,7 +334,7 @@
       <input type="text" style="color: white; cursor: pointer; font-size:15px;" placeholder="|" readonly>
     </div>
     <!-- date selection -->
-    <div data-step="3" data-intro="You can also filter by date. Selecting multiple dates will \"or\" the results." style="float:left; width:55px;">
+    <div data-step="3" data-intro="You can also filter by date. Selecting multiple dates will /"or/" the results." style="float:left; width:55px;">
       <div class="dropdown" style="float:left;">
         <input id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="text" class="form-control" placeholder="   Date" style="font-size: 15px; color: white; cursor: pointer;" readonly>
         <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -361,8 +363,8 @@
 
   </form>
 
-  <div data-step="4" data-intro="This is the help bar. Open it to learn more about the project, contact us, or give feedback! We'd love to hear your thoughts on our project."  style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
-    <span style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
+  <div style="float: right; padding-right: 10px; position: fixed; top: 10px; right: 0;">
+    <span data-step="4" data-intro="This is the help bar. Open it to learn more about the project, contact us, or give feedback! We'd love to hear your thoughts on our project." style="font-size:25px;cursor:pointer; color: white; padding-bottom: 7px;" onclick="openNav()">&#9776;</span>
       </div>
   </div>
  <!-- overlay div ends -->
