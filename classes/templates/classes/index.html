@@ -417,10 +417,14 @@
 </div>
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
-  <!--  javascript file for intro guide  -->
-  <script type="text/javascript" src="{% static 'classes/intro.js' %}"></script>
+<!--  javascript file for intro guide  -->
+<script type="text/javascript" src="{% static 'classes/intro.js' %}"></script>
+  
 <script>
+{% if newUser == 1 %} // check if new user, and display intro guide.
   introJs().start();
+{% endif %}
+
 // Autocomplete javascript
 $(function() {
   $("#search").autocomplete({
