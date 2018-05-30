@@ -117,6 +117,8 @@ def update_result(netid, isSave, isCourse, id):
 def create_user(netid):
     if not User.objects.filter(netid=netid).exists():
         User.objects.create(netid=netid)
+        return 1
+    return 0
 
 @login_required
 def remove(request):
@@ -137,10 +139,11 @@ def save(request):
 @login_required
 def index(request):
     netid = request.user.username
-    create_user(netid)
+    newUser = create_user(netid)
     user = User.objects.get(netid=netid)
     context = {
         'netid': netid,
+        'newUser': newUser,
     }
 
     return render(request, 'classes/index.html', context)
