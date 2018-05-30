@@ -149,6 +149,20 @@
       text-align: center;
       padding-top: 60px;
     }
+    /* control container to put an appropriate box during the tour guide */
+    .controlsContainer {
+      position: fixed;
+      display: none;
+      width: 0;
+      height: 300px;
+      top: 0;
+      left: 1;
+      right: 0;
+      bottom: 0;
+      background-color: #d3d3d3;
+      z-index: 8;
+      cursor: pointer;
+    }
     /* sidebar css */
     .sideOverlay {
       position: fixed;
@@ -409,7 +423,9 @@
       <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/> ClassMaps</p>
     </footer>
 </div>
-
+<div id="controlsContainer" class="controlsContainer" style="overflow: auto;">
+  does this work
+</div>
 <!--  Code for help overlay  -->
 <div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
   <h3>Help</h3>
