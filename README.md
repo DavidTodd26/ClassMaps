@@ -1,7 +1,4 @@
 # ClassMaps
-text
-## Overview
-
 Live site:
 http://classmaps.herokuapp.com/
 
@@ -15,10 +12,3 @@ Unlike previous course offering projects which are used primarily during course 
 
 More info:
 https://classmaps.herokuapp.com/about/
-
-## Documentation (Python 3.6, Django Version, Leaflet Maps)
-Text
-### Scraping
-Text
-### Databased
-Text
