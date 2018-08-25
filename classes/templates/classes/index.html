@@ -700,10 +700,6 @@ $("#search").keypress(function(event) {
      popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
    });
 
-<<<<<<< HEAD
-   
-=======
->>>>>>> parent of bf2be57... revert intro function
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
     temp = L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon});
@@ -736,16 +732,12 @@ $("#search").keypress(function(event) {
     temp.bindTooltip(text);
     temp.addTo(kitchenspots);}
   for (var i = 0; i < dining.length; i++) {
-<<<<<<< HEAD
     temp = L.marker([dining[i][0], dining[i][1]], {icon: diningIcon});
     text = "Dining: " + dining[i][2];
     temp.bindPopup(text);
     temp.bindTooltip(text);
     temp.addTo(diningspots);}
-=======
-    L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon}).bindPopup(dining[i][2]).addTo(diningspots);}
-
->>>>>>> parent of bf2be57... revert intro function
+    
   // URLs of different map layers and their attributions
   var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
