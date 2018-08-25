@@ -308,9 +308,7 @@
 <body>
   
   <!-- THE MAP -->
-  <div data-step="6" data-intro="This is the map. You can drag and scroll to move around and zoom in. \n The map has building outlines that give more information when you hover over or click on them. 
-                                 The colors represent a heatmap of the campus, based on student enrollment in courses summed across
-                                 the entire week. It can be filtered by the time and date filters also." id="map"></div>
+  <div  id="map"></div>
 
   <!-- Search bar overlay -->
   <div id="overlay" class="overlay">
@@ -382,7 +380,9 @@
 </div>
 
 <!--  Search result overlay -->
-<div id="resultsContainer" class="resultsContainer" style="display: none;">
+<div data-step="6" data-intro="This is the map. You can drag and scroll to move around and zoom in. The map has building outlines that give more information when you hover over or click on them. 
+The colors represent a heatmap of the campus, based on student enrollment in courses summed across
+the entire week. It can be filtered by the time and date filters also." id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
     <div class="container match-group" style="margin: 0;">
       <div id="buildings" class="row text-center" style="margin: 0;">
