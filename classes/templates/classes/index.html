@@ -671,33 +671,39 @@ $("#search").keypress(function(event) {
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
     temp = L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon});
-    temp.bindTooltip(printerLocs[i][2]);
-    temp.bindPopup(printerLocs[i][2]);
+    text = "Printer: " + printerLocs[i][2];
+    temp.bindTooltip(text);
+    temp.bindPopup(text);
     temp.addTo(printers);}
   for (var i = 0; i < laundryLocs.length; i++) {
-    temp = L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon});
-    temp.bindPopup(laundryLocs[i][2]);
-    temp.bindTooltip(laundryLocs[i][2]);
+    temp = L.marker([laundryLocs[i][0], laundryLocs[i][1]], {icon: laundryIcon});
+    text = "Laundry: " + laundryLocs[i][2]
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(laundry);}
   for (var i = 0; i < hotspotLocs.length; i++) {
-    temp = L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon});
+    temp = L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {icon: hotspotIcon});
+    text = "Hotspot: " + hotspotLocs[i][2]
     temp.bindPopup(hotspotLocs[i][2]);
     temp.bindTooltip(hotspotLocs[i][2]);
     temp.addTo(hotspots);}
   for (var i = 0; i < waterLocs.length; i++) {
-    temp = L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon});
-    temp.bindPopup(waterLocs[i][2]);
-    temp.bindTooltip(waterLocs[i][2]);
+    temp = L.marker([waterLocs[i][0], waterLocs[i][1]], {icon: waterIcon});
+    text = "Water Fountain: " + waterLocs[i][2];
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(waterspots);}
   for (var i = 0; i < kitchens.length; i++) {
-    temp = L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon});
-    temp.bindPopup(kitchens[i][2]);
-    temp.bindTooltip(kitchens[i][2]);
+    temp = L.marker([kitchens[i][0], kitchens[i][1]], {icon: kitchenIcon});
+    text = "Kitchen: " + kitchens[i][2];
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(kitchenspots);}
   for (var i = 0; i < dining.length; i++) {
-    temp = L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon});
-    temp.bindPopup(dining[i][2]);
-    temp.bindTooltip(dining[i][2]);
+    temp = L.marker([dining[i][0], dining[i][1]], {icon: diningIcon});
+    text = "Dining: " + dining[i][2];
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(diningspots);}
   // URLs of different map layers and their attributions
   var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
