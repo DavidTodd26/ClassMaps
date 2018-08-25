@@ -668,17 +668,23 @@ $("#search").keypress(function(event) {
    });
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
+    L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
     L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindTooltip(printerLocs[i][2]).addTo(printers);}
   for (var i = 0; i < laundryLocs.length; i++) {
-    L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);}
+    L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);
+    L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindTooltip(laundryLocs[i][2]).addTo(laundry);}
   for (var i = 0; i < hotspotLocs.length; i++) {
-    L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);}
+    L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindPopup(hotspotLocs[i][2]).addTo(hotspots);
+    L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon}).bindTooltip(hotspotLocs[i][2]).addTo(hotspots)}
   for (var i = 0; i < waterLocs.length; i++) {
-    L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindPopup(waterLocs[i][2]).addTo(waterspots);}
+    L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindPopup(waterLocs[i][2]).addTo(waterspots);
+    L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon}).bindTooltip(waterLocs[i][2]).addTo(waterspots);}
   for (var i = 0; i < kitchens.length; i++) {
-    L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);}
+    L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindPopup(kitchens[i][2]).addTo(kitchenspots);
+    L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon}).bindTooltip(kitchens[i][2]).addTo(kitchenspots);}
   for (var i = 0; i < dining.length; i++) {
-    L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon}).bindPopup(dining[i][2]).addTo(diningspots);}
+    L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon}).bindPopup(dining[i][2]).addTo(diningspots);
+    L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon}).bindTooltip(dining[i][2]).addTo(diningspots);}
   // URLs of different map layers and their attributions
   var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
