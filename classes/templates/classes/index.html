@@ -48,9 +48,10 @@
         height: 100%;
         width: 100%;
         float: left;
+
       : 1;
         position: relative;
-        z-index: 0;
+        z-index: 1;
     }
     ::-webkit-scrollbar {
         display: none;
@@ -82,7 +83,7 @@
       margin-left: -100%;
       position: relative;
       float: right;
-      z-index: 1;
+      z-index: 2;
       padding-top: 1%;
       padding-right: 40px;
       padding-left: 10px;
@@ -148,6 +149,16 @@
       text-align: center;
       padding-top: 60px;
     }
+    /* control container to put an appropriate box during the tour guide */
+    .controlsContainer {
+      z-index: 0;
+      position:absolute;
+      bottom:0;
+      right:0;
+      height: 300px;
+      width: 120px;
+      background-color: rgba(0,0,0,0);
+    }
     /* sidebar css */
     .sideOverlay {
       position: fixed;
@@ -200,7 +211,7 @@
       right: 0;
       bottom: 0;
       background-color: rgba(0,0,0,0.6);
-      z-index: 1;
+      z-index: 2;
       cursor: pointer;
     }
     .listText {
@@ -280,6 +291,7 @@
       display: inline-block;
       float: none;
     }
+
     .card {
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       transition: 0.3s;
@@ -308,7 +320,11 @@
 <body>
   
   <!-- THE MAP -->
+<<<<<<< HEAD
   <div data-step="6" data-intro="This is the map. You can drag and scroll to move around and zoom in. There are building outlines that give more information when you hover over or click on them. 
+=======
+  <div data-step="7" data-intro="The map has building outlines that give more information when you hover over or click on them. 
+>>>>>>> parent of bf2be57... revert intro function
                                  The colors represent a heatmap of the campus, based on student enrollment in courses summed across
                                  the entire week. It can be filtered by the time and date filters also." id="map"></div>
 
@@ -407,7 +423,10 @@
       <p>Click "Add to Home Screen" <img src="{% static 'classes/images/icons/24x24.png' %}"/> ClassMaps</p>
     </footer>
 </div>
-
+<div data-step="6" data-intro="The box over here houses the map controls. You can add on resource locations onto the map,
+                               and click on them for more information. You can also find your current location and
+                               reset the zoom." id="controlsContainer" class="controlsContainer" style="overflow: auto;">
+</div>
 <!--  Code for help overlay  -->
 <div id="helpOverlay" class="helpOverlay" style="overflow: auto;" onclick="closeHelp()">
   <h3>Help</h3>
@@ -422,6 +441,7 @@
 {% if newUser == 1 %} // check if new user, and display intro guide.
   introJs().start();
 {% endif %}
+
 // Autocomplete javascript
 $(function() {
   $("#search").autocomplete({
@@ -450,11 +470,13 @@ $(function() {
     }
   });
 });
+
 // Convert to match main query format
 function convertBool(b) {
   if (b) { return b; }
   return null;
 }
+
 //check if checkboxes checked, set search bar text
 function dateCheck(){
   var m = document.getElementById("M").checked;
@@ -477,10 +499,12 @@ function dateCheck(){
 }
 // ------------------------------------------------------------------------------------------------------------------------------------------------
 // Code for matching results
+
 function truncate(line, maxLength) {
   if (line.length <= maxLength) { return line; }
   return $.trim(line.substring(0, maxLength))+"...";
 }
+
 function addCourseRow(id, text) {
   $("#"+id).append("<div class=\"card\" onclick=\"selectClass()\">"+"<div class=\"container\">"+
     "<p>"+text+"</p>"+"</div>"+"</div>");
@@ -499,6 +523,7 @@ function addImageRow(id, text) {
 }
 // check screen size for mobile
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
 var temp = Math.floor(width/150);
 var num = Number("{{num_matches}}") + 1;
 if(num < temp){
@@ -519,6 +544,7 @@ if(num < temp){
     addImageRow("buildings", "<img src=\"{% static 'classes/images/calvinandhobbes.png'%}\" alt=\"NotFound\" class=\"center\" style=\"width:100%;\">");
   }
 {% endif %}
+
 // Add search matches
 {% if buildings %}
     {% for b in buildings %}
@@ -532,12 +558,14 @@ if(num < temp){
       }
     {% endfor %}
 {% endif %}
+
 {% if classes %}
     {% for c in classes %}
       var formatted = "{{c}}".split("/")[0]+" {{c.section}}<br>{{c.day}} {{c.time}} <br>"+truncate("{{c.title}}", 19);
       addCourseRow("buildings", "<a href=\"/course/{{c.pk}}\" style=\"color: black;\">"+formatted);
     {% endfor %}
 {% endif %}
+
 // Submit form when user presses 'enter'
 $("#search").keypress(function(event) {
     if (event.which == 13) {
@@ -575,6 +603,7 @@ $("#search").keypress(function(event) {
       document.getElementById("sideOverlay").style.width = "0";
       document.getElementById("sideOverlay").style.display = "none";
   }
+
 // ------------------------------------------------------------------------------------------------------------------------------------------------
   // detect mobile?
   var collapse = true;
@@ -588,6 +617,7 @@ $("#search").keypress(function(event) {
   $('.dropdown-menu').on('click', function(e) {
     e.stopPropagation();
   });
+
   // javascript for clockpicker
   $('.clockpicker').clockpicker({
      twelvehour: true,
@@ -602,8 +632,10 @@ $("#search").keypress(function(event) {
      autoclose: true,
      default: 'now'
    });
+
 // ------------------------------------------------------------------------------------------------------------------------------------------------
   //MAP CONTROLS
+
   // Adds different layer groups
   var printers = L.layerGroup();
   var hotspots = L.layerGroup();
@@ -612,6 +644,7 @@ $("#search").keypress(function(event) {
   var buildings = L.layerGroup();
   var kitchenspots = L.layerGroup();
   var diningspots = L.layerGroup();
+
   // Create custom icons for resource overlays
    var printerIcon = L.icon({
      iconUrl: "{% static 'classes/images/printer.png' %}",
@@ -667,47 +700,63 @@ $("#search").keypress(function(event) {
      popupAnchor:  [0, -18] // point from which the popup should open relative to the iconAnchor
    });
 
+<<<<<<< HEAD
    
+=======
+>>>>>>> parent of bf2be57... revert intro function
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
     temp = L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon});
-    temp.bindTooltip(printerLocs[i][2]);
-    temp.bindPopup(printerLocs[i][2]);
+    text = "Printer: " + printerLocs[i][2];
+    temp.bindTooltip(text);
+    temp.bindPopup(text);
     temp.addTo(printers);}
   for (var i = 0; i < laundryLocs.length; i++) {
-    temp = L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon});
-    temp.bindPopup(laundryLocs[i][2]);
-    temp.bindTooltip(laundryLocs[i][2]);
+    temp = L.marker([laundryLocs[i][0], laundryLocs[i][1]], {icon: laundryIcon});
+    text = "Laundry: " + laundryLocs[i][2]
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(laundry);}
   for (var i = 0; i < hotspotLocs.length; i++) {
-    temp = L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {title: hotspotLocs[i][2], icon: hotspotIcon});
+    temp = L.marker([hotspotLocs[i][0], hotspotLocs[i][1]], {icon: hotspotIcon});
+    text = "Hotspot: " + hotspotLocs[i][2]
     temp.bindPopup(hotspotLocs[i][2]);
     temp.bindTooltip(hotspotLocs[i][2]);
     temp.addTo(hotspots);}
   for (var i = 0; i < waterLocs.length; i++) {
-    temp = L.marker([waterLocs[i][0], waterLocs[i][1]], {title: waterLocs[i][2], icon: waterIcon});
-    temp.bindPopup(waterLocs[i][2]);
-    temp.bindTooltip(waterLocs[i][2]);
+    temp = L.marker([waterLocs[i][0], waterLocs[i][1]], {icon: waterIcon});
+    text = "Water Fountain: " + waterLocs[i][2];
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(waterspots);}
   for (var i = 0; i < kitchens.length; i++) {
-    temp = L.marker([kitchens[i][0], kitchens[i][1]], {title: kitchens[i][2], icon: kitchenIcon});
-    temp.bindPopup(kitchens[i][2]);
-    temp.bindTooltip(kitchens[i][2]);
+    temp = L.marker([kitchens[i][0], kitchens[i][1]], {icon: kitchenIcon});
+    text = "Kitchen: " + kitchens[i][2];
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(kitchenspots);}
   for (var i = 0; i < dining.length; i++) {
-    temp = L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon});
-    temp.bindPopup(dining[i][2]);
-    temp.bindTooltip(dining[i][2]);
+<<<<<<< HEAD
+    temp = L.marker([dining[i][0], dining[i][1]], {icon: diningIcon});
+    text = "Dining: " + dining[i][2];
+    temp.bindPopup(text);
+    temp.bindTooltip(text);
     temp.addTo(diningspots);}
+=======
+    L.marker([dining[i][0], dining[i][1]], {title: dining[i][2], icon: diningIcon}).bindPopup(dining[i][2]).addTo(diningspots);}
+
+>>>>>>> parent of bf2be57... revert intro function
   // URLs of different map layers and their attributions
   var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
     'Imagery © <a href="https://mapbox.com">Mapbox</a>',
   mbUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   mbUrl2 = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+
   // Different map layers
   var regular   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
   satellite  = L.tileLayer(mbUrl2, {id: 'mapbox.satellite', attribution: mbAttr});
+
   // Initializes the map with default layers
   var map = L.map('map', {
     center: [40.346825, -74.656595],
@@ -715,22 +764,27 @@ $("#search").keypress(function(event) {
     layers: [regular, buildings],
     zoomControl: true
   });
+
   // Provides bounds and limits the user to only within those coordinates
   var southWest = L.latLng(40.323212, -74.718103),
   northEast = L.latLng(40.368481, -74.596444);
   var bounds = L.latLngBounds(southWest, northEast);
+
   map.setMaxBounds(bounds);
   map.on('drag', function() {
     map.panInsideBounds(bounds, { animate: false });
   });
+
   // Gives Jerry the Julius Caesar Salad Building
   var temp = "{{netid}}";
   if(temp === "jywei"){
   L.marker([40.349152, -74.655383], {icon: saladIcon}).addTo(map)
       .bindPopup("Julius Caesar Salad Building - Jerry");
   }
+
   var searchLayer = L.layerGroup().addTo(map);
   var saveLayer = L.layerGroup().addTo(map);
+
   // Our different layers
   var baseLayers = {
     "&nbspRegular": regular,
@@ -749,6 +803,7 @@ $("#search").keypress(function(event) {
   // Adds overlays and layers to map
   L.control.layers(baseLayers, overlays, {position: 'bottomright', collapsed: collapse}).addTo(map);
   map.zoomControl.setPosition('bottomright');
+
   // Button to locate current location
   L.easyButton('<img src="{% static 'classes/images/currentloc.png' %}" style="width:16px">', function (btn, map) {
       map.locate({setView: true, maxZoom: 18});
@@ -760,10 +815,12 @@ $("#search").keypress(function(event) {
       }
       map.on('locationfound', onLocationFound);
   }, 'Current location').setPosition('bottomright').addTo(map);
+
   // Button to reset map to default view
   L.easyButton('<img src="{% static 'classes/images/refresh.png' %}" style="width:16px">', function(btn, map) {
       map.setView(new L.LatLng(40.346825, -74.656595), 16);
   }, 'Reset map').setPosition('bottomright').addTo(map);
+
   // Button to toggle favorites bar on/off
   L.easyButton('<img src="{% static 'classes/images/star.png' %}" style="width:16px">', function(btn, map) {
       var x = document.getElementById("listOverlay");
@@ -773,9 +830,11 @@ $("#search").keypress(function(event) {
           x.style.display = "none";
       }
   }, 'Toggle favorites').setPosition('bottomright').addTo(map);
+
   // Limits zoom
   map.options.minZoom = 14;
   map.options.maxZoom = 18;
+
   // Styling for building outlines
   function style(feature) {
     return {
@@ -821,6 +880,7 @@ $("#search").keypress(function(event) {
   }
   var geojson = L.geoJson(buildingData, {style: style, onEachFeature: onEachFeature}).addTo(buildings);
 // ------------------------------------------------------------------------------------------------------------------------------------------------
+
   // Add key if new or add value if key present
   function addDict(dict, key, val) {
     if (key in dict) {
@@ -829,6 +889,7 @@ $("#search").keypress(function(event) {
       dict[key] = val;
     }
   }
+
   // Updates building outline color and popup text
   function updateColor(geojson) {
     function getData() {
@@ -848,6 +909,7 @@ $("#search").keypress(function(event) {
         }
       });
     }
+
     getData().success(function (data) {
       // Parse response
       students = {}
@@ -861,6 +923,7 @@ $("#search").keypress(function(event) {
             }
         });
       });
+
       // Update layers
       geojson.eachLayer(function(layer) {
         var name = layer.feature.properties.name
@@ -883,6 +946,7 @@ $("#search").keypress(function(event) {
           totalEnroll > 50   ? '#FEB24C' :
           totalEnroll > 0   ? '#FED976' :
                 '#FFF';
+
         // Handle dorms
         if (totalEnroll == 0 && layer.feature.properties.building === "dormitory") {
           layer.setStyle({
@@ -899,52 +963,66 @@ $("#search").keypress(function(event) {
                             totalCourse+"<br>");
           var buttontext =
              '<button class="btn btn-success" id="build" value="'+name+'" onclick="searchBuilding(\''+name+'\')"><i class="fa fa-search"></i>Classes Here</button>'
+
           layer.bindPopup(name+"<br>Students here: "+totalEnroll+"<br>Courses here: "+totalCourse+"<br>"+buttontext);
         }
       });
     });
   }
+
   // Set on page load
   updateColor(geojson);
+
   // Search when a building is clicked on
   function searchBuilding(name) {
     $("#search").val(name);
     $("#searchbar").submit();
   }
+
   // Recompute whenever a time/day field is updated
   $("#clock").change(function() {
     updateColor(geojson);
   });
+
   $("#M").change(function() {
     updateColor(geojson);
   });
+
   $("#T").change(function() {
     updateColor(geojson);
   });
+
   $("#W").change(function() {
     updateColor(geojson);
   });
+
   $("#Th").change(function() {
     updateColor(geojson);
   });
+
   $("#F").change(function() {
     updateColor(geojson);
   });
+
   // Generate a button to remove a location from user's saved list
   function removeButton(id, type) {
     return "<button id=\"remove\" class=\"btn btn-remove\" name=\"r\" type=\"submit\"onclick=\"remove(\'"+id+type+"\')\">" +
         "<i class=\"fa fa-close\">"+"</i>"+"Remove" +
     "</button>"
   }
+
   // Add a row to the saved table
   function addRow(name, lon, lat, id, button) {
       var newRow = $('<tr id="'+id+'">');
       var cols = "";
+
       cols += '<td><button class="listText" onclick="goToCoords('+lon+','+lat+')">'+name+'</button></td>';
       cols += '<td>'+button+'</td>';
+
       newRow.append(cols);
       $("table.order-list").append(newRow);
   }
+
   // Go to the coords of a saved location
   function goToCoords(lon, lat) {
     map.eachLayer(function (layer) {
@@ -957,6 +1035,7 @@ $("#search").keypress(function(event) {
       }
     });
   }
+
   // Save a location
   function save(id) {
     $.ajax({
@@ -974,6 +1053,7 @@ $("#search").keypress(function(event) {
        }
     });
   }
+
   // Remove a saved location
   function remove(id) {
     $.ajax({
@@ -990,6 +1070,7 @@ $("#search").keypress(function(event) {
        }
     });
   }
+
   // Update saved locations
   function updateSaved() {
     $.ajax({
@@ -1040,8 +1121,10 @@ $("#search").keypress(function(event) {
       }
     });
   }
+
   // Offset to prevent searched and saved markers from completely overlapping
   var offset = 0.0001;
+
   updateSaved()
 // ------------------------------------------------------------------------------------------------------------------------------------------------
     // Searched marker result on map
@@ -1057,6 +1140,7 @@ $("#search").keypress(function(event) {
         var lat = "{{course.building.lat}}";
         var id = "{{course.pk}}";
         var type = "c";
+
         var name = "<div>{{course}} {{course.section}}</div>"+
                    "<div>"+truncate("{{course.title}}", 40)+"</div>"+
                    "<div>"+"{{course.building.names}}".split("/")[0]+" {{course.room}}</div>"+
