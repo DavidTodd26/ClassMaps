@@ -308,7 +308,9 @@
 <body>
   
   <!-- THE MAP -->
-  <div  id="map"></div>
+  <div data-step="6" data-intro="This is the map. You can drag and scroll to move around and zoom in. There are building outlines that give more information when you hover over or click on them. 
+                                 The colors represent a heatmap of the campus, based on student enrollment in courses summed across
+                                 the entire week. It can be filtered by the time and date filters also." id="map"></div>
 
   <!-- Search bar overlay -->
   <div id="overlay" class="overlay">
@@ -380,9 +382,7 @@
 </div>
 
 <!--  Search result overlay -->
-<div data-step="6" data-intro="This is the map. You can drag and scroll to move around and zoom in. The map has building outlines that give more information when you hover over or click on them. 
-The colors represent a heatmap of the campus, based on student enrollment in courses summed across
-the entire week. It can be filtered by the time and date filters also." id="resultsContainer" class="resultsContainer" style="display: none;">
+<div id="resultsContainer" class="resultsContainer" style="display: none;">
   <div id="resultsOverlay" class="resultsOverlay" style="overflow: auto;">
     <div class="container match-group" style="margin: 0;">
       <div id="buildings" class="row text-center" style="margin: 0;">
@@ -668,7 +668,7 @@ $("#search").keypress(function(event) {
    });
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
-    L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);}
+    L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindTooltip(printerLocs[i][2]).addTo(printers);}
   for (var i = 0; i < laundryLocs.length; i++) {
     L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);}
   for (var i = 0; i < hotspotLocs.length; i++) {
