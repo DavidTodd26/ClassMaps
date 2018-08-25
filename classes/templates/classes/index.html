@@ -670,7 +670,7 @@ $("#search").keypress(function(event) {
    
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
-    temp = L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon});
+    temp = L.marker([printerLocs[i][0], printerLocs[i][1]], {icon: printerIcon});
     temp.bindTooltip(printerLocs[i][2]);
     temp.bindPopup(printerLocs[i][2]);
     temp.addTo(printers);}
