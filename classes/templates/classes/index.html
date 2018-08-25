@@ -668,8 +668,9 @@ $("#search").keypress(function(event) {
    });
   // Put the locations for each resource to its corresponding layer
   for (var i = 0; i < printerLocs.length; i++) {
-    L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]).addTo(printers);
-    L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindTooltip(printerLocs[i][2]).addTo(printers);}
+    temp = L.marker([printerLocs[i][0], printerLocs[i][1]], {title: printerLocs[i][2], icon: printerIcon}).bindPopup(printerLocs[i][2]);
+    temp.bindPopup(printerLocs[i][2])
+    temp.addTo(printers);}
   for (var i = 0; i < laundryLocs.length; i++) {
     L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindPopup(laundryLocs[i][2]).addTo(laundry);
     L.marker([laundryLocs[i][0], laundryLocs[i][1]], {title: laundryLocs[i][2], icon: laundryIcon}).bindTooltip(laundryLocs[i][2]).addTo(laundry);}
