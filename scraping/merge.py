@@ -143,10 +143,10 @@ def restrict_bldg(sections, bldgs):
     for b in buildings:
         restricted[b] = bldgs[b]
 
-    # Print missing buildings to stderr
+    # Print missing buildings
     missing = set(missing)   # Remove duplicates
     for m in missing:
-        print(m, file=sys.stderr)
+        print(m)
 
     return restricted
 
