@@ -14,6 +14,8 @@ Temporarily replace .../classmaps/settings.py with settings_offline.py.
 
 Also create a new database by opening a terminal window and running:
 
+  initdb /usr/local/var/postgres -E utf8
+  
   createdb ps_classes
 
 #### Updating Building Outlines
